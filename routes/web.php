@@ -14,7 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get("salut", function()
 {
     return "fsadfads";
 });
+Route::get("test",'test@methode');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
