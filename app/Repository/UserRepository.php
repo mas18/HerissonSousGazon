@@ -20,6 +20,7 @@ class UserRepository
         $this->user=$user;
     }
 
+    //admin methode
      function save(User $user, $inputs)
     {
         $user->email=$inputs['email'];
@@ -32,8 +33,8 @@ class UserRepository
         $user->comment=$inputs['comment'];
 
         $user->save();
-
     }
+
 
     function getPaginate($nbPerPage)
     {
@@ -67,4 +68,20 @@ class UserRepository
         // TODO: Implement destroy() method.
         $this->getById($id)->delete();
     }
+
+    function register(Array $inputs)
+    {
+        $user=new $this->user;
+        $user->password=bcrypt($inputs['password']);
+        $user->email=$inputs['email'];
+        $user->firstname=$inputs['firstname'];
+        $user->lastname=$inputs['lastname'];
+        $user->street=$inputs['street'];
+        $user->city=$inputs['city'];
+        $user->tel=$inputs['tel'];
+        $user->comment=$inputs['comment'];
+
+        return $user->save();
+    }
+
 }
