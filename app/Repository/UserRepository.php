@@ -22,7 +22,7 @@ class UserRepository
 
     function save(User $user, $inputs)
     {
-        //TODO get the information from the imput
+        //TODO get the information from the input
         $user->save();
     }
 
