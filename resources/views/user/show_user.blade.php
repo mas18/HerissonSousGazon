@@ -6,8 +6,8 @@
         <div class="panel panel-primary">
             <div class="panel-heading">Fiche d'utilisateur</div>
             <div class="panel-body">
-                <p>prénom : {{ $user->name }}</p>
-                <p>nom : {{ $user->email }}</p>
+                <p>prénom : {{ $user->firstname }}</p>
+                <p>nom : {{ $user->lastname }}</p>
                 <p>email : {{ $user->email }}</p>
                 <p>Rue : {{ $user->street }}</p>
                 <p>ville : {{ $user->city }}</p>

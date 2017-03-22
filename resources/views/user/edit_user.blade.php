@@ -8,6 +8,7 @@
             <div class="panel-heading">Modification d'un utilisateur</div>
             <div class="panel-body">
                 <div class="col-sm-12">
+
                     {!! Form::model($user, ['route' => ['user.update', $user->id], 'method' => 'put', 'class' => 'form-horizontal panel']) !!}
                     <div class="form-group {!! $errors->has('firstname') ? 'has-error' : '' !!}">
                         {{Form::label('firstname','prenom:')}}
@@ -15,23 +16,11 @@
                         {!! $errors->first('firstname', '<small class="help-block">:message</small>') !!}
                     </div>
 
-
-
-
-
                     <div class="form-group {!! $errors->has('lastname') ? 'has-error' : '' !!}">
                         {{Form::label('lastname','nom:')}}
                         {!! Form::text('lastname', null, ['class' => 'form-control', 'placeholder' => 'nom']) !!}
                         {!! $errors->first('lastname', '<small class="help-block">:message</small>') !!}
                     </div>
-
-
-
-
-
-
-
-
 
                     <div class="form-group {!! $errors->has('email') ? 'has-error' : '' !!}">
                         {{Form::label('email','adresse email :')}}
@@ -57,6 +46,11 @@
                         {!! $errors->first('tel', '<small class="help-block">:message</small>') !!}
                     </div>
 
+                    <div class="form-group {!! $errors->has('comment') ? 'has-error' : '' !!}">
+                        {{Form::label('comment','commentaire  :')}}
+                        {!! Form::text('comment', null, ['class' => 'form-control', 'placeholder' => 'comment']) !!}
+                        {!! $errors->first('comment', '<small class="help-block">:message</small>') !!}
+                    </div>
 
                     <div class="form-group {!! $errors->has('level') ? 'has-error' : '' !!}">
                         {{Form::label('level','statut:')}}
@@ -66,7 +60,6 @@
                                 {!! Form::radio('level', 0) !!}membre
 
                             {!! $errors->first('level', '<small class="help-block">:message</small>') !!}
-
                         </div>
                     </div>
 

@@ -102,9 +102,7 @@ class userTest extends TestCase
             'comment'=>'un commentaire',
         ];
         $repository->update($userCreated->id,$inputUpdated);
-
        $userUpdated= $repository->getById($userCreated->id);
-
         self::assertNotSame($userCreated->firstname,[$userUpdated->firstname]);
         self::assertNotSame($userCreated->firstname,[$userUpdated->lastname]);
         self::assertNotSame($userCreated->firstname,$userUpdated->city);

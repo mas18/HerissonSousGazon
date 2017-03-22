@@ -26,14 +26,16 @@ class UserCreateRequest extends FormRequest
     {
         return [
             //
+            'email'=>'required|email|unique:users,email',
             'firstname'=>'required|max:50|min:2|',
-            'email'=>'required|email',
-            'lastname'=>'required|email|max:255|',
-            'password'=>'required|min:6|confirmed',
+            'lastname'=>'required|max:50|min:2|',
             'level'=>'numeric|min:0|max:9',
             'street'=>'required|max:25',
             'city'=>'required|max:25',
             'tel'=>'required|max:20',
+            'password'=>'required|min:6|confirmed',
+
+
         ];
     }
 }
