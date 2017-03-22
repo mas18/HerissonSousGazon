@@ -65,11 +65,14 @@ class userTest extends TestCase
 
         try{
             $user=$repository->getById($userCreated->id);
+            //if no exception is raised, we are wrong the methode.
+            self::assertTrue(false);
         }
         catch (ModelNotFoundException $ex)
         {
             self::assertTrue(true);
         }
+
     }
     public function  testUpdate()
     {
@@ -92,7 +95,6 @@ class userTest extends TestCase
             'firstname'=>'updatedFirst',
             'lastname'=>'updatedlast',
             'email'=>str_random(15).'@hotmail.com',
-            'password'=>'password',
             'street'=>'password',
             'city'=>'updatedCity',
             'level'=>0,
@@ -103,7 +105,7 @@ class userTest extends TestCase
 
        $userUpdated= $repository->getById($userCreated->id);
 
-       self::assertNotSame($userCreated->firstname,[$userUpdated->firstname]);
+        self::assertNotSame($userCreated->firstname,[$userUpdated->firstname]);
         self::assertNotSame($userCreated->firstname,[$userUpdated->lastname]);
         self::assertNotSame($userCreated->firstname,$userUpdated->city);
 
