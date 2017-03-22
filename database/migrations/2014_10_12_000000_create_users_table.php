@@ -17,9 +17,10 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('email', 80)->unique();
             $table->string('firstname', 30);
-            $table->string('lastname', 30)->unique();
+            $table->string('lastname', 30);
             $table->string('password', 90);
             $table->string('street', 40);
+            $table->string('city',40);
             $table->tinyInteger('level')->default('0');
             $table->string('tel', 20);
             $table->string('comment', 255)->nullable();

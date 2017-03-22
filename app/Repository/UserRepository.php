@@ -20,10 +20,19 @@ class UserRepository
         $this->user=$user;
     }
 
-    function save(User $user, $inputs)
+     function save(User $user, $inputs)
     {
-        //TODO get the information from the input
+        $user->email=$inputs['email'];
+        $user->firstname=$inputs['firstname'];
+        $user->lastname=$inputs['lastname'];
+        $user->street=$inputs['street'];
+        $user->city=$inputs['city'];
+        $user->level=$inputs['level'];
+        $user->tel=$inputs['tel'];
+        $user->comment=$inputs['comment'];
+
         $user->save();
+
     }
 
     function getPaginate($nbPerPage)
@@ -33,11 +42,12 @@ class UserRepository
 
     function store(Array $inputs)
     {
-        // TODO: Implement store() method.
+
         $user=new $this->user;
-        //TODO ASSIGN THE PASSWORD OF THE USER
-        $this->password=bcrypt($inputs['password']);
+
+        $user->password=bcrypt($inputs['password']);
         $this->save($user,$inputs);
+        return $user;
     }
 
     function getById($id)

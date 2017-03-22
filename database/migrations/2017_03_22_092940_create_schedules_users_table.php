@@ -48,7 +48,7 @@ class CreateSchedulesUsersTable extends Migration
             $table->dropForeign('schedule_user_user_id_foreign');
         });
 
-        Schema::drop('post_tag');
+        Schema::drop('schedule_user');
 
     }
 }
