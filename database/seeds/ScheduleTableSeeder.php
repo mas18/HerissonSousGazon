@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Schedule;
+use Carbon\Carbon;
 
 class ScheduleTableSeeder extends Seeder {
 
@@ -13,8 +14,16 @@ class ScheduleTableSeeder extends Seeder {
 		// ScheduleSeeder
 		Schedule::create(array(
 				'places' => 2,
-				'start' => 2017-05-05,
-				'finish' => 2017-05-07
+				'start' => $this->beginDate(),
+				'finish' => $this->endDate(),
 			));
 	}
+    public function beginDate()
+    {
+        return Carbon::today('Europe/London');
+    }
+    public function endDate()
+    {
+        return  Carbon::tomorrow('Europe/London');
+    }
 }

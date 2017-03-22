@@ -11,14 +11,17 @@ class UserTableSeeder extends Seeder {
         DB::table('users')->truncate();
 
 		// 'UserSeeder'
-		User::create(array(
-				'email' => 'email@email.com',
-				'firstname' => 'aFirstName',
-				'lastname' => 'aLastName',
-				'password' => 'password',
-				'street' => 'Rue de la rue 32',
-				'tel' => '027 455 32 31',
-				'comment' => 'Veut faire des trucs bien'
-			));
+        for ($k=0;$k<20;$k++)
+        {
+            User::create(array(
+                    'email' => 'email@email.com '.$k,
+                    'firstname' => 'aFirstName '.$k,
+                    'lastname' => 'aLastName '.$k,
+                    'password' => 'password ',
+                    'street' => 'Rue de la rue 32 ',
+                    'tel' => '027 455 32 31 ',
+                    'comment' => 'Veut faire des trucs bien. '.$k
+                ));
+        }
 	}
 }
