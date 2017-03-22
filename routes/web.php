@@ -19,12 +19,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+
+
 Route::get("test",function ()
 {
     return view('teste');
 });
-
-Route::resource('user', 'UserController');
-Route::resource('room', 'RoomController');
-Route::resource('event', 'EventController');
-Route::resource('schedule', 'ScheduleController');
