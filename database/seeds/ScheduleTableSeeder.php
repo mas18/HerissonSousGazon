@@ -21,8 +21,8 @@ class ScheduleTableSeeder extends Seeder {
                 'places' => 2,
                 'start' => $this->beginDate(),
                 'finish' => $this->endDate(),
-                'fk_event'=>rand(1,2),
-                'fk_room'=>rand(1,25),
+                'event_id'=>rand(1,2),
+                'room_id'=>rand(1,25),
             ));
         }
 

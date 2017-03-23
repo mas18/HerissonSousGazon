@@ -13,7 +13,13 @@ class Schedule extends Model {
 	use SoftDeletes;
 
 	protected $dates = ['deleted_at'];
-	protected $fillable = array('places', 'start', 'finish');
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+	protected $fillable = array('id','places', 'start', 'finish');
 
 	public function users()
 	{

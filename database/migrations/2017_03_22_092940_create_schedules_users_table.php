@@ -18,14 +18,14 @@ class CreateSchedulesUsersTable extends Migration
 
         Schema::create('schedule_user', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('fk_user')->unsigned();
-            $table->integer('fk_schedule')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->integer('schedule_id')->unsigned();
 
-            $table->foreign('fk_user')->references('id')->on('users')
+            $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
 
-            $table->foreign('fk_schedule')->references('id')->on('schedules')
+            $table->foreign('schedule_id')->references('id')->on('schedules')
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
         });

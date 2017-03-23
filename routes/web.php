@@ -21,9 +21,24 @@ Route::get('/home', 'HomeController@index');
 
 Route::get("test",function ()
 {
-    $schedule=App\Schedule::with('events')->find(1);
-    var_dump($schedule);
-    exit;
+
+    $room=\App\Room::with('schedules')->find(1);
+    echo $room->schedules;
+
+    $event=\App\Event::with('schedules')->find(1);
+    echo $event->schedules;
+
+    foreach ($event->schedules as $sched)
+    {
+        echo $sched->places;
+        echo "<br/>";
+    }
+    echo"----affichage-------";
+    $schedules=App\Schedule::with('rooms')->find(2);
+    echo $schedules->rooms;
+
+
+    return view('teste');
 });
 
 Route::resource('user', 'userController');

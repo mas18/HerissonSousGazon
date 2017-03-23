@@ -13,18 +13,18 @@ class CreateSchedulesTable extends Migration {
 			$table->softDeletes();
 			$table->datetime('start');
 			$table->datetime('finish');
-            $table->integer('fk_event')->unsigned();
-            $table->integer('fk_room')->unsigned();
+            $table->integer('event_id')->unsigned();
+            $table->integer('room_id')->unsigned();
 			$table->timestamps();
             //relationship
 
-            $table->foreign('fk_event')
+            $table->foreign('event_id')
                 ->references('id')
                 ->on('events')
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
 
-            $table->foreign('fk_room')
+            $table->foreign('room_id')
                 ->references('id')
                 ->on('rooms')
                 ->onDelete('restrict')

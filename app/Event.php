@@ -8,6 +8,12 @@ class Event extends Model {
 
 	protected $table = 'events';
 	public $timestamps = true;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
 	protected $fillable = array('starting', 'ending');
 
 	public function schedules()

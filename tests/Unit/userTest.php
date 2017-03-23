@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use App\Event;
 use App\Repository\UserRepository;
+use App\Room;
 use App\Schedule;
 use App\User;
 use Illuminate\Cache\Repository;
@@ -115,8 +116,17 @@ class userTest extends TestCase
     }
     public function testRelationShip()
     {
-        $schedule=Schedule::with('events')->find(1);
-        
+
+        $event=\App\Event::with('schedules')->find(1);
+
+
+
+        foreach ($event->schedules as $sched)
+        {
+            echo $sched->places;
+            echo "<br/>";
+        }
+
     }
 
 }
