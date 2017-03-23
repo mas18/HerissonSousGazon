@@ -11,7 +11,7 @@ class EventTableSeeder extends Seeder {
 		DB::table('events')->delete();
         DB::table('events')->truncate();
 
-        for ($k=0;$k<15;$k++)
+        for ($k=0;$k<2;$k++)
         {
             // event1
             Event::create(array(

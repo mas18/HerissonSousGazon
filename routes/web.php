@@ -21,7 +21,9 @@ Route::get('/home', 'HomeController@index');
 
 Route::get("test",function ()
 {
-    return view('teste');
+    $schedule=App\Schedule::with('events')->find(1);
+    var_dump($schedule);
+    exit;
 });
 
 Route::resource('user', 'userController');

@@ -2,7 +2,9 @@
 
 namespace Tests\Unit;
 
+use App\Event;
 use App\Repository\UserRepository;
+use App\Schedule;
 use App\User;
 use Illuminate\Cache\Repository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -110,7 +112,11 @@ class userTest extends TestCase
         self::assertEquals($inputUpdated['lastname'],$userUpdated->lastname);
         self::assertEquals($inputUpdated['firstname'],$userUpdated->firstname);
         self::assertEquals($inputUpdated['city'],$userUpdated->city);
-
-
     }
+    public function testRelationShip()
+    {
+        $schedule=Schedule::with('events')->find(1);
+        
+    }
+
 }

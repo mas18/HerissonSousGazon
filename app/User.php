@@ -31,6 +31,6 @@ class User extends Authenticatable
     ];
     public function schedules()
     {
-        return $this->belongsToMany('Schedule');
+        return $this->belongsToMany('App\Schedule');
     }
 }

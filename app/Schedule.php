@@ -17,17 +17,17 @@ class Schedule extends Model {
 
 	public function users()
 	{
-		return $this->belongsToMany('User');
+		return $this->belongsToMany('App\User');
 	}
 
 	public function rooms()
 	{
-		return $this->belongsTo('Room');
+		return $this->belongsTo('App\Room');
 	}
 
 	public function events()
 	{
-		return $this->belongsTo('Event');
+		return $this->belongsTo('App\Event');
 	}
 
 }

@@ -17,7 +17,7 @@ class Room extends Model {
 
 	public function schedules()
 	{
-		return $this->hasMany('Schedule');
+		return $this->hasMany('App\Schedule');
 	}
 
 }

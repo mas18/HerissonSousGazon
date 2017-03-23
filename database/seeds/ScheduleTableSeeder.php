@@ -11,19 +11,30 @@ class ScheduleTableSeeder extends Seeder {
 		DB::table('schedules')->delete();
         DB::table('schedules')->truncate();
 
-		// ScheduleSeeder
-		Schedule::create(array(
-				'places' => 2,
-				'start' => $this->beginDate(),
-				'finish' => $this->endDate(),
-			));
+
+        for ($k=0;$k<50;$k++)
+        {
+            $date = Carbon::create(2015, 5, 28, 0, 0, 0);
+
+            // ScheduleSeeder
+            Schedule::create(array(
+                'places' => 2,
+                'start' => $this->beginDate(),
+                'finish' => $this->endDate(),
+                'fk_event'=>rand(1,2),
+                'fk_room'=>rand(1,25),
+            ));
+        }
+
 	}
     public function beginDate()
     {
+
         return Carbon::today('Europe/London');
     }
     public function endDate()
     {
-        return  Carbon::tomorrow('Europe/London');
+        $date = Carbon::create(2017, 5, 28, 0, 0, 0);
+        return   $date->addWeeks(rand(1, 52))->format('Y-m-d H:i:s');
     }
 }

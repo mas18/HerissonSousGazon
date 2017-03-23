@@ -13,12 +13,35 @@ class CreateSchedulesTable extends Migration {
 			$table->softDeletes();
 			$table->datetime('start');
 			$table->datetime('finish');
+            $table->integer('fk_event')->unsigned();
+            $table->integer('fk_room')->unsigned();
 			$table->timestamps();
-		});
+            //relationship
+
+            $table->foreign('fk_event')
+                ->references('id')
+                ->on('events')
+                ->onDelete('restrict')
+                ->onUpdate('restrict');
+
+            $table->foreign('fk_room')
+                ->references('id')
+                ->on('rooms')
+                ->onDelete('restrict')
+                ->onUpdate('restrict');
+
+
+
+        });
 	}
 
 	public function down()
 	{
-		Schema::drop('schedules');
+        Schema::table('schedules', function(Blueprint $table) {
+            $table->dropForeign('posts_user_id_foreign');
+        });
+
+
+        Schema::drop('schedules');
 	}
 }
