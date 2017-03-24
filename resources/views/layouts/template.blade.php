@@ -3,9 +3,22 @@
 <html>
 <head>
     <title>@yield('header_title')</title>
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <!-- Styles -->
     {{Html::style('css/bootstrap/bootstrap.min.css')}}
     {{Html::style('css/bootstrap/bootstrap-theme.min.css')}}
     {{Html::style('css/style.css')}}
+
+    <!-- script -->
+    {{Html::style('js/app.js')}}
+    <script>
+        window.Laravel = {!! json_encode([
+            'csrfToken' => csrf_token(),
+        ]) !!};
+    </script>
 </head>
 
 
@@ -20,25 +33,24 @@
             <a class="navbar-brand" href="#">Administration</a>
 
             <!-- Navbar: Register/Connection -->
-            <ul class="nav navbar-nav navbar-right">
+            <div class="navbar-right linksNav">
                 <!-- Authentication Links -->
                 @if (Auth::guest())
-                    <li class="linksNav"><a class="navbar-brand" href="{{ route('login') }}">Login</a></li>
-                    <li class="linksNav"><a class="navbar-brand" href="{{ route('register') }}">Register</a></li>
+
+                    <a class="navbar-brand" href="{{ route('login') }}">Connection</a>
+                    <a class="navbar-brand" href="{{ route('register') }}">Inscription</a>
                 @else
 
-                    <li class="linksNav">
-                        <a class="navbar-brand" href="{{ route('logout') }}"
+                    <a class="navbar-brand" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                            Logout
-                        </a>
+                           document.getElementById('logout-form').submit();">
+                            Déconnection
+                    </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
                         </form>
-                    </li>
                 @endif
-            </ul>
+            </div>
          </div>
     </nav>
 </header>
@@ -53,9 +65,6 @@
 <footer>
     <div class="navbar navbar-default navbar-fixed-bottom footerDiv">footer body</div>
 </footer>
-
-<script type="text/javascript" src="js/bootstrap.js/bootstrap.min.js">
-</script>
 
 </body>
 </html>
