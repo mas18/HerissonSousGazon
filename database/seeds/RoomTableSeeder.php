@@ -8,7 +8,7 @@ class RoomTableSeeder extends Seeder {
 	public function run()
 	{
 		DB::table('rooms')->delete();
-        DB::table('rooms')->truncate();
+       // DB::table('rooms')->truncate();
 
 		// RoomSeeders
         for($k=0;$k<25;$k++)
