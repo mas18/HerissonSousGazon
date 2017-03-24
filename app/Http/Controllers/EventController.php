@@ -19,7 +19,7 @@ class EventController extends Controller {
 
     public function __construct(EventRepository $eventRepository)
     {
-        $this->middleware('admin',['except'=>'index']);
+        // $this->middleware('admin',['except'=>'index']);
         $this->eventRepository = $eventRepository;
     }
 
@@ -68,9 +68,10 @@ class EventController extends Controller {
    * @param  int  $id
    * @return Response
    */
-  public function edit($id)
+  public function edit(EventRequest $request)
   {
-    
+      $this->eventRepository->update($request->all());
+      return redirect()->route('event.show');
   }
 
   /**

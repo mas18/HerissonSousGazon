@@ -37,6 +37,12 @@ class EventRepository
         $this->save($event,$inputs);
     }
 
+    function update(Array $inputs)
+    {
+        $this->save($this->getById($inputs['eventId']), $inputs);
+    }
+
+
     function save(Event $event, $inputs)
     {
         $event->starting=$inputs['dateFrom'];
