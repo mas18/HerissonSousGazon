@@ -10,7 +10,7 @@
 
             <!-- Trigger the modal with a button -->
             <div class="col-xs-3">
-                <button type="button" style="float: right; margin-top: 22px;"  class="btn btn-info" data-toggle="modal" data-target="#myModal">Créer un événement</button>
+                <button type="button" style="float: right; margin-top: 22px;"  class="btn btn-primary" data-toggle="modal" data-target="#myModal">Créer un événement</button>
             </div>
         </div>
 
