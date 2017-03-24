@@ -20,6 +20,7 @@ class CreateSchedulesUsersTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('schedule_id')->unsigned();
+
             $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
@@ -48,7 +49,7 @@ class CreateSchedulesUsersTable extends Migration
             $table->dropForeign('schedule_user_user_id_foreign');
         });
 
-        Schema::drop('post_tag');
+        Schema::drop('schedule_user');
 
     }
 }

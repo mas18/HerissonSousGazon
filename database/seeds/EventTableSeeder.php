@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use \Event;
+use \App\Event;
+use \Carbon\Carbon;
 
 class EventTableSeeder extends Seeder {
 
@@ -10,10 +11,22 @@ class EventTableSeeder extends Seeder {
 		DB::table('events')->delete();
         DB::table('events')->truncate();
 
-		// event1
-		Event::create(array(
-				'starting' => 2017-05-05,
-				'ending' => 2017-05-07
-			));
+        for ($k=0;$k<2;$k++)
+        {
+            // event1
+            Event::create(array(
+                'starting' => $this->beginDate(),
+                'ending' => $this->endDate(),
+            ));
+        }
+
 	}
+	public function beginDate()
+    {
+        return Carbon::createFromDate(null, rand(1, 6), rand(1, 28));
+    }
+    public function endDate()
+    {
+        return Carbon::createFromDate(null, rand(7, 12), rand(1, 28));
+    }
 }

@@ -11,8 +11,12 @@ class RoomTableSeeder extends Seeder {
         DB::table('rooms')->truncate();
 
 		// RoomSeeders
-		Room::create(array(
-				'name' => aroom
-			));
+        for($k=0;$k<25;$k++)
+        {
+            Room::create(array(
+                'name' => 'aRooms'.$k
+            ));
+        }
+
 	}
 }

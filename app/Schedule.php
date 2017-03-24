@@ -13,21 +13,27 @@ class Schedule extends Model {
 	use SoftDeletes;
 
 	protected $dates = ['deleted_at'];
-	protected $fillable = array('places', 'start', 'finish');
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+	protected $fillable = array('id','places', 'start', 'finish');
 
 	public function users()
 	{
-		return $this->belongsToMany('User');
+		return $this->belongsToMany('App\User');
 	}
 
 	public function rooms()
 	{
-		return $this->belongsTo('Room');
+		return $this->belongsTo('App\Room');
 	}
 
 	public function events()
 	{
-		return $this->belongsTo('Event');
+		return $this->belongsTo('App\Event');
 	}
 
 }

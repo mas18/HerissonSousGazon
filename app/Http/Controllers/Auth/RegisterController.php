@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Repository\UserRepository;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -9,6 +10,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
+
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -48,9 +50,14 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+            'email'=>'required|email|unique:users,email',
+            'firstname'=>'required|max:50|min:2|',
+            'lastname'=>'required|max:50|min:2|',
+            'level'=>'numeric|min:0|max:9',
+            'street'=>'required|max:25',
+            'city'=>'required|max:25',
+            'tel'=>'required|max:20',
+            'password'=>'required|min:6|confirmed',
         ]);
     }
 
@@ -63,8 +70,13 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+            'firstname' => $data['firstname'],
             'email' => $data['email'],
+            'lastname' => $data['lastname'],
+            'street' => $data['street'],
+            'city' => $data['city'],
+            'comment' => $data['comment'],
+            'tel' => $data['tel'],
             'password' => bcrypt($data['password']),
         ]);
     }
