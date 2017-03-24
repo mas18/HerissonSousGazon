@@ -16,9 +16,14 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if ($request->user()->level>0)
+        if (!$request->user)
+            throw new UnauthorizedException();
+
+        if ($request->user()->level==0)
+            throw new UnauthorizedException();
+
             return $next($request);
-        throw new UnauthorizedException();
+
 
     }
 }
