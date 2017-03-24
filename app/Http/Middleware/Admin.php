@@ -23,14 +23,12 @@ class Admin
 
         if (!$user)
         {
-            echo "pas de user";
             throw new UnauthorizedException();
         }
 
 
         if ($user->level==0)
         {
-            echo "pas le leve";
             throw new UnauthorizedException();
         }
 

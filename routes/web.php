@@ -21,7 +21,12 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/events', 'EventController@index')->name('event.show');
 Route::post('/events', 'EventController@store')->name('event.store');
+Route::resource('user', 'userController');
+Route::get('profil','ProfilController@display');
+Route::post('profil','ProfilController@save');
 
+
+/*
 Route::get("test",function ()
 {
 
@@ -43,6 +48,6 @@ Route::get("test",function ()
 
     return view('teste');
 });
+*/
 
-Route::resource('user', 'userController');
 

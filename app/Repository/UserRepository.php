@@ -28,7 +28,7 @@ class UserRepository
         $user->lastname=$inputs['lastname'];
         $user->street=$inputs['street'];
         $user->city=$inputs['city'];
-        $user->level=$inputs['level'];
+        $user->level=$inputs['level'] ?$inputs['level'] :$user->level ;
         $user->tel=$inputs['tel'];
         $user->comment=$inputs['comment'];
 
@@ -83,5 +83,6 @@ class UserRepository
 
         return $user->save();
     }
+
 
 }
