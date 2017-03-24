@@ -19,6 +19,9 @@ class UserController extends Controller
 
     public function __construct(UserRepository $userRepository)
     {
+
+        $this->middleware('admin');
+
         $this->userRepository=$userRepository;
         $this->nbPerPage=10;
     }
