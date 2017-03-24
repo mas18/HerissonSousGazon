@@ -2,17 +2,32 @@
 
 namespace App\Http\Controllers;
 
-class EventController extends Controller {
+use App\Http\Requests\EventRequest;
+use App\Repository\EventRepository;
 
+
+class EventController extends Controller {
   /**
    * Display a listing of the resource.
    *
    * @return Response
    */
-  public function index()
-  {
-    
-  }
+
+    protected $eventRepository;
+
+    protected $nbrPerPage = 3;
+
+    public function __construct(EventRepository $eventRepository)
+    {
+        $this->middleware('admin',['except'=>'index']);
+        $this->eventRepository = $eventRepository;
+    }
+
+    public function index()
+    {
+       $events = $this->eventRepository->getPaginate($this->nbrPerPage);
+       return view('event/event')->with('events', $events);
+    }
 
   /**
    * Show the form for creating a new resource.
@@ -29,9 +44,10 @@ class EventController extends Controller {
    *
    * @return Response
    */
-  public function store()
+  public function store(EventRequest $request)
   {
-    
+      $this->eventRepository->store($request->all());
+      return redirect()->route('event.show');
   }
 
   /**
@@ -42,7 +58,8 @@ class EventController extends Controller {
    */
   public function show($id)
   {
-    
+     $event = $this->eventRepository->getById($id);
+     return view('event')->with('events', $event);
   }
 
   /**

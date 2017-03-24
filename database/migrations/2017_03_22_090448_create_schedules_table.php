@@ -37,10 +37,6 @@ class CreateSchedulesTable extends Migration {
 
 	public function down()
 	{
-        Schema::table('schedules', function(Blueprint $table) {
-            $table->dropForeign('posts_user_id_foreign');
-        });
-
 
         Schema::drop('schedules');
 	}
