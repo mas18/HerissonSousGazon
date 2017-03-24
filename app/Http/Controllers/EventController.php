@@ -19,6 +19,7 @@ class EventController extends Controller {
 
     public function __construct(EventRepository $eventRepository)
     {
+        $this->middleware('admin',['except'=>'index']);
         $this->eventRepository = $eventRepository;
     }
 
