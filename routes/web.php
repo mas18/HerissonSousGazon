@@ -1,5 +1,5 @@
 <?php
-
+use App\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,28 +27,19 @@ Route::post('/events/new', 'EventController@store')->name('event.store');
 Route::post('/events/update', 'EventController@edit')->name('event.update');
 
 
-/*
+
 Route::get("test",function ()
 {
 
-    $room=\App\Room::with('schedules')->find(1);
-    echo $room->schedules;
-
-    $event=\App\Event::with('schedules')->find(1);
-    echo $event->schedules;
-
-    foreach ($event->schedules as $sched)
+    $user=User::with('schedules')->find(1);
+    foreach ($user->schedules as $aSched)
     {
-        echo $sched->places;
-        echo "<br/>";
+        echo "De ".$aSched->start." jusqu'au ".$aSched->finish ."<br/>";
     }
-    echo"----affichage-------";
-    $schedules=App\Schedule::with('rooms')->find(2);
-    echo $schedules->rooms;
 
 
     return view('teste');
 });
-*/
+
 
 
