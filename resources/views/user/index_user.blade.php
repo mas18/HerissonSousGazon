@@ -4,15 +4,13 @@
 @section('main_content')
 
     <br>
-    <div class="col-sm-offset-4 col-sm-4">
+    <div class="col-sm-offset-0 col-sm-12" style="position:relative;top:40px;">
         @if(session()->has('ok'))
             <div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
         @endif
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">Liste des utilisateurs</h3>
-            </div>
-            <table class="table">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="font-size:28px">Liste des utilisateurs</div>
+            <table class="table" style="font-size:22px">
                 <thead>
                 <tr>
                     <th>#</th>
@@ -27,10 +25,10 @@
                 @foreach ($users as $user)
                     <tr>
                         <td>{!! $user->id !!}</td>
-                        <td class="text-primary"><strong>{!! $user->name !!}</strong></td>
-                        <td class="text-primary"><strong>{!! $user->email !!}</strong></td>
-                        <td>{!! link_to_route('user.show', 'Voir', [$user->id], ['class' => 'btn btn-success btn-block']) !!}</td>
-                        <td>{!! link_to_route('user.edit', 'Modifier', [$user->id], ['class' => 'btn btn-warning btn-block']) !!}</td>
+                        <td class="text-left">{!! $user->firstname !!} {!! $user->lastname !!}</td>
+                        <td class="text-left">{!! $user->email !!}</td>
+                        <td>{!! link_to_route('user.show', 'Voir', [$user->id], ['class' => 'btn btn-info btn-block']) !!}</td>
+                        <td>{!! link_to_route('user.edit', 'Modifier', [$user->id], ['class' => 'btn btn-primary btn-block']) !!}</td>
                         <td>
                             {!! Form::open(['method' => 'DELETE', 'route' => ['user.destroy', $user->id]]) !!}
                             {!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')']) !!}
@@ -41,7 +39,7 @@
                 </tbody>
             </table>
         </div>
-        {!! link_to_route('user.create', 'Ajouter un utilisateur', [], ['class' => 'btn btn-info pull-right']) !!}
+        {!! link_to_route('user.create', 'Ajouter un utilisateur', [], ['class' => 'btn btn-default pull-right btn-lg']) !!}
         {!! $links !!}
     </div>
 @endsection

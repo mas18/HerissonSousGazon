@@ -3,11 +3,11 @@
 @extends('layouts.template')
 @section('header_title','creation utilisateur')
 @section('main_content')
-    <div class="col-sm-offset-4 col-sm-4">
+    <div class="col-sm-offset-1 col-sm-9">
         <br>
-        <div class="panel panel-primary">
-            <div class="panel-heading">Création d'un utilisateur</div>
-            <div class="panel-body">
+        <div class="panel panel-info">
+            <div class="panel-heading" style="font-size:28px">Création d'un utilisateur</div>
+            <div class="panel-body" style="font-size:22px">
                 <div class="col-sm-12">
                     {!! Form::open(['route' => 'user.store', 'class' => 'form-horizontal panel']) !!}
 
@@ -74,14 +74,12 @@
                         </div>
                     </div>
 
-                    {!! Form::submit('Envoyer', ['class' => 'btn btn-primary pull-right']) !!}
+                    {!! Form::submit('Créer', ['class' => 'btn btn-primary pull-right btn-lg']) !!}
                     {!! Form::close() !!}
                 </div>
             </div>
         </div>
-        <a href="javascript:history.back()" class="btn btn-primary">
-            <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
-        </a>
+        <a href="javascript:history.back()" class="btn btn-primary btn-lg">Retour</a>
     </div>
 @endsection
 

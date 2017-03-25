@@ -1,16 +1,16 @@
 <?php ?>
 @extends('layouts.template')
 @section('main_content')
-    <div class="col-sm-offset-4 col-sm-4">
+    <div class="col-sm-offset-1 col-sm-6" style="position:relative;top:40px;">
         <br>
-        <div class="panel panel-primary">
-            <div class="panel-heading">Fiche d'utilisateur</div>
-            <div class="panel-body">
-                <p>prénom : {{ $user->firstname }}</p>
-                <p>nom : {{ $user->lastname }}</p>
-                <p>email : {{ $user->email }}</p>
+        <div class="panel panel-info">
+            <div class="panel-heading" style="font-size:28px">Fiche d'utilisateur</div>
+            <div class="panel-body" style="font-size:22px">
+                <p>Prénom : {{ $user->firstname }}</p>
+                <p>Nom : {{ $user->lastname }}</p>
+                <p>Email : {{ $user->email }}</p>
                 <p>Rue : {{ $user->street }}</p>
-                <p>ville : {{ $user->city }}</p>
+                <p>Ville : {{ $user->city }}</p>
                 <p>Remarques : {{ $user->comment }}</p>
                 <br/>
                 statut :
@@ -18,9 +18,7 @@
 
             </div>
         </div>
-        <a href="javascript:history.back()" class="btn btn-primary">
-            <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
-        </a>
+        <a href="javascript:history.back()" class="btn btn-primary btn-lg">Retour</a>
     </div>
 @endsection
 
