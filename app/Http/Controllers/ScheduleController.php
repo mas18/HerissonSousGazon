@@ -29,12 +29,14 @@ class ScheduleController extends Controller
         $schedule=Schedule::all();
         return Datatables::of($schedule)
             ->editColumn('start', function ($schedule) {
+                $carbonDate =new Carbon($schedule->start);
+
+
                 return [
                     'display' => e(
-                       $schedule->start=Carbon::parse($schedule->start)->format('Y-m-d H:i:s')
+                       $schedule->start=Carbon::parse($schedule->start)->format('  d/m/Y  -  H:i')
                     ),
-                    'timestamp' => $schedule->start
-
+                    'timestamp' =>  $carbonDate->timestamp
                 ];
             })
             ->filterColumn('start', function ($query, $keyword) {

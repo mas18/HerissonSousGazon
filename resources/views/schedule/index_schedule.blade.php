@@ -39,14 +39,15 @@
         $(function(){
             $('#allschedule').DataTable({
                     processing: true,
-                    serverSide: true,
+                    serverSide: false,
                     ajax: '{!! URL::asset('schedule_data') !!}',
                 columns : [
                 { data: 'id', name: 'id' },
-                { data: 'start', name: 'title', type: 'number',
+                { data: 'start', name: 'title', type: 'num',
                 render : {
                     _: 'display',
                     sort: 'timestamp'
+
 
                 }},
 
