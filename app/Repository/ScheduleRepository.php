@@ -32,22 +32,23 @@ class ScheduleRepository
 
         foreach ($schedules as $s){
             $schedule = new $this->schedule;
-            $this->save($schedule,$s, $eventNew, $diff);
+            $this->saveCopy($schedule,$s, $eventNew, $diff);
         }
     }
 
-    function save(Schedule $schedule, Schedule $s, Event $event, $diff)
+    function saveCopy(Schedule $schedule, Schedule $s, Event $event, $diff)
     {
         $start = Carbon::parse($s->start);
         $finish = Carbon::parse($s->finish);
 
-        $schedule->places=$s->places;
-        $schedule->start=$start->addDays($diff);
-        $schedule->finish=$finish->addDays($diff);
-        $schedule->event_id= $event->id;
-        $schedule->room_id=$s->room_id;
+        $schedule->places = $s->places;
+        $schedule->start = $start->addDays($diff);
+        $schedule->finish = $finish->addDays($diff);
+        $schedule->event_id = $event->id;
+        $schedule->room_id = $s->room_id;
 
         $schedule->save();
+    }
     //admin methode
     function save(schedule $schedule, $inputs)
     {
