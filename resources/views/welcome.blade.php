@@ -49,11 +49,10 @@
                 </div>
             @endif
 
-
             <div class="content" style="text-align:center">
 
                 <!-- CAROUSEL -->
-                <div class="container">
+                <div class="container col-sm-offset-1 col-sm-10">
                     <br>
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
                         <!-- Indicators -->
