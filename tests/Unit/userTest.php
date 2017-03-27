@@ -117,16 +117,6 @@ class userTest extends TestCase
     public function testRelationShip()
     {
 
-        $event=\App\Event::with('schedules')->find(1);
-
-
-
-        foreach ($event->schedules as $sched)
-        {
-            echo $sched->places;
-            echo "<br/>";
-        }
-
     }
 
 }

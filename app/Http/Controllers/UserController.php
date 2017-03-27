@@ -31,6 +31,8 @@ class UserController extends Controller
     {
         //
         $users=$this->userRepository->getPaginate($this->nbPerPage);
+
+
         $links=$users->render();
         return view('user/index_user',compact('users','links'));
 

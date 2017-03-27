@@ -28,9 +28,10 @@ class UserRepository
         $user->lastname=$inputs['lastname'];
         $user->street=$inputs['street'];
         $user->city=$inputs['city'];
-        $user->level=$inputs['level'] ?$inputs['level'] :$user->level ;
+        $user->level=$inputs['level'] ;
         $user->tel=$inputs['tel'];
         $user->comment=$inputs['comment'];
+        $user->level=$inputs['level'];
 
         $user->save();
     }
@@ -38,7 +39,7 @@ class UserRepository
 
     function getPaginate($nbPerPage)
     {
-        return $this->user->paginate($nbPerPage);
+        return $this->user->orderBy('lastname', 'ASC')->orderBy('firstname', 'ASC')->paginate($nbPerPage);
     }
 
     function store(Array $inputs)
@@ -53,19 +54,17 @@ class UserRepository
 
     function getById($id)
     {
-        // TODO: Implement getById() method.
         return $this->user->findOrFail($id);
     }
 
     function update($id, $input)
     {
-        // TODO: Implement update() method.
         $this->save($this->getById($id),$input);
     }
 
     function destroy($id)
     {
-        // TODO: Implement destroy() method.
+
         $this->getById($id)->delete();
     }
 
