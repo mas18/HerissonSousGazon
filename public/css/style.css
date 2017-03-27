@@ -12,8 +12,8 @@
 .linksNav > a{
     color: #636b6f;
     padding: 0 30px;
-    font-size:100%;
     font-weight: 600;
+    font-size:80%;
     letter-spacing: .1rem;
     text-decoration: none;
     text-transform: uppercase;
@@ -34,7 +34,7 @@
 
 
 /* TEMPLATE OTHER PAGE*/
-.sizeTxtNav > a{
+.sizeTxtNav{
     font-size:80%;
 }
 .footerDiv{

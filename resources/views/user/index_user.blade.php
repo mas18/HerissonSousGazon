@@ -4,7 +4,7 @@
 @section('main_content')
 
     <br>
-    <div class="col-sm-offset-1 col-sm-10" style="position:relative;top:20px;">
+    <div class="col-sm-offset-1 col-sm-10">
         @if(session()->has('ok'))
             <div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
         @endif

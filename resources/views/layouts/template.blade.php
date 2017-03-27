@@ -25,23 +25,23 @@
 <body>
 <header>
     <!-- NavBar -->
-    <nav class="navbar navbar-default" style="padding-top:20px">
+    <nav class="navbar navbar-default" style="padding-top:15px">
         <div class="container-fluid linksNav">
-            <a class="navbar-brand" href="{{ url('/') }}">Accueil</a>
-            <a class="navbar-brand" href="{{ url('/events') }}">Evènements</a>
-            <a class="navbar-brand" href="{{ url('/profil') }}">Mon profile</a>
-            <a class="navbar-brand" href="#">Administration</a>
+            <a style="font-size:80%" href="{{ url('/') }}">Accueil</a>
+            <a style="font-size:80%" href="{{ url('/events') }}">Evènements</a>
+            <a style="font-size:80%" href="{{ url('/profil') }}">Mon profile</a>
+            <a style="font-size:80%" href="#">Administration</a>
 
             <!-- Navbar: Register/Connection -->
             <div class="navbar-right linksNav">
                 <!-- Authentication Links -->
                 @if (Auth::guest())
 
-                    <a class="navbar-brand" href="{{ route('login') }}">Connection</a>
-                    <a class="navbar-brand" href="{{ route('register') }}">Inscription</a>
+                    <a style="font-size:80%" href="{{ route('login') }}">Connection</a>
+                    <a style="font-size:80%" href="{{ route('register') }}">Inscription</a>
                 @else
 
-                    <a class="navbar-brand" href="{{ route('logout') }}"
+                    <a style="font-size:80%" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                            document.getElementById('logout-form').submit();">
                             Déconnection
