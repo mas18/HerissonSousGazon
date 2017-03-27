@@ -8,7 +8,7 @@
         @if(session()->has('ok'))
             <div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
         @endif
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <div class="panel-heading" style="font-size:18px">Liste des utilisateurs</div>
             <table class="table" style="font-size:12px">
                 <thead>

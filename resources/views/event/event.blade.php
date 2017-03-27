@@ -121,7 +121,7 @@
 
                         </div>
                     </div>
-                <div class="panel panel-default" style="margin-bottom: 5px;">
+                <div class="panel panel-primary" style="margin-bottom: 5px;">
                     <div class="panel-heading" role="tab" id="heading{{ $event->id }}">
                         <div class="row">
                             <div class="col-xs-10">
