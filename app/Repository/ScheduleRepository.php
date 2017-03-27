@@ -58,7 +58,6 @@ class ScheduleRepository
         $schedule->save();
     }
 
-
     function getPaginate($nbPerPage)
     {
         // return $this->user->orderBy('lastname', 'ASC')->orderBy('firstname', 'ASC')->paginate($nbPerPage);

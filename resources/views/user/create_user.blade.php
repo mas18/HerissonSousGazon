@@ -104,8 +104,8 @@
                             {{Form::label('level','Statut')}}
                         </div>
                         <div class="checkbox col-md-9">
-                            {!! Form::radio('level', 1) !!}administrateur
-                            {!! Form::radio('level', 0, 'checked') !!}membre
+                            {!! Form::radio('level', 1) !!} administrateur
+                            {!! Form::radio('level', 0, 'checked') !!}  membre
                             {!! $errors->first('level', '<small class="help-block">:message</small>') !!}
                         </div>
                     </div>
