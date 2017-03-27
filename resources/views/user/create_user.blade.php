@@ -5,7 +5,7 @@
 @section('main_content')
     <div class="col-sm-offset-2 col-sm-8">
         <br>
-        <div class="panel panel-info">
+        <div class="panel panel-primary">
             <div class="panel-heading" style="font-size:18px">Création d'un utilisateur</div>
                 <div class="panel-body" style="font-size:12px">
                 <div class="col-sm-12">
@@ -104,8 +104,8 @@
                             {{Form::label('level','Statut')}}
                         </div>
                         <div class="checkbox col-md-9">
-                            {!! Form::radio('level', 1) !!}administrateur
-                            {!! Form::radio('level', 0, 'checked') !!}membre
+                            {!! Form::radio('level', 1) !!} administrateur
+                            {!! Form::radio('level', 0, 'checked') !!}  membre
                             {!! $errors->first('level', '<small class="help-block">:message</small>') !!}
                         </div>
                     </div>

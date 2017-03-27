@@ -35,11 +35,11 @@
                 <li class="linksNav"><a style="font-size:80%" href="{{ url('/events') }}">Évènements</a></li>
                 <li class="linksNav"><a style="font-size:80%" href="{{ url('/profil') }}">Mon profile</a></li>
                 <li class="linksNav dropdown">
-                    <a class="dropdown-toggle" style="font-size:80%" data-toggle="dropdown" href="#">Administrator
+                    <a class="dropdown-toggle" style="font-size:80%" data-toggle="dropdown" href="#">Administrateur
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ url('/user') }}">Utilisateur</a></li>
-                        <li><a href="{{ url('/events') }}">Évènements</a></li>
+                        <li><a href="{{ url('/events') }}">Événements</a></li>
                     </ul>
                 </li>
 

@@ -98,9 +98,9 @@
 
                 <!-- HREF -->
                 <div class="linksNav">
-                    <a style="font-size:100%" href="{{ url('/events') }}">Evènements</a>
+                    <a style="font-size:100%" href="{{ url('/events') }}">Événements</a>
                     <a style="font-size:100%" href="{{ url('/profil') }}">Mon profile</a>
-                    <a style="font-size:100%" href="https://laravel-news.com">Administrateur</a>
+                    <a style="font-size:100%" href="{{ url('/user') }}">Administrateur</a>
                 </div>
             </div>
         </div>

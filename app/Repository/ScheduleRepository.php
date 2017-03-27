@@ -32,11 +32,11 @@ class ScheduleRepository
 
         foreach ($schedules as $s){
             $schedule = new $this->schedule;
-            $this->save($schedule,$s, $eventNew, $diff);
+            $this->saveCopy($schedule,$s, $eventNew, $diff);
         }
     }
 
-    function save(Schedule $schedule, Schedule $s, Event $event, $diff)
+    function saveCopy(Schedule $schedule, Schedule $s, Event $event, $diff)
     {
         $start = Carbon::parse($s->start);
         $finish = Carbon::parse($s->finish);
@@ -48,9 +48,14 @@ class ScheduleRepository
         $schedule->room_id = $s->room_id;
 
         $schedule->save();
-        //admin methode
+    //admin methode
+    function save(schedule $schedule, $inputs)
+    {
+        $schedule->places=$inputs['places'];
+        $schedule->start=$inputs['start'];
+        $schedule->finish=$inputs['finish'];
+        $schedule->save();
     }
-
 
     function getPaginate($nbPerPage)
     {
