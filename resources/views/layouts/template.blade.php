@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     {{Html::style('css/bootstrap/bootstrap.min.css')}}
     {{Html::style('css/bootstrap/bootstrap-theme.min.css')}}
     {{Html::style('css/style.css')}}
@@ -24,16 +25,27 @@
 
 <body>
 <header>
-    <!-- NavBar -->
-    <nav class="navbar navbar-default" style="padding-top:15px">
-        <div class="container-fluid linksNav">
-            <a style="font-size:80%" href="{{ url('/') }}">Accueil</a>
-            <a style="font-size:80%" href="{{ url('/events') }}">Evènements</a>
-            <a style="font-size:80%" href="{{ url('/profil') }}">Mon profile</a>
-            <a style="font-size:80%" href="#">Administration</a>
 
+
+    <!-- NavBar -->
+    <nav class="navbar navbar-default navbar-toggleable-md navbar-light bg-faded">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li class="linksNav"><a style="font-size:80%" href="{{ url('/') }}">Accueil</a></li>
+                <li class="linksNav"><a style="font-size:80%" href="{{ url('/events') }}">Évènements</a></li>
+                <li class="linksNav"><a style="font-size:80%" href="{{ url('/profil') }}">Mon profile</a></li>
+                <li class="linksNav dropdown">
+                    <a class="dropdown-toggle" style="font-size:80%" data-toggle="dropdown" href="#">Administrator
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ url('/user') }}">Utilisateur</a></li>
+                        <li><a href="{{ url('/events') }}">Évènements</a></li>
+                    </ul>
+                </li>
+
+            </ul>
             <!-- Navbar: Register/Connection -->
-            <div class="navbar-right linksNav">
+            <div class="nav navbar-right linksNav" style="padding-top:15px">
                 <!-- Authentication Links -->
                 @if (Auth::guest())
 
@@ -42,16 +54,19 @@
                 @else
 
                     <a style="font-size:80%" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
+                       onclick="event.preventDefault();
                            document.getElementById('logout-form').submit();">
-                            Déconnection
+                        Déconnection
                     </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
                 @endif
             </div>
-         </div>
+
+
+
+        </div>
     </nav>
 </header>
 

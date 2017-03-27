@@ -34,7 +34,7 @@
             @if (Route::has('login'))
                 <div class="navbar-top-right linksNav">
                     @if (Auth::check())
-                        <a href="{{ route('logout') }}"
+                        <a style="font-size:100%" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                            document.getElementById('logout-form').submit();">
                             Déconnection
@@ -43,8 +43,8 @@
                             {{ csrf_field() }}
                         </form>
                     @else
-                        <a href="{{ url('/login') }}">Connection</a>
-                        <a href="{{ url('/register') }}">Inscription</a>
+                        <a style="font-size:100%" href="{{ url('/login') }}">Connection</a>
+                        <a style="font-size:100%" href="{{ url('/register') }}">Inscription</a>
                     @endif
                 </div>
             @endif
@@ -65,15 +65,15 @@
 
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner" role="listbox">
-                            <div class="item active">
+                            <div class="item active" style="height:320px" >
                                 {{ HTML::image('pictures\imgTest.jpg') }}
                             </div>
 
-                            <div class="item">
+                            <div class="item" style="height:320px">
                                 {{ HTML::image('pictures\imgTest.jpg') }}
                             </div>
 
-                            <div class="item">
+                            <div class="item" style="height:320px">
                                 {{ HTML::image('pictures\imgTest.jpg') }}
                             </div>
                         </div>
@@ -93,14 +93,15 @@
                 </br></br>
 
                 <!-- TITLE -->
-                <div class="titleWelcome">Hérisson sous gazon</div>
+                <div style="font-size: 60px">Hérisson sous gazon</div>
 
+                </br>
 
                 <!-- HREF -->
                 <div class="linksNav">
-                    <a href="{{ url('/events') }}">Evènements</a>
-                    <a href="{{ url('/profil') }}">Mon profile</a>
-                    <a href="https://laravel-news.com">Administrateur</a>
+                    <a style="font-size:100%" href="{{ url('/events') }}">Evènements</a>
+                    <a style="font-size:100%" href="{{ url('/profil') }}">Mon profile</a>
+                    <a style="font-size:100%" href="https://laravel-news.com">Administrateur</a>
                 </div>
             </div>
         </div>

@@ -81,8 +81,6 @@
                         </div>
                     </div>
 
-
-
                 </div>
                 {!! Form::submit('Confirmer', ['class' => 'btn btn-primary btn-sm']) !!}
                 {!! Form::close() !!}
