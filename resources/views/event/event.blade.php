@@ -28,30 +28,18 @@
                         <form class="form-horizontal" role="form" method="POST" action="{{ route('event.store') }}">
                             {{ csrf_field() }}
 
-                            <div class="form-group{{ $errors->has('dateFrom') ? ' has-error' : '' }}">
+                            <div class="form-group">
                                 <label for="dateFrom" class="col-md-3 control-label">Date de: </label>
 
                                 <div class="col-md-6">
                                     <input id="dateFrom" type="date" class="form-control" name="dateFrom" value="{{ old('date') }}" required>
-
-                                    @if ($errors->has('dateFrom'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('dateFrom') }}</strong>
-                                    </span>
-                                    @endif
                                 </div>
                             </div>
-                            <div class="form-group{{ $errors->has('dateTo') ? ' has-error' : '' }}">
+                            <div class="form-group">
                                 <label for="dateFrom" class="col-md-3 control-label">Date à: </label>
 
                                 <div class="col-md-6">
                                     <input id="dateTo" type="date" class="form-control" name="dateTo" value="{{ old('date') }}" required>
-
-                                    @if ($errors->has('dateTo'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('dateTo') }}</strong>
-                                    </span>
-                                    @endif
                                 </div>
                             </div>
                             <div class="checkbox col-md-6 col-md-offset-3">
@@ -99,39 +87,27 @@
                                     <form class="form-horizontal" role="form" method="POST" action="{{ route('event.update') }}">
                                         {{ csrf_field() }}
 
-                                        <div class="form-group{{ $errors->has('dateFrom') ? ' has-error' : '' }}">
+                                        <div class="form-group">
                                             <label for="dateFrom" class="col-md-3 control-label">Date de: </label>
 
                                             <div class="col-md-6">
                                                 <input id="dateFrom" type="date" class="form-control" name="dateFrom" value="{{ $event->starting }}" required>
 
-                                                @if ($errors->has('dateFrom'))
-
-                                                    <span class="help-block">
-                                                        <strong>{{ $errors->first('dateFrom') }}</strong>
-                                                    </span>
-                                                @endif
                                             </div>
                                         </div>
-                                        <div class="form-group{{ $errors->has('dateTo') ? ' has-error' : '' }}">
-                                            <label for="dateFrom" class="col-md-3 control-label">Date à: </label>
+                                        <div class="form-group">
+                                            <label for="dateTo{{ $event->id }}" class="col-md-3 control-label">Date à: </label>
 
                                             <div class="col-md-6">
-                                                <input id="dateTo" type="date" class="form-control" name="dateTo" value="{{ $event->ending }}" required>
+                                                <input id="dateTo{{ $event->id }}" type="date" class="form-control" name="dateTo" value="{{ $event->ending }}" required>
 
-                                                @if ($errors->has('dateTo'))
-                                                    <span class="help-block">
-                                                        <strong>{{ $errors->first('dateTo') }}</strong>
-                                                    </span>
-
-                                                @endif
                                             </div>
                                         </div>
                                         <input type="hidden" name="eventId" value="{{ $event->id }}">
 
                                         <div class="form-group">
                                             <div class="col-md-6 col-md-offset-3">
-                                                <button type="submit" data-dismiss="modal" class="btn btn-primary">
+                                                <button type="submit" class="btn btn-primary">
                                                     Update
                                                 </button>
                                             </div>
@@ -156,7 +132,7 @@
                                 </h4>
                             </div>
                             <div class="col-xs-2">
-                                <button type="button" style="float: right;"  class="btn btn-link btn-xs" data-toggle="modal" data-target="#modalUpdate{{ $event->id }}">Edit</button>
+                                <button type="button" style="float: right;"  class="btn btn-link btn-xs" onclick="$('#modalUpdate{{ $event->id }}').modal({'backdrop': 'static'});" >Edit</button>
                             </div>
                         </div>
                     </div>
@@ -168,10 +144,45 @@
                     </div>
                 </div>
 
-                {{ $firstItem = false }}
+                <?php $firstItem = false; ?>
+
             @endforeach
         </div>
     </div>
+    @if($errors->has('dateFrom') || $errors->has('dateTo'))
+        <!-- Modal - New -->
+        <div id="modalValidation" class="modal fade in" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content" style="padding: 5px;">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Erreur de validation</h4>
+                    </div>
+                    <div class="modal-body">
+                        @if ($errors->has('dateFrom'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('dateFrom') }}</strong>
+                            </span>
+                        @endif
+                        @if ($errors->has('dateTo'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('dateTo') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <script>
+            $('#modalValidation').modal('show');
+        </script>
+    @endif
 
 
 

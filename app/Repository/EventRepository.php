@@ -39,7 +39,8 @@ class EventRepository
 
     function update(Array $inputs)
     {
-        $this->save($this->getById($inputs['eventId']), $inputs);
+        $event=$this->getById($inputs['eventId']);
+        $this->save($event,$inputs);
     }
 
 
