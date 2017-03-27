@@ -5,7 +5,7 @@
 @section('main_content')
     <div class="col-sm-offset-2 col-sm-8">
         <br>
-        <div class="panel panel-info">
+        <div class="panel panel-primary">
             <div class="panel-heading" style="font-size:18px">Création d'un utilisateur</div>
                 <div class="panel-body" style="font-size:12px">
                 <div class="col-sm-12">
