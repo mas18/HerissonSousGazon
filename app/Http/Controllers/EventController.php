@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EventRequest;
 use App\Repository\EventRepository;
+use App\Repository\ScheduleRepository;
 
 
 class EventController extends Controller {
@@ -14,13 +15,14 @@ class EventController extends Controller {
    */
 
     protected $eventRepository;
-
+    protected $scheduleRepository;
     protected $nbrPerPage = 3;
 
-    public function __construct(EventRepository $eventRepository)
+    public function __construct(EventRepository $eventRepository, ScheduleRepository $scheduleRepository)
     {
         // $this->middleware('admin',['except'=>'index']);
         $this->eventRepository = $eventRepository;
+        $this->scheduleRepository = $scheduleRepository;
     }
 
     public function index()
@@ -46,7 +48,13 @@ class EventController extends Controller {
    */
   public function store(EventRequest $request)
   {
-      $this->eventRepository->store($request->all());
+
+      $event = $this->eventRepository->store($request->all());
+
+      if($request->get('copy')){
+          $lastEvent = $this->eventRepository->getSecondLast();
+          $this->scheduleRepository->copy($lastEvent, $event);
+      }
       return redirect()->route('event.show');
   }
 

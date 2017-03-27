@@ -12,8 +12,8 @@
     {{Html::style('css/bootstrap/bootstrap-theme.min.css')}}
     {{Html::style('css/style.css')}}
 
-    <!-- script -->
-    {{Html::style('js/app.js')}}
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),

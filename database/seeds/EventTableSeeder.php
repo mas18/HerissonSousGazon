@@ -9,7 +9,7 @@ class EventTableSeeder extends Seeder {
 	public function run()
 	{
 		DB::table('events')->delete();
-        DB::table('events')->truncate();
+        //DB::table('events')->truncate();
 
         for ($k=0;$k<2;$k++)
         {
