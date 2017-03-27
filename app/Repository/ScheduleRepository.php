@@ -41,20 +41,14 @@ class ScheduleRepository
         $start = Carbon::parse($s->start);
         $finish = Carbon::parse($s->finish);
 
-        $schedule->places=$s->places;
-        $schedule->start=$start->addDays($diff);
-        $schedule->finish=$finish->addDays($diff);
-        $schedule->event_id= $event->id;
-        $schedule->room_id=$s->room_id;
+        $schedule->places = $s->places;
+        $schedule->start = $start->addDays($diff);
+        $schedule->finish = $finish->addDays($diff);
+        $schedule->event_id = $event->id;
+        $schedule->room_id = $s->room_id;
 
         $schedule->save();
-    //admin methode
-    function save(schedule $schedule, $inputs)
-    {
-        $schedule->places=$inputs['places'];
-        $schedule->start=$inputs['start'];
-        $schedule->finish=$inputs['finish'];
-        $schedule->save();
+        //admin methode
     }
 
 
@@ -81,6 +75,10 @@ class ScheduleRepository
     function getById($id)
     {
         return $this->user->findOrFail($id);
+    }
+    function getAllWithRelation()
+    {
+        return $this->schedule->with('users')->with('rooms')->get();
     }
 
     function update($id, $input)

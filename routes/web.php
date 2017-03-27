@@ -26,19 +26,23 @@ Route::post('profil','ProfilController@save');
 Route::post('/events/new', 'EventController@store')->name('event.store');
 Route::post('/events/update', 'EventController@edit')->name('event.update');
 
-//data table_route
-Route::get('schedule', 'ScheduleController@datatables');
+//affichage de la view
+Route::get('schedule/{number?}', 'ScheduleController@datatables');
+//data query Ajax
 Route::get('schedule_data', 'ScheduleController@scheduledata');
 
 
 Route::get("test",function ()
 {
 
-    $user=User::with('schedules')->find(1);
-    foreach ($user->schedules as $aSched)
+    $repository=new \App\Repository\ScheduleRepository(new \App\Schedule());
+    $schedule=$repository->getAllWithRelation();
+    foreach ($schedule as $aSched)
     {
-        echo "De ".$aSched->start." jusqu'au ".$aSched->finish ."<br/>";
+        echo  $aSched->users;
     }
+
+
 
 
     return view('teste');

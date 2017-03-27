@@ -20,25 +20,36 @@ class ScheduleController extends Controller
   //  }
 
     //
-    public function datatables()
+    // affichage de la view
+    public function datatables($number="")
     {
         return view('schedule.index_schedule');
     }
+    //rendu de la table via Ajax en JSON
     public function scheduledata()
     {       // retourne l'objet sous forme de data table
+        //on selectionne l'object que l'on veut retourner(model de la BDD)
         $schedule=Schedule::all();
+        //on spécifie si il y'a des changements a faire dahs les columns avec editColumn
         return Datatables::of($schedule)
             ->editColumn('start', function ($schedule) {
                 $carbonDate =new Carbon($schedule->start);
-
-
                 return [
-                    'display' => e(
+                    'display' => e(//on spécifie l'affichange
                        $schedule->start=Carbon::parse($schedule->start)->format('  d/m/Y  -  H:i')
-                    ),
+                    ), //on spécifie comment sera ordonner nos datas
                     'timestamp' =>  $carbonDate->timestamp
                 ];
             })
+            ->editColumn('finish', function ($schedule) {
+                $carbonDate =new Carbon($schedule->finish);
+                return [
+                    'display' => e(
+                        $schedule->finish=Carbon::parse($schedule->finish)->format('  d/m/Y  -  H:i')
+                    ),
+                    'timestamp' =>  $carbonDate->timestamp
+                ];
+            }) //on spécifie le filtre
             ->filterColumn('start', function ($query, $keyword) {
                 $query->whereRaw("DATE_FORMAT(start,'%d/%m/%Y') LIKE ?", ["%$keyword%"]);
             })
