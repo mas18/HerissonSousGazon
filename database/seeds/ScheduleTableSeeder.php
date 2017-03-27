@@ -9,7 +9,7 @@ class ScheduleTableSeeder extends Seeder {
 	public function run()
 	{
 		DB::table('schedules')->delete();
-        //DB::table('schedules')->truncate();
+        DB::table('schedules')->truncate();
 
 
         for ($k=0;$k<20;$k++)

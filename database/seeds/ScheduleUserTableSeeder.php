@@ -13,7 +13,7 @@ class ScheduleUserTableSeeder extends Seeder
     {
         //
         DB::table('schedule_user')->delete();
-        // DB::table('schedule_user')->truncate();
+        DB::table('schedule_user')->truncate();
 
         for ($k=0;$k<100;$k++)
         {
