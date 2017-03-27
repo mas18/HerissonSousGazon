@@ -26,6 +26,7 @@ Route::post('profil','ProfilController@save');
 Route::post('/events/new', 'EventController@store')->name('event.store');
 Route::post('/events/update', 'EventController@edit')->name('event.update');
 
+//Route::resource('schedule/{schedule?}', 'SchedulesController');
 
 
 Route::get("test",function ()
