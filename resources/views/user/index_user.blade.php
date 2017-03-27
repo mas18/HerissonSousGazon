@@ -9,8 +9,8 @@
             <div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
         @endif
         <div class="panel panel-default">
-            <div class="panel-heading" style="font-size:20px">Liste des utilisateurs</div>
-            <table class="table" style="font-size:15px">
+            <div class="panel-heading" style="font-size:18px">Liste des utilisateurs</div>
+            <table class="table" style="font-size:12px">
                 <thead>
                 <tr>
                     <th>Nom</th>
@@ -27,11 +27,11 @@
                         <td class="text-left">{!! $user->lastname !!}</td>
                         <td class="text-left">{!! $user->firstname !!}</td>
                         <td class="text-left">{!! $user->email !!}</td>
-                        <td>{!! link_to_route('user.show', 'Voir', [$user->id], ['class' => 'btn btn-info btn-block']) !!}</td>
-                        <td>{!! link_to_route('user.edit', 'Modifier', [$user->id], ['class' => 'btn btn-primary btn-block']) !!}</td>
+                        <td>{!! link_to_route('user.show', 'Voir', [$user->id], ['class' => 'btn btn-info btn-block btn-sm']) !!}</td>
+                        <td>{!! link_to_route('user.edit', 'Modifier', [$user->id], ['class' => 'btn btn-primary btn-block btn-sm']) !!}</td>
                         <td>
                             {!! Form::open(['method' => 'DELETE', 'route' => ['user.destroy', $user->id]]) !!}
-                            {!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')']) !!}
+                            {!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block btn-sm', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')']) !!}
                             {!! Form::close() !!}
                         </td>
                     </tr>
@@ -39,7 +39,7 @@
                 </tbody>
             </table>
         </div>
-        {!! link_to_route('user.create', 'Ajouter un utilisateur', [], ['class' => 'btn btn-default pull-right btn-md']) !!}
+        {!! link_to_route('user.create', 'Ajouter un utilisateur', [], ['class' => 'btn btn-default pull-right btn-sm']) !!}
         {!! $links !!}
     </div>
 @endsection

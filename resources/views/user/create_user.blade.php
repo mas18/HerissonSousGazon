@@ -3,11 +3,11 @@
 @extends('layouts.template')
 @section('header_title','creation utilisateur')
 @section('main_content')
-    <div class="col-sm-offset-1 col-sm-8">
+    <div class="col-sm-offset-2 col-sm-8">
         <br>
         <div class="panel panel-info">
-            <div class="panel-heading" style="font-size:20px">Création d'un utilisateur</div>
-                <div class="panel-body" style="font-size:15px">
+            <div class="panel-heading" style="font-size:18px">Création d'un utilisateur</div>
+                <div class="panel-body" style="font-size:12px">
                 <div class="col-sm-12">
                     {!! Form::open(['route' => 'user.store', 'class' => 'form-horizontal panel']) !!}
 
@@ -91,6 +91,7 @@
                             {!! $errors->first('password', '<small class="help-block">:message</small>') !!}
                         </div>
                     </div>
+
                     <div class="form-group">
                         <div class="col-md-2"></div>
                         <div class="col-md-9">
@@ -103,20 +104,19 @@
                             {{Form::label('level','Statut')}}
                         </div>
                         <div class="checkbox col-md-9">
-
                             {!! Form::radio('level', 1) !!}administrateur
                             {!! Form::radio('level', 0, 'checked') !!}membre
-
                             {!! $errors->first('level', '<small class="help-block">:message</small>') !!}
                         </div>
                     </div>
+                    </div>
 
-                    {!! Form::submit('Créer', ['class' => 'btn btn-primary btn-md']) !!}
+                    {!! Form::submit('Créer', ['class' => 'btn btn-primary btn-sm']) !!}
                     {!! Form::close() !!}
+                    <a href="javascript:history.back()" class="btn btn-primary pull-right btn-sm">Annuler</a>
                 </div>
             </div>
         </div>
-        <a href="javascript:history.back()" class="btn btn-primary btn-md">Retour</a>
     </div>
 @endsection
 

@@ -2,11 +2,11 @@
 @extends('layouts.template')
 @section('header_title', $user->lastname)
 @section('main_content')
-    <div class="col-sm-offset-1 col-sm-8">
+    <div class="col-sm-offset-2 col-sm-8">
         <br>
         <div class="panel panel-info">
-            <div class="panel-heading" style="font-size:20px">Modification d'un utilisateur</div>
-            <div class="panel-body" style="font-size:15px">
+            <div class="panel-heading" style="font-size:18px">Modification d'un utilisateur</div>
+            <div class="panel-body" style="font-size:12px">
                 <div class="col-sm-12">
 
                     {!! Form::model($user, ['route' => ['user.update', $user->id], 'method' => 'put', 'class' => 'form-horizontal panel']) !!}
@@ -91,12 +91,12 @@
                         </div>
                     </div>
 
-                    </div>
-                    {!! Form::submit('Confirmer', ['class' => 'btn btn-primary btn-mg']) !!}
+                </div>
+                    {!! Form::submit('Confirmer', ['class' => 'btn btn-primary btn-sm']) !!}
                     {!! Form::close() !!}
+                    <a href="javascript:history.back()" class="btn btn-primary pull-right btn-sm">Annuler</a>
                 </div>
             </div>
-        <a href="javascript:history.back()" class="btn btn-primary btn-mg">Retour</a>
         </div>
     </div>
 @endsection

@@ -3,10 +3,10 @@
 @section('main_content')
 
 <div class="container">
-    <div class="row" style="position:relative;top:30px;">
-        <div class="col-md-7 col-md-offset-1">
+    <div class="row" style="position:relative;top:20px;">
+        <div class="col-md-offset-2 col-md-7">
             <div class="panel panel-default" style="font-size:12px">
-                <div class="panel-heading" style="font-size:20px">S'inscrire</div>
+                <div class="panel-heading" style="font-size:18px">Inscription</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}

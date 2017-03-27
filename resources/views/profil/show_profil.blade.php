@@ -3,11 +3,11 @@
 @extends('layouts.template')
 @section('header_title', $user->lastname)
 @section('main_content')
-    <div class="col-sm-offset-1 col-sm-8">
+    <div class="col-sm-offset-2 col-sm-8">
         <br>
         <div class="panel panel-info">
-            <div class="panel-heading">Modification d'un utilisateur</div>
-            <div class="panel-body">
+            <div class="panel-heading" style="font-size:18px">Modification d'un utilisateur</div>
+            <div class="panel-body" style="font-size:12px">
                 <div class="col-sm-12">
 
                     {!! Form::model($user, ['action' => ['ProfilController@save'], 'method' => 'post', 'class' => 'form-horizontal panel']) !!}
@@ -84,11 +84,10 @@
 
 
                 </div>
-                {!! Form::submit('Envoyer', ['class' => 'btn btn-primary btn-md']) !!}
+                {!! Form::submit('Confirmer', ['class' => 'btn btn-primary btn-sm']) !!}
                 {!! Form::close() !!}
             </div>
         </div>
-        <a href="javascript:history.back()" class="btn btn-primary btn-md">Retour</a>
     </div>
     </div>
 @endsection
