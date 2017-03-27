@@ -21,9 +21,6 @@
                 background-color: #fff;
                 color: #636b6f;
                 font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
             }
             .flex-center {
                 align-items: center;
@@ -68,15 +65,15 @@
 
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner" role="listbox">
-                            <div class="item active">
+                            <div class="item active" style="height:400px">
                                 {{ HTML::image('pictures\imgTest.jpg') }}
                             </div>
 
-                            <div class="item">
+                            <div class="item" style="height:400px">
                                 {{ HTML::image('pictures\imgTest.jpg') }}
                             </div>
 
-                            <div class="item">
+                            <div class="item" style="height:400px">
                                 {{ HTML::image('pictures\imgTest.jpg') }}
                             </div>
                         </div>
@@ -101,8 +98,8 @@
 
                 <!-- HREF -->
                 <div class="linksNav">
-                    <a href="https://laravel.com/docs">Evènements</a>
-                    <a href="https://laracasts.com">Mon profile</a>
+                    <a href="{{ url('/events') }}">Evènements</a>
+                    <a href="{{ url('/profil') }}">Mon profile</a>
                     <a href="https://laravel-news.com">Administrateur</a>
                 </div>
             </div>

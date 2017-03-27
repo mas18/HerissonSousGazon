@@ -6,12 +6,13 @@
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
     width: 100%;
-    margin: auto;
+    margin:auto;
 }
+
 .linksNav > a{
     color: #636b6f;
-    padding: 0 25px;
-    font-size: 22px;
+    padding: 0 30px;
+    font-size:100%;
     font-weight: 600;
     letter-spacing: .1rem;
     text-decoration: none;
@@ -33,6 +34,9 @@
 
 
 /* TEMPLATE OTHER PAGE*/
+.sizeTxtNav > a{
+    font-size:80%;
+}
 .footerDiv{
     color:#555555;
     font-size:20px;

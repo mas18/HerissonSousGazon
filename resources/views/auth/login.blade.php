@@ -2,9 +2,9 @@
 @section('main_content')
 <div class="container">
     <div class="row" style="position:relative;top:80px;">
-        <div class="col-md-9 col-md-offset-1">
-            <div class="panel panel-default" style="font-size:22px">
-                <div class="panel-heading" style="font-size:26px">Connection</div>
+        <div class="col-md-7 col-md-offset-1">
+            <div class="panel panel-default" style="font-size:14px">
+                <div class="panel-heading" style="font-size:20px">Connection</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
@@ -49,11 +49,11 @@
 
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary btn-lg">
+                                <button type="submit" class="btn btn-primary btn-md">
                                     Connection
                                 </button>
 
-                                <a class="btn btn-link btn-lg" href="{{ route('password.request') }}">
+                                <a class="btn btn-link btn-md" href="{{ route('password.request') }}">
                                     Mot de passe oublié?
                                 </a>
                             </div>

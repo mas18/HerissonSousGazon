@@ -25,11 +25,11 @@
 <body>
 <header>
     <!-- NavBar -->
-    <nav class="navbar navbar-default" style="padding-top:30px">
+    <nav class="navbar navbar-default" style="padding-top:20px">
         <div class="container-fluid linksNav">
             <a class="navbar-brand" href="{{ url('/') }}">Accueil</a>
-            <a class="navbar-brand" href="#">Evènements</a>
-            <a class="navbar-brand" href="#">Mon profile</a>
+            <a class="navbar-brand" href="{{ url('/events') }}">Evènements</a>
+            <a class="navbar-brand" href="{{ url('/profil') }}">Mon profile</a>
             <a class="navbar-brand" href="#">Administration</a>
 
             <!-- Navbar: Register/Connection -->

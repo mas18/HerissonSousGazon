@@ -3,10 +3,10 @@
 @section('main_content')
 
 <div class="container">
-    <div class="row" style="position:relative;top:80px;">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default" style="font-size:22px">
-                <div class="panel-heading" style="font-size:26px">S'inscrire</div>
+    <div class="row" style="position:relative;top:30px;">
+        <div class="col-md-7 col-md-offset-1">
+            <div class="panel panel-default" style="font-size:12px">
+                <div class="panel-heading" style="font-size:20px">S'inscrire</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
@@ -137,7 +137,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary btn-lg">
+                                <button type="submit" class="btn btn-primary btn-md">
                                     Inscription
                                 </button>
                             </div>

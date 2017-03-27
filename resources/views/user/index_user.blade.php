@@ -4,13 +4,13 @@
 @section('main_content')
 
     <br>
-    <div class="col-sm-offset-0 col-sm-12" style="position:relative;top:40px;">
+    <div class="col-sm-offset-1 col-sm-10" style="position:relative;top:20px;">
         @if(session()->has('ok'))
             <div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
         @endif
         <div class="panel panel-default">
-            <div class="panel-heading" style="font-size:28px">Liste des utilisateurs</div>
-            <table class="table" style="font-size:22px">
+            <div class="panel-heading" style="font-size:20px">Liste des utilisateurs</div>
+            <table class="table" style="font-size:15px">
                 <thead>
                 <tr>
                     <th>Nom</th>
@@ -39,7 +39,7 @@
                 </tbody>
             </table>
         </div>
-        {!! link_to_route('user.create', 'Ajouter un utilisateur', [], ['class' => 'btn btn-default pull-right btn-lg']) !!}
+        {!! link_to_route('user.create', 'Ajouter un utilisateur', [], ['class' => 'btn btn-default pull-right btn-md']) !!}
         {!! $links !!}
     </div>
 @endsection
