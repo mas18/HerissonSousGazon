@@ -2,9 +2,9 @@
 @section('main_content')
 <div class="container">
     <div class="row" style="position:relative;top:80px;">
-        <div class="col-md-7 col-md-offset-1">
-            <div class="panel panel-default" style="font-size:14px">
-                <div class="panel-heading" style="font-size:20px">Connection</div>
+        <div class="col-md-offset-2 col-md-6">
+            <div class="panel panel-default" style="font-size:12px">
+                <div class="panel-heading" style="font-size:18px">Connection</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}

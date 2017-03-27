@@ -65,15 +65,15 @@
 
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner" role="listbox">
-                            <div class="item active" style="height:400px">
+                            <div class="item active">
                                 {{ HTML::image('pictures\imgTest.jpg') }}
                             </div>
 
-                            <div class="item" style="height:400px">
+                            <div class="item">
                                 {{ HTML::image('pictures\imgTest.jpg') }}
                             </div>
 
-                            <div class="item" style="height:400px">
+                            <div class="item">
                                 {{ HTML::image('pictures\imgTest.jpg') }}
                             </div>
                         </div>
