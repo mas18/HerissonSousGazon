@@ -5,7 +5,6 @@
 
         <div class="row">
             <div class="col-xs-9">
-                <h2>Hérisson sous gazon</h2>
             </div>
 
             <!-- Trigger the modal with a button -->
