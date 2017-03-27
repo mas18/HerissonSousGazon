@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.template')
 
-@section('content')
+@section('main_content')
 
-    <div class="container">
+
         <div class="row">
             <div class="col-xs-9">
                 <h2>Hérisson sous gazon</h2>
@@ -44,7 +44,7 @@
                             </div>
                             <div class="checkbox col-md-6 col-md-offset-3">
                                 <label>
-                                    <input type="checkbox"> Copy schedule from last event
+                                    <input type="checkbox" name="copy" checked /> Copy schedule from last event
                                 </label>
                             </div>
                             <br />
@@ -148,7 +148,7 @@
 
             @endforeach
         </div>
-    </div>
+
     @if($errors->has('dateFrom') || $errors->has('dateTo'))
         <!-- Modal - New -->
         <div id="modalValidation" class="modal fade in" role="dialog">
