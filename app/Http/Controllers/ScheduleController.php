@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repository\ScheduleRepository;
+use App\Repository\EventRepository;
 use App\Schedule;
 use Illuminate\Http\Request;
 //use datatables
@@ -12,18 +13,22 @@ use Carbon\Carbon;
 
 class ScheduleController extends Controller
 {
-   // protected $scheduleRepository;
+    protected $scheduleRepository;
+    protected $eventRepository;
 
-   // public function __construct(ScheduleRepository $scheduleRepository)
-  //  {
-     //   $this->scheduleRepository=$scheduleRepository;
-  //  }
+    public function __construct(ScheduleRepository $scheduleRepository, EventRepository $eventRepository)
+    {
+       $this->scheduleRepository=$scheduleRepository;
+       $this->eventRepository=$eventRepository;
+    }
 
     //
     // affichage de la view
     public function datatables($number="")
     {
-        return view('schedule.index_schedule');
+        $event = $this->eventRepository->getById(25);
+        $dates = $this->scheduleRepository->getDates($event);
+        return view('schedule.index_schedule')->with('dates', $dates);
     }
     //rendu de la table via Ajax en JSON
     public function scheduledata()
