@@ -54,7 +54,7 @@
 
                     <div class="form-group {!! $errors->has('city') ? 'has-error' : '' !!}">
                         <div class="col-md-2">
-                            {{Form::label('city','Ville')}}
+                            {{Form::label('city','NPA & Ville')}}
                         </div>
                         <div class="col-md-9">
                             {!! Form::text('city', null, ['class' => 'form-control', 'placeholder' => 'ville']) !!}
