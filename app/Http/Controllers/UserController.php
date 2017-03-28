@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserCreateAdmin;
 use App\Http\Requests\UserCreateRequest;
+use App\Http\Requests\UserUpdateAdmin;
 use App\Http\Requests\UserUpdateRequest;
 use App\Repository\UserRepository;
 use Illuminate\Http\Request;
@@ -56,7 +58,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserCreateRequest $request)
+    public function store(UserCreateAdmin $request)
     {
         //
         $user=$this->userRepository->store($request->all());
@@ -98,7 +100,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserUpdateRequest $request, $id)
+    public function update(UserUpdateAdmin $request, $id)
     {
         //
         $this->userRepository->update($id,$request->all());
