@@ -5,10 +5,8 @@
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
         <link href="//code.jquery.com/jquery-1.10.2.min.js" rel="stylesheet">
-
     </head>
     <body>
-
     <div class="table-responsive">
         <table class="table table-striped" id="allschedule">
             <thead>
@@ -23,9 +21,6 @@
             </tbody>
         </table>
     </div>
-
-
-
     <!-- jQuery -->
     <script src="//code.jquery.com/jquery.js"></script>
     <!-- DataTables -->
@@ -33,8 +28,6 @@
     <!-- Bootstrap JavaScript -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <!-- App scripts -->
-
-
     <script type="text/javascript">
         $(function(){
             $('#allschedule').DataTable({
@@ -45,15 +38,17 @@
                 { data: 'id', name: 'id' },
                 { data: 'start', name: 'title', type: 'num',
                 render : {
-                    _: 'display',
-                    sort: 'timestamp'
-
-
+                    _: 'display', //valeur uniquement pour le display
+                    sort: 'timestamp' //valeur pour le order by
                 }},
 
 
 
-                { data: 'finish', name: 'description', class: 'datetime' },
+                { data: 'finish', name: 'description', class: 'num',
+                    render : {
+                        _: 'display', //valeur uniquement pour le display
+                        sort: 'timestamp' //valeur pour le order by
+                }},
                     { data: 'places', name: 'description' }
             ]
         });

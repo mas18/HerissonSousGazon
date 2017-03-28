@@ -19,7 +19,7 @@ class ScheduleRepository
 
     public function __construct(Schedule $schedule)
     {
-        $this->schedule=$schedule;
+        $this->schedule = $schedule;
     }
 
 
@@ -30,9 +30,9 @@ class ScheduleRepository
         $diff = $new->diffInDays($old);
         $schedules = Schedule::where('event_id', '=', $eventOld->id)->get();
 
-        foreach ($schedules as $s){
+        foreach ($schedules as $s) {
             $schedule = new $this->schedule;
-            $this->saveCopy($schedule,$s, $eventNew, $diff);
+            $this->saveCopy($schedule, $s, $eventNew, $diff);
         }
     }
 
@@ -49,63 +49,70 @@ class ScheduleRepository
 
         $schedule->save();
     }
-    //admin methode
-    function save(schedule $schedule, $inputs)
-    {
-        $schedule->places=$inputs['places'];
-        $schedule->start=$inputs['start'];
-        $schedule->finish=$inputs['finish'];
-        $schedule->save();
-    }
+        //admin methode
+        function save(schedule $schedule, $inputs)
+        {
+            $schedule->places = $inputs['places'];
+            $schedule->start = $inputs['start'];
+            $schedule->finish = $inputs['finish'];
+            $schedule->save();
+        }
 
-    function getPaginate($nbPerPage)
-    {
-        // return $this->user->orderBy('lastname', 'ASC')->orderBy('firstname', 'ASC')->paginate($nbPerPage);
+        function getPaginate($nbPerPage)
+        {
+            // return $this->user->orderBy('lastname', 'ASC')->orderBy('firstname', 'ASC')->paginate($nbPerPage);
 
-    }
-    function getDataTable()
-    {
-        return DataTableEngineContract::of(Schedule::all())->make(true);
-    }
+        }
 
-    function store(Array $inputs)
-    {
+        function getDataTable()
+        {
+            return DataTableEngineContract::of(Schedule::all())->make(true);
+        }
 
-        $user=new $this->user;
+        function store(Array $inputs)
+        {
 
-        $user->password=bcrypt($inputs['password']);
-        $this->save($user,$inputs);
-        return $user;
-    }
+            $user = new $this->user;
 
-    function getById($id)
-    {
-        return $this->user->findOrFail($id);
-    }
+            $user->password = bcrypt($inputs['password']);
+            $this->save($user, $inputs);
+            return $user;
+        }
 
-    function update($id, $input)
-    {
-        $this->save($this->getById($id),$input);
-    }
+        function getById($id)
+        {
+            return $this->user->findOrFail($id);
+        }
 
-    function destroy($id)
-    {
+        function getAllWithRelation()
+        {
+            return $this->schedule->with('users')->with('rooms')->get();
+        }
 
-        $this->getById($id)->delete();
-    }
+        function update($id, $input)
+        {
+            $this->save($this->getById($id), $input);
+        }
 
-    function register(Array $inputs)
-    {
-        $user=new $this->user;
-        $user->password=bcrypt($inputs['password']);
-        $user->email=$inputs['email'];
-        $user->firstname=$inputs['firstname'];
-        $user->lastname=$inputs['lastname'];
-        $user->street=$inputs['street'];
-        $user->city=$inputs['city'];
-        $user->tel=$inputs['tel'];
-        $user->comment=$inputs['comment'];
+        function destroy($id)
+        {
 
-        return $user->save();
-    }
+            $this->getById($id)->delete();
+        }
+
+        function register(Array $inputs)
+        {
+            $user = new $this->user;
+            $user->password = bcrypt($inputs['password']);
+            $user->email = $inputs['email'];
+            $user->firstname = $inputs['firstname'];
+            $user->lastname = $inputs['lastname'];
+            $user->street = $inputs['street'];
+            $user->city = $inputs['city'];
+            $user->tel = $inputs['tel'];
+            $user->comment = $inputs['comment'];
+
+            return $user->save();
+        }
+
 }

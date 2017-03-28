@@ -21,7 +21,8 @@ class UserTableSeeder extends Seeder {
             'street' => 'Rue de la rue 32 ',
             'tel' => '027 455 32 31 ',
             'city'=>'3980 grone',
-            'comment' => 'Veut faire des trucs bien.',
+            'level'=>1
+,            'comment' => 'Veut faire des trucs bien.',
         ));
 
         for ($k=0;$k<20;$k++)

@@ -26,7 +26,7 @@ class ProfilController extends Controller
     public function save(UserProfilRequest $request)
     {
         $id=Auth::user()->id;
-        $this->userRepository->update($id,$request);
+        $this->userRepository->userUpdate($id,$request);
         return back();
 
     }
