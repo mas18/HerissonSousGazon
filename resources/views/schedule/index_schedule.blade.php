@@ -29,21 +29,27 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <!-- App scripts -->
     <script type="text/javascript">
+
         $(function(){
             $('#allschedule').DataTable({
                     processing: true,
                     serverSide: false,
-                    ajax: '{!! URL::asset('schedule_data') !!}',
+                    ajax: {
+                        url:'{!! URL::asset('schedule_data') !!}',
+                        data: function (d) { //the param we want send to serv
+                            d.event_id = <?php $urls= explode('/' ,Request::url());
+                                                echo $urls[count($urls)-1]?>
+                        }
+                    },
                 columns : [
                 { data: 'id', name: 'id' },
+
                 { data: 'start', name: 'title', type: 'num',
                 render : {
                     _: 'display', //valeur uniquement pour le display
                     sort: 'timestamp' //valeur pour le order by
+
                 }},
-
-
-
                 { data: 'finish', name: 'description', class: 'num',
                     render : {
                         _: 'display', //valeur uniquement pour le display

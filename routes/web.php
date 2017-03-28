@@ -36,7 +36,7 @@ Route::get("test",function ()
 {
 
     $repository=new \App\Repository\ScheduleRepository(new \App\Schedule());
-    $schedule=$repository->getAllWithRelation();
+    $schedule=$repository->getAllWithRelation(1);
     foreach ($schedule as $aSched)
     {
         echo  $aSched->users;
