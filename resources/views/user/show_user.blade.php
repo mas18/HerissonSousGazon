@@ -10,7 +10,7 @@
                 <p>Nom : {{ $user->lastname }}</p>
                 <p>Email : {{ $user->email }}</p>
                 <p>Rue : {{ $user->street }}</p>
-                <p>Ville : {{ $user->city }}</p>
+                <p>NPA & Ville : {{ $user->city }}</p>
                 <p>Remarques : {{ $user->comment }}</p>
                 <br/>
                 statut :
