@@ -28,10 +28,8 @@ class UserRepository
         $user->lastname=$inputs['lastname'];
         $user->street=$inputs['street'];
         $user->city=$inputs['city'];
-        $user->level=$inputs['level'] ;
         $user->tel=$inputs['tel'];
         $user->comment=$inputs['comment'];
-        $user->level=$inputs['level'];
 
         $user->save();
     }
@@ -46,7 +44,7 @@ class UserRepository
     {
 
         $user=new $this->user;
-
+        $user->level=$inputs['level'] ;
         $user->password=bcrypt($inputs['password']);
         $this->save($user,$inputs);
         return $user;
@@ -58,8 +56,9 @@ class UserRepository
     }
 
     function update($id, $input)
-    {
-        $this->save($this->getById($id),$input);
+    {   $user=$this->getById($id);
+        $user->level=$input['level'] ;
+        $this->save($user,$input);
     }
 
     function destroy($id)
@@ -81,6 +80,11 @@ class UserRepository
         $user->comment=$inputs['comment'];
 
         return $user->save();
+    }
+    function userUpdate($id, $input)
+    {
+        $user=$this->getById($id);
+        $this->save($user,$input);
     }
 
 
