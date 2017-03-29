@@ -224,4 +224,34 @@
 
         </div>
     </div>
-@endsection
+
+    @if($errors->all())
+        <!-- Modal - New -->
+        <div id="modalValidation" class="modal fade in" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content" style="padding: 5px;">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Erreur de validation</h4>
+                    </div>
+                    <div class="modal-body">
+                            <span class="help-block">
+                                <strong>{{ $errors->first() }}</strong>
+                            </span>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <script>
+            $('#modalValidation').modal('show');
+        </script>
+    @endif
+
+    @endsection
