@@ -66,6 +66,20 @@ class ScheduleRepository
         return $dates;
     }
 
+    function saveNew(schedule $schedule, $inputs, $timeFrom, $timeTo)
+    {
+        $start = $inputs['date'].' '.$timeFrom;
+        $finish = $inputs['date'].' '.$timeTo;
+
+        $schedule->places = $inputs['number'];
+        $schedule->room_id = $inputs['place'];
+        $schedule->event_id = $inputs['eventId'];
+        $schedule->start = $start;
+        $schedule->finish = $finish;
+        $schedule->save();
+    }
+
+
 
     //admin methode
     function save(schedule $schedule, $inputs)
@@ -87,14 +101,14 @@ class ScheduleRepository
         return DataTableEngineContract::of(Schedule::all())->make(true);
     }
 
-    function store(Array $inputs)
+    function store(Array $inputs, $timeFrom, $timeTo)
     {
 
-        $user = new $this->user;
+        $schedule= new $this->schedule;
 
-        $user->password = bcrypt($inputs['password']);
-        $this->save($user, $inputs);
-        return $user;
+        $this->saveNew($schedule,$inputs, $timeFrom, $timeTo);
+
+        return $schedule;
     }
 
     function getById($id)

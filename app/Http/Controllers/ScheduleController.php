@@ -104,9 +104,13 @@ class ScheduleController extends Controller
     {
 
         if(isset($_POST["timeFrom"]) && is_array($_POST["timeFrom"])){
+            foreach ($_POST["timeFrom"] as $key => $value){
+                $timeFrom = $value;
+                $timeTo = $_POST["timeTo"][$key];
 
-            print "hello";
-            exit;
+                $this->scheduleRepository->store($request->all(), $timeFrom, $timeTo);
+            }
+
         }
 
         /*$event = $this->eventRepository->store($request->all());
