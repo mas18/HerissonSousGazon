@@ -179,6 +179,51 @@
         <button type="button" style="float: right; margin-top: 22px;"  class="btn btn-primary" data-toggle="modal" data-target="#scheduleNew">Créer un schedule</button>
     </div>
 
+
+
+    <!-- AJOUTER EMPLACEMENT -->
+    <div class="col-xs-3">
+        <button type="button" style="float:left; margin-top:25px;"  class="btn btn-primary" data-toggle="modal" data-target="#modalNewRoom">Ajouter emplacements</button>
+    </div>
+
+    <!-- Modal - New -->
+    <div id="modalNewRoom" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content" style="padding: 5px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Ajouter un emplacements</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('room.store') }}">
+                        {{ csrf_field() }}
+
+                        <div class="form-group">
+                            <label for="roomName" class="col-md-3 control-label">Nom</label>
+                            <div class="col-md-6">
+                                <input id="roomName" type="text" class="form-control" name="roomName" required>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-3">
+                                <button type="submit" class="btn btn-primary">Créer</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
     </body>
 
 </html>
