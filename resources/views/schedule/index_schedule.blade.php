@@ -1,10 +1,20 @@
 <?php ?>
 @extends('layouts.template')
 @section('main_content')
+
+    <div class="col-xs-12">
+        <button type="button"  class="btn btn-primary pull-right btn-sm" style="margin-left:5px;" data-toggle="modal" data-target="#modalNewRoom">Ajouter un emplacement</button>
+        <button type="button"  class="btn btn-primary pull-right btn-sm" data-toggle="modal" data-target="#scheduleNew">Créer un planning</button>
+    </div>
+
+
+    </br></br></br>
+
+    <!-- SCHEDULE TABLE -->
     <div class="table-responsive">
-        <table class="table table-hover table-striped" id="allschedule">
+        <table class="table table-hover table-striped" id="allschedule" style="font-size:12px; border:1px solid #D9D8D8; border-radius:5px">
             <thead>
-            <tr class="info">
+            <tr style="font-size:14px">
                 <th>Id</th>
                 <th>Départ</th>
                 <th>Fin</th>
@@ -17,10 +27,14 @@
             </tbody>
         </table>
     </div>
+
+
+
     <!-- jQuery -->
-    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
     <!-- DataTables -->
-    <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
     <!-- Bootstrap JavaScript -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <!-- App scripts -->
@@ -172,17 +186,9 @@
         </div>
     </div>
 
-    <div class="col-xs-3">
-        <button type="button" style="float: right; margin-top: 22px;"  class="btn btn-primary" data-toggle="modal" data-target="#scheduleNew">Créer un schedule</button>
-    </div>
-
 
 
     <!-- AJOUTER EMPLACEMENT -->
-    <div class="col-xs-3">
-        <button type="button" style="float:left; margin-top:25px;"  class="btn btn-primary" data-toggle="modal" data-target="#modalNewRoom">Ajouter emplacements</button>
-    </div>
-
     <!-- Modal - New -->
     <div id="modalNewRoom" class="modal fade" role="dialog">
         <div class="modal-dialog">
