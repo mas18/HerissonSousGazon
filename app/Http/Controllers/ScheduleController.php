@@ -76,7 +76,6 @@ class ScheduleController extends Controller
                     'timestamp' =>  $carbonDate->timestamp
                 ];
             })
-
             //relation
                 ->editColumn('users',  function ($schedule) {
                 //prepare what we want to show to the in the grid
@@ -96,6 +95,20 @@ class ScheduleController extends Controller
                         'alpha'=> $stringUser
                     ];
 
+            })
+            ->editColumn('rooms',  function ($schedule) {
+                //prepare what we want to show to the in the grid
+
+                return [
+                    'display'=>e(
+                       $schedule->rooms->name
+                    ),
+                    'alpha'=> $schedule->rooms->name
+                ];
+
+            })
+            ->addColumn('rooms', function ($schedule) {
+                return $schedule->rooms->name;
             })
 
 

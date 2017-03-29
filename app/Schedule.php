@@ -28,7 +28,7 @@ class Schedule extends Model {
 
 	public function rooms()
 	{
-		return $this->belongsTo('App\Room');
+		return $this->belongsTo('App\Room', 'room_id');
 	}
 
 	public function events()

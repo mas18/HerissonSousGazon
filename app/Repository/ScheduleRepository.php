@@ -12,6 +12,7 @@ use App\Schedule;
 use App\Event;
 use App\Room;
 use Carbon\Carbon;
+use League\Flysystem\Exception;
 use Yajra\Datatables\Contracts\DataTableEngineContract;
 
 class ScheduleRepository
@@ -118,7 +119,10 @@ class ScheduleRepository
 
     function getAllWithRelation($event_id=1)
     {
-        return $this->schedule->with('users')->where('event_id',$event_id)->with('rooms')->get();
+        $schedules= Schedule::
+             with('users')
+            ->get();
+        return $schedules;
     }
     function getByIdWithRelation($scheduleID)
     {
@@ -152,9 +156,17 @@ class ScheduleRepository
     }
     function getPlacedUsedOnSchedule($scheduleId)
     {
-       $users= $this->getByIdWithRelation($scheduleId)->users;
-        return count($users);
+        $schedule=$this->getByIdWithRelation($scheduleId);
+        $counter=0;
+        try{
+            $counter=count($schedule->users);
+        }
+        catch (Exception $ex)
+        {
+            return 0;
+        }
 
+        return $counter;
 
     }
 

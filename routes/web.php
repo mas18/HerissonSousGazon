@@ -37,12 +37,14 @@ Route::post('/schedule', 'ScheduleController@store')->name('schedule.store');
 Route::get("test",function ()
 {
 
-    $repository=new \App\Repository\ScheduleRepository(new \App\Schedule());
-    $schedule=$repository->getAllWithRelation(1);
+    $repository=new \App\Repository\ScheduleRepository(new \App\Schedule(),new \App\Room());
+    $schedule=$repository->getAllWithRelation();
     foreach ($schedule as $aSched)
     {
-        echo  $aSched->users;
+
+        echo $aSched->rooms->name;
     }
+
 
 
 

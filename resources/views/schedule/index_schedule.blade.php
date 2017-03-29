@@ -14,6 +14,7 @@
                 <th>Id</th>
                 <th>Départ</th>
                 <th>Fin</th>
+                <th>rooms</th>
                 <th>Places total</th>
                 <th>Place occupée </th>
                 <th>utilisateurs inscrits</th>
@@ -85,9 +86,16 @@
                         _: 'display', //valeur uniquement pour le display
                         sort: 'timestamp' //valeur pour le order by
                 }},
+                    { data: 'rooms', name: 'rooms',
+                        render : {
+                            _: 'display', //valeur uniquement pour le display
+                            sort: 'alpha' //valeur pour le order by
+
+                        },
+                    },
                     { data: 'places', name: 'description', title:'Places total', },
 
-                    { data: 'occuped', name: 'occuped', title : 'places occupées',},
+                    { data: 'occuped', name: 'occuped', title : 'places occupées', class : 'num'},
 
 
                     { data: 'users', name: 'users', title : 'Utilisateurs inscrits',
