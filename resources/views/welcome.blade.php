@@ -52,7 +52,7 @@
             <div class="content" style="text-align:center">
 
                 <!-- CAROUSEL -->
-                <div class="container col-sm-offset-1 col-sm-10">
+                <div class="container flex-center">
                     <br>
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
                         <!-- Indicators -->
@@ -89,7 +89,6 @@
                     </div>
                 </div>
 
-                </br></br>
 
                 <!-- TITLE -->
                 <div style="font-size:60px;">Hérisson sous gazon</div>
@@ -97,7 +96,7 @@
                 </br>
 
                 <!-- HREF -->
-                <div class="container  col-sm-offset-1 col-sm-10" style="text-align:center;">
+                <div class="container flex-center">
                 <ul class="navbar-nav">
                     <li class="linksNav" style="list-style-type:none"><a style="font-size:100%" href="{{ url('/events') }}">Évènements</a></li>
                     <li class="linksNav" style="list-style-type:none"><a style="font-size:100%" href="{{ url('/profil') }}">Mon profile</a></li>

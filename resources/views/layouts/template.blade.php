@@ -9,9 +9,12 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+    <link href="//code.jquery.com/jquery-1.10.2.min.js" rel="stylesheet">
     {{Html::style('css/bootstrap/bootstrap.min.css')}}
     {{Html::style('css/bootstrap/bootstrap-theme.min.css')}}
     {{Html::style('css/style.css')}}
+
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

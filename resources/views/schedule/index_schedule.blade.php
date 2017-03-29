@@ -1,16 +1,10 @@
 <?php ?>
-
-<html>
-    <head>
-        <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
-        <link href="//code.jquery.com/jquery-1.10.2.min.js" rel="stylesheet">
-    </head>
-    <body>
+@extends('layouts.template')
+@section('main_content')
     <div class="table-responsive">
-        <table class="table table-striped" id="allschedule">
+        <table class="table table-hover table-striped" id="allschedule">
             <thead>
-            <tr>
+            <tr class="info">
                 <th>Id</th>
                 <th>Départ</th>
                 <th>Fin</th>
@@ -100,6 +94,9 @@
         });
     </script>
 
+
+
+    <!-- CREATE NEW SCHEDULE -->
     <div id="scheduleNew" class="modal fade in" role="dialog">
         <div class="modal-dialog">
 
@@ -221,9 +218,4 @@
 
         </div>
     </div>
-
-
-
-    </body>
-
-</html>
+@endsection
