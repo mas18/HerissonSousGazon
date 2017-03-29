@@ -9,6 +9,7 @@ use App\Room;
 use Illuminate\Http\Request;
 use App\Http\Requests\ScheduleRequest;
 //use datatables
+use Tests\Unit\scheduleTest;
 use Yajra\Datatables\Datatables;
 use Carbon\Carbon;
 
@@ -51,6 +52,11 @@ class ScheduleController extends Controller
 
         //on spécifie si il y'a des changements a faire dahs les columns avec editColumn
         return Datatables::of($schedule)
+
+            //ajouter une column
+            ->addColumn('occuped', function ($schedule) {
+                return $this->scheduleRepository->getPlacedUsedOnSchedule($schedule->id);
+            })
 
             ->editColumn('start', function ($schedule) {
                 $carbonDate =new Carbon($schedule->start);

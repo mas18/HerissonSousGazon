@@ -15,6 +15,7 @@
                 <th>Départ</th>
                 <th>Fin</th>
                 <th>Places total</th>
+                <th>Place occupée </th>
                 <th>utilisateurs inscrits</th>
             </tr>
             </thead>
@@ -85,6 +86,10 @@
                         sort: 'timestamp' //valeur pour le order by
                 }},
                     { data: 'places', name: 'description', title:'Places total', },
+
+                    { data: 'occuped', name: 'occuped', title : 'places occupées',},
+
+
                     { data: 'users', name: 'users', title : 'Utilisateurs inscrits',
                     render : {
                         _: 'display',

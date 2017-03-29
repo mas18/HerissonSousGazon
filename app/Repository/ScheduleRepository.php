@@ -103,6 +103,10 @@ class ScheduleRepository
     {
         return $this->schedule->with('users')->where('event_id',$event_id)->with('rooms')->get();
     }
+    function getByIdWithRelation($scheduleID)
+    {
+        return $this->schedule->with('users')->find($scheduleID);
+    }
 
     function update($id, $input)
     {
@@ -128,6 +132,13 @@ class ScheduleRepository
         $user->comment = $inputs['comment'];
 
         return $user->save();
+    }
+    function getPlacedUsedOnSchedule($scheduleId)
+    {
+       $users= $this->getByIdWithRelation($scheduleId)->users;
+        return count($users);
+
+
     }
 
 }

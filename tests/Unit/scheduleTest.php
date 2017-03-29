@@ -17,10 +17,19 @@ class scheduleTest extends TestCase
      */
     public function testRepository()
     {
+        /*
         $repository=new ScheduleRepository(new Schedule());
         $schedule=$repository->getAllWithRelation();
 
             echo $schedule->users;
+        */
 
+    }
+    public function testCount()
+    {
+        $repository=new ScheduleRepository(new Schedule());
+        $count=$repository->getPlacedUsedOnSchedule(1);
+        echo "Affichage du resultat ::     ".$count;
+        self::assertNotSame($count,0);
     }
 }
