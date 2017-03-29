@@ -12,9 +12,10 @@
             <thead>
             <tr>
                 <th>Id</th>
-                <th>start</th>
-                <th>finish</th>
-                <th>place</th>
+                <th>Départ</th>
+                <th>Fin</th>
+                <th>Places total</th>
+                <th>utilisateurs inscrits</th>
             </tr>
             </thead>
             <tbody>
@@ -83,7 +84,12 @@
                         _: 'display', //valeur uniquement pour le display
                         sort: 'timestamp' //valeur pour le order by
                 }},
-                    { data: 'places', name: 'description' }
+                    { data: 'places', name: 'description', title:'Places total', },
+                    { data: 'users', name: 'users', title : 'Utilisateurs inscrits',
+                    render : {
+                        _: 'display',
+                        sort: 'alpha'
+                    }}
             ]
         });
         });
