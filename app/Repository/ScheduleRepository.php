@@ -102,10 +102,10 @@ class ScheduleRepository
         return $this->user->findOrFail($id);
     }
 
-        function getAllWithRelation($event_id=1)
-        {
-            return $this->schedule->with('users')->where('event_id',$event_id)->with('rooms')->get();
-        }
+    function getAllWithRelation($event_id=1)
+    {
+        return $this->schedule->with('users')->where('event_id',$event_id)->with('rooms')->get();
+    }
 
     function update($id, $input)
     {

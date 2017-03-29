@@ -28,9 +28,10 @@ Route::post('/events/update', 'EventController@edit')->name('event.update');
 Route::post('/events/newRoom', 'RoomController@store')->name('room.store');
 
 //affichage de la view
-Route::get('schedule/{number?}', 'ScheduleController@datatables')->name('schedule.show');
+Route::get('schedule/{number}', 'ScheduleController@datatables')->name('schedule.show');
 //data query Ajax
 Route::get('schedule_data', 'ScheduleController@scheduledata');
+Route::post('/schedule', 'ScheduleController@store')->name('schedule.store');
 
 
 Route::get("test",function ()
