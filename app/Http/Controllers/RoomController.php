@@ -6,7 +6,7 @@ use App\Repository\ScheduleRepository;
 
 class RoomController extends Controller {
 
-
+    protected $event_id=1;
     protected $scheduleRepository;
 
 
@@ -45,7 +45,7 @@ class RoomController extends Controller {
   public function store(RoomRequest $request)
   {
       $this->scheduleRepository->storeRoom($request->all());
-      return redirect()->route('schedule.show');
+      return redirect()->route('schedule.show','1');
   }
 
 
