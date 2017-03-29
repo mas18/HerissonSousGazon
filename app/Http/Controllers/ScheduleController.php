@@ -9,6 +9,7 @@ use App\Room;
 use Illuminate\Http\Request;
 use App\Http\Requests\ScheduleRequest;
 //use datatables
+use Tests\Unit\scheduleTest;
 use Yajra\Datatables\Datatables;
 use Carbon\Carbon;
 
@@ -51,6 +52,11 @@ class ScheduleController extends Controller
 
         //on spécifie si il y'a des changements a faire dahs les columns avec editColumn
         return Datatables::of($schedule)
+
+            //ajouter une column
+            ->addColumn('occuped', function ($schedule) {
+                return $this->scheduleRepository->getPlacedUsedOnSchedule($schedule->id);
+            })
 
             ->editColumn('start', function ($schedule) {
                 $carbonDate =new Carbon($schedule->start);
@@ -104,9 +110,13 @@ class ScheduleController extends Controller
     {
 
         if(isset($_POST["timeFrom"]) && is_array($_POST["timeFrom"])){
+            foreach ($_POST["timeFrom"] as $key => $value){
+                $timeFrom = $value;
+                $timeTo = $_POST["timeTo"][$key];
 
-            print "hello";
-            exit;
+                $this->scheduleRepository->store($request->all(), $timeFrom, $timeTo);
+            }
+
         }
 
         /*$event = $this->eventRepository->store($request->all());
