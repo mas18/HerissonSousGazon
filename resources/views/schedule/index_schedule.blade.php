@@ -1,16 +1,20 @@
 <?php ?>
+@extends('layouts.template')
+@section('main_content')
 
-<html>
-    <head>
-        <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
-        <link href="//code.jquery.com/jquery-1.10.2.min.js" rel="stylesheet">
-    </head>
-    <body>
+    <div class="col-xs-12">
+        <button type="button"  class="btn btn-primary pull-right btn-sm" style="margin-left:5px;" data-toggle="modal" data-target="#modalNewRoom">Ajouter un emplacement</button>
+        <button type="button"  class="btn btn-primary pull-right btn-sm" data-toggle="modal" data-target="#scheduleNew">Créer un planning</button>
+    </div>
+
+
+    </br></br></br>
+
+    <!-- SCHEDULE TABLE -->
     <div class="table-responsive">
-        <table class="table table-striped" id="allschedule">
+        <table class="table table-hover table-striped" id="allschedule" style="font-size:12px; border:1px solid #D9D8D8; border-radius:5px">
             <thead>
-            <tr>
+            <tr style="font-size:14px">
                 <th>Id</th>
                 <th>Départ</th>
                 <th>Fin</th>
@@ -24,10 +28,14 @@
             </tbody>
         </table>
     </div>
+
+
+
     <!-- jQuery -->
-    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
     <!-- DataTables -->
-    <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
     <!-- Bootstrap JavaScript -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <!-- App scripts -->
@@ -108,6 +116,9 @@
         });
     </script>
 
+
+
+    <!-- CREATE NEW SCHEDULE -->
     <div id="scheduleNew" class="modal fade in" role="dialog">
         <div class="modal-dialog">
 
@@ -183,17 +194,9 @@
         </div>
     </div>
 
-    <div class="col-xs-3">
-        <button type="button" style="float: right; margin-top: 22px;"  class="btn btn-primary" data-toggle="modal" data-target="#scheduleNew">Créer un schedule</button>
-    </div>
-
 
 
     <!-- AJOUTER EMPLACEMENT -->
-    <div class="col-xs-3">
-        <button type="button" style="float:left; margin-top:25px;"  class="btn btn-primary" data-toggle="modal" data-target="#modalNewRoom">Ajouter emplacements</button>
-    </div>
-
     <!-- Modal - New -->
     <div id="modalNewRoom" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -230,8 +233,33 @@
         </div>
     </div>
 
+    @if($errors->all())
+        <!-- Modal - New -->
+        <div id="modalValidation" class="modal fade in" role="dialog">
+            <div class="modal-dialog">
 
+                <!-- Modal content-->
+                <div class="modal-content" style="padding: 5px;">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Erreur de validation</h4>
+                    </div>
+                    <div class="modal-body">
+                            <span class="help-block">
+                                <strong>{{ $errors->first() }}</strong>
+                            </span>
 
-    </body>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
 
-</html>
+            </div>
+        </div>
+        <script>
+            $('#modalValidation').modal('show');
+        </script>
+    @endif
+
+    @endsection

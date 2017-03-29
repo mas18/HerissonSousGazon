@@ -17,10 +17,6 @@ class ScheduleUserTableSeeder extends Seeder
 
         for ($k=0;$k<100;$k++)
         {
-
-            // ScheduleSeeder
-            $day=rand(1,28);
-            $month=rand(1,12);
             DB::table('schedule_user')->insert([
                 'user_id' => rand(1,20),
                 'schedule_id' => rand(1,20),
@@ -30,16 +26,5 @@ class ScheduleUserTableSeeder extends Seeder
 
     }
 
-    public function beginDate($day,$mouth)
-    {
-
-        $date = Carbon::create(2018, $mouth, $day, rand(0,12), rand(1,60), rand(1,60));
-        return   $date->format('Y-m-d H:i:s');
-    }
-    public function endDate($day,$mounth)
-    {
-        $date = Carbon::create(2018, $mounth ,$day , rand(12,24), rand(1,60), rand(1,60));
-        return   $date->format('Y-m-d H:i:s');
-    }
 
 }

@@ -52,7 +52,7 @@
             <div class="content" style="text-align:center">
 
                 <!-- CAROUSEL -->
-                <div class="container col-sm-offset-1 col-sm-10">
+                <div class="container flex-center">
                     <br>
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
                         <!-- Indicators -->
@@ -64,16 +64,16 @@
 
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner" role="listbox">
-                            <div class="item active" style="height:320px" >
-                                {{ HTML::image('pictures\imgTest.jpg') }}
+                            <div class="item active" >
+                                {{ HTML::image('pictures\img1.jpg') }}
                             </div>
 
-                            <div class="item" style="height:320px">
-                                {{ HTML::image('pictures\imgTest.jpg') }}
+                            <div class="item">
+                                {{ HTML::image('pictures\img2.jpg') }}
                             </div>
 
-                            <div class="item" style="height:320px">
-                                {{ HTML::image('pictures\imgTest.jpg') }}
+                            <div class="item">
+                                {{ HTML::image('pictures\img3.jpg') }}
                             </div>
                         </div>
 
@@ -89,15 +89,14 @@
                     </div>
                 </div>
 
-                </br></br>
 
                 <!-- TITLE -->
-                <div style="font-size:60px">Hérisson sous gazon</div>
+                <div style="font-size:60px;">Hérisson sous gazon</div>
 
                 </br>
 
                 <!-- HREF -->
-                <div class="container  col-sm-offset-3 col-sm-7" style="text-align:center;">
+                <div class="container flex-center">
                 <ul class="navbar-nav">
                     <li class="linksNav" style="list-style-type:none"><a style="font-size:100%" href="{{ url('/events') }}">Évènements</a></li>
                     <li class="linksNav" style="list-style-type:none"><a style="font-size:100%" href="{{ url('/profil') }}">Mon profile</a></li>
@@ -105,8 +104,8 @@
                         <a class="dropdown-toggle" style="font-size:100%" data-toggle="dropdown" href="#">Administrateur
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ url('/user') }}">Utilisateur</a></li>
-                            <li><a href="{{ url('/events') }}">Événements</a></li>
+                            <li><a style="font-size:16px" href="{{ url('/user') }}">Utilisateur</a></li>
+                            <li><a style="font-size:16px" href="{{ url('/events') }}">Événements</a></li>
                         </ul>
                     </li>
                 </ul>

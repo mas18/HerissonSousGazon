@@ -25,11 +25,20 @@ class ScheduleRequest extends FormRequest
     public function rules()
     {
 
-        return [
+
+        $rules = [
             'date'=>'required|date|date_format:Y-m-d',
             'place'=>'required',
-
             'number'=>'required|min:1|max:20'
         ];
+
+        foreach($this->request->get('timeFrom') as $key => $val)
+        {
+            $rules['timeFrom.'.$key] = 'required|date_format:H:i';
+            $start = 'timeFrom.'.$key;
+            $rules['timeTo.'.$key] = 'required|date_format:H:i|after:'. $start;
+        }
+
+        return $rules;
     }
 }
