@@ -1,4 +1,9 @@
 /* WELCOME PAGE*/
+div.container{
+    width: 80%; /* for example */
+    margin: auto;
+}
+
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
     width: 100%;
@@ -22,6 +27,8 @@
     position: relative;
 }
 .full-height {
+    width: 80%; /* for example */
+    margin: auto;
     height: 100vh;
 }
 
