@@ -41,11 +41,11 @@
                 if(x < max_fields){ //max input box allowed
                     x++; //text box increment
                     $(wrapper).append('<div class="form-group">'
-                    + '<label for="timeFrom[1]" class="col-md-3 control-label">De: </label>'
-                    + '<div class="col-md-3">'
+                    + '<label for="timeFrom[]" class="col-md-3 control-label">De: </label>'
+                    + '<div class="col-md-2">'
                         + '<input type="time" name="timeFrom[]" required>'
                     + '</div>'
-                    + '<label for="timeTo[1]" class="col-md-1 control-label">À: </label>'
+                    + '<label for="timeTo[]" class="col-md-2 control-label">À: </label>'
                     + '<div class="col-md-2">'
                         + '<input type="time" name="timeTo[]" required>'
                     + '</div>'
@@ -105,9 +105,9 @@
                     <h4 class="modal-title">Créer schedule</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('event.store') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('schedule.store') }}">
                         {{ csrf_field() }}
-
+                        <input type="hidden" name="eventId" value="{{ $event->id }}">
                         <div class="form-group">
                             <label for="date" class="col-md-3 control-label">Date:</label>
 
@@ -124,10 +124,9 @@
 
                             <div class="col-md-6">
                                 <select id="place" class="form-control" name="place">
-                                    <option value="bar hérisson">bar hérisson</option>
-                                    <option value="cuisine">cuisine</option>
-                                    <option value="bar cuisine">bar cuisine</option>
-                                    <option value="glaces">glaces</option>
+                                    @foreach ($rooms as $room)
+                                    <option value="{{ $room->id }}">{{ $room->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -135,7 +134,7 @@
                             <label for="number" class="col-md-3 control-label">Nombre:</label>
 
                             <div class="col-md-6">
-                                <input id="number" type="number" class="form-control" name="number" value="1" required>
+                                <input id="number" type="number" class="form-control" name="number" value="1" min="1" max="20" required>
                             </div>
                         </div>
                         <div class="input_fields_wrap" style="margin-bottom: 0;">

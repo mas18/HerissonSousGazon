@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Repository\ScheduleRepository;
 use App\Repository\EventRepository;
 use App\Schedule;
+use App\Room;
 use Illuminate\Http\Request;
+use App\Http\Requests\ScheduleRequest;
 //use datatables
 use Yajra\Datatables\Datatables;
 use Carbon\Carbon;
@@ -24,11 +26,12 @@ class ScheduleController extends Controller
 
     //
     // affichage de la view
-    public function datatables()
+    public function datatables($number)
     {
-        $event = $this->eventRepository->getById(1);
+        $event = $this->eventRepository->getById($number);
         $dates = $this->scheduleRepository->getDates($event);
-        return view('schedule.index_schedule')->with('dates', $dates);
+        $rooms = Room::all();
+        return view('schedule.index_schedule')->with('dates', $dates)->with('event', $event)->with('rooms', $rooms);
     }
     //rendu de la table via Ajax en JSON
     public function scheduledata(Request $request)
@@ -95,5 +98,23 @@ class ScheduleController extends Controller
                 $query->whereRaw("DATE_FORMAT(start,'%d/%m/%Y') LIKE ?", ["%$keyword%"]);
             })
             ->make(true);
+    }
+
+    public function store(ScheduleRequest $request)
+    {
+
+        if(isset($_POST["timeFrom"]) && is_array($_POST["timeFrom"])){
+
+            print "hello";
+            exit;
+        }
+
+        /*$event = $this->eventRepository->store($request->all());
+
+        if($request->get('copy')){
+            $lastEvent = $this->eventRepository->getSecondLast();
+            $this->scheduleRepository->copy($lastEvent, $event);
+        }*/
+        return redirect()->route('schedule.show', $request->eventId);
     }
 }
