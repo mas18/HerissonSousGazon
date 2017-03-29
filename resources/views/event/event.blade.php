@@ -182,7 +182,4 @@
             $('#modalValidation').modal('show');
         </script>
     @endif
-
-
-
 @endsection

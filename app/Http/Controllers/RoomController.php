@@ -1,8 +1,21 @@
 <?php 
 
 namespace App\Http\Controllers;
+use App\Http\Requests\RoomRequest;
+use App\Repository\ScheduleRepository;
 
 class RoomController extends Controller {
+
+
+    protected $scheduleRepository;
+
+
+    public function __construct(ScheduleRepository $scheduleRepository)
+    {
+        $this->middleware('admin');
+        $this->scheduleRepository = $scheduleRepository;
+    }
+
 
   /**
    * Display a listing of the resource.
@@ -29,10 +42,12 @@ class RoomController extends Controller {
    *
    * @return Response
    */
-  public function store()
+  public function store(RoomRequest $request)
   {
-    
+      $this->scheduleRepository->storeRoom($request->all());
+      return redirect()->route('schedule.show');
   }
+
 
   /**
    * Display the specified resource.
@@ -42,7 +57,7 @@ class RoomController extends Controller {
    */
   public function show($id)
   {
-    
+
   }
 
   /**

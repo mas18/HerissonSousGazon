@@ -10,16 +10,19 @@ namespace App\Repository;
 
 use App\Schedule;
 use App\Event;
+use App\Room;
 use Carbon\Carbon;
 use Yajra\Datatables\Contracts\DataTableEngineContract;
 
 class ScheduleRepository
 {
     protected $schedule;
+    protected $room;
 
-    public function __construct(Schedule $schedule)
+    public function __construct(Schedule $schedule, Room $room)
     {
         $this->schedule = $schedule;
+        $this->room=$room;
     }
 
 
@@ -128,6 +131,21 @@ class ScheduleRepository
         $user->comment = $inputs['comment'];
 
         return $user->save();
+    }
+
+
+
+    function storeRoom(Array $inputs)
+    {
+        $room= new $this->room;
+        $this->saveRoom($room,$inputs);
+        return $room;
+    }
+
+    function saveRoom(Room $room, $inputs)
+    {
+        $room->name=$inputs['roomName'];
+        $room->save();
     }
 
 }

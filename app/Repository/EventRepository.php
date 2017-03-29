@@ -9,6 +9,7 @@
 namespace App\Repository;
 
 use App\Event;
+use PhpParser\Node\Scalar\String_;
 
 class EventRepository
 {
@@ -58,5 +59,6 @@ class EventRepository
 
         $event->save();
     }
+
 
 }

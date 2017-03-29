@@ -26,7 +26,7 @@ class ScheduleController extends Controller
     // affichage de la view
     public function datatables($number="")
     {
-        $event = $this->eventRepository->getById(25);
+        $event = $this->eventRepository->getById(1);
         $dates = $this->scheduleRepository->getDates($event);
         return view('schedule.index_schedule')->with('dates', $dates);
     }
