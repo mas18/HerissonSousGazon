@@ -121,6 +121,7 @@ class ScheduleRepository
     {
         $schedules= Schedule::
              with('users')
+           ->where ('schedules.event_id','=',$event_id)
             ->get();
         return $schedules;
     }
