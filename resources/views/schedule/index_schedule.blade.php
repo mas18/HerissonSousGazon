@@ -7,8 +7,6 @@
         <button type="button"  class="btn btn-primary pull-right btn-sm" data-toggle="modal" data-target="#scheduleNew">Créer un planning</button>
     </div>
 
-    <button type="button"  class="btn btn-primary pull-right btn-sm" data-toggle="modal" data-target="#modalAction">Action</button>
-
 
     </br></br></br>
 
@@ -143,6 +141,12 @@
         });
 
 
+
+    </script>
+    <script type="text/javascript">
+
+
+
     </script>
 
 
@@ -266,7 +270,7 @@
 
     <!-- Inscription / Désinscription / Modification -->
     <!-- Modal - New -->
-    <div id="modalAction" class="modal fade" role="dialog">
+    <div id="Actionmodal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
@@ -276,9 +280,12 @@
                     <h4 class="modal-title">Actions</h4>
                 </div>
                 <div class="modal-body">
+                    <div class="container-fluid">
                        <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary">Subscribe</button>
                        <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary">Unsubscribe</button>
                        <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary">Modification</button>
+
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
@@ -319,4 +326,18 @@
         </script>
     @endif
 
+    <script>
+        var modalAction = document.getElementById('modalAction');
+
+        setTimeout(function(){
+        var row=document.querySelectorAll("tr");
+        row.forEach(function (element)
+        {
+            element.addEventListener('click',function()
+            {
+                $('#Actionmodal').modal('show');
+            })
+
+        })},2000);
+    </script>
     @endsection
