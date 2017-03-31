@@ -120,9 +120,11 @@ class ScheduleRepository
     function getAllWithRelation($event_id=1)
     {
         $schedules= Schedule::
-             with('users')
+            with('rooms')
+             ->with('users')
            ->where ('schedules.event_id','=',$event_id)
             ->get();
+
         return $schedules;
     }
     function getByIdWithRelation($scheduleID)
@@ -170,8 +172,6 @@ class ScheduleRepository
         return $counter;
 
     }
-
-
 
     function storeRoom(Array $inputs)
     {

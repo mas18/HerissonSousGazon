@@ -55,7 +55,7 @@ class ScheduleController extends Controller
 
             //ajouter une column
             ->addColumn('occuped', function ($schedule) {
-                return $this->scheduleRepository->getPlacedUsedOnSchedule($schedule->id);
+                return count($schedule->users);
             })
 
             ->editColumn('start', function ($schedule) {
