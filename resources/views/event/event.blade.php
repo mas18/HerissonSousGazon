@@ -135,10 +135,11 @@
                             </div>
                         </div>
                     </div>
-                    <div id="collapse{{ $event->id }}" class="panel-collapse collapse {{ $firstItem ? ' in' : '' }}" role="tabpanel" aria-labelledby="heading{{ $event->id }}">
+                    <div id="collapse{{ $event->id }}" class="panel-collapse collapse{{ $firstItem ? ' in' : '' }}" role="tabpanel" aria-labelledby="heading{{ $event->id }}">
                         <div class="panel-body">
                             <p>{{ $event->starting }}</p>
                             <p>{{ $event->ending }}</p>
+                            <a href="{{ route('schedule.show', $event->id) }}" class="btn btn-primary">Open schedule</a>
                         </div>
                     </div>
                 </div>
