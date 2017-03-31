@@ -7,6 +7,8 @@
         <button type="button"  class="btn btn-primary pull-right btn-sm" data-toggle="modal" data-target="#scheduleNew">Créer un planning</button>
     </div>
 
+    <button type="button"  class="btn btn-primary pull-right btn-sm" data-toggle="modal" data-target="#modalAction">Action</button>
+
 
     </br></br></br>
 
@@ -232,6 +234,34 @@
 
         </div>
     </div>
+
+
+
+    <!-- Inscription / Désinscription / Modification -->
+    <!-- Modal - New -->
+    <div id="modalAction" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content" style="padding: 5px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Actions</h4>
+                </div>
+                <div class="modal-body">
+                       <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary">Subscribe</button>
+                       <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary">Unsubscribe</button>
+                       <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary">Modification</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
 
     @if($errors->all())
         <!-- Modal - New -->
