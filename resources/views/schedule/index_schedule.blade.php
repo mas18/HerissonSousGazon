@@ -40,9 +40,28 @@
     <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
     <!-- Bootstrap JavaScript -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+
+
+    {{ Html::script('js/pdfmake.min.js')}}
+    <script src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
+    <script src="//cdn.datatables.net/buttons/1.2.4/js/buttons.flash.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/pdfmake.min.js"></script>
+
+    <script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/pdfmake.min.js"></script>
+    <script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/vfs_fonts.js"></script>
     <!-- App scripts -->
+    <script src="//cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
+    <script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/pdfmake.min.js"></script>
+    <script src="//cdn.datatables.net/buttons/1.2.4/js/buttons.print.min.js"></script>
+
     <script type="text/javascript">
-        $(document).ready(function() {
+
+
+        $(document).ready(
+            function() {
             var max_fields      = 3; //maximum input boxes allowed
             var wrapper         = $(".input_fields_wrap"); //Fields wrapper
             var add_button      = $(".add_field_button"); //Add button ID
@@ -71,8 +90,14 @@
         });
 
 
+
         $(function(){
             $('#allschedule').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    {extend: 'copy', text: 'Copier   ' },
+                    {extend: 'csv', text:  'Enregister en CSV   ' },
+                    {extend: 'excel', text:  'enregister au format excel   ' }],
                     processing: true,
                     serverSide: false,
                     ajax: {
@@ -116,6 +141,8 @@
             ]
         });
         });
+
+
     </script>
 
 
