@@ -281,10 +281,19 @@
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid">
-                       <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary">Subscribe</button>
-                       <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary">Unsubscribe</button>
-                       <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary">Modification</button>
-
+                        <div class="dropdown col-md-3">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Volunteers
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Volunteers1</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Volunteers2</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Volunteers3</a></li>
+                            </ul>
+                        </div>
+                        <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary">Inscrire</button>
+                        <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary">Désinscrire</button>
+                        </br>
+                        <button type="submit" style="margin-left:10px; margin-top: 30px" class="col-md-3 btn btn-primary">Modifier</button>
                     </div>
                 </div>
                 <div class="modal-footer">
