@@ -88,24 +88,24 @@
 
         $(function(){
             $('#allschedule').DataTable({
-                dom: 'Bfrtip',
+                dom: 'Blfrtip', //display button and entries
                 buttons: [ //set language of the button text
 
                     {extend: 'copy', text: 'Copier   '},
                     {extend: 'csv', text:  'Enregister en CSV   ' },
                     {extend: 'excel', text:  'enregister au format excel   ' },
                     {extend: 'print', text:  'imprimer'},
-                    ],
+                ],
 
-                    processing: false,
+                    processing: true,
                     serverSide: false,
                     ajax: {
                         url:'{!! URL::asset('schedule_data') !!}',
                         data: function (d) { //the param we want send to serv
                             d.event_id = <?php $urls= explode('/' ,Request::url());
-                                                echo $urls[count($urls)-1]?>
-                        }
-                    },
+                                                echo $urls[count($urls)-1]?>}},
+                //set the display length option by default
+                'iDisplayLength':50,
                 //set language for the paginate option
                 "language": {
                     "paginate": {
@@ -145,15 +145,12 @@
 
                     { data: 'occuped', name: 'occuped', title : 'places occupées', class : 'num'},
 
-
                     { data: 'users', name: 'users', title : 'Utilisateurs inscrits',
                     render : {
                         _: 'display',
                         sort: 'alpha'
                     }}
             ],
-
-
 
             })});
 
