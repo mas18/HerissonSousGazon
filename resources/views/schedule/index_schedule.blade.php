@@ -7,8 +7,6 @@
         <button type="button"  class="btn btn-primary pull-right btn-sm" data-toggle="modal" data-target="#scheduleNew">Créer un planning</button>
     </div>
 
-    <button type="button"  class="btn btn-primary pull-right btn-sm" data-toggle="modal" data-target="#modalAction">Action</button>
-
 
     </br></br></br>
 
@@ -163,6 +161,12 @@
 
 
 
+
+    </script>
+    <script type="text/javascript">
+
+
+
     </script>
 
 
@@ -284,7 +288,7 @@
 
     <!-- Inscription / Désinscription / Modification -->
     <!-- Modal - New -->
-    <div id="modalAction" class="modal fade" role="dialog">
+    <div id="Actionmodal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
@@ -294,9 +298,21 @@
                     <h4 class="modal-title">Actions</h4>
                 </div>
                 <div class="modal-body">
-                       <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary">Subscribe</button>
-                       <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary">Unsubscribe</button>
-                       <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary">Modification</button>
+                    <div class="container-fluid">
+                        <div class="dropdown col-md-3">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Volunteers
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Volunteers1</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Volunteers2</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Volunteers3</a></li>
+                            </ul>
+                        </div>
+                        <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary">Inscrire</button>
+                        <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary">Désinscrire</button>
+                        </br>
+                        <button type="submit" style="margin-left:10px; margin-top: 30px" class="col-md-3 btn btn-primary">Modifier</button>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
@@ -335,4 +351,18 @@
         </script>
     @endif
 
+    <script>
+        var modalAction = document.getElementById('modalAction');
+
+        setTimeout(function(){
+        var row=document.querySelectorAll("tr");
+        row.forEach(function (element)
+        {
+            element.addEventListener('click',function()
+            {
+                $('#Actionmodal').modal('show');
+            })
+
+        })},2000);
+    </script>
     @endsection
