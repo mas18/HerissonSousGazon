@@ -20,7 +20,7 @@
                 <th>Id</th>
                 <th>Départ</th>
                 <th>Fin</th>
-                <th>rooms</th>
+                <th>Lieu</th>
                 <th>Places total</th>
                 <th>Place occupée </th>
                 <th>utilisateurs inscrits</th>
@@ -59,7 +59,6 @@
 
     <script type="text/javascript">
 
-
         $(document).ready(
             function() {
             var max_fields      = 3; //maximum input boxes allowed
@@ -89,16 +88,18 @@
             })
         });
 
-
-
         $(function(){
             $('#allschedule').DataTable({
                 dom: 'Bfrtip',
-                buttons: [
-                    {extend: 'copy', text: 'Copier   ' },
+                buttons: [ //set language of the button text
+
+                    {extend: 'copy', text: 'Copier   '},
                     {extend: 'csv', text:  'Enregister en CSV   ' },
-                    {extend: 'excel', text:  'enregister au format excel   ' }],
-                    processing: true,
+                    {extend: 'excel', text:  'enregister au format excel   ' },
+                    {extend: 'print', text:  'imprimer'},
+                    ],
+
+                    processing: false,
                     serverSide: false,
                     ajax: {
                         url:'{!! URL::asset('schedule_data') !!}',
@@ -107,6 +108,20 @@
                                                 echo $urls[count($urls)-1]?>
                         }
                     },
+                //set language for the paginate option
+                "language": {
+                    "paginate": {
+                        "previous": "Page précédente",
+                        "next":'Page suivante'
+                    },
+                    //other language options:
+                    "processing":     "Traitement...",
+                    "info":           "Affichage de  _START_ à _END_ entrées, pour un total de  _TOTAL_ entrées",
+                    "search":          "Rechercher un élément ",
+                    "lengthMenu":     "Affichage de  _MENU_ entrées",
+                },
+
+                //set the column option (sort and display element)
                 columns : [
                 { data: 'id', name: 'id' },
 
@@ -138,9 +153,14 @@
                         _: 'display',
                         sort: 'alpha'
                     }}
-            ]
-        });
-        });
+            ],
+
+
+
+            })});
+
+
+
 
 
     </script>
@@ -262,8 +282,6 @@
         </div>
     </div>
 
-
-
     <!-- Inscription / Désinscription / Modification -->
     <!-- Modal - New -->
     <div id="modalAction" class="modal fade" role="dialog">
@@ -287,8 +305,6 @@
 
         </div>
     </div>
-
-
 
     @if($errors->all())
         <!-- Modal - New -->
