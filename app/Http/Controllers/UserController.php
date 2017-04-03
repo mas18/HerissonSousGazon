@@ -25,20 +25,21 @@ class UserController extends Controller
         $this->middleware('admin');
 
         $this->userRepository=$userRepository;
-        $this->nbPerPage=10;
+        $this->nbPerPage=8;
     }
+
 
 
     public function index()
     {
         //
         $users=$this->userRepository->getPaginate($this->nbPerPage);
-
-
         $links=$users->render();
         return view('user/index_user',compact('users','links'));
 
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -52,6 +53,7 @@ class UserController extends Controller
 
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
@@ -62,7 +64,7 @@ class UserController extends Controller
     {
         //
         $user=$this->userRepository->store($request->all());
-        return redirect('user')->withOk("l'utilisateur".$user->lastname."a été créer");
+        return redirect('user')->withOk("l'utilisateur".$user->lastname."a été créé.");
     }
 
     /**
@@ -104,7 +106,7 @@ class UserController extends Controller
     {
         //
         $this->userRepository->update($id,$request->all());
-        return redirect('user')->withOk("l'utilisateur".$request->input('lastname').'a àtà modifié');
+        return redirect('user')->withOk("l'utilisateur".$request->input('lastname').'a été modifié.');
 
     }
 

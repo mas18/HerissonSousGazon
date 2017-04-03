@@ -8,6 +8,7 @@
     </div>
 
 
+
     </br></br></br>
 
     <!-- SCHEDULE TABLE -->
@@ -146,7 +147,6 @@
     <script type="text/javascript">
 
 
-
     </script>
 
 
@@ -281,15 +281,13 @@
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid">
-                        <div class="dropdown col-md-3">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Volunteers
-                                <span class="caret"></span></button>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Volunteers1</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Volunteers2</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Volunteers3</a></li>
-                            </ul>
-                        </div>
+                        {!! Form::open(['url' => 'formulaire'], ['files' => false]) !!}
+                        <select>
+                            @foreach($users as $aUser)
+                                <option value="{{$aUser->id}}">{{$aUser->lastname}}   {{$aUser->firstname}}</option>
+                            @endforeach
+                        </select>
+                        {!! Form::close() !!}
                         <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary">Inscrire</button>
                         <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary">Désinscrire</button>
                         </br>
@@ -342,7 +340,7 @@
         var row=document.querySelectorAll("tr");
         row.forEach(function (element)
         {
-            element.addEventListener('click',function()
+            element.addEventListener('dblclick',function()
             {
                 $('#Actionmodal').modal('show');
             })

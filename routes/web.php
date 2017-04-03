@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
+
 Route::get('/home', 'WelcomeController@index');
 Route::get('/events', 'EventController@index')->name('event.show');
 Route::post('/events', 'EventController@store')->name('event.store');
@@ -41,16 +43,19 @@ Route::get("test",function ()
     $schedule=$repository->getAllWithRelation();
     foreach ($schedule as $aSched)
     {
-
         echo $aSched->rooms->name;
     }
-
-
-
-
+    $users = DB::table('users')->get();
+    foreach ($users as $user)
+    {
+        echo($user->firstname);
+    }
 
     return view('teste');
 });
+
+
+
 
 
 

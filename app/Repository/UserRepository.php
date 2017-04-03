@@ -40,6 +40,11 @@ class UserRepository
         return $this->user->orderBy('lastname', 'ASC')->orderBy('firstname', 'ASC')->paginate($nbPerPage);
     }
 
+    function getUsers()
+    {
+        return $this->user->orderBy('lastname', 'ASC')->orderBy('firstname', 'ASC')->get();
+    }
+
     function store(Array $inputs)
     {
 

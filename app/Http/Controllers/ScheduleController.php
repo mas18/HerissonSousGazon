@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repository\ScheduleRepository;
 use App\Repository\EventRepository;
+use App\Repository\UserRepository;
 use App\Schedule;
 use App\Room;
 use Illuminate\Http\Request;
@@ -18,21 +19,30 @@ class ScheduleController extends Controller
 {
     protected $scheduleRepository;
     protected $eventRepository;
+    protected $userRepository;
 
-    public function __construct(ScheduleRepository $scheduleRepository, EventRepository $eventRepository)
+    public function __construct(ScheduleRepository $scheduleRepository, EventRepository $eventRepository, UserRepository $userRepository)
     {
        $this->scheduleRepository=$scheduleRepository;
        $this->eventRepository=$eventRepository;
+       $this->userRepository=$userRepository;
+    }
+
+    public function index(){
+       // var_dump("hello");
+
+       // return view ('schedule')
     }
 
     //
     // affichage de la view
     public function datatables($number)
     {
+        $users=$this->userRepository->getUsers();
         $event = $this->eventRepository->getById($number);
         $dates = $this->scheduleRepository->getDates($event);
         $rooms = Room::all();
-        return view('schedule.index_schedule')->with('dates', $dates)->with('event', $event)->with('rooms', $rooms);
+        return view('schedule.index_schedule')->with('dates', $dates)->with('event', $event)->with('rooms', $rooms)->with('users',$users);
     }
     //rendu de la table via Ajax en JSON
     public function scheduledata(Request $request)
