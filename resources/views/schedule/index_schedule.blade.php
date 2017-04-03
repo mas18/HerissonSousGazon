@@ -16,13 +16,7 @@
         <table class="table table-hover table-striped" id="allschedule" style="font-size:12px; border:1px solid #D9D8D8; border-radius:5px">
             <thead>
             <tr style="font-size:14px">
-                <th>Id</th>
-                <th>Départ</th>
-                <th>Fin</th>
-                <th>Lieu</th>
-                <th>Places total</th>
-                <th>Place occupée </th>
-                <th>utilisateurs inscrits</th>
+
             </tr>
             </thead>
             <tbody>
@@ -55,6 +49,7 @@
     <script src="//cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
     <script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/pdfmake.min.js"></script>
     <script src="//cdn.datatables.net/buttons/1.2.4/js/buttons.print.min.js"></script>
+
 
     <script type="text/javascript">
 
@@ -89,14 +84,14 @@
 
         $(function(){
             $('#allschedule').DataTable({
-                /*dom: 'Blfrtip', //display button and entries
+                dom: 'Blfrtip', //display button and entries
                 buttons: [ //set language of the button text
 
                     {extend: 'copy', text: 'Copier   '},
                     {extend: 'csv', text:  'Enregister en CSV   ' },
                     {extend: 'excel', text:  'enregister au format excel   ' },
                     {extend: 'print', text:  'imprimer'},
-                ],*/
+                ],
 
                     processing: true,
                     serverSide: false,
@@ -122,20 +117,20 @@
 
                 //set the column option (sort and display element)
                 columns : [
-                { data: 'id', name: 'id' },
+                { data: 'id', name: 'id', title: 'Numéro' },
 
-                { data: 'start', name: 'title', type: 'num',
+                { data: 'start', name: 'title', title: 'Départ', type: 'num',
                 render : {
                     _: 'display', //valeur uniquement pour le display
                     sort: 'timestamp' //valeur pour le order by
 
                 }},
-                { data: 'finish', name: 'description', class: 'num',
+                { data: 'finish', name: 'description', title: 'Fin', class: 'num',
                     render : {
                         _: 'display', //valeur uniquement pour le display
                         sort: 'timestamp' //valeur pour le order by
                 }},
-                    { data: 'rooms', name: 'rooms',
+                    { data: 'rooms', name: 'rooms', title: 'Lieu',
                         render : {
                             _: 'display', //valeur uniquement pour le display
                             sort: 'alpha' //valeur pour le order by
@@ -150,7 +145,8 @@
                     render : {
                         _: 'display',
                         sort: 'alpha'
-                    }}
+                    }},
+                    {data: 'action', name: 'action', orderable: false, searchable: false}
             ],
 
             })});
@@ -260,7 +256,7 @@
                 <div class="modal-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('room.store') }}">
                         {{ csrf_field() }}
-
+                        <input type="hidden" name="eventId" value="{{ $event->id }}">
                         <div class="form-group">
                             <label for="roomName" class="col-md-3 control-label">Nom</label>
                             <div class="col-md-6">
@@ -295,19 +291,12 @@
                     <h4 class="modal-title">Actions</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="container-fluid">
-                        {!! Form::open(['url' => 'formulaire'], ['files' => false]) !!}
-                        <select>
-                            @foreach($users as $aUser)
-                                <option value="{{$aUser->id}}">{{$aUser->lastname}}   {{$aUser->firstname}}</option>
-                            @endforeach
-                        </select>
-                        {!! Form::close() !!}
-                        <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary">Inscrire</button>
-                        <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary">Désinscrire</button>
-                        </br>
-                        <button type="submit" style="margin-left:10px; margin-top: 30px" class="col-md-3 btn btn-primary">Modifier</button>
-                    </div>
+                        <div class="container-fluid">
+
+
+                        </div>
+                    </form>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ScheduleSubscribeUser;
 use App\Repository\ScheduleRepository;
 use App\Repository\EventRepository;
 use App\Repository\UserRepository;
@@ -28,10 +29,15 @@ class ScheduleController extends Controller
        $this->userRepository=$userRepository;
     }
 
-    public function index(){
-       // var_dump("hello");
 
-       // return view ('schedule')
+    public function subscribeuser($idschedule, $iduser, $request){
+
+        $schedule=$this->ScheduleRepository->getById($idschedule);
+        $user=$this->userReporitory->getById($iduser);
+
+        //$this->scheduleRepository->subscribeuser($schedule,$user);
+
+        return redirect()->route('schedule.show', $request->eventId)->withOk("l'utilisateur".$user->lastname."a été ajouté");
     }
 
     //
@@ -67,7 +73,10 @@ class ScheduleController extends Controller
             ->addColumn('occuped', function ($schedule) {
                 return count($schedule->users);
             })
-
+            ->addColumn('action', function ($schedule) {
+                return '<a href="#inscription-'.$schedule->id.'" class="btn btn-xs btn-primary">Inscription</a>
+                        <a href="#désinscrire-'.$schedule->id.'" class="btn btn-xs btn-primary">Désinscription</a>';
+            })
             ->editColumn('start', function ($schedule) {
                 $carbonDate =new Carbon($schedule->start);
                 return [

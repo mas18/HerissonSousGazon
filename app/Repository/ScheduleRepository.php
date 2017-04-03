@@ -11,6 +11,7 @@ namespace App\Repository;
 use App\Schedule;
 use App\Event;
 use App\Room;
+use App\User;
 use Carbon\Carbon;
 use League\Flysystem\Exception;
 use Yajra\Datatables\Contracts\DataTableEngineContract;
@@ -80,6 +81,14 @@ class ScheduleRepository
         $schedule->save();
     }
 
+
+    //subscribe user
+    function subscribeuser(Schedule $schedule, User $user)
+    {
+        $user->getById('id');
+        $schedule->getById('id');
+
+    }
 
 
     //admin methode
