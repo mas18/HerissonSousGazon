@@ -19,7 +19,7 @@
                 <th>Id</th>
                 <th>Départ</th>
                 <th>Fin</th>
-                <th>rooms</th>
+                <th>Lieu</th>
                 <th>Places total</th>
                 <th>Place occupée </th>
                 <th>utilisateurs inscrits</th>
@@ -58,7 +58,6 @@
 
     <script type="text/javascript">
 
-
         $(document).ready(
             function() {
             var max_fields      = 3; //maximum input boxes allowed
@@ -88,24 +87,40 @@
             })
         });
 
-
-
         $(function(){
             $('#allschedule').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    {extend: 'copy', text: 'Copier   ' },
+                dom: 'Blfrtip', //display button and entries
+                buttons: [ //set language of the button text
+
+                    {extend: 'copy', text: 'Copier   '},
                     {extend: 'csv', text:  'Enregister en CSV   ' },
-                    {extend: 'excel', text:  'enregister au format excel   ' }],
+                    {extend: 'excel', text:  'enregister au format excel   ' },
+                    {extend: 'print', text:  'imprimer'},
+                ],
+
                     processing: true,
                     serverSide: false,
                     ajax: {
                         url:'{!! URL::asset('schedule_data') !!}',
                         data: function (d) { //the param we want send to serv
                             d.event_id = <?php $urls= explode('/' ,Request::url());
-                                                echo $urls[count($urls)-1]?>
-                        }
+                                                echo $urls[count($urls)-1]?>}},
+                //set the display length option by default
+                'iDisplayLength':50,
+                //set language for the paginate option
+                "language": {
+                    "paginate": {
+                        "previous": "Page précédente",
+                        "next":'Page suivante'
                     },
+                    //other language options:
+                    "processing":     "Traitement...",
+                    "info":           "Affichage de  _START_ à _END_ entrées, pour un total de  _TOTAL_ entrées",
+                    "search":          "Rechercher un élément ",
+                    "lengthMenu":     "Affichage de  _MENU_ entrées",
+                },
+
+                //set the column option (sort and display element)
                 columns : [
                 { data: 'id', name: 'id' },
 
@@ -131,15 +146,17 @@
 
                     { data: 'occuped', name: 'occuped', title : 'places occupées', class : 'num'},
 
-
                     { data: 'users', name: 'users', title : 'Utilisateurs inscrits',
                     render : {
                         _: 'display',
                         sort: 'alpha'
                     }}
-            ]
-        });
-        });
+            ],
+
+            })});
+
+
+
 
 
 
@@ -266,8 +283,6 @@
         </div>
     </div>
 
-
-
     <!-- Inscription / Désinscription / Modification -->
     <!-- Modal - New -->
     <div id="Actionmodal" class="modal fade" role="dialog">
@@ -301,8 +316,6 @@
 
         </div>
     </div>
-
-
 
     @if($errors->all())
         <!-- Modal - New -->
