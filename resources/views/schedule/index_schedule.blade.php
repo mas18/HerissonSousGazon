@@ -274,7 +274,7 @@
     <!-- SHOW / UPDATE SCHEDULE -->
     <div id="scheduleUpdate" class="modal fade in" role="dialog">
         <div class="modal-dialog">
-            <? $schedule = \App\Http\Controllers\ScheduleController::getSchedule(2);
+            <?php $schedule = \App\Http\Controllers\ScheduleController::getSchedule(1);
             $scheduleDate = Carbon\Carbon::parse($schedule->start)->format('Y-m-d');
             $scheduleStart =  Carbon\Carbon::parse($schedule->start)->format('H:i');
             $scheduleEnd =  Carbon\Carbon::parse($schedule->finish)->format('H:i') ?>
@@ -282,7 +282,7 @@
             <div class="modal-content" style="padding: 5px;">
                 <div class="modal-header">
                     <button type="button" class="close" onclick="disableEdit()" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">{{ $schedule->id }}</h4>
+                 <h4 class="modal-title">{{ $schedule->id }}</h4>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('schedule.update') }}">

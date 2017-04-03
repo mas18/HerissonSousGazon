@@ -99,12 +99,17 @@
                 <div class="container flex-center">
                 <ul class="navbar-nav">
                     <li class="linksNav" style="list-style-type:none"><a style="font-size:100%" href="{{ url('/events') }}">Évènements</a></li>
+                    @if(Auth::user())
                     <li class="linksNav" style="list-style-type:none"><a style="font-size:100%" href="{{ url('/profil') }}">Mon profile</a></li>
+                    @endif
                     <li class="linksNav dropdown" style="list-style-type:none">
+                        @if(Auth::user()  AND Auth::user()->level>0)
                         <a class="dropdown-toggle" style="font-size:100%" data-toggle="dropdown" href="#">Administrateur
+                            @endif
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a style="font-size:16px" href="{{ url('/user') }}">Utilisateur</a></li>
+
                             <li><a style="font-size:16px" href="{{ url('/events') }}">Événements</a></li>
                         </ul>
                     </li>
