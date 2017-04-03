@@ -89,14 +89,14 @@
 
         $(function(){
             $('#allschedule').DataTable({
-                dom: 'Blfrtip', //display button and entries
+                /*dom: 'Blfrtip', //display button and entries
                 buttons: [ //set language of the button text
 
                     {extend: 'copy', text: 'Copier   '},
                     {extend: 'csv', text:  'Enregister en CSV   ' },
                     {extend: 'excel', text:  'enregister au format excel   ' },
                     {extend: 'print', text:  'imprimer'},
-                ],
+                ],*/
 
                     processing: true,
                     serverSide: false,
@@ -106,7 +106,7 @@
                             d.event_id = <?php $urls= explode('/' ,Request::url());
                                                 echo $urls[count($urls)-1]?>}},
                 //set the display length option by default
-                'iDisplayLength':50,
+                'iDisplayLength':25,
                 //set language for the paginate option
                 "language": {
                     "paginate": {
@@ -350,14 +350,13 @@
         var modalAction = document.getElementById('modalAction');
 
         setTimeout(function(){
-        var row=document.querySelectorAll("tr");
-        row.forEach(function (element)
-        {
-            element.addEventListener('dblclick',function()
+            var row=document.querySelectorAll("tr");
+            for (var k=1;k<row.length;k++)
             {
-                $('#Actionmodal').modal('show');
-            })
-
-        })},2000);
+                row[k].addEventListener('dblclick',function()
+                {
+                    $('#Actionmodal').modal('show');
+                })
+        }},2000);
     </script>
     @endsection
