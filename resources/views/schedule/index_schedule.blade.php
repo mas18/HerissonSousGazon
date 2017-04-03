@@ -2,12 +2,13 @@
 @extends('layouts.template')
 @section('main_content')
 
+    @if(Auth::user()->level>0)
     <div class="col-xs-12">
-        <button type="button"  class="btn btn-primary pull-right btn-sm" style="margin-left:5px;" data-toggle="modal" data-target="#scheduleUpdate">Show schedule 2</button>
+        <button id="shced_2" type="button"  class="btn btn-primary pull-right btn-sm" style="margin-left:5px;" data-toggle="modal" data-target="#scheduleUpdate">Show schedule 2</button>
         <button type="button"  class="btn btn-primary pull-right btn-sm" style="margin-left:5px;" data-toggle="modal" data-target="#modalNewRoom">Ajouter un emplacement</button>
         <button type="button"  class="btn btn-primary pull-right btn-sm" data-toggle="modal" data-target="#scheduleNew">Créer un planning</button>
     </div>
-
+    @endif
 
 
     </br></br></br>
@@ -17,7 +18,7 @@
         <table class="table table-hover table-striped" id="allschedule" style="font-size:12px; border:1px solid #D9D8D8; border-radius:5px">
             <thead>
             <tr style="font-size:14px">
-                <th>Id</th>
+                <th>Numéro</th>
                 <th>Départ</th>
                 <th>Fin</th>
                 <th>Lieu</th>
@@ -210,7 +211,7 @@
     </script>
 
 
-
+    @if(Auth::user()->level>0)
     <!-- CREATE NEW SCHEDULE -->
     <div id="scheduleNew" class="modal fade in" role="dialog">
         <div class="modal-dialog">
@@ -286,6 +287,9 @@
 
         </div>
     </div>
+    <!--  END CREATE NEW SCHEDULE !-->
+
+
 
     <!-- SHOW / UPDATE SCHEDULE -->
     <div id="scheduleUpdate" class="modal fade in" role="dialog">
@@ -304,7 +308,7 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('schedule.update') }}">
                         {{ csrf_field() }}
                         <input type="hidden" name="eventId" value="{{ $event->id }}">
-                        <input type="hidden" name="scheduleId" value="{{ $schedule->id }}">
+                        <input type="hidden" id="scheduleId" name="scheduleId" value="{{ $schedule->id }}">
                         <div class="form-group">
                             <label for="place_edit" class="col-md-3 control-label">Place:</label>
                             <div class="col-md-6">
@@ -414,6 +418,8 @@
         </div>
     </div>
 
+    @endif
+
     <!-- Inscription / Désinscription / Modification -->
     <!-- Modal - New -->
     <div id="Actionmodal" class="modal fade" role="dialog">
@@ -423,10 +429,14 @@
             <div class="modal-content" style="padding: 5px;">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+
                     <h4 class="modal-title">Actions</h4>
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid">
+
+                        @if(Auth::user()->level>0 )
+                            <!-- / admin part to add new user or remove user to the event   !-->
                         {!! Form::open(['url' => 'formulaire'], ['files' => false]) !!}
                         <select>
                             @foreach($users as $aUser)
@@ -434,10 +444,14 @@
                             @endforeach
                         </select>
                         {!! Form::close() !!}
+
+
                         <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary">Inscrire</button>
                         <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary">Désinscrire</button>
                         </br>
+
                         <button type="submit" style="margin-left:10px; margin-top: 30px" class="col-md-3 btn btn-primary">Modifier</button>
+                            @endif
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -474,6 +488,8 @@
         </div>
         <script>
             $('#modalValidation').modal('show');
+
+
         </script>
     @endif
 

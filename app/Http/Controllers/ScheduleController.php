@@ -23,6 +23,11 @@ class ScheduleController extends Controller
 
     public function __construct(ScheduleRepository $scheduleRepository, EventRepository $eventRepository, UserRepository $userRepository)
     {
+
+        //define the right of the user
+
+        $this->middleware('admin', ['only'=>'datatables, scheduledata','index']);
+        $this->middleware('auth');
        $this->scheduleRepository=$scheduleRepository;
        $this->eventRepository=$eventRepository;
        $this->userRepository=$userRepository;
