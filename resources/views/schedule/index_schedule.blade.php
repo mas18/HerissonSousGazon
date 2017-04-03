@@ -155,8 +155,24 @@
                     }}
             ],
 
+                'fnInitComplete':row_double_Click
+
             })});
 
+        function row_double_Click()
+        {
+            var modalAction = document.getElementById('modalAction');
+
+
+            var row=document.querySelectorAll("tr");
+            for (var k=1;k<row.length;k++)
+            {
+                row[k].addEventListener('dblclick',function()
+                {
+                    $('#Actionmodal').modal('show');
+                })
+            }
+        }
 
 
 
@@ -461,17 +477,5 @@
         </script>
     @endif
 
-    <script>
-        var modalAction = document.getElementById('modalAction');
 
-        setTimeout(function(){
-            var row=document.querySelectorAll("tr");
-            for (var k=1;k<row.length;k++)
-            {
-                row[k].addEventListener('dblclick',function()
-                {
-                    $('#Actionmodal').modal('show');
-                })
-        }},2000);
-    </script>
     @endsection
