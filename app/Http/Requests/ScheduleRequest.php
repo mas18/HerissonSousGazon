@@ -27,16 +27,18 @@ class ScheduleRequest extends FormRequest
 
 
         $rules = [
-            'date'=>'required|date|date_format:Y-m-d',
-            'place'=>'required',
-            'number'=>'required|min:1|max:20'
+            'date'=>'date|date_format:Y-m-d',
+            'number'=>'min:1|max:20'
         ];
 
-        foreach($this->request->get('timeFrom') as $key => $val)
-        {
-            $rules['timeFrom.'.$key] = 'required|date_format:H:i';
-            $start = 'timeFrom.'.$key;
-            $rules['timeTo.'.$key] = 'required|date_format:H:i|after:'. $start;
+
+        if(isset($_POST["timeFrom"]) && is_array($_POST["timeFrom"])){
+            foreach($this->request->get('timeFrom') as $key => $val)
+            {
+                $rules['timeFrom.'.$key] = 'required|date_format:H:i';
+                $start = 'timeFrom.'.$key;
+                $rules['timeTo.'.$key] = 'required|date_format:H:i|after:'. $start;
+            }
         }
 
         return $rules;

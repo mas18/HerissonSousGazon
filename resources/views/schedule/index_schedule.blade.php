@@ -3,6 +3,7 @@
 @section('main_content')
 
     <div class="col-xs-12">
+        <button type="button"  class="btn btn-primary pull-right btn-sm" style="margin-left:5px;" data-toggle="modal" data-target="#scheduleUpdate">Show schedule 2</button>
         <button type="button"  class="btn btn-primary pull-right btn-sm" style="margin-left:5px;" data-toggle="modal" data-target="#modalNewRoom">Ajouter un emplacement</button>
         <button type="button"  class="btn btn-primary pull-right btn-sm" data-toggle="modal" data-target="#scheduleNew">Créer un planning</button>
     </div>
@@ -60,6 +61,7 @@
 
         $(document).ready(
             function() {
+            $("#updateSchedule").hide()
             var max_fields      = 3; //maximum input boxes allowed
             var wrapper         = $(".input_fields_wrap"); //Fields wrapper
             var add_button      = $(".add_field_button"); //Add button ID
@@ -158,6 +160,31 @@
 
 
 
+        function edit() {
+            document.getElementById("place_edit").disabled = false;
+            document.getElementById("date_edit").disabled = false;
+            document.getElementById("number_edit").disabled = false;
+            document.getElementById("timeFrom_edit").disabled = false;
+            document.getElementById("timeTo_edit").disabled = false;
+        }
+
+        function disableEdit() {
+            document.getElementById("place_edit").disabled = true;
+            document.getElementById("date_edit").disabled = true;
+            document.getElementById("number_edit").disabled = true;
+            document.getElementById("timeFrom_edit").disabled = true;
+            document.getElementById("timeTo_edit").disabled = true;
+            $("#updateSchedule").hide();
+        }
+
+        function edit() {
+            document.getElementById("place_edit").disabled = false;
+            document.getElementById("date_edit").disabled = false;
+            document.getElementById("number_edit").disabled = false;
+            document.getElementById("timeFrom_edit").disabled = false;
+            document.getElementById("timeTo_edit").disabled = false;
+            $("#updateSchedule").show();
+        }
 
 
     </script>
@@ -199,7 +226,7 @@
                             <div class="col-md-6">
                                 <select id="place" class="form-control" name="place">
                                     @foreach ($rooms as $room)
-                                    <option value="{{ $room->id }}">{{ $room->name }}</option>
+                                        <option value="{{ $room->id }}">{{ $room->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -238,6 +265,94 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SHOW / UPDATE SCHEDULE -->
+    <div id="scheduleUpdate" class="modal fade in" role="dialog">
+        <div class="modal-dialog">
+            <? $schedule = \App\Http\Controllers\ScheduleController::getSchedule(2);
+            $scheduleDate = Carbon\Carbon::parse($schedule->start)->format('Y-m-d');
+            $scheduleStart =  Carbon\Carbon::parse($schedule->start)->format('H:i');
+            $scheduleEnd =  Carbon\Carbon::parse($schedule->finish)->format('H:i') ?>
+            <!-- Modal content-->
+            <div class="modal-content" style="padding: 5px;">
+                <div class="modal-header">
+                    <button type="button" class="close" onclick="disableEdit()" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{ $schedule->id }}</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('schedule.update') }}">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="eventId" value="{{ $event->id }}">
+                        <input type="hidden" name="scheduleId" value="{{ $schedule->id }}">
+                        <div class="form-group">
+                            <label for="place_edit" class="col-md-3 control-label">Place:</label>
+                            <div class="col-md-6">
+                                <select id="place_edit" class="form-control" name="place_edit" disabled>
+                                    @foreach ($rooms as $room)
+                                            @if($room->id != $schedule->room_id)
+                                                <option value="{{ $room->id }}">{{ $room->name }}</option>
+                                            @else
+                                                <option value="{{ $room->id }}" selected>{{ $room->name }} </option>
+                                            @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="date_edit" class="col-md-3 control-label">Date:</label>
+
+                            <div class="col-md-6">
+                                <select id="date_edit" class="form-control" name="date_edit" disabled>
+                                    @foreach ($dates as $date)
+                                        @if($scheduleDate != $date)
+                                            <option value="{{ $date }}">{{ $date }}</option>
+                                        @else
+                                            <option value="{{ $date }}" selected>{{ $date }} </option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="number_edit" class="col-md-3 control-label">Nombre:</label>
+
+                            <div class="col-md-6">
+                                <input id="number_edit" type="number" class="form-control" name="number_edit" value="{{ $schedule->places }}" min="1" max="20" disabled required>
+                            </div>
+                        </div>
+                        <div class="input_fields_wrap" style="margin-bottom: 0;">
+                            <div class="form-group">
+                                <label for="timeFrom_edit" class="col-md-3 control-label">De: </label>
+
+                                <div class="col-md-2">
+                                    <input type="time" name="timeFrom_edit" id="timeFrom_edit" value="{{ $scheduleStart }}" disabled required>
+                                </div>
+                                <label for="timeTo_edit" class="col-md-2 control-label">À: </label>
+
+                                <div class="col-md-2">
+                                    <input type="time" id="timeTo_edit" name="timeTo_edit" value="{{ $scheduleEnd }}" disabled required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="updateSchedule" class="form-group">
+                            <div class="col-md-6 col-md-offset-3">
+                                <button type="submit" class="btn btn-primary">
+                                    Update
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="editButton" class="btn btn-warning" onclick="edit()">Edit</button>
+                    <button type="button" class="btn btn-default" onclick="disableEdit()" data-dismiss="modal">Fermer</button>
                 </div>
             </div>
 
