@@ -25,6 +25,7 @@
                 <th>Places total</th>
                 <th>Place occupée </th>
                 <th>utilisateurs inscrits</th>
+                <th>action</th>
             </tr>
             </thead>
             <tbody>
