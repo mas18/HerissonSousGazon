@@ -34,7 +34,9 @@ Route::post('schedule', 'ScheduleController@subscribeuser');
 Route::get('schedule/{number?}', 'ScheduleController@datatables')->name('schedule.show');
 //data query Ajax
 Route::get('schedule_data', 'ScheduleController@scheduledata');
-Route::post('/schedule', 'ScheduleController@store')->name('schedule.store');
+
+Route::post('/schedule/new', 'ScheduleController@store')->name('schedule.store');
+Route::post('/schedule/update', 'ScheduleController@edit')->name('schedule.update');
 
 
 Route::get("test",function ()

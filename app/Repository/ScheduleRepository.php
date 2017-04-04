@@ -123,7 +123,7 @@ class ScheduleRepository
 
     function getById($id)
     {
-        return $this->user->findOrFail($id);
+        return $this->schedule->findOrFail($id);
     }
 
     function getAllWithRelation($event_id=1)
@@ -141,9 +141,20 @@ class ScheduleRepository
         return $this->schedule->with('users')->find($scheduleID);
     }
 
-    function update($id, $input)
+    function update($id, $inputs)
     {
-        $this->save($this->getById($id), $input);
+        $schedule=$this->getById($id);
+
+        $start = $inputs['date_edit'].' '.$inputs['timeFrom_edit'];
+        $finish = $inputs['date_edit'].' '.$inputs['timeTo_edit'];
+
+        $schedule->places = $inputs['number_edit'];
+        $schedule->room_id = $inputs['place_edit'];
+        $schedule->event_id = $inputs['eventId'];
+        $schedule->start = $start;
+        $schedule->finish = $finish;
+
+        $schedule->save();
     }
 
     function destroy($id)
@@ -152,20 +163,7 @@ class ScheduleRepository
         $this->getById($id)->delete();
     }
 
-    function register(Array $inputs)
-    {
-        $user = new $this->user;
-        $user->password = bcrypt($inputs['password']);
-        $user->email = $inputs['email'];
-        $user->firstname = $inputs['firstname'];
-        $user->lastname = $inputs['lastname'];
-        $user->street = $inputs['street'];
-        $user->city = $inputs['city'];
-        $user->tel = $inputs['tel'];
-        $user->comment = $inputs['comment'];
 
-        return $user->save();
-    }
     function getPlacedUsedOnSchedule($scheduleId)
     {
         $schedule=$this->getByIdWithRelation($scheduleId);
@@ -180,6 +178,21 @@ class ScheduleRepository
 
         return $counter;
 
+    }
+
+    function register(Array $inputs)
+    {
+        $user=new $this->user;
+        $user->password=bcrypt($inputs['password']);
+        $user->email=$inputs['email'];
+        $user->firstname=$inputs['firstname'];
+        $user->lastname=$inputs['lastname'];
+        $user->street=$inputs['street'];
+        $user->city=$inputs['city'];
+        $user->tel=$inputs['tel'];
+        $user->comment=$inputs['comment'];
+
+        return $user->save();
     }
 
     function storeRoom(Array $inputs)

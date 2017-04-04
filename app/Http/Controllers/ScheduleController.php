@@ -24,6 +24,11 @@ class ScheduleController extends Controller
 
     public function __construct(ScheduleRepository $scheduleRepository, EventRepository $eventRepository, UserRepository $userRepository)
     {
+
+        //define the right of the user
+
+        $this->middleware('admin', ['only'=>'datatables, scheduledata','index']);
+        $this->middleware('auth');
        $this->scheduleRepository=$scheduleRepository;
        $this->eventRepository=$eventRepository;
        $this->userRepository=$userRepository;
@@ -151,12 +156,20 @@ class ScheduleController extends Controller
 
         }
 
-        /*$event = $this->eventRepository->store($request->all());
-
-        if($request->get('copy')){
-            $lastEvent = $this->eventRepository->getSecondLast();
-            $this->scheduleRepository->copy($lastEvent, $event);
-        }*/
         return redirect()->route('schedule.show', $request->eventId);
+    }
+
+    public function edit(ScheduleRequest $request)
+    {
+        $this->scheduleRepository->update($request->scheduleId, $request->all());
+
+
+        return redirect()->route('schedule.show', $request->eventId);
+    }
+
+
+    public static function getSchedule($id)
+    {
+        return Schedule::find($id);
     }
 }

@@ -2,11 +2,13 @@
 @extends('layouts.template')
 @section('main_content')
 
+    @if(Auth::user()->level>0)
     <div class="col-xs-12">
+        <button id="shced_2" type="button"  class="btn btn-primary pull-right btn-sm" style="margin-left:5px;" data-toggle="modal" data-target="#scheduleUpdate">Show schedule 2</button>
         <button type="button"  class="btn btn-primary pull-right btn-sm" style="margin-left:5px;" data-toggle="modal" data-target="#modalNewRoom">Ajouter un emplacement</button>
         <button type="button"  class="btn btn-primary pull-right btn-sm" data-toggle="modal" data-target="#scheduleNew">Créer un planning</button>
     </div>
-
+    @endif
 
 
     </br></br></br>
@@ -16,7 +18,13 @@
         <table class="table table-hover table-striped" id="allschedule" style="font-size:12px; border:1px solid #D9D8D8; border-radius:5px">
             <thead>
             <tr style="font-size:14px">
-
+                <th>Numéro</th>
+                <th>Départ</th>
+                <th>Fin</th>
+                <th>Lieu</th>
+                <th>Places total</th>
+                <th>Place occupée </th>
+                <th>utilisateurs inscrits</th>
             </tr>
             </thead>
             <tbody>
@@ -50,11 +58,11 @@
     <script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/pdfmake.min.js"></script>
     <script src="//cdn.datatables.net/buttons/1.2.4/js/buttons.print.min.js"></script>
 
-
     <script type="text/javascript">
 
         $(document).ready(
             function() {
+            $("#updateSchedule").hide()
             var max_fields      = 3; //maximum input boxes allowed
             var wrapper         = $(".input_fields_wrap"); //Fields wrapper
             var add_button      = $(".add_field_button"); //Add button ID
@@ -149,11 +157,52 @@
                     {data: 'action', name: 'action', orderable: false, searchable: false}
             ],
 
+                'fnInitComplete':row_double_Click
+
             })});
 
+        function row_double_Click()
+        {
+            var modalAction = document.getElementById('modalAction');
+
+
+            var row=document.querySelectorAll("tr");
+            for (var k=1;k<row.length;k++)
+            {
+                row[k].addEventListener('dblclick',function()
+                {
+                    $('#Actionmodal').modal('show');
+                })
+            }
+        }
 
 
 
+        function edit() {
+            document.getElementById("place_edit").disabled = false;
+            document.getElementById("date_edit").disabled = false;
+            document.getElementById("number_edit").disabled = false;
+            document.getElementById("timeFrom_edit").disabled = false;
+            document.getElementById("timeTo_edit").disabled = false;
+        }
+
+        function disableEdit() {
+            document.getElementById("place_edit").disabled = true;
+            document.getElementById("date_edit").disabled = true;
+            document.getElementById("number_edit").disabled = true;
+            document.getElementById("timeFrom_edit").disabled = true;
+            document.getElementById("timeTo_edit").disabled = true;
+            $("#updateSchedule").hide();
+        }
+
+        function edit() {
+            document.getElementById("place_edit").disabled = false;
+            document.getElementById("date_edit").disabled = false;
+            document.getElementById("number_edit").disabled = false;
+            document.getElementById("timeFrom_edit").disabled = false;
+            document.getElementById("timeTo_edit").disabled = false;
+            $("#updateSchedule").show();
+        }
 
 
     </script>
@@ -163,7 +212,7 @@
     </script>
 
 
-
+    @if(Auth::user()->level>0)
     <!-- CREATE NEW SCHEDULE -->
     <div id="scheduleNew" class="modal fade in" role="dialog">
         <div class="modal-dialog">
@@ -195,7 +244,7 @@
                             <div class="col-md-6">
                                 <select id="place" class="form-control" name="place">
                                     @foreach ($rooms as $room)
-                                    <option value="{{ $room->id }}">{{ $room->name }}</option>
+                                        <option value="{{ $room->id }}">{{ $room->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -234,6 +283,97 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--  END CREATE NEW SCHEDULE !-->
+
+
+
+    <!-- SHOW / UPDATE SCHEDULE -->
+    <div id="scheduleUpdate" class="modal fade in" role="dialog">
+        <div class="modal-dialog">
+            <?php $schedule = \App\Http\Controllers\ScheduleController::getSchedule(1);
+            $scheduleDate = Carbon\Carbon::parse($schedule->start)->format('Y-m-d');
+            $scheduleStart =  Carbon\Carbon::parse($schedule->start)->format('H:i');
+            $scheduleEnd =  Carbon\Carbon::parse($schedule->finish)->format('H:i') ?>
+            <!-- Modal content-->
+            <div class="modal-content" style="padding: 5px;">
+                <div class="modal-header">
+                    <button type="button" class="close" onclick="disableEdit()" data-dismiss="modal">&times;</button>
+                 <h4 class="modal-title">{{ $schedule->id }}</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('schedule.update') }}">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="eventId" value="{{ $event->id }}">
+                        <input type="hidden" id="scheduleId" name="scheduleId" value="{{ $schedule->id }}">
+                        <div class="form-group">
+                            <label for="place_edit" class="col-md-3 control-label">Place:</label>
+                            <div class="col-md-6">
+                                <select id="place_edit" class="form-control" name="place_edit" disabled>
+                                    @foreach ($rooms as $room)
+                                            @if($room->id != $schedule->room_id)
+                                                <option value="{{ $room->id }}">{{ $room->name }}</option>
+                                            @else
+                                                <option value="{{ $room->id }}" selected>{{ $room->name }} </option>
+                                            @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="date_edit" class="col-md-3 control-label">Date:</label>
+
+                            <div class="col-md-6">
+                                <select id="date_edit" class="form-control" name="date_edit" disabled>
+                                    @foreach ($dates as $date)
+                                        @if($scheduleDate != $date)
+                                            <option value="{{ $date }}">{{ $date }}</option>
+                                        @else
+                                            <option value="{{ $date }}" selected>{{ $date }} </option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="number_edit" class="col-md-3 control-label">Nombre:</label>
+
+                            <div class="col-md-6">
+                                <input id="number_edit" type="number" class="form-control" name="number_edit" value="{{ $schedule->places }}" min="1" max="20" disabled required>
+                            </div>
+                        </div>
+                        <div class="input_fields_wrap" style="margin-bottom: 0;">
+                            <div class="form-group">
+                                <label for="timeFrom_edit" class="col-md-3 control-label">De: </label>
+
+                                <div class="col-md-2">
+                                    <input type="time" name="timeFrom_edit" id="timeFrom_edit" value="{{ $scheduleStart }}" disabled required>
+                                </div>
+                                <label for="timeTo_edit" class="col-md-2 control-label">À: </label>
+
+                                <div class="col-md-2">
+                                    <input type="time" id="timeTo_edit" name="timeTo_edit" value="{{ $scheduleEnd }}" disabled required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="updateSchedule" class="form-group">
+                            <div class="col-md-6 col-md-offset-3">
+                                <button type="submit" class="btn btn-primary">
+                                    Update
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="editButton" class="btn btn-warning" onclick="edit()">Edit</button>
+                    <button type="button" class="btn btn-default" onclick="disableEdit()" data-dismiss="modal">Fermer</button>
                 </div>
             </div>
 
@@ -279,6 +419,8 @@
         </div>
     </div>
 
+    @endif
+
     <!-- Inscription / Désinscription / Modification -->
     <!-- Modal - New -->
     <div id="Actionmodal" class="modal fade" role="dialog">
@@ -288,15 +430,30 @@
             <div class="modal-content" style="padding: 5px;">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+
                     <h4 class="modal-title">Actions</h4>
                 </div>
                 <div class="modal-body">
-                        <div class="container-fluid">
+                    <div class="container-fluid">
+
+                        @if(Auth::user()->level>0 )
+                            <!-- / admin part to add new user or remove user to the event   !-->
+                        {!! Form::open(['url' => 'formulaire'], ['files' => false]) !!}
+                        <select>
+                            @foreach($users as $aUser)
+                                <option value="{{$aUser->id}}">{{$aUser->lastname}}   {{$aUser->firstname}}</option>
+                            @endforeach
+                        </select>
+                        {!! Form::close() !!}
 
 
-                        </div>
-                    </form>
+                        <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary">Inscrire</button>
+                        <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary">Désinscrire</button>
+                        </br>
 
+                        <button type="submit" style="margin-left:10px; margin-top: 30px" class="col-md-3 btn btn-primary">Modifier</button>
+                            @endif
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
@@ -332,20 +489,10 @@
         </div>
         <script>
             $('#modalValidation').modal('show');
+
+
         </script>
     @endif
 
-    <script>
-        var modalAction = document.getElementById('modalAction');
 
-        setTimeout(function(){
-            var row=document.querySelectorAll("tr");
-            for (var k=1;k<row.length;k++)
-            {
-                row[k].addEventListener('dblclick',function()
-                {
-                    $('#Actionmodal').modal('show');
-                })
-        }},2000);
-    </script>
     @endsection
