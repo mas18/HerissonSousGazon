@@ -186,9 +186,6 @@
                   var id=this.parentNode.childNodes[0].innerHTML;
                   console.log(id);
                 });
-
-
-
             }
         }
 
