@@ -104,13 +104,11 @@
                     @endif
                     <li class="linksNav dropdown" style="list-style-type:none">
                         @if(Auth::user()  AND Auth::user()->level>0)
-                        <a class="dropdown-toggle" style="font-size:100%" data-toggle="dropdown" href="#">Administrateur
-                            @endif
+                            <a class="dropdown-toggle" style="font-size:100%" data-toggle="dropdown" href="#">Administrateur
                             <span class="caret"></span></a>
+                        @endif
                         <ul class="dropdown-menu">
-                            <li><a style="font-size:16px" href="{{ url('/user') }}">Utilisateur</a></li>
-
-                            <li><a style="font-size:16px" href="{{ url('/events') }}">Événements</a></li>
+                            <li><a style="font-size:16px;font-weight: bold;" href="{{ url('/user') }}">Utilisateur</a></li>
                         </ul>
                     </li>
                 </ul>

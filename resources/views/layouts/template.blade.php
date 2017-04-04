@@ -44,8 +44,7 @@
                     <a class="dropdown-toggle" style="font-size:80%" data-toggle="dropdown" href="#">Administrateur
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ url('/user') }}">Utilisateur</a></li>
-                        <li><a href="{{ url('/events') }}">Événements</a></li>
+                        <li><a href="{{ url('/user') }}">Utilisateurs</a></li>
                     </ul>
                 </li>
                     @endif
