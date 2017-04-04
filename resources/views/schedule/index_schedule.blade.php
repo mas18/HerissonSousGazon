@@ -157,22 +157,36 @@
                     {data: 'action', name: 'action', orderable: false, searchable: false}
             ],
 
-                'fnInitComplete':row_double_Click
+                'fnInitComplete':data_table_listener
 
             })});
 
-        function row_double_Click()
+
+
+        function data_table_listener()
         {
+            listenerDoubleCLick();
+        }
+
+        function listenerDoubleCLick() {
             var modalAction = document.getElementById('modalAction');
-
-
-            var row=document.querySelectorAll("tr");
-            for (var k=1;k<row.length;k++)
-            {
-                row[k].addEventListener('dblclick',function()
-                {
+            var row = document.querySelectorAll("#allschedule  tr");
+            //admin double click
+            for (var k = 1; k < row.length; k++) {
+                row[k].addEventListener('dblclick', function () {
                     $('#Actionmodal').modal('show');
-                })
+                });
+                //add and remove button click
+                var childsNodes = row[k].childNodes;
+                console.log(childsNodes[childsNodes.length-1]);
+                childsNodes[childsNodes.length-1].addEventListener('click',function()
+                {
+                  var id=this.parentNode.childNodes[0].innerHTML;
+                  console.log(id);
+                });
+
+
+
             }
         }
 
