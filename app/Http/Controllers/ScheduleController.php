@@ -79,8 +79,7 @@ class ScheduleController extends Controller
                 return count($schedule->users);
             })
             ->addColumn('action', function ($schedule) {
-                return '<a href="#inscription-'.$schedule->id.'" class="btn btn-xs btn-primary">Inscription</a>
-                        <a href="#désinscrire-'.$schedule->id.'" class="btn btn-xs btn-primary">Désinscription</a>';
+                return '<a href="#inscription-'.$schedule->id.'" class="btn btn-sm btn-primary">Inscription</a>';
             })
             ->editColumn('start', function ($schedule) {
                 $carbonDate =new Carbon($schedule->start);
