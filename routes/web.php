@@ -39,6 +39,7 @@ Route::post('/schedule/new', 'ScheduleController@store')->name('schedule.store')
 Route::post('/schedule/update', 'ScheduleController@edit')->name('schedule.update');
 
 
+
 Route::get("test",function ()
 {
 
