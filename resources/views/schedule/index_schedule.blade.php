@@ -25,6 +25,7 @@
                 <th>Places total</th>
                 <th>Place occupée </th>
                 <th>utilisateurs inscrits</th>
+                <th>action</th>
             </tr>
             </thead>
             <tbody>
@@ -92,14 +93,15 @@
 
         $(function(){
             $('#allschedule').DataTable({
-                /*dom: 'Blfrtip', //display button and entries
+                responsive: true,
+                dom: 'Blfrtip', //display button and entries
                 buttons: [ //set language of the button text
 
                     {extend: 'copy', text: 'Copier   '},
                     {extend: 'csv', text:  'Enregister en CSV   ' },
                     {extend: 'excel', text:  'enregister au format excel   ' },
                     {extend: 'print', text:  'imprimer'},
-                ],*/
+                ],
 
                     processing: true,
                     serverSide: false,
@@ -125,20 +127,20 @@
 
                 //set the column option (sort and display element)
                 columns : [
-                { data: 'id', name: 'id' },
+                { data: 'id', name: 'id', title: 'Numéro' },
 
-                { data: 'start', name: 'title', type: 'num',
+                { data: 'start', name: 'title', title: 'Départ', type: 'num',
                 render : {
                     _: 'display', //valeur uniquement pour le display
                     sort: 'timestamp' //valeur pour le order by
 
                 }},
-                { data: 'finish', name: 'description', class: 'num',
+                { data: 'finish', name: 'description', title: 'Fin', class: 'num',
                     render : {
                         _: 'display', //valeur uniquement pour le display
                         sort: 'timestamp' //valeur pour le order by
                 }},
-                    { data: 'rooms', name: 'rooms',
+                    { data: 'rooms', name: 'rooms', title: 'Lieu',
                         render : {
                             _: 'display', //valeur uniquement pour le display
                             sort: 'alpha' //valeur pour le order by
@@ -153,7 +155,8 @@
                     render : {
                         _: 'display',
                         sort: 'alpha'
-                    }}
+                    }},
+                    {data: 'action', name: 'action', orderable: false, searchable: false}
             ],
 
                 'fnInitComplete':data_table_listener
@@ -406,7 +409,7 @@
                 <div class="modal-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('room.store') }}">
                         {{ csrf_field() }}
-
+                        <input type="hidden" name="eventId" value="{{ $event->id }}">
                         <div class="form-group">
                             <label for="roomName" class="col-md-3 control-label">Nom</label>
                             <div class="col-md-6">

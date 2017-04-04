@@ -18,7 +18,6 @@ Route::get('/', function () {
 Auth::routes();
 
 
-
 Route::get('/home', 'WelcomeController@index');
 Route::get('/events', 'EventController@index')->name('event.show');
 Route::post('/events', 'EventController@store')->name('event.store');
@@ -28,6 +27,8 @@ Route::post('profil','ProfilController@save');
 Route::post('/events/new', 'EventController@store')->name('event.store');
 Route::post('/events/update', 'EventController@edit')->name('event.update');
 Route::post('/events/newRoom', 'RoomController@store')->name('room.store');
+
+Route::post('schedule', 'ScheduleController@subscribeuser');
 
 //affichage de la view
 Route::get('schedule/{number?}', 'ScheduleController@datatables')->name('schedule.show');
