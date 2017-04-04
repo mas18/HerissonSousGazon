@@ -93,6 +93,7 @@
 
         $(function(){
             $('#allschedule').DataTable({
+                responsive: true,
                 dom: 'Blfrtip', //display button and entries
                 buttons: [ //set language of the button text
 
