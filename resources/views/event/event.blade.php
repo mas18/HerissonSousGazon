@@ -131,7 +131,7 @@
                                 </h4>
                             </div>
                             <div class="col-xs-2">
-                                <button type="button" style="float: right;"  class="btn btn-link btn-xs" onclick="$('#modalUpdate{{ $event->id }}').modal({'backdrop': 'static'});" >Edit</button>
+                                <button type="button" style="float: right; color:#f5f8fa"  class="btn btn-link btn-sm" onclick="$('#modalUpdate{{ $event->id }}').modal({'backdrop': 'static'});" >Modifier</button>
                             </div>
                         </div>
                     </div>
@@ -139,7 +139,7 @@
                         <div class="panel-body">
                             <p>{{ $event->starting }}</p>
                             <p>{{ $event->ending }}</p>
-                            <a href="{{ route('schedule.show', $event->id) }}" class="btn btn-primary">Open schedule</a>
+                            <a href="{{ route('schedule.show', $event->id) }}" class="btn btn-primary">Ouvrir planning</a>
                         </div>
                     </div>
                 </div>
