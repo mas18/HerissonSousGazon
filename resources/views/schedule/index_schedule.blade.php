@@ -94,6 +94,7 @@
         $(function(){
             $('#allschedule').DataTable({
                 responsive: true,
+                "bStateSave": true, //add state button to save the current display
                 dom: 'Blfrtip', //display button and entries
                 buttons: [ //set language of the button text
 
