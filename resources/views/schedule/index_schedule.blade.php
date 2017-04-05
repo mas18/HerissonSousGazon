@@ -4,7 +4,7 @@
 
     @if(Auth::user()->level>0)
     <div class="col-xs-12">
-        <button id="shced_2" type="button"  class="btn btn-primary pull-right btn-sm" style="margin-left:5px;" data-toggle="modal" data-target="#scheduleUpdate">Show schedule 2</button>
+        <button type="button"  class="btn btn-primary pull-right btn-sm" style="margin-left:5px;" data-toggle="modal" data-target="#scheduleUpdate">Show schedule 2</button>
         <button type="button"  class="btn btn-primary pull-right btn-sm" style="margin-left:5px;" data-toggle="modal" data-target="#modalNewRoom">Ajouter un emplacement</button>
         <button type="button"  class="btn btn-primary pull-right btn-sm" data-toggle="modal" data-target="#scheduleNew">Créer un planning</button>
     </div>
@@ -63,33 +63,33 @@
 
         $(document).ready(
             function() {
-            $("#updateSchedule").hide()
+            $("#updateSchedule").hide();
             var max_fields      = 3; //maximum input boxes allowed
             var wrapper         = $(".input_fields_wrap"); //Fields wrapper
             var add_button      = $(".add_field_button"); //Add button ID
 
-            var x = 1; //initial text box count
-            $(add_button).click(function(e){ //on add input button click
-                e.preventDefault();
-                if(x < max_fields){ //max input box allowed
-                    x++; //text box increment
-                    $(wrapper).append('<div class="form-group">'
-                    + '<label for="timeFrom[]" class="col-md-3 control-label">De: </label>'
-                    + '<div class="col-md-2">'
-                        + '<input type="time" name="timeFrom[]" required>'
-                    + '</div>'
-                    + '<label for="timeTo[]" class="col-md-2 control-label">À: </label>'
-                    + '<div class="col-md-2">'
-                        + '<input type="time" name="timeTo[]" required>'
-                    + '</div>'
-                    + '<a href="#" class="remove_field"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></div>');
-                }
-            });
+                var x = 1; //initial text box count
+                $(add_button).click(function(e){ //on add input button click
+                    e.preventDefault();
+                    if(x < max_fields){ //max input box allowed
+                        x++; //text box increment
+                        $(wrapper).append('<div class="form-group">'
+                            + '<label for="timeFrom[]" class="col-md-3 control-label">De: </label>'
+                            + '<div class="col-md-2">'
+                            + '<input type="time" name="timeFrom[]" required>'
+                            + '</div>'
+                            + '<label for="timeTo[]" class="col-md-2 control-label">À: </label>'
+                            + '<div class="col-md-2">'
+                            + '<input type="time" name="timeTo[]" required>'
+                            + '</div>'
+                            + '<a href="#" class="remove_field"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></div>');
+                    }
+                });
 
-            $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-                e.preventDefault(); $(this).parent('div').remove(); x--;
-            })
-        });
+                $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+                    e.preventDefault(); $(this).parent('div').remove(); x--;
+                })
+            });
 
         $(function(){
             $('#allschedule').DataTable({
@@ -192,6 +192,26 @@
             }
             //admin double click
             function subscribe_unsubscibe() {
+                    var c = this.childNodes;
+                    var id = c[0].innerHTML;
+                    var room = c[3].innerHTML;
+                    var number = c[4].innerHTML;
+                    var date = c[1].innerHTML;
+                    var year = date.substring(8, 12);
+                    var month = date.substring(5, 7);
+                    var day = date.substring(2, 4);
+                    var start = date.substring(17, 22);
+                    var end = c[2].innerHTML.substring(17, 22);
+
+                    $('#scheduleId').val(id);
+                    $('#place_edit option:contains(" + room + ")').attr('selected', 'selected');
+                    $('#date_edit').val(year + "-" + month + "-" + day);
+                    $('#number_edit').val(number);
+                    $('#timeFrom_edit').val(start);
+                    $('#timeTo_edit').val(end);
+                    $('#scheduleUpdate').modal('show');
+                })
+                //add and remove button click
                 var childsNodes = row[k].childNodes;
                 console.log(childsNodes[childsNodes.length - 1]);
                 childsNodes[childsNodes.length - 1].addEventListener('click', function () {
@@ -207,7 +227,6 @@
                 return childsNodes;
             }
         }
-
 
 
         function edit() {
@@ -276,7 +295,7 @@
                             <div class="col-md-6">
                                 <select id="place" class="form-control" name="place">
                                     @foreach ($rooms as $room)
-                                        <option value="{{ $room->id }}">{{ $room->name }}</option>
+                                        <option text="{{ $room->name }}" value="{{ $room->id }}">{{ $room->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -327,31 +346,27 @@
     <!-- SHOW / UPDATE SCHEDULE -->
     <div id="scheduleUpdate" class="modal fade in" role="dialog">
         <div class="modal-dialog">
-            <?php $schedule = \App\Http\Controllers\ScheduleController::getSchedule(1);
-            $scheduleDate = Carbon\Carbon::parse($schedule->start)->format('Y-m-d');
-            $scheduleStart =  Carbon\Carbon::parse($schedule->start)->format('H:i');
-            $scheduleEnd =  Carbon\Carbon::parse($schedule->finish)->format('H:i') ?>
             <!-- Modal content-->
             <div class="modal-content" style="padding: 5px;">
                 <div class="modal-header">
                     <button type="button" class="close" onclick="disableEdit()" data-dismiss="modal">&times;</button>
-                 <h4 class="modal-title">{{ $schedule->id }}</h4>
+                 <h4 class="modal-title">Edit schedule</h4>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('schedule.update') }}">
                         {{ csrf_field() }}
-                        <input type="hidden" name="eventId" value="{{ $event->id }}">
-                        <input type="hidden" id="scheduleId" name="scheduleId" value="{{ $schedule->id }}">
+                        <input type="hidden" id="eventId" name="eventId" value="{{ $event->id }}">
+                        <input type="hidden" id="scheduleId" name="scheduleId" value="">
                         <div class="form-group">
                             <label for="place_edit" class="col-md-3 control-label">Place:</label>
                             <div class="col-md-6">
                                 <select id="place_edit" class="form-control" name="place_edit" disabled>
                                     @foreach ($rooms as $room)
-                                            @if($room->id != $schedule->room_id)
-                                                <option value="{{ $room->id }}">{{ $room->name }}</option>
-                                            @else
-                                                <option value="{{ $room->id }}" selected>{{ $room->name }} </option>
-                                            @endif
+                                        @if($room->id != 1)
+                                            <option name="{{ $room->name }}" value="{{ $room->id }}">{{ $room->name }}</option>
+                                        @else
+                                            <option name="{{ $room->name }}" value="{{ $room->id }}" selected>{{ $room->name }} </option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
@@ -362,11 +377,7 @@
                             <div class="col-md-6">
                                 <select id="date_edit" class="form-control" name="date_edit" disabled>
                                     @foreach ($dates as $date)
-                                        @if($scheduleDate != $date)
-                                            <option value="{{ $date }}">{{ $date }}</option>
-                                        @else
-                                            <option value="{{ $date }}" selected>{{ $date }} </option>
-                                        @endif
+                                        <option value="{{ $date }}">{{ $date }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -376,7 +387,7 @@
                             <label for="number_edit" class="col-md-3 control-label">Nombre:</label>
 
                             <div class="col-md-6">
-                                <input id="number_edit" type="number" class="form-control" name="number_edit" value="{{ $schedule->places }}" min="1" max="20" disabled required>
+                                <input id="number_edit" type="number" class="form-control" name="number_edit" value="" min="1" max="20" disabled required>
                             </div>
                         </div>
                         <div class="input_fields_wrap" style="margin-bottom: 0;">
@@ -384,12 +395,12 @@
                                 <label for="timeFrom_edit" class="col-md-3 control-label">De: </label>
 
                                 <div class="col-md-2">
-                                    <input type="time" name="timeFrom_edit" id="timeFrom_edit" value="{{ $scheduleStart }}" disabled required>
+                                    <input type="time" name="timeFrom_edit" id="timeFrom_edit" value="" disabled required>
                                 </div>
                                 <label for="timeTo_edit" class="col-md-2 control-label">À: </label>
 
                                 <div class="col-md-2">
-                                    <input type="time" id="timeTo_edit" name="timeTo_edit" value="{{ $scheduleEnd }}" disabled required>
+                                    <input type="time" id="timeTo_edit" name="timeTo_edit" value="" disabled required>
                                 </div>
                             </div>
                         </div>
@@ -452,7 +463,6 @@
     </div>
 
     @endif
-
     <!-- Inscription / Désinscription / Modification -->
     <!-- Modal - New -->
     <div id="Actionmodal" class="modal fade" role="dialog">
@@ -521,8 +531,6 @@
         </div>
         <script>
             $('#modalValidation').modal('show');
-
-
         </script>
     @endif
 

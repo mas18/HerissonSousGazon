@@ -13,7 +13,7 @@
                     {!! Form::model($user, ['action' => ['ProfilController@save'], 'method' => 'post', 'class' => 'form-horizontal panel']) !!}
                     <div class="form-group {!! $errors->has('firstname') ? 'has-error' : '' !!}">
                         <div class="col-md-2">
-                            {{Form::label('firstname','Prenom')}}
+                            {{Form::label('firstname','Prénom')}}
                         </div>
                         <div class="col-md-9"  style="height: 25px;">
                             {!! Form::text('firstname', null, ['class' => 'form-control', 'placeholder' => 'prénom']) !!}
