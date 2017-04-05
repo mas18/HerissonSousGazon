@@ -109,6 +109,7 @@
                         @endif
                         <ul class="dropdown-menu">
                             <li><a style="font-size:16px;font-weight: bold;" href="{{ url('/user') }}">Utilisateur</a></li>
+                            <li><a style="font-size:16px;font-weight: bold;" href="{{ url('/events') }}">Évènements</a></li>
                         </ul>
                     </li>
                 </ul>
