@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/subscribe/{idSchedule}',"SubscribeController@action");
 
 Route::get('/home', 'WelcomeController@index');
 Route::get('/events', 'EventController@index')->name('event.show');
@@ -44,18 +45,7 @@ Route::get("test",function ()
 {
 
     $repository=new \App\Repository\ScheduleRepository(new \App\Schedule(),new \App\Room());
-    $schedule=$repository->getAllWithRelation();
-    foreach ($schedule as $aSched)
-    {
-        echo $aSched->rooms->name;
-    }
-    $users = DB::table('users')->get();
-    foreach ($users as $user)
-    {
-        echo($user->firstname);
-    }
-
-    return view('teste');
+   var_dump( $repository->isUserSubscribe(10,7));
 });
 
 

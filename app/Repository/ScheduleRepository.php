@@ -13,6 +13,7 @@ use App\Event;
 use App\Room;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use League\Flysystem\Exception;
 use Yajra\Datatables\Contracts\DataTableEngineContract;
 
@@ -156,7 +157,6 @@ class ScheduleRepository
 
         $schedule->save();
     }
-
     function destroy($id)
     {
 
@@ -206,6 +206,50 @@ class ScheduleRepository
     {
         $room->name=$inputs['roomName'];
         $room->save();
+    }
+    function isUserSubscribe($userId, $scheduleId)
+    {
+        $exist=false;
+        try
+        {
+
+          $exist=DB::table('schedule_user')
+              ->where('schedule_id','=',$scheduleId)
+              ->where('user_id','=',$userId)
+                  ->count() > 0;
+        }
+        catch(Exception $ex)
+        {
+            return false;
+        }
+        return $exist;
+    }
+
+    function subscribuUserToSchedule($userId,$scheduleId)
+    {
+        try{
+          $currentCchedule=  $this->schedule->findOrFail($scheduleId);
+          $currentCchedule->users()->attach($userId);
+
+        }
+        catch (Exception $ex)
+        {
+
+        }
+
+
+    }
+    function unSubscribeUserSchedule($userId,$scheduleId)
+    {
+        try{
+            $currentCchedule=  $this->schedule->findOrFail($scheduleId);
+            $currentCchedule->users()->detach($userId);
+
+        }
+        catch (Exception $ex)
+        {
+
+        }
     }
 
 }

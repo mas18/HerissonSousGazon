@@ -165,27 +165,46 @@
 
 
 
-        function data_table_listener()
-        {
-            listenerDoubleCLick();
-        }
 
-        function listenerDoubleCLick() {
+
+        function data_table_listener() {
             var modalAction = document.getElementById('modalAction');
             var row = document.querySelectorAll("#allschedule  tr");
-            //admin double click
+
+
+
+
             for (var k = 1; k < row.length; k++) {
+                @if(Auth::user()->level>0)
+                    admin_function();
+                @endif
+
+                //add and remove button click
+                var childsNodes = subscribe_unsubscibe();
+
+            }
+
+
+            function admin_function() {
                 row[k].addEventListener('dblclick', function () {
                     $('#Actionmodal').modal('show');
                 });
-                //add and remove button click
+            }
+            //admin double click
+            function subscribe_unsubscibe() {
                 var childsNodes = row[k].childNodes;
-                console.log(childsNodes[childsNodes.length-1]);
-                childsNodes[childsNodes.length-1].addEventListener('click',function()
-                {
-                  var id=this.parentNode.childNodes[0].innerHTML;
-                  console.log(id);
+                console.log(childsNodes[childsNodes.length - 1]);
+                childsNodes[childsNodes.length - 1].addEventListener('click', function () {
+                    var id = this.parentNode.childNodes[0].innerHTML;
+                    console.log(id);
+                    console.log("fdsafdsfds");
+                    var url="{{URL::to('subscribe')}}"+"/"+id;
+                    console.log(url);
+                    location.href = "{{URL::to('subscribe')}}"+"/"+id;
+
+
                 });
+                return childsNodes;
             }
         }
 
