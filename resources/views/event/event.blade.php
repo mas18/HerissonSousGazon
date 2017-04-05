@@ -2,7 +2,6 @@
 
 @section('main_content')
 
-
         <div class="row">
             <div class="col-xs-9">
             </div>
@@ -137,9 +136,33 @@
                     </div>
                     <div id="collapse{{ $event->id }}" class="panel-collapse collapse{{ $firstItem ? ' in' : '' }}" role="tabpanel" aria-labelledby="heading{{ $event->id }}">
                         <div class="panel-body">
-                            <p>{{ $event->starting }}</p>
-                            <p>{{ $event->ending }}</p>
+                            <p></p>
                             <a href="{{ route('schedule.show', $event->id) }}" class="btn btn-primary">Ouvrir planning</a>
+                            <div class="col-xs-6 col-sm-3">
+                                <div class="inner-content text-center">
+
+                                    <div class="c100 big p{{ $controller->getPlaces($event->id) }} center">
+                                        <span>{{ $controller->getPlaces($event->id) }}%</span>
+                                        <div class="slice"><div class="bar"></div><div class="fill"></div></div>
+                                    </div>
+
+                                    <p><em>Places occupées</em></p>
+
+                                </div>
+                            </div><!-- /.col -->
+                            <div class="col-xs-6 col-sm-3">
+                                <div class="inner-content text-center">
+
+                                    <div class="c100 p100 big dark center">
+                                        <span>280</span>
+                                        <div class="slice"><div class="bar"></div><div class="fill"></div></div>
+                                    </div>
+
+                                    <p><em>Volonteers</em></p>
+
+                                </div>
+                            </div><!-- /.col -->
+
                         </div>
                     </div>
                 </div>

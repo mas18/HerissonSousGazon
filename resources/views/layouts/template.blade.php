@@ -13,11 +13,13 @@
     <link href="//code.jquery.com/jquery-1.10.2.min.js" rel="stylesheet">
     {{Html::style('css/bootstrap/bootstrap.min.css')}}
     {{Html::style('css/bootstrap/bootstrap-theme.min.css')}}
+    {{Html::style('css/circle.css')}}
     {{Html::style('css/style.css')}}
 
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),

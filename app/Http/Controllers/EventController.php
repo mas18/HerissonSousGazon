@@ -29,7 +29,8 @@ class EventController extends Controller {
     public function index()
     {
        $events = $this->eventRepository->getPaginate($this->nbrPerPage);
-       return view('event/event')->with('events', $events);
+
+       return view('event/event')->with(['controller'=>$this])->with('events', $events);
     }
 
   /**
@@ -104,7 +105,15 @@ class EventController extends Controller {
   {
     
   }
-  
+
+  public function getPlaces($id)
+  {
+      $places = $this->scheduleRepository->placesTotal($id);
+      $occupied = $this->scheduleRepository->placesOccupied($id);
+
+      return round($occupied / $places * 100);
+  }
+
 }
 
 ?>
