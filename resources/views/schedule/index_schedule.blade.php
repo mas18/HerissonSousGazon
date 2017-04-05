@@ -173,7 +173,6 @@
 
 
 
-
             for (var k = 1; k < row.length; k++) {
                 @if(Auth::user()->level>0)
                     admin_function();
@@ -187,11 +186,6 @@
 
             function admin_function() {
                 row[k].addEventListener('dblclick', function () {
-                    $('#Actionmodal').modal('show');
-                });
-            }
-            //admin double click
-            function subscribe_unsubscibe() {
                     var c = this.childNodes;
                     var id = c[0].innerHTML;
                     var room = c[3].innerHTML;
@@ -210,7 +204,11 @@
                     $('#timeFrom_edit').val(start);
                     $('#timeTo_edit').val(end);
                     $('#scheduleUpdate').modal('show');
-                })
+                });
+            }
+            //admin double click
+            function subscribe_unsubscibe() {
+
                 //add and remove button click
                 var childsNodes = row[k].childNodes;
                 console.log(childsNodes[childsNodes.length - 1]);
