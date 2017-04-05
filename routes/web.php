@@ -44,8 +44,25 @@ Route::post('/schedule/update', 'ScheduleController@edit')->name('schedule.updat
 Route::get("test",function ()
 {
 
+
+
     $repository=new \App\Repository\ScheduleRepository(new \App\Schedule(),new \App\Room());
-   var_dump( $repository->isUserSubscribe(10,7));
+
+
+    $schedule=\App\Schedule::with('users')
+        ->find(1);
+
+        foreach ($schedule->users as $aUsers)
+        {
+            //var_dump($aUsers);
+        }
+
+
+
+
+
+
+
 });
 
 

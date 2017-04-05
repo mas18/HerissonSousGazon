@@ -79,7 +79,11 @@ class ScheduleController extends Controller
                 return count($schedule->users);
             })
             ->addColumn('action', function ($schedule) {
-                return '<a href="#inscription-'.$schedule->id.'" class="btn btn-sm btn-primary">Inscription</a>';
+                //check if the user is aldredy subscribed or not
+                $userId=auth()->user()->id;
+                $displayText= $this->scheduleRepository->hasUserSchedule($schedule,$userId) ? 'Desincription':'Inscription';
+
+                return '<a href="#inscription-'.$schedule->id.'" class="btn btn-sm btn-primary">'.$displayText.'</a>';
             })
             ->editColumn('start', function ($schedule) {
                 $carbonDate =new Carbon($schedule->start);
@@ -165,6 +169,7 @@ class ScheduleController extends Controller
 
         return redirect()->route('schedule.show', $request->eventId);
     }
+
 
 
     public static function getSchedule($id)

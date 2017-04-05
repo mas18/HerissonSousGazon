@@ -251,5 +251,21 @@ class ScheduleRepository
 
         }
     }
+    function hasUserSchedule($schedule, $userId)
+    {
+        try{
+            foreach ($schedule->users as $aUser)
+            {
+                if ($aUser->id==$userId)
+                    return true;
+            }
+        }
+        catch (Exception $ex)
+        {
+
+        }
+
+        return false;
+    }
 
 }

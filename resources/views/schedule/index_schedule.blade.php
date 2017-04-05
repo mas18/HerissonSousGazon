@@ -198,7 +198,7 @@
                     var end = c[2].innerHTML.substring(17, 22);
 
                     $('#scheduleId').val(id);
-                    $('#place_edit option:contains(" + room + ")').attr('selected', 'selected');
+                    $("#place_edit option:contains(" + room + ")").attr('selected', 'selected');
                     $('#date_edit').val(year + "-" + month + "-" + day);
                     $('#number_edit').val(number);
                     $('#timeFrom_edit').val(start);

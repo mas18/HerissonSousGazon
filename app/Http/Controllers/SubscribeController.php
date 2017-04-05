@@ -19,7 +19,7 @@ class SubscribeController extends Controller
     {
         $userID=Auth::user()->id;
         $this->repository->isUserSubscribe($userID,$scheduleId) ? $this->unSubscribe($userID,$scheduleId) : $this->subscribe($userID,$scheduleId);
-        return back();
+        return back()->withInput();
 
 
 
