@@ -64,7 +64,7 @@
         $(document).ready(
             function() {
             $("#updateSchedule").hide();
-            var max_fields      = 3; //maximum input boxes allowed
+            var max_fields      = 10; //maximum input boxes allowed
             var wrapper         = $(".input_fields_wrap"); //Fields wrapper
             var add_button      = $(".add_field_button"); //Add button ID
 
@@ -199,7 +199,7 @@
                     var end = c[2].innerHTML.substring(17, 22);
 
                     $('#scheduleId').val(id);
-                    $("#place_edit option:contains(" + room + ")").attr('selected', 'selected');
+                    $("#place_edit option:contains(" + room + ")").attr('selected', true);
                     $('#date_edit').val(year + "-" + month + "-" + day);
                     $('#number_edit').val(number);
                     $('#timeFrom_edit').val(start);
@@ -361,11 +361,7 @@
                             <div class="col-md-6">
                                 <select id="place_edit" class="form-control" name="place_edit" disabled>
                                     @foreach ($rooms as $room)
-                                        @if($room->id != 1)
                                             <option name="{{ $room->name }}" value="{{ $room->id }}">{{ $room->name }}</option>
-                                        @else
-                                            <option name="{{ $room->name }}" value="{{ $room->id }}" selected>{{ $room->name }} </option>
-                                        @endif
                                     @endforeach
                                 </select>
                             </div>

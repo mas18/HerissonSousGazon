@@ -142,6 +142,23 @@ class ScheduleRepository
         return $this->schedule->with('users')->find($scheduleID);
     }
 
+    function placesTotal($eventID)
+    {
+        return $this->schedule->where('schedules.event_id','=',$eventID)->sum('places');
+    }
+
+    function placesOccupied($eventID)
+    {
+        $schedules = $this->getAllWithRelation($eventID);
+        $counter = 0;
+
+        foreach ($schedules as $s){
+            $counter+=count($s->users);
+        }
+
+        return $counter;
+    }
+
     function update($id, $inputs)
     {
         $schedule=$this->getById($id);
