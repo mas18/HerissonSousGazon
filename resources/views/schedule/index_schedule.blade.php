@@ -396,15 +396,15 @@
                                 <div class="col-md-2">
                                     <input type="time" id="timeTo_edit" name="timeTo_edit" value="" disabled required>
                                 </div>
+                                <br/><br/><br/>
+                                <div class="col-md-6 col-md-offset-1">
+                                    <button type="button" id="editButton" class="btn btn-primary" onclick="edit()">Modifier le planning</button>
+                                </div>
                             </div>
-                            <button type="button" id="editButton" class="btn btn-primary pull-right" onclick="edit()">Modifier le planning</button>
                         </div>
-
                         <div id="updateSchedule" class="form-group">
-                            <div class="col-md-6 col-md-offset-3">
-                                <button type="submit" class="btn btn-primary">
-                                    Update
-                                </button>
+                            <div class="col-md-6 col-md-offset-1">
+                                <button type="submit" class="btn btn-primary">Confirmer</button>
                             </div>
                         </div>
                         <br/>
@@ -414,6 +414,7 @@
                 <div class="modal-footer">
                     <div class="form-group">
                     @if(Auth::user()->level>0 )
+                        <div class="col-md-3 col-md-offset-0">
                         <!-- / admin part to add new user or remove user to the event   !-->
                             {!! Form::open(['url' => 'formulaire'], ['files' => false], ['class'=>'border:pull-left']) !!}
                             <select>
@@ -422,7 +423,7 @@
                                 @endforeach
                             </select>
                             {!! Form::close() !!}
-
+                        </div>
                             <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary pull-right">Inscrire</button>
                             <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary pull-right">Désinscrire</button>
                             </br>
