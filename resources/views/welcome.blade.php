@@ -98,8 +98,8 @@
                 <!-- HREF -->
                 <div class="container flex-center">
                 <ul class="navbar-nav">
-                    <li class="linksNav" style="list-style-type:none"><a style="font-size:100%" href="{{ url('/events') }}">Évènements</a></li>
                     @if(Auth::user())
+                    <li class="linksNav" style="list-style-type:none"><a style="font-size:100%" href="{{ url('/events') }}">Évènements</a></li>
                     <li class="linksNav" style="list-style-type:none"><a style="font-size:100%" href="{{ url('/profil') }}">Mon profile</a></li>
                     @endif
                     <li class="linksNav dropdown" style="list-style-type:none">
