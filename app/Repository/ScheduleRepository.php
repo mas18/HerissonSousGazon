@@ -314,36 +314,23 @@ class ScheduleRepository
 
 
       return Schedule::
-
-             where (function($query)use ($startDate,$endDate)
-             {
-                $query->where('start','>=',$startDate)
-                     ->where('start','<=',$endDate);
-             }) //nested where instead the or where statement
-             ->orWhere(function($query) use ($startDate,$endDate)
-             {
-                 $query->where('start','<=',$startDate)
-                     ->where('finish','>=',$startDate);
-             })
-            //query inside the other table (n to n relation)
-         ->whereHas('users', function ($query) use ($userID) {
-                $query->where('user_id', '=', $userID);})
+      //query inside the other table (n to n relation)
+              whereHas('users', function ($query) use ($userID) {
+              $query->where('user_id', '=', $userID);})
+              ->where (function ($query) use ($startDate,$endDate) {
+                  $query-> where (function($query)use ($startDate,$endDate)
+                  {
+                      $query->where('start','>=',$startDate)
+                          ->where('start','<=',$endDate);
+                  }); //nested where instead the or where statement
+                  $query->OrWhere(function($query) use ($startDate,$endDate)
+                  {
+                      $query->where('start','<=',$startDate)
+                          ->where('finish','>=',$startDate);
+                  });
+              })
          ->get()
              ->count() > 0;
-
-
-
-//        $schedule=Schedule::
-//            with('users')
-//                ->where('start','>',$startDate)
-//                ->where('start','<',$endDate)
-//                ->whereHas('users', function ($query) use ($userID) {
-//                    $query->where('user_id', '=', $userID);})
-//                ->get()
-//                ->count() > 0;
-//        echo $schedule;
-
-
     }
 
 }
