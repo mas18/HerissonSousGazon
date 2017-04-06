@@ -47,6 +47,7 @@
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ url('/user') }}">Utilisateurs</a></li>
+                        <li><a href="{{ url('/events') }}">Évènements</a></li>
                     </ul>
                 </li>
                     @endif

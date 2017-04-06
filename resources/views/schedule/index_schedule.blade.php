@@ -4,7 +4,6 @@
 
     @if(Auth::user()->level>0)
     <div class="col-xs-12">
-        <button type="button"  class="btn btn-primary pull-right btn-sm" style="margin-left:5px;" data-toggle="modal" data-target="#scheduleUpdate">Show schedule 2</button>
         <button type="button"  class="btn btn-primary pull-right btn-sm" style="margin-left:5px;" data-toggle="modal" data-target="#modalNewRoom">Ajouter un emplacement</button>
         <button type="button"  class="btn btn-primary pull-right btn-sm" data-toggle="modal" data-target="#scheduleNew">Créer un planning</button>
     </div>
@@ -354,7 +353,7 @@
             <div class="modal-content" style="padding: 5px;">
                 <div class="modal-header">
                     <button type="button" class="close" onclick="disableEdit()" data-dismiss="modal">&times;</button>
-                 <h4 class="modal-title">Edit schedule</h4>
+                 <h4 class="modal-title">Administrateur actions</h4>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('schedule.update') }}">
@@ -402,20 +401,42 @@
                                 <div class="col-md-2">
                                     <input type="time" id="timeTo_edit" name="timeTo_edit" value="" disabled required>
                                 </div>
+                                <br/><br/><br/>
+                                <div class="col-md-6 col-md-offset-1">
+                                    <button type="button" id="editButton" class="btn btn-primary" onclick="edit()">Modifier le planning</button>
+                                </div>
                             </div>
                         </div>
-
                         <div id="updateSchedule" class="form-group">
-                            <div class="col-md-6 col-md-offset-3">
-                                <button type="submit" class="btn btn-primary">
-                                    Update
-                                </button>
+                            <div class="col-md-6 col-md-offset-1">
+                                <button type="submit" class="btn btn-primary">Confirmer</button>
                             </div>
                         </div>
+                        <br/>
                     </form>
                 </div>
+
                 <div class="modal-footer">
-                    <button type="button" id="editButton" class="btn btn-warning" onclick="edit()">Edit</button>
+                    <div class="form-group">
+                    @if(Auth::user()->level>0 )
+                        <div class="col-md-3 col-md-offset-0">
+                        <!-- / admin part to add new user or remove user to the event   !-->
+                            {!! Form::open(['url' => 'formulaire'], ['files' => false], ['class'=>'border:pull-left']) !!}
+                            <select>
+                                @foreach($users as $aUser)
+                                    <option value="{{$aUser->id}}">{{$aUser->lastname}}   {{$aUser->firstname}}</option>
+                                @endforeach
+                            </select>
+                            {!! Form::close() !!}
+                        </div>
+                            <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary pull-right">Inscrire</button>
+                            <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary pull-right">Désinscrire</button>
+                            </br>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="modal-footer">
                     <button type="button" class="btn btn-default" onclick="disableEdit()" data-dismiss="modal">Fermer</button>
                 </div>
             </div>
@@ -463,47 +484,9 @@
     </div>
 
     @endif
-    <!-- Inscription / Désinscription / Modification -->
-    <!-- Modal - New -->
-    <div id="Actionmodal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content" style="padding: 5px;">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-                    <h4 class="modal-title">Actions</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="container-fluid">
-
-                        @if(Auth::user()->level>0 )
-                            <!-- / admin part to add new user or remove user to the event   !-->
-                        {!! Form::open(['url' => 'formulaire'], ['files' => false]) !!}
-                        <select>
-                            @foreach($users as $aUser)
-                                <option value="{{$aUser->id}}">{{$aUser->lastname}}   {{$aUser->firstname}}</option>
-                            @endforeach
-                        </select>
-                        {!! Form::close() !!}
 
 
-                        <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary">Inscrire</button>
-                        <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary">Désinscrire</button>
-                        </br>
 
-                        <button type="submit" style="margin-left:10px; margin-top: 30px" class="col-md-3 btn btn-primary">Modifier</button>
-                            @endif
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
 
     @if($errors->all())
         <!-- Modal - New -->

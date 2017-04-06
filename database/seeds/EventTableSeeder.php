@@ -11,7 +11,8 @@ class EventTableSeeder extends Seeder {
 		DB::table('events')->delete();
         DB::table('events')->truncate();
 
-        for ($k=0;$k<2;$k++)
+
+        for ($k=0;$k<1;$k++)
         {
             // event1
             Event::create(array(
@@ -19,14 +20,13 @@ class EventTableSeeder extends Seeder {
                 'ending' => $this->endDate(),
             ));
         }
-
 	}
 	public function beginDate()
     {
-        return Carbon::createFromDate(null, rand(1, 6), rand(1, 28));
+        return Carbon::createFromDate(2016, 7, 10);
     }
     public function endDate()
     {
-        return Carbon::createFromDate(null, rand(7, 12), rand(1, 28));
+        return Carbon::createFromDate(2016, 7, 11);
     }
 }

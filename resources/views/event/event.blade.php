@@ -137,7 +137,6 @@
                     <div id="collapse{{ $event->id }}" class="panel-collapse collapse{{ $firstItem ? ' in' : '' }}" role="tabpanel" aria-labelledby="heading{{ $event->id }}">
                         <div class="panel-body">
                             <p></p>
-                            <a href="{{ route('schedule.show', $event->id) }}" class="btn btn-primary">Ouvrir planning</a>
                             <div class="col-xs-6 col-sm-3">
                                 <div class="inner-content text-center">
 
@@ -158,11 +157,11 @@
                                         <div class="slice"><div class="bar"></div><div class="fill"></div></div>
                                     </div>
 
-                                    <p><em>Volonteers</em></p>
+                                    <p><em>Volontaires</em></p>
 
                                 </div>
                             </div><!-- /.col -->
-
+                            <a href="{{ route('schedule.show', $event->id) }}" class="btn pull-right  btn-primary">Ouvrir planning</a>
                         </div>
                     </div>
                 </div>
