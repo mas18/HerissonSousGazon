@@ -298,22 +298,35 @@ class ScheduleRepository
         $endDate=new Carbon($schedule->finish);
 
 
+      return Schedule::
 
-/*
-        return Schedule::find($schedule->id)
-            ->with('users')
-            ->whereBetween('start', [$startDate, $endDate])
-            >where('user.id','=','')
-            ->count() > 0;
+             where (function($query)use ($startDate,$endDate)
+             {
+                $query->where('start','>=',$startDate)
+                     ->where('start','<=',$endDate);
+             }) //nested where instead the or where statement
+             ->orWhere(function($query) use ($startDate,$endDate)
+             {
+                 $query->where('start','<=',$startDate)
+                     ->where('finish','>=',$startDate);
+             })
+            //query inside the other table (n to n relation)
+         ->whereHas('users', function ($query) use ($userID) {
+                $query->where('user_id', '=', $userID);})
+         ->get()
+             ->count() > 0;
 
-*/
 
-/*        return Schedule::find($schedule->id)
-                ->with('users', function ($query) use  ($schedule) {
-                    return  $query->where('start', '>',$schedule->start)
-                        ->where('finish','<',$schedule->start);
-                })
-                ->count() > 0;*/
+
+//        $schedule=Schedule::
+//            with('users')
+//                ->where('start','>',$startDate)
+//                ->where('start','<',$endDate)
+//                ->whereHas('users', function ($query) use ($userID) {
+//                    $query->where('user_id', '=', $userID);})
+//                ->get()
+//                ->count() > 0;
+//        echo $schedule;
 
 
     }

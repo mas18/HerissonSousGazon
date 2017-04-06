@@ -55,7 +55,7 @@ Route::get("test",function ()
 
 
   echo  $repository->isTimeWithThisHourExiste(1,$schdule13_20);
-  exit;
+
     return view ('teste');
 
 });
