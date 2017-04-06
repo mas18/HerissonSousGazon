@@ -213,6 +213,7 @@
                 var childsNodes = row[k].childNodes;
                 console.log(childsNodes[childsNodes.length - 1]);
                 childsNodes[childsNodes.length - 1].addEventListener('click', function (event) {
+                    var text
                   if (!confirm("Veuillez confirmer l'action"))
                   {
                       e.preventDefault();
