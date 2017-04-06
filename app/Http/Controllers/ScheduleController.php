@@ -76,14 +76,38 @@ class ScheduleController extends Controller
 
             //ajouter une column
             ->addColumn('occuped', function ($schedule) {
-                return count($schedule->users);
+                return ($schedule->places)-(count($schedule->users));
             })
             ->addColumn('action', function ($schedule) {
                 //check if the user is aldredy subscribed or not
                 $userId=auth()->user()->id;
-                $displayText= $this->scheduleRepository->hasUserSchedule($schedule,$userId) ? 'Desincription':'Inscription';
+                $userIsSubscribed=$this->scheduleRepository->hasUserSchedule($schedule,$userId);
 
-                return '<a href="#inscription-'.$schedule->id.'" class="btn btn-sm btn-primary">'.$displayText.'</a>';
+
+                $buttonColor="btn-danger";
+                $displayText=  'Desincription';
+                $disable='';
+                $element="a";
+
+
+                if (!$userIsSubscribed)
+                {
+                    $buttonColor="btn-primary";
+                    $displayText=  'Inscription';
+                    //disable button if the places are full
+                    if  (count($schedule->users)>=$schedule->places)
+                    {
+                        $buttonColor='btn-primary disabled';
+                        $disable='disabled';
+                        $element='span';
+
+                    }
+                }
+
+
+
+
+                return '<'.$element.' href="#inscription-'.$schedule->id.'" '.$disable.' class="btn btn-sm '.$buttonColor.'">'.$displayText.'</'.$element.'>';
             })
             ->editColumn('start', function ($schedule) {
                 $carbonDate =new Carbon($schedule->start);
@@ -156,9 +180,7 @@ class ScheduleController extends Controller
 
                 $this->scheduleRepository->store($request->all(), $timeFrom, $timeTo);
             }
-
         }
-
         return redirect()->route('schedule.show', $request->eventId);
     }
 
@@ -170,10 +192,9 @@ class ScheduleController extends Controller
         return redirect()->route('schedule.show', $request->eventId);
     }
 
-
-
     public static function getSchedule($id)
     {
         return Schedule::find($id);
     }
+
 }

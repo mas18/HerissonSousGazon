@@ -23,7 +23,7 @@
                 <th>Fin</th>
                 <th>Lieu</th>
                 <th>Places total</th>
-                <th>Place occupée </th>
+                <th>Place restante </th>
                 <th>utilisateurs inscrits</th>
                 <th>action</th>
             </tr>
@@ -104,7 +104,7 @@
                     {extend: 'print', text:  'imprimer'},
                 ],
 
-                    processing: true,
+                    processing: false,
                     serverSide: false,
                     ajax: {
                         url:'{!! URL::asset('schedule_data') !!}',
@@ -150,7 +150,7 @@
                     },
                     { data: 'places', name: 'description', title:'Places total', },
 
-                    { data: 'occuped', name: 'occuped', title : 'places occupées', class : 'num'},
+                    { data: 'occuped', name: 'occuped', title : 'Place restante', class : 'num'},
 
                     { data: 'users', name: 'users', title : 'Utilisateurs inscrits',
                     render : {
@@ -213,7 +213,12 @@
                 //add and remove button click
                 var childsNodes = row[k].childNodes;
                 console.log(childsNodes[childsNodes.length - 1]);
-                childsNodes[childsNodes.length - 1].addEventListener('click', function () {
+                childsNodes[childsNodes.length - 1].addEventListener('click', function (event) {
+                  if (!confirm("Veuillez confirmer l'action"))
+                  {
+                      e.preventDefault();
+                      return;
+                  }
                     var id = this.parentNode.childNodes[0].innerHTML;
                     console.log(id);
                     console.log("fdsafdsfds");

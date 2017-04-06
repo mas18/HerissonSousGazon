@@ -126,6 +126,14 @@ class ScheduleRepository
     {
         return $this->schedule->findOrFail($id);
     }
+    function getByIdWithUsers($schedule_id)
+    {
+        $schedules= Schedule::
+            with('users')
+            ->find($schedule_id);
+
+        return $schedules;
+    }
 
     function getAllWithRelation($event_id=1)
     {
@@ -283,6 +291,31 @@ class ScheduleRepository
         }
 
         return false;
+    }
+    public function isTimeWithThisHourExiste($userID,$schedule)
+    {
+        $startDate=new Carbon($schedule->start);
+        $endDate=new Carbon($schedule->finish);
+
+
+
+/*
+        return Schedule::find($schedule->id)
+            ->with('users')
+            ->whereBetween('start', [$startDate, $endDate])
+            >where('user.id','=','')
+            ->count() > 0;
+
+*/
+
+/*        return Schedule::find($schedule->id)
+                ->with('users', function ($query) use  ($schedule) {
+                    return  $query->where('start', '>',$schedule->start)
+                        ->where('finish','<',$schedule->start);
+                })
+                ->count() > 0;*/
+
+
     }
 
 }
