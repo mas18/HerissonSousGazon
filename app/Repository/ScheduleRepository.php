@@ -167,6 +167,21 @@ class ScheduleRepository
         return $counter;
     }
 
+    function countVolonteers($eventID){
+        $schedules = $this->getAllWithRelation($eventID);
+        $users = collect();
+
+        foreach ($schedules as $s){
+            foreach ($s->users as $user){
+                $users->push($user);
+            }
+        }
+
+
+
+        return $users;
+    }
+
     function update($id, $inputs)
     {
         $schedule=$this->getById($id);

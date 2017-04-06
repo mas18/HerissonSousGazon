@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EventRequest;
 use App\Repository\EventRepository;
+use Illuminate\Support\Facades\Auth;
 use App\Repository\ScheduleRepository;
 
 
@@ -28,9 +29,14 @@ class EventController extends Controller {
 
     public function index()
     {
-       $events = $this->eventRepository->getPaginate($this->nbrPerPage);
+        $events = $this->eventRepository->getPaginate($this->nbrPerPage);
+        if(Auth::user()->level>0) {
+            return view('event/event')->with(['controller' => $this])->with('events', $events);
+        } else {
+            $lastEvent = $events->first();
+            return redirect()->route('schedule.show', $lastEvent->id);
+        }
 
-       return view('event/event')->with(['controller'=>$this])->with('events', $events);
     }
 
   /**
@@ -113,7 +119,14 @@ class EventController extends Controller {
 
       return round($occupied / $places * 100);
   }
+    public function getVolunteers($id)
+    {
+        $volunteers = $this->scheduleRepository->countVolonteers($id);
 
+        $unique = $volunteers->unique("id");
+
+        return count($unique);
+    }
 }
 
 ?>
