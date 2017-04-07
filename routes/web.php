@@ -38,16 +38,13 @@ Route::get('schedule_data', 'ScheduleController@scheduledata');
 
 Route::post('/schedule/new', 'ScheduleController@store')->name('schedule.store');
 Route::post('/schedule/update', 'ScheduleController@edit')->name('schedule.update');
+Route::post('/schedule/subscribtion', 'SubscribeController@subscriptionadmin')->name('schedule.subscriptionadmin');
 
 
 
 Route::get("test",function ()
 {
-
-
-
     $repository=new \App\Repository\ScheduleRepository(new \App\Schedule(),new \App\Room());
-
 
     $schedule=\App\Schedule::with('users')
         ->find(1);

@@ -412,23 +412,71 @@
                 </div>
 
                 <div class="modal-footer">
-                    <div class="form-group">
-                    @if(Auth::user()->level>0 )
-                        <div class="col-md-3 col-md-offset-0">
-                        <!-- / admin part to add new user or remove user to the event   !-->
-                            {!! Form::open(['url' => 'formulaire'], ['files' => false], ['class'=>'border:pull-left']) !!}
-                            <select>
-                                @foreach($users as $aUser)
-                                    <option value="{{$aUser->id}}">{{$aUser->lastname}}   {{$aUser->firstname}}</option>
-                                @endforeach
-                            </select>
-                            {!! Form::close() !!}
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('schedule.subscriptionadmin') }}">
+                        {{ csrf_field() }}
+                        <input type="hidden" id="eventId" name="eventId" value="{{ $event->id }}">
+                        <input type="hidden" id="scheduleId" name="scheduleId" value="">
+
+                        <!--
+                        <div class="form-group">
+                            <div class="col-md-5 col-md-offset-0">
+                                <select id="user_selected" class="form-control" name="user_selected">
+                                    @foreach($users as $aUser)
+                                        <option value="{{$aUser->id}}" required>{{$aUser->lastname}}   {{$aUser->firstname}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div id="submitVolunteers">
+                                <button id="btnSubscribe" type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary pull-right">Inscrire</button>
+                                <button id="btnUnsubscribe" type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary pull-right">Désinscrire</button>
+                            </div>
                         </div>
-                            <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary pull-right">Inscrire</button>
-                            <button type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary pull-right">Désinscrire</button>
-                            </br>
-                        @endif
-                    </div>
+                        -->
+
+                        <div class="form-group">
+                            <section class="container" style="overflow:auto; width:600px;box-sizing: border-box;">
+                                <div style="width:230px; text-align:center;" class="col-md-2">
+                                    <select id="leftValues" size="10" style="width: 220px;overflow:scroll;" multiple>
+                                        <option>1</option>
+                                        <option>6</option>
+                                        <option>3</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="button" id="btnLeft" class="btn btn-default" value="&lt;&lt;" />
+                                    <input type="button" id="btnRight" class="btn btn-default" value="&gt;&gt;" />
+                                </div >
+                                <div style="width:230px;text-align:center;" class="col-md-2">
+                                    <select id="rightValues" size="10" style="width:220px;overflow:scroll;" multiple>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                </div>
+                            </section>
+                            <br/><br/>
+                            <div id="submitVolunteers">
+                                <button type="submit" style="margin-left:30px;" class="btn btn-primary pull-left">Enregistrer</button>
+                            </div>
+                        </div>
+
+                        </br>
+                    </form>
                 </div>
 
                 <div class="modal-footer">

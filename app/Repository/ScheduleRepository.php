@@ -21,11 +21,13 @@ class ScheduleRepository
 {
     protected $schedule;
     protected $room;
+    protected $user;
 
-    public function __construct(Schedule $schedule, Room $room)
+    public function __construct(Schedule $schedule, Room $room, User $user)
     {
         $this->schedule = $schedule;
         $this->room=$room;
+        $this->user=$user;
     }
 
 
@@ -261,7 +263,6 @@ class ScheduleRepository
         try{
             $currentCchedule=  $this->schedule->findOrFail($scheduleId);
             $currentCchedule->users()->detach($userId);
-
         }
         catch (Exception $ex)
         {
@@ -281,8 +282,22 @@ class ScheduleRepository
         {
 
         }
-
         return false;
     }
 
+
+
+    function subscribeByAdmin($scheduleId, $input){
+
+
+        try{
+            $currentCchedule=  $this->schedule->findOrFail($scheduleId);
+            $currentCchedule->users()->attach($input['user_selected']);
+
+        }
+        catch (Exception $ex)
+        {
+
+        }
+    }
 }

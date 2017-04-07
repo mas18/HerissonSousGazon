@@ -23,8 +23,10 @@ class ScheduleSubscribeUser extends FormRequest
      */
     public function rules()
     {
+
         return [
-            //
+            'user_selected'=>'required',
+            'scheduleId'
         ];
     }
 }

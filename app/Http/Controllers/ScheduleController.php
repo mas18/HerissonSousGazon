@@ -166,7 +166,6 @@ class ScheduleController extends Controller
     {
         $this->scheduleRepository->update($request->scheduleId, $request->all());
 
-
         return redirect()->route('schedule.show', $request->eventId);
     }
 
