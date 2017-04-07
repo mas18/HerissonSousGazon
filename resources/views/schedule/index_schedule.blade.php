@@ -196,6 +196,24 @@
                     var day = date.substring(2, 4);
                     var start = date.substring(17, 22);
                     var end = c[2].innerHTML.substring(17, 22);
+                    // ajax part to retrieve user
+
+                    var ajaRequest=new XMLHttpRequest();
+                    ajaRequest.addEventListener('readystatechange',function(event)
+                    {
+                        var element=event.target;
+                        if (element.readyState === XMLHttpRequest.DONE && element.status===200)
+                        {
+                            var response=xhr.responseText;
+                            alert (response);
+                        }
+                        alert(event.target.status);
+                    });
+                    alert ( "{{URL::to('adminuserslist')}}/"+id);
+                    ajaRequest.open('GET', "{{URL::to('adminuserslist')}}/"+id);
+
+
+
 
                     $('#scheduleId').val(id);
                     $("#place_edit option:contains(" + room + ")").attr('selected', true);

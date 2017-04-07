@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/subscribe/{idSchedule}',"SubscribeController@action");
 
+Route::get('/adminuserslist/{idSchedule?}',"AdminSubscribeController@sendUserListofSchedule");
+
 Route::get('/home', 'WelcomeController@index');
 Route::get('/events', 'EventController@index')->name('event.show');
 Route::post('/events', 'EventController@store')->name('event.store');
