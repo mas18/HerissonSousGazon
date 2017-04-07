@@ -7,6 +7,7 @@ use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateAdmin;
 use App\Http\Requests\UserUpdateRequest;
 use App\Repository\UserRepository;
+use App\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller

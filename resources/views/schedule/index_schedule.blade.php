@@ -62,6 +62,28 @@
 
         $(document).ready(
             function() {
+
+
+                //marche
+                $("#btnLeft").click(function () {
+                    var selectedItem = $("#non_subscribed_userList option:selected");
+                    $('#subscribed_user_list').append(selectedItem);
+
+                });
+
+                $("#btnRight").click(function () {
+                    var selectedItem = $("#subscribed_user_list option:selected");
+                    $('#non_subscribed_userList').append(selectedItem);
+
+                });
+
+
+
+            });
+
+
+        $(document).ready(
+            function() {
             $("#updateSchedule").hide();
             var max_fields      = 10; //maximum input boxes allowed
             var wrapper         = $(".input_fields_wrap"); //Fields wrapper
@@ -89,6 +111,8 @@
                     e.preventDefault(); $(this).parent('div').remove(); x--;
                 })
             });
+
+
 
         $(function(){
             $('#allschedule').DataTable({
@@ -197,22 +221,52 @@
                     var start = date.substring(17, 22);
                     var end = c[2].innerHTML.substring(17, 22);
                     // ajax part to retrieve user
+                    getMessage();
 
-                    var ajaRequest=new XMLHttpRequest();
-                    ajaRequest.addEventListener('readystatechange',function(event)
-                    {
-                        var element=event.target;
-                        if (element.readyState === XMLHttpRequest.DONE && element.status===200)
-                        {
-                            var response=xhr.responseText;
-                            alert (response);
-                        }
-                        alert(event.target.status);
-                    });
-                    alert ( "{{URL::to('adminuserslist')}}/"+id);
-                    ajaRequest.open('GET', "{{URL::to('adminuserslist')}}/"+id);
+                    function getMessage(){
+                        var url="{{URL::to('adminuserslist')}}"+"/"+id;
+                        $.ajax({
+                            type:'GET',
+                            url:url,
+                            data:'1',
+                            success:function(data){ //do somethings with data
+                                //we retrive both list
+                                var subscribedList=document.querySelector('#subscribed_user_list');
+                                var nonSubscribedList=document.querySelector('#non_subscribed_userList');
+
+                                //--------------list with subscribed user-----------------
+
+                                //we clear the list
+                                subscribedList.innerHTML="";
+
+                                //fil the aldready subscribded data
+                                data[0].forEach(function(element){
+                                    console.log(element['id']);
+                                    var option=document.createElement('option');
+                                    option.value=element.id;
+                                    option.innerHTML=element['lastname']+" "+element['lastname'];
+
+                                    subscribedList.appendChild(option);
+                                });
+
+                               //list non subscribed  data-----------------------
+                                nonSubscribedList.innerHTML="";
+
+                                //fil the aldready subscribded data
+                                data[1].forEach(function(element){
+                                    console.log(element['id']);
+                                    var option=document.createElement('option');
+                                    option.value=element.id;
+                                    option.innerHTML=element['lastname']+" "+element['lastname'];
+
+                                    nonSubscribedList.appendChild(option);
+                                });
 
 
+
+                            }
+                        });
+                    }
 
 
                     $('#scheduleId').val(id);
@@ -276,6 +330,8 @@
             document.getElementById("timeTo_edit").disabled = false;
             $("#updateSchedule").show();
         }
+
+
 
 
     </script>
@@ -460,7 +516,7 @@
                         <div class="form-group">
                             <section class="container" style="overflow:auto; width:600px;box-sizing: border-box;">
                                 <div style="width:230px; text-align:center;" class="col-md-2">
-                                    <select id="leftValues" size="10" style="width: 220px;overflow:scroll;" multiple>
+                                    <select id="subscribed_user_list" name="subscribed_user_list" size="10" style="width: 220px;overflow:scroll;" multiple>
                                         <option>1</option>
                                         <option>6</option>
                                         <option>3</option>
@@ -477,7 +533,7 @@
                                     <input type="button" id="btnRight" class="btn btn-default" value="&gt;&gt;" />
                                 </div >
                                 <div style="width:230px;text-align:center;" class="col-md-2">
-                                    <select id="rightValues" size="10" style="width:220px;overflow:scroll;" multiple>
+                                    <select id="non_subscribed_userList" name="non_subscribed_userList" size="10" style="width:220px;overflow:scroll;" multiple>
                                         <option>1</option>
                                         <option>2</option>
                                         <option>3</option>

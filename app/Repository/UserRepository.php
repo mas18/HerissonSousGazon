@@ -92,5 +92,24 @@ class UserRepository
         $this->save($user,$input);
     }
 
+    public function findUserWithSubscibedID($id_schedule)
+    {
+        return User::
+            //query inside the other table (n to n relation)
+            whereHas('schedules' ,function($query) use ($id_schedule)
+                {
+                    $query->where ('schedule_id','=',$id_schedule);
+                })
+                ->get();
+
+    }
+    public function findUserWhereIdIsNot($array)
+    {
+      return  $this->user
+            ->whereNotIn('id',$array)
+            ->get();
+    }
+
+
 
 }

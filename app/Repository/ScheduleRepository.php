@@ -310,6 +310,7 @@ class ScheduleRepository
         $startDate = new Carbon($schedule->start);
         $endDate = new Carbon($schedule->finish);
 
+
         return Schedule::
             //query inside the other table (n to n relation)
             whereHas('users', function ($query) use ($userID) {

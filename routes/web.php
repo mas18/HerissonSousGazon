@@ -19,7 +19,16 @@ Auth::routes();
 
 Route::get('/subscribe/{idSchedule}',"SubscribeController@action");
 
+
+
 Route::get('/adminuserslist/{idSchedule?}',"AdminSubscribeController@sendUserListofSchedule");
+
+//Route::post('/adminuserslist',
+//
+//
+//Route::get('/adminuserslist',
+//    function (){return "salut";});
+
 
 Route::get('/home', 'WelcomeController@index');
 Route::get('/events', 'EventController@index')->name('event.show');
@@ -36,6 +45,7 @@ Route::post('schedule', 'ScheduleController@subscribeuser');
 //affichage de la view
 Route::get('schedule/{number?}', 'ScheduleController@datatables')->name('schedule.show');
 //data query Ajax
+
 Route::get('schedule_data', 'ScheduleController@scheduledata');
 
 Route::post('/schedule/new', 'ScheduleController@store')->name('schedule.store');
@@ -49,16 +59,30 @@ Route::get("test",function ()
 
 
 
-    $repository=new \App\Repository\ScheduleRepository(new \App\Schedule(),new \App\Room());
+    $repository=new \App\Repository\UserRepository(new User());
 
-    $schedule=\App\Schedule::with('users')
-        ->find(1);
-
-    $schdule13_20=$repository->getByIdWithRelation(1);
-    $schdule15_18=$repository->getByIdWithRelation(2);
+    $uersListe=$repository->findUserWithSubscibedID(1);
 
 
-  echo  $repository->isTimeWithThisHourExiste(1,$schdule13_20);
+    $arrayID=array();
+    foreach ($uersListe as $aUser)
+        {
+            array_push($arrayID,$aUser->id);
+        }
+
+        $userNotInList=$repository->findUserWhereIdIsNot($arrayID);
+
+
+        foreach ($userNotInList as $aUser)
+        {
+            var_dump($aUser);
+        }
+
+
+
+
+
+
 
     return view ('teste');
 
