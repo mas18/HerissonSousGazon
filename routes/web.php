@@ -44,21 +44,21 @@ Route::post('/schedule/subscribtion', 'SubscribeController@subscriptionadmin')->
 
 Route::get("test",function ()
 {
+
+
+
     $repository=new \App\Repository\ScheduleRepository(new \App\Schedule(),new \App\Room());
 
     $schedule=\App\Schedule::with('users')
         ->find(1);
 
-        foreach ($schedule->users as $aUsers)
-        {
-            //var_dump($aUsers);
-        }
+    $schdule13_20=$repository->getByIdWithRelation(1);
+    $schdule15_18=$repository->getByIdWithRelation(2);
 
 
+  echo  $repository->isTimeWithThisHourExiste(1,$schdule13_20);
 
-
-
-
+    return view ('teste');
 
 });
 

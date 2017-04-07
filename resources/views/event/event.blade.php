@@ -153,11 +153,11 @@
                                 <div class="inner-content text-center">
 
                                     <div class="c100 p100 big dark center">
-                                        <span>280</span>
+                                        <span>{{ $controller->getVolunteers($event->id) }}</span>
                                         <div class="slice"><div class="bar"></div><div class="fill"></div></div>
                                     </div>
 
-                                    <p><em>Volontaires</em></p>
+                                    <p><em>Volontaires inscrit</em></p>
 
                                 </div>
                             </div><!-- /.col -->

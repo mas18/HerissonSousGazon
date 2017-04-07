@@ -9,7 +9,10 @@
 namespace App\Repository;
 
 use App\Event;
+use App\Schedule;
 use PhpParser\Node\Scalar\String_;
+use Carbon\Carbon;
+
 
 class EventRepository
 {
@@ -48,9 +51,31 @@ class EventRepository
     function update(Array $inputs)
     {
         $event=$this->getById($inputs['eventId']);
+        $this->updateSchedules($event, $inputs);
         $this->save($event,$inputs);
     }
 
+
+    function updateSchedules($event, Array $inputs){
+        $old = Carbon::parse($event->starting);
+        $new = Carbon::parse($inputs['dateFrom']);
+        $diff = $new->diffInDays($old);
+        $schedules = Schedule::all()->where('event_id', '=', 3);
+
+        foreach ($schedules as $s) {
+            $start = Carbon::parse($s->start);
+            $finish = Carbon::parse($s->finish);
+            if ($old->lt($new)) {
+                $s->start = $start->addDays($diff);
+                $s->finish = $finish->addDays($diff);
+                $s->save();
+            } else {
+                $s->start = $start->subDays($diff);
+                $s->finish = $finish->subDays($diff);
+                $s->save();
+            }
+        }
+    }
 
     function save(Event $event, $inputs)
     {

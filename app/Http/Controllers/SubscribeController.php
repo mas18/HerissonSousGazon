@@ -30,7 +30,25 @@ class SubscribeController extends Controller
 
     private  function subscribe($userID, $scheduleId)
     {
+
+        //check if the schedule has enought place to add a new user
+        $schedule=$this->repository->getByIdWithUsers($scheduleId);
+        $userID=Auth::user()->id;
+        if  (count($schedule->users)>=$schedule->places)
+        {
+            return false;
+        }
+        //check if the times laps is not on another schedule
+         if ($this->repository->isTimeWithThisHourExiste($userID,$schedule))
+         {
+             echo "pas valide temps";
+
+            exit;
+         }
+
+
         $this->repository->subscribuUserToSchedule($userID,$scheduleId);
+        return true;
     }
     private  function unSubscribe($userID, $scheduleId)
     {
