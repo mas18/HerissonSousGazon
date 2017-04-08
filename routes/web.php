@@ -19,16 +19,7 @@ Auth::routes();
 
 Route::get('/subscribe/{idSchedule}',"SubscribeController@action");
 
-
-
 Route::get('/adminuserslist/{idSchedule?}',"AdminSubscribeController@sendUserListofSchedule");
-
-//Route::post('/adminuserslist',
-//
-//
-//Route::get('/adminuserslist',
-//    function (){return "salut";});
-
 
 Route::get('/home', 'WelcomeController@index');
 Route::get('/events', 'EventController@index')->name('event.show');
@@ -50,14 +41,13 @@ Route::get('schedule_data', 'ScheduleController@scheduledata');
 
 Route::post('/schedule/new', 'ScheduleController@store')->name('schedule.store');
 Route::post('/schedule/update', 'ScheduleController@edit')->name('schedule.update');
-Route::post('/schedule/subscribtion', 'SubscribeController@subscriptionadmin')->name('schedule.subscriptionadmin');
+Route::post('/schedule/subscribtion', 'AdminSubscribeController@subscriptionadmin')->name('schedule.subscriptionadmin');
+
 
 
 
 Route::get("test",function ()
 {
-
-
 
     $repository=new \App\Repository\UserRepository(new User());
 
@@ -77,11 +67,6 @@ Route::get("test",function ()
         {
             var_dump($aUser);
         }
-
-
-
-
-
 
 
     return view ('teste');

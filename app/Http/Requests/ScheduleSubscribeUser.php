@@ -25,8 +25,7 @@ class ScheduleSubscribeUser extends FormRequest
     {
 
         return [
-            'user_selected'=>'required',
-            'scheduleId'
+            'user_selected'
         ];
     }
 }

@@ -57,14 +57,6 @@ class SubscribeController extends Controller
 
 
 
-    public function subscriptionadmin(ScheduleSubscribeUser $request){
-
-
-        //$this->scheduleRepository->subscribeByAdmin($request->scheduleId, $request->all());
-        $this->scheduleRepository->subscribeByAdmin(1, $request->all());
-
-        return redirect()->route('schedule.show', $request->eventId);
-    }
 
 
 

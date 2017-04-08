@@ -68,16 +68,12 @@
                 $("#btnLeft").click(function () {
                     var selectedItem = $("#non_subscribed_userList option:selected");
                     $('#subscribed_user_list').append(selectedItem);
-
                 });
 
                 $("#btnRight").click(function () {
                     var selectedItem = $("#subscribed_user_list option:selected");
                     $('#non_subscribed_userList').append(selectedItem);
-
                 });
-
-
 
             });
 
@@ -195,8 +191,6 @@
             var modalAction = document.getElementById('modalAction');
             var row = document.querySelectorAll("#allschedule  tr");
 
-
-
             for (var k = 1; k < row.length; k++) {
                 @if(Auth::user()->level>0)
                     admin_function();
@@ -262,14 +256,13 @@
                                     nonSubscribedList.appendChild(option);
                                 });
 
-
-
                             }
                         });
                     }
 
 
                     $('#scheduleId').val(id);
+                    $('#scheduleId2').val(id);
                     $("#place_edit option:contains(" + room + ")").attr('selected', true);
                     $('#date_edit').val(year + "-" + month + "-" + day);
                     $('#number_edit').val(number);
@@ -435,6 +428,7 @@
                         {{ csrf_field() }}
                         <input type="hidden" id="eventId" name="eventId" value="{{ $event->id }}">
                         <input type="hidden" id="scheduleId" name="scheduleId" value="">
+
                         <div class="form-group">
                             <label for="place_edit" class="col-md-3 control-label">Place:</label>
                             <div class="col-md-6">
@@ -495,37 +489,12 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('schedule.subscriptionadmin') }}">
                         {{ csrf_field() }}
                         <input type="hidden" id="eventId" name="eventId" value="{{ $event->id }}">
-                        <input type="hidden" id="scheduleId" name="scheduleId" value="">
-
-                        <!--
-                        <div class="form-group">
-                            <div class="col-md-5 col-md-offset-0">
-                                <select id="user_selected" class="form-control" name="user_selected">
-                                    @foreach($users as $aUser)
-                                        <option value="{{$aUser->id}}" required>{{$aUser->lastname}}   {{$aUser->firstname}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div id="submitVolunteers">
-                                <button id="btnSubscribe" type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary pull-right">Inscrire</button>
-                                <button id="btnUnsubscribe" type="submit" style="margin-left:10px;" class="col-md-3 btn btn-primary pull-right">Désinscrire</button>
-                            </div>
-                        </div>
-                        -->
+                        <input type="hidden" id="scheduleId2" name="scheduleId2" value="">
 
                         <div class="form-group">
                             <section class="container" style="overflow:auto; width:600px;box-sizing: border-box;">
                                 <div style="width:230px; text-align:center;" class="col-md-2">
                                     <select id="subscribed_user_list" name="subscribed_user_list" size="10" style="width: 220px;overflow:scroll;" multiple>
-                                        <option>1</option>
-                                        <option>6</option>
-                                        <option>3</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
                                     </select>
                                 </div>
                                 <div class="col-md-2">
@@ -534,18 +503,6 @@
                                 </div >
                                 <div style="width:230px;text-align:center;" class="col-md-2">
                                     <select id="non_subscribed_userList" name="non_subscribed_userList" size="10" style="width:220px;overflow:scroll;" multiple>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
                                     </select>
                                 </div>
                             </section>

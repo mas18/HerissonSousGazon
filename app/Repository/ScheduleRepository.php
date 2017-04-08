@@ -333,8 +333,10 @@ class ScheduleRepository
     }
 
 
-    function subscribeByAdmin($scheduleId, $input){
 
+
+    //subscription or unsubscription by administrator
+    function subscribeByAdmin($scheduleId, $input){
 
         try{
             $currentCchedule=  $this->schedule->findOrFail($scheduleId);
