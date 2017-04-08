@@ -63,6 +63,24 @@
         $(document).ready(
             function() {
 
+                //
+                var submitButton = document.querySelector("#submitVolunteers");
+                submitButton.addEventListener("click", function() {
+                    var list = document.querySelector("#subscribed_user_list");
+
+                    var listElement = list.childNodes;
+
+                    console.log(listElement);
+                    listElement.forEach(function(element){
+                       element.select = true;
+                    });
+
+                    var formSubscribe = document.querySelector("#formSubscribe");
+                    //formSubscribe.submit;
+
+                });
+
+
 
                 //marche
                 $("#btnLeft").click(function () {
@@ -238,7 +256,7 @@
                                     console.log(element['id']);
                                     var option=document.createElement('option');
                                     option.value=element.id;
-                                    option.innerHTML=element['lastname']+" "+element['lastname'];
+                                    option.innerHTML=element['lastname']+" "+element['firstname'];
 
                                     subscribedList.appendChild(option);
                                 });
@@ -248,10 +266,9 @@
 
                                 //fil the aldready subscribded data
                                 data[1].forEach(function(element){
-                                    console.log(element['id']);
                                     var option=document.createElement('option');
                                     option.value=element.id;
-                                    option.innerHTML=element['lastname']+" "+element['lastname'];
+                                    option.innerHTML=element['lastname']+" "+element['firstname'];
 
                                     nonSubscribedList.appendChild(option);
                                 });
@@ -323,6 +340,9 @@
             document.getElementById("timeTo_edit").disabled = false;
             $("#updateSchedule").show();
         }
+
+
+
 
 
 
@@ -486,7 +506,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('schedule.subscriptionadmin') }}">
+                    <form id="formSubscribe" class="form-horizontal" role="form" method="POST" action="{{ route('schedule.subscriptionadmin') }}">
                         {{ csrf_field() }}
                         <input type="hidden" id="eventId" name="eventId" value="{{ $event->id }}">
                         <input type="hidden" id="scheduleId2" name="scheduleId2" value="">
@@ -494,21 +514,24 @@
                         <div class="form-group">
                             <section class="container" style="overflow:auto; width:600px;box-sizing: border-box;">
                                 <div style="width:230px; text-align:center;" class="col-md-2">
-                                    <select id="subscribed_user_list" name="subscribed_user_list" size="10" style="width: 220px;overflow:scroll;" multiple>
+                                    <label>inscrit</label>
+                                    <select id="subscribed_user_list" name="subscribed_user_list[]" size="10" style="width: 220px;overflow:scroll;" multiple>
                                     </select>
                                 </div>
                                 <div class="col-md-2">
+                                    <br/><br/><br/>
                                     <input type="button" id="btnLeft" class="btn btn-default" value="&lt;&lt;" />
                                     <input type="button" id="btnRight" class="btn btn-default" value="&gt;&gt;" />
                                 </div >
                                 <div style="width:230px;text-align:center;" class="col-md-2">
-                                    <select id="non_subscribed_userList" name="non_subscribed_userList" size="10" style="width:220px;overflow:scroll;" multiple>
+                                    <label>non inscrit</label>
+                                    <select id="non_subscribed_userList" name="non_subscribed_userList[]" size="10" style="width:220px;overflow:scroll;" multiple>
                                     </select>
                                 </div>
                             </section>
                             <br/><br/>
                             <div id="submitVolunteers">
-                                <button type="submit" style="margin-left:30px;" class="btn btn-primary pull-left">Enregistrer</button>
+                                <button style="margin-left:30px;" class="btn btn-primary pull-left">Enregistrer</button>
                             </div>
                         </div>
 
