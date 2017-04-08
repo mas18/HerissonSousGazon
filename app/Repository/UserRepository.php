@@ -109,7 +109,4 @@ class UserRepository
             ->whereNotIn('id',$array)
             ->get();
     }
-
-
-
 }

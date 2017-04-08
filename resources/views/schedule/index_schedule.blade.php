@@ -64,19 +64,27 @@
             function() {
 
                 //
+
+
+
+
+
                 var submitButton = document.querySelector("#submitVolunteers");
-                submitButton.addEventListener("click", function() {
+                submitButton.addEventListener("click", function(event) {
+                 event.preventDefault();
+
+
                     var list = document.querySelector("#subscribed_user_list");
 
                     var listElement = list.childNodes;
 
-                    console.log(listElement);
+
                     listElement.forEach(function(element){
-                       element.select = true;
+                       element.selected = true;
                     });
 
                     var formSubscribe = document.querySelector("#formSubscribe");
-                    //formSubscribe.submit;
+                    formSubscribe.submit();
 
                 });
 
@@ -303,7 +311,6 @@
                   }
                     var id = this.parentNode.childNodes[0].innerHTML;
                     console.log(id);
-                    console.log("fdsafdsfds");
                     var url="{{URL::to('subscribe')}}"+"/"+id;
                     console.log(url);
                     location.href = "{{URL::to('subscribe')}}"+"/"+id;
@@ -530,13 +537,14 @@
                                 </div>
                             </section>
                             <br/><br/>
-                            <div id="submitVolunteers">
-                                <button style="margin-left:30px;" class="btn btn-primary pull-left">Enregistrer</button>
+                            <div >
+                                <button id="submitVolunteers" style="margin-left:30px;" class="btn btn-primary pull-left">Enregistrer</button>
                             </div>
                         </div>
 
                         </br>
                     </form>
+
                 </div>
 
                 <div class="modal-footer">
