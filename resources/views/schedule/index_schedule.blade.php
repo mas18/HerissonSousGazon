@@ -63,12 +63,6 @@
         $(document).ready(
             function() {
 
-                //
-
-
-
-
-
                 var submitButton = document.querySelector("#submitVolunteers");
                 submitButton.addEventListener("click", function(event) {
                  event.preventDefault();
@@ -140,14 +134,14 @@
             $('#allschedule').DataTable({
                 responsive: true,
                 "bStateSave": true, //add state button to save the current display
-                dom: 'Blfrtip', //display button and entries
+                /*dom: 'Blfrtip', //display button and entries
                 buttons: [ //set language of the button text
 
-                    {extend: 'copy', text: 'Copier   '},
+                   /* {extend: 'copy', text: 'Copier   '},
                     {extend: 'csv', text:  'Enregister en CSV   ' },
                     {extend: 'excel', text:  'enregister au format excel   ' },
                     {extend: 'print', text:  'imprimer'},
-                ],
+                ],*/
 
                     processing: false,
                     serverSide: false,

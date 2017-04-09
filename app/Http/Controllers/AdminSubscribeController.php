@@ -33,7 +33,7 @@ class AdminSubscribeController extends Controller
 
         $userNotInList=$this->repository->findUserWhereIdIsNot($arrayID);
 
-       $response=array($userSubscribedList,$userNotInList);
+        $response=array($userSubscribedList,$userNotInList);
 
 
         return response()->json($response);
