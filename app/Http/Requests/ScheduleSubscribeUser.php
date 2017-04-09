@@ -25,7 +25,7 @@ class ScheduleSubscribeUser extends FormRequest
     {
 
         return [
-            'subscribed_user_list'
+            'subscribed_user_list'=>'array'
         ];
     }
 }

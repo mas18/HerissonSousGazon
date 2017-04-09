@@ -3,17 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Repository\UserRepository;
+use App\Repository\ScheduleRepository;
 use App\Http\Requests\ScheduleSubscribeUser;
 use Illuminate\Http\Request;
 
 class AdminSubscribeController extends Controller
 {
     public $repository;
+    public $scheduleRepository;
 
-    public function __construct(UserRepository $repository)
+    public function __construct(UserRepository $repository, ScheduleRepository $scheduleRepository)
     {
         $this->middleware('admin');
         $this->repository=$repository;
+        $this->scheduleRepository=$scheduleRepository;
     }
 
     //
@@ -42,11 +45,7 @@ class AdminSubscribeController extends Controller
     //subscription or unsubscription by administrator
     public function subscriptionadmin(ScheduleSubscribeUser $request){
 
-        var_dump($request->subscribed_user_list);
-        var_dump($request["scheduleId2"]);
-
-        exit;
-
+        var_dump($request["subscribed_user_list"]);
         $this->scheduleRepository->subscribeByAdmin($request["scheduleId2"], $request["subscribed_user_list"]);
 
         return redirect()->route('schedule.show', $request->eventId);

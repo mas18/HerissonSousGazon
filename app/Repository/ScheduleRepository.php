@@ -336,17 +336,23 @@ class ScheduleRepository
     //subscription or unsubscription by administrator
     public function subscribeByAdmin($scheduleId, $input){
 
-        try{
-            $currentCchedule=  $this->schedule->findOrFail($scheduleId);
+        var_dump($scheduleId);
+        var_dump($input);
 
-            $currentCchedule->detach();
+        $currentCchedule=  $this->schedule->findOrFail($scheduleId);
+        $currentCchedule->users()->detach();
 
-            $currentCchedule->users()->attach($input['subscribed_user_list']);
 
+        foreach($input as $list){
+            try{
+                $currentCchedule->users()->attach($list);
+            }
+            catch (Exception $ex)
+            {
+            }
         }
-        catch (Exception $ex)
-        {
 
-        }
+
+
     }
 }
