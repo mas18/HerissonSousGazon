@@ -100,7 +100,7 @@ class UserTableSeeder extends Seeder {
         User::create(array(
             'email' => 'olivier.bourgeois@novelis.com',
             'firstname' => 'Olivier',
-            'lastname' => 'bourgeois',
+            'lastname' => 'Bourgeois',
             'password' => bcrypt('password'),
             'street' => 'Rue jeu de quille 10',
             'tel' => '079 455 32 31 ',

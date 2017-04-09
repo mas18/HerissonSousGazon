@@ -344,7 +344,7 @@
 
         function deleteSchedule() {
             var id = $('#scheduleId').val();
-            if (!confirm("Êtes-vous sûr de vouloir supprimer ce planning? Cette action est irréversible"))
+            if (!confirm("Êtes-vous sûr de vouloir supprimer ce planning? Cette action est irréversible."))
             {
                 e.preventDefault();
                 return;

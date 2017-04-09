@@ -101,13 +101,15 @@ class UserRepository
                 {
                     $query->where ('schedule_id','=',$id_schedule);
                 })
-                ->get();
-
+                ->orderBy('lastname', 'ASC')->orderBy('firstname', 'ASC')->get();
     }
+
+
+
     public function findUserWhereIdIsNot($array)
     {
       return  $this->user
             ->whereNotIn('id',$array)
-            ->get();
+          ->orderBy('lastname', 'ASC')->orderBy('firstname', 'ASC')->get();
     }
 }
