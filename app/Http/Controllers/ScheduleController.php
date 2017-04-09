@@ -55,6 +55,7 @@ class ScheduleController extends Controller
         $rooms = Room::all();
         return view('schedule.index_schedule')->with('dates', $dates)->with('event', $event)->with('rooms', $rooms)->with('users',$users);
     }
+
     //rendu de la table via Ajax en JSON
     public function scheduledata(Request $request)
     {       // retourne l'objet sous forme de data table

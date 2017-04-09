@@ -24,13 +24,11 @@ class SubscribeController extends Controller
         $userID=Auth::user()->id;
         $this->repository->isUserSubscribe($userID,$scheduleId) ? $this->unSubscribe($userID,$scheduleId) : $this->subscribe($userID,$scheduleId);
         return back()->withInput();
-
     }
 
 
     private  function subscribe($userID, $scheduleId)
     {
-
         //check if the schedule has enought place to add a new user
         $schedule=$this->repository->getByIdWithUsers($scheduleId);
         $userID=Auth::user()->id;

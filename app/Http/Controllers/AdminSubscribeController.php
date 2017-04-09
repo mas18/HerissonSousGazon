@@ -45,10 +45,10 @@ class AdminSubscribeController extends Controller
     //subscription or unsubscription by administrator
     public function subscriptionadmin(ScheduleSubscribeUser $request){
 
-        var_dump($request["subscribed_user_list"]);
+
         $this->scheduleRepository->subscribeByAdmin($request["scheduleId2"], $request["subscribed_user_list"]);
-
         return redirect()->route('schedule.show', $request->eventId);
-    }
 
+
+    }
 }

@@ -336,9 +336,6 @@ class ScheduleRepository
     //subscription or unsubscription by administrator
     public function subscribeByAdmin($scheduleId, $input){
 
-        var_dump($scheduleId);
-        var_dump($input);
-
         $currentCchedule=  $this->schedule->findOrFail($scheduleId);
         $currentCchedule->users()->detach();
 

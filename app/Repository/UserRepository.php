@@ -45,6 +45,7 @@ class UserRepository
         return $this->user->orderBy('lastname', 'ASC')->orderBy('firstname', 'ASC')->get();
     }
 
+
     function store(Array $inputs)
     {
 
