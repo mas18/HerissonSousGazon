@@ -55,6 +55,11 @@ class EventRepository
         $this->save($event,$inputs);
     }
 
+    function delete($id)
+    {
+        $this->getById($id)->delete();
+    }
+
 
     function updateSchedules($event, Array $inputs){
         $old = Carbon::parse($event->starting);

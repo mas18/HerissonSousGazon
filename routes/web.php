@@ -29,6 +29,8 @@ Route::get('profil','ProfilController@display');
 Route::post('profil','ProfilController@save');
 Route::post('/events/new', 'EventController@store')->name('event.store');
 Route::post('/events/update', 'EventController@edit')->name('event.update');
+Route::get('/events/delete/{id}', 'EventController@destroy');
+Route::get('/schedule/delete/{id}', 'ScheduleController@destroy');
 Route::post('/events/newRoom', 'RoomController@store')->name('room.store');
 
 Route::post('schedule', 'ScheduleController@subscribeuser');

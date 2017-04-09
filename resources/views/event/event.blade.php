@@ -1,7 +1,20 @@
 @extends('layouts.template')
 
 @section('main_content')
+        <script>
+            function delete_Event(id) {
+                var id = id;
+                if (!confirm("Êtes-vous sûr de vouloir supprimer cet événement? Cette action est irréversible"))
+                {
+                    e.preventDefault();
+                    return;
+                } else {
+                    location.href = "{{URL::to('events/delete')}}"+"/"+id;
+                }
 
+            }
+
+        </script>
         <div class="row">
             <div class="col-xs-9">
             </div>
@@ -130,6 +143,7 @@
                                 </h4>
                             </div>
                             <div class="col-xs-2">
+                                <button type="button" style="float: right; color:#f5f8fa"  class="btn btn-link btn-sm" onclick="delete_Event({{ $event->id }})" >Supprimer</button>
                                 <button type="button" style="float: right; color:#f5f8fa"  class="btn btn-link btn-sm" onclick="$('#modalUpdate{{ $event->id }}').modal({'backdrop': 'static'});" >Modifier</button>
                             </div>
                         </div>
@@ -137,6 +151,7 @@
                     <div id="collapse{{ $event->id }}" class="panel-collapse collapse{{ $firstItem ? ' in' : '' }}" role="tabpanel" aria-labelledby="heading{{ $event->id }}">
                         <div class="panel-body">
                             <p></p>
+                            <!--
                             <div class="col-xs-6 col-sm-3">
                                 <div class="inner-content text-center">
 
@@ -149,7 +164,7 @@
 
                                 </div>
                             </div><!-- /.col -->
-                            <div class="col-xs-6 col-sm-3">
+                            <!--<div class="col-xs-6 col-sm-3">
                                 <div class="inner-content text-center">
 
                                     <div class="c100 p100 big dark center">

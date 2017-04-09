@@ -342,6 +342,18 @@
             $("#updateSchedule").show();
         }
 
+        function deleteSchedule() {
+            var id = $('#scheduleId').val();
+            if (!confirm("Êtes-vous sûr de vouloir supprimer ce planning? Cette action est irréversible"))
+            {
+                e.preventDefault();
+                return;
+            } else {
+                location.href = "{{URL::to('schedule/delete')}}"+"/"+id;
+            }
+
+        }
+
 
     </script>
     <script type="text/javascript">
@@ -487,8 +499,9 @@
                                     <input type="time" id="timeTo_edit" name="timeTo_edit" value="" disabled required>
                                 </div>
                                 <br/><br/><br/>
-                                <div class="col-md-6 col-md-offset-1">
+                                <div class="col-md-11 col-md-offset-1">
                                     <button type="button" id="editButton" class="btn btn-primary" onclick="edit()">Modifier le planning</button>
+                                    <button type="button" id="editButton" class="btn btn-danger" onclick="deleteSchedule()">Supprimer le planning</button>
                                 </div>
                             </div>
                         </div>

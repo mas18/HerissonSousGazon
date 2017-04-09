@@ -22,12 +22,14 @@ class CreateSchedulesTable extends Migration {
                 ->references('id')
                 ->on('events')
                 ->onDelete('restrict')
+                ->onSoftDelete('cascade')
                 ->onUpdate('restrict');
 
             $table->foreign('room_id')
                 ->references('id')
                 ->on('rooms')
                 ->onDelete('restrict')
+                ->onSoftDelete('cascade')
                 ->onUpdate('restrict');
 
 

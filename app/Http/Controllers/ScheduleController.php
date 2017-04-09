@@ -192,6 +192,13 @@ class ScheduleController extends Controller
         return redirect()->route('schedule.show', $request->eventId);
     }
 
+    public function destroy($id)
+    {
+        $this->scheduleRepository->destroy($id);
+        return redirect()->route('event.show');
+    }
+
+
     public static function getSchedule($id)
     {
         return Schedule::find($id);

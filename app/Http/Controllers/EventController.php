@@ -98,7 +98,7 @@ class EventController extends Controller {
    */
   public function update($id)
   {
-    
+
   }
 
   /**
@@ -109,15 +109,19 @@ class EventController extends Controller {
    */
   public function destroy($id)
   {
-    
+      $this->eventRepository->delete($id);
+      return redirect()->route('event.show');
   }
 
   public function getPlaces($id)
   {
       $places = $this->scheduleRepository->placesTotal($id);
       $occupied = $this->scheduleRepository->placesOccupied($id);
-
-      return round($occupied / $places * 100);
+      if($places == 0){
+          return 0;
+      } else {
+          return round($occupied / $places * 100);
+      }
   }
     public function getVolunteers($id)
     {

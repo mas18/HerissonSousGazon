@@ -3,11 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Event extends Model {
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
 
 	protected $table = 'events';
 	public $timestamps = true;
+
 
     /**
      * The attributes that are mass assignable.
@@ -20,5 +24,16 @@ class Event extends Model {
 	{
 		return $this->hasMany('App\Schedule');
 	}
+
+    public static function boot()
+    {
+        parent::boot();
+
+        // cause a delete of a product to cascade to children so they are also deleted
+        static::deleted(function($event)
+        {
+            $event->schedules()->delete();
+        });
+    }
 
 }
