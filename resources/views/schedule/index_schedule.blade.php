@@ -280,7 +280,6 @@
 
                                     nonSubscribedList.appendChild(option);
                                 });
-
                             }
                         });
                     }
