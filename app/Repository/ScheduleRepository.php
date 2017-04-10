@@ -332,8 +332,8 @@ class ScheduleRepository
                 }); //nested where instead the or where statement
                 $query->OrWhere(function ($query) use ($startDate, $endDate) {
                     $query
-                        ->where('start', '<=', $startDate)
-                        ->where('finish', '>=', $startDate);
+                        ->where('start', '<', $startDate)
+                        ->where('finish', '>', $startDate);
                 });
             })
                 ->get()
@@ -363,6 +363,5 @@ class ScheduleRepository
 
         }
     }
-
 
 }
