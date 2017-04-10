@@ -45,7 +45,7 @@ class RoomController extends Controller {
   public function store(RoomRequest $request)
   {
       $this->scheduleRepository->storeRoom($request->all());
-      return redirect()->route('schedule.show','1');
+      return redirect()->route('schedule.show', $request->eventId);
   }
 
 

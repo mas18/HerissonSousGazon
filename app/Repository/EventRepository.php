@@ -65,7 +65,7 @@ class EventRepository
         $old = Carbon::parse($event->starting);
         $new = Carbon::parse($inputs['dateFrom']);
         $diff = $new->diffInDays($old);
-        $schedules = Schedule::all()->where('event_id', '=', 3);
+        $schedules = Schedule::all()->where('event_id', '=', $event->id);
 
         foreach ($schedules as $s) {
             $start = Carbon::parse($s->start);

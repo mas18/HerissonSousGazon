@@ -65,7 +65,7 @@ class UserController extends Controller
     {
         //
         $user=$this->userRepository->store($request->all());
-        return redirect('user')->withOk("l'utilisateur".$user->lastname."a été créé.");
+        return redirect('user')->withOk("l'utilisateur ".$user->lastname." a été créé.");
     }
 
     /**
@@ -107,7 +107,7 @@ class UserController extends Controller
     {
         //
         $this->userRepository->update($id,$request->all());
-        return redirect('user')->withOk("l'utilisateur".$request->input('lastname').'a été modifié.');
+        return redirect('user')->withOk("l'utilisateur ".$request->input('lastname')." a été modifié.");
 
     }
 

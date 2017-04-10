@@ -12,7 +12,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">Adresse mail</label>
+                            <label for="email" class="col-md-4 control-label">Adresse mail *</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
@@ -27,7 +27,7 @@
 
 
                         <div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
-                            <label for="firstname" class="col-md-4 control-label">Prénom</label>
+                            <label for="firstname" class="col-md-4 control-label">Prénom *</label>
 
                             <div class="col-md-6">
                                 <input id="firstname" type="text" class="form-control" name="firstname" value="{{ old('firstname') }}" required autofocus>
@@ -41,7 +41,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
-                            <label for="lastname" class="col-md-4 control-label">Nom</label>
+                            <label for="lastname" class="col-md-4 control-label">Nom *</label>
 
                             <div class="col-md-6">
                                 <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" required autofocus>
@@ -56,7 +56,7 @@
 
 
                         <div class="form-group{{ $errors->has('street') ? ' has-error' : '' }}">
-                            <label for="street" class="col-md-4 control-label">Rue</label>
+                            <label for="street" class="col-md-4 control-label">Rue *    </label>
 
                             <div class="col-md-6">
                                 <input id="street" type="text" class="form-control" name="street" value="{{ old('street') }}" required autofocus>
@@ -70,7 +70,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('city') ? ' has-error' : '' }}">
-                            <label for="city" class="col-md-4 control-label">Ville</label>
+                            <label for="city" class="col-md-4 control-label">Ville *</label>
 
                             <div class="col-md-6">
                                 <input id="city" type="text" class="form-control" name="city" value="{{ old('city') }}" required autofocus>
@@ -84,7 +84,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('tel') ? ' has-error' : '' }}">
-                            <label for="tel" class="col-md-4 control-label">Téléphone</label>
+                            <label for="tel" class="col-md-4 control-label">Téléphone *</label>
 
                             <div class="col-md-6">
                                 <input id="tel" type="text" class="form-control" name="tel" value="{{ old('tel') }}" required autofocus>
@@ -101,7 +101,7 @@
                             <label for="comment" class="col-md-4 control-label">Remarques</label>
 
                             <div class="col-md-6">
-                                <input id="comment" type="text" class="form-control" name="comment" value="{{ old('comment') }}" required autofocus>
+                                <input id="comment" type="text" class="form-control" name="comment" value="{{ old('comment') }}" autofocus>
 
                                 @if ($errors->has('comment'))
                                     <span class="help-block">
@@ -112,7 +112,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Mot de passe</label>
+                            <label for="password" class="col-md-4 control-label">Mot de passe *</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password" required>
@@ -128,7 +128,7 @@
 
 
                         <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirmer mot de passe</label>
+                            <label for="password-confirm" class="col-md-4 control-label">Confirmer mot de passe *</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>

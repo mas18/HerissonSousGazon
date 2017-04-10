@@ -37,20 +37,32 @@ class ScheduleRepository
         $diff = $new->diffInDays($old);
         $schedules = Schedule::where('event_id', '=', $eventOld->id)->get();
 
+        if($old->lt($new)){
+            $add = true;
+        } else {
+            $add = false;
+        }
+
         foreach ($schedules as $s) {
             $schedule = new $this->schedule;
-            $this->saveCopy($schedule, $s, $eventNew, $diff);
+            $this->saveCopy($schedule, $s, $eventNew, $diff, $add);
         }
     }
 
-    function saveCopy(Schedule $schedule, Schedule $s, Event $event, $diff)
+    function saveCopy(Schedule $schedule, Schedule $s, Event $event, $diff, $add)
     {
         $start = Carbon::parse($s->start);
         $finish = Carbon::parse($s->finish);
 
         $schedule->places = $s->places;
-        $schedule->start = $start->addDays($diff);
-        $schedule->finish = $finish->addDays($diff);
+        if($add){
+            $schedule->start = $start->addDays($diff);
+            $schedule->finish = $finish->addDays($diff);
+        } else {
+            $schedule->start = $start->subDays($diff);
+            $schedule->finish = $finish->subDays($diff);
+        }
+
         $schedule->event_id = $event->id;
         $schedule->room_id = $s->room_id;
 

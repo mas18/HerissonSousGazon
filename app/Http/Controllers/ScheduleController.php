@@ -27,8 +27,8 @@ class ScheduleController extends Controller
 
         //define the right of the user
 
-        $this->middleware('admin', ['only'=>'datatables, scheduledata','index']);
-        $this->middleware('auth');
+       $this->middleware('admin', ['only'=>'datatables, scheduledata','index']);
+       $this->middleware('auth');
        $this->scheduleRepository=$scheduleRepository;
        $this->eventRepository=$eventRepository;
        $this->userRepository=$userRepository;
@@ -42,7 +42,7 @@ class ScheduleController extends Controller
 
         //$this->scheduleRepository->subscribeuser($schedule,$user);
 
-        return redirect()->route('schedule.show', $request->eventId)->withOk("l'utilisateur".$user->lastname."a été ajouté");
+        return redirect()->route('schedule.show', $request->eventId)->withOk("l'utilisateur ".$user->lastname." a été ajouté");
     }
 
     //
@@ -80,7 +80,7 @@ class ScheduleController extends Controller
                 return ($schedule->places)-(count($schedule->users));
             })
             ->addColumn('action', function ($schedule) {
-                //check if the user is aldredy subscribed or not
+                //check if the user is already subscribed or not
                 $userId=auth()->user()->id;
                 $userIsSubscribed=$this->scheduleRepository->hasUserSchedule($schedule,$userId);
 

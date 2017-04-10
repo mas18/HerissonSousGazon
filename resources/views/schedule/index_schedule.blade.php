@@ -62,7 +62,7 @@
 
         $(document).ready(
             function() {
-
+                @if(Auth::user()->level>0)
                 var submitButton = document.querySelector("#submitVolunteers");
                 submitButton.addEventListener("click", function(event) {
                  event.preventDefault();
@@ -82,7 +82,7 @@
 
                 });
 
-
+                @endif
 
                 //marche
                 $("#btnLeft").click(function () {
@@ -297,7 +297,7 @@
                 var childsNodes = row[k].childNodes;
                 console.log(childsNodes[childsNodes.length - 1]);
                 childsNodes[childsNodes.length - 1].addEventListener('click', function (event) {
-                    var text
+
                   if (!confirm("Veuillez confirmer l'action"))
                   {
                       e.preventDefault();
@@ -353,10 +353,6 @@
             }
 
         }
-
-
-    </script>
-    <script type="text/javascript">
 
 
     </script>
