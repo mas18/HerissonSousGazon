@@ -24,7 +24,9 @@
                 <th>Places total</th>
                 <th>Place restante </th>
                 <th>utilisateurs inscrits</th>
+                @if(Auth::user()->level==0)
                 <th>action</th>
+                    @endif
             </tr>
             </thead>
             <tbody>
@@ -195,7 +197,9 @@
                         _: 'display',
                         sort: 'alpha'
                     }},
+                        @if(Auth::user()->level==0)
                     {data: 'action', name: 'action', orderable: false, searchable: false}
+                    @endif
             ],
 
                 'fnInitComplete':data_table_listener
@@ -216,7 +220,9 @@
                 @endif
 
                 //add and remove button click
+                        @if(Auth::user()->level==0)
                 var childsNodes = subscribe_unsubscibe();
+                @endif
 
             }
 

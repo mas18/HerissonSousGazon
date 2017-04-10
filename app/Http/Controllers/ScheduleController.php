@@ -82,6 +82,8 @@ class ScheduleController extends Controller
             })
             ->addColumn('action', function ($schedule) {
                 //check if the user is already subscribed or not
+                if (Auth::user()->level>0)
+                    return null;
                 $userId=auth()->user()->id;
                 $userIsSubscribed=$this->scheduleRepository->hasUserSchedule($schedule,$userId);
 
