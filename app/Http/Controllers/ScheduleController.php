@@ -80,16 +80,22 @@ class ScheduleController extends Controller
             ->addColumn('occuped', function ($schedule) {
                 return ($schedule->places)-(count($schedule->users));
             })
-
             ->addColumn('action', function ($schedule) {
                 //check if the user is already subscribed or not
                 $userId=auth()->user()->id;
                 $userIsSubscribed=$this->scheduleRepository->hasUserSchedule($schedule,$userId);
 
+                $date = Carbon::parse($schedule->start);
+                $now = Carbon::now();
+                $diff = $now->diffInDays($date);
+
                 $buttonColor="btn-danger";
-                $displayText=  'Desincription';
+                $displayText='Desinscription';
                 $disable='';
                 $element="a";
+
+
+
 
                 if (!$userIsSubscribed)
                 {
@@ -101,16 +107,19 @@ class ScheduleController extends Controller
                         $buttonColor='btn-primary disabled';
                         $disable='disabled';
                         $element='span';
-
                     }
+                } elseif($diff < 22 || $date->lt($now)) {
+                    $buttonColor="btn-danger disabled";
+                    $displayText= 'Desinscription';
+                    $disable='disabled';
+                    $element='span';
                 }
 
-                if (Auth::user()->level>0)
-                    return null;
+
+
+
                 return '<'.$element.' href="#inscription-'.$schedule->id.'" '.$disable.' class="btn btn-sm '.$buttonColor.'">'.$displayText.'</'.$element.'>';
             })
-
-
             ->editColumn('start', function ($schedule) {
                 $carbonDate =new Carbon($schedule->start);
                 return [
