@@ -24,7 +24,9 @@
                 <th>Places total</th>
                 <th>Place restante </th>
                 <th>utilisateurs inscrits</th>
+                @if(Auth::user()->level==0)
                 <th>action</th>
+                @endif
             </tr>
             </thead>
             <tbody>
@@ -196,7 +198,9 @@
                         _: 'display',
                         sort: 'alpha'
                     }},
+                        @if(Auth::user()->level==0)
                     {data: 'action', name: 'action', orderable: false, searchable: false}
+                    @endif
             ],
 
                 'fnInitComplete':data_table_listener
@@ -217,7 +221,9 @@
                 @endif
 
                 //add and remove button click
+                        @if(Auth::user()->level==0)
                 var childsNodes = subscribe_unsubscibe();
+                @endif
 
             }
 
@@ -610,7 +616,6 @@
                                  <span class="glyphicon glyphicon-warning-sign"> </span>
                                 <strong>{{ session()->pull('error_msg', 'default') }}</strong>
                             </span>
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>

@@ -11,6 +11,7 @@ use App\Room;
 use Illuminate\Http\Request;
 use App\Http\Requests\ScheduleRequest;
 //use datatables
+use Illuminate\Support\Facades\Auth;
 use Tests\Unit\scheduleTest;
 use Yajra\Datatables\Datatables;
 use Carbon\Carbon;
@@ -79,17 +80,16 @@ class ScheduleController extends Controller
             ->addColumn('occuped', function ($schedule) {
                 return ($schedule->places)-(count($schedule->users));
             })
+
             ->addColumn('action', function ($schedule) {
                 //check if the user is already subscribed or not
                 $userId=auth()->user()->id;
                 $userIsSubscribed=$this->scheduleRepository->hasUserSchedule($schedule,$userId);
 
-
                 $buttonColor="btn-danger";
                 $displayText=  'Desincription';
                 $disable='';
                 $element="a";
-
 
                 if (!$userIsSubscribed)
                 {
@@ -105,11 +105,12 @@ class ScheduleController extends Controller
                     }
                 }
 
-
-
-
+                if (Auth::user()->level>0)
+                    return null;
                 return '<'.$element.' href="#inscription-'.$schedule->id.'" '.$disable.' class="btn btn-sm '.$buttonColor.'">'.$displayText.'</'.$element.'>';
             })
+
+
             ->editColumn('start', function ($schedule) {
                 $carbonDate =new Carbon($schedule->start);
                 return [
