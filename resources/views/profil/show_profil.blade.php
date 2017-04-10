@@ -4,6 +4,11 @@
 @section('header_title', $user->lastname)
 @section('main_content')
     <div class="col-sm-offset-2 col-sm-8">
+
+        @if(session()->has('ok'))
+            <div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
+        @endif
+
         <br>
         <div class="panel panel-primary">
             <div class="panel-heading" style="font-size:18px">Modification d'un utilisateur</div>

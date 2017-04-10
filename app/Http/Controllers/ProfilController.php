@@ -23,11 +23,13 @@ class ProfilController extends Controller
     {
        return  view ('profil\show_profil',['user'=>$user = Auth::user()]);
     }
+
+
     public function save(UserProfilRequest $request)
     {
         $id=Auth::user()->id;
         $this->userRepository->userUpdate($id,$request);
-        return back();
+        return back()->withOk("l'utilisateur a été modifié.");
 
     }
 }

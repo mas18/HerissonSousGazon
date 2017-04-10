@@ -1,6 +1,8 @@
 <?php ?>
 @extends('layouts.template')
 @section('main_content')
+
+
     <div class="col-sm-offset-3 col-sm-5" style="position:relative;top:40px;">
         <br>
         <div class="panel panel-primary">
@@ -15,8 +17,10 @@
                 <br/>
                 statut :
                {{$user->level==0 ? "membre":"administrateur"}}
-
             </div>
+        </div>
+        <div>
+            <a href="javascript:history.back()" class="btn btn-primary pull-right btn-sm">Retour</a>
         </div>
     </div>
 @endsection

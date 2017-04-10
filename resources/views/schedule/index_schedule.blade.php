@@ -274,7 +274,6 @@
 
                                     nonSubscribedList.appendChild(option);
                                 });
-
                             }
                         });
                     }
