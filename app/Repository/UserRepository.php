@@ -112,4 +112,11 @@ class UserRepository
             ->whereNotIn('id',$array)
           ->orderBy('lastname', 'ASC')->orderBy('firstname', 'ASC')->get();
     }
+    public function getAllUserWithId($array_user_id)
+    {
+        return $this->user
+            ->whereIn('id', $array_user_id)
+            ->get();
+
+    }
 }

@@ -193,8 +193,6 @@ class ScheduleRepository
                 $users->push($user);
             }
         }
-
-
         return $users;
     }
 
@@ -343,27 +341,28 @@ class ScheduleRepository
     }
 
 
-
-
-    //subscription or unsubscription by administrator
-    public function subscribeByAdmin($scheduleId, $input)
-    {
+    public function detachUser($scheduleId){
 
         $currentCchedule = $this->schedule->findOrFail($scheduleId);
         $currentCchedule->users()->detach();
+    }
 
 
-        if (!empty($input)) {
+    //subscription or unsubscription by administrator
+    public function subscribeByAdmin($scheduleId, $id)
+    {
+        $currentCchedule = $this->schedule->findOrFail($scheduleId);
 
-            foreach ($input as $list) {
+        if (!empty($id)) {
+
+
                 try {
-                    $currentCchedule->users()->attach($list);
+                    $currentCchedule->users()->attach($id);
                 } catch (Exception $ex) {
                 }
-            }
+
         }
-
-
-
     }
+
+
 }

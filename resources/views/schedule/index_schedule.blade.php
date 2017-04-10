@@ -625,6 +625,41 @@
     @endif
 
 
+    @if(session()->has('error_user_list'))
+        <!-- Modal  -->
+        <div id="modalValidation" class="modal fade in" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content" style="padding: 5px;">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Erreur de validation</h4>
+                    </div>
+                    <div class="modal-body alert alert-warning">
+
+                        <br/>
+                        <span class="glyphicon glyphicon-warning-sign"> </span>
+                        @foreach( session()->pull('error_user_list', 'default') as $anEntry)
+                            {{ $anEntry }}
+
+                        @endforeach
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <script>
+            $('#modalValidation').modal('show');
+        </script>
+    @endif
+
+
+
 
 
     @if($errors->all())

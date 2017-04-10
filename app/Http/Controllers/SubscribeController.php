@@ -40,16 +40,14 @@ class SubscribeController extends Controller
          if ($this->repository->isTimeWithThisHourExiste($userID,$schedule))
          {
              // create the session message to display to the user
-         session(['error_msg'=>'Vous participez deja à une activité durant ce laps de temps']) ;
+         session(['error_msg'=>'Vous participez déjà à une activité durant ce laps de temps']) ;
              return back();
-
-
          }
-
-
         $this->repository->subscribuUserToSchedule($userID,$scheduleId);
         return true;
     }
+
+
     private  function unSubscribe($userID, $scheduleId)
     {
        $this->repository->unSubscribeUserSchedule($userID,$scheduleId);
