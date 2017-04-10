@@ -314,6 +314,8 @@
                         var url="{{URL::to('subscribe')}}"+"/"+id;
                         console.log(url);
                         location.href = "{{URL::to('subscribe')}}"+"/"+id;
+                    } else if(child.classList.contains('btn-danger')){
+                        alert("Vous pouvez plus vous désincrire 3 semaines avant l'événement. Veuillez prendre contact avec l'administrateur");
                     }
 
                 });
