@@ -39,9 +39,11 @@ class SubscribeController extends Controller
         //check if the times laps is not on another schedule
          if ($this->repository->isTimeWithThisHourExiste($userID,$schedule))
          {
-             echo "pas valide temps";
+             // create the session message to display to the user
+         session(['error_msg'=>'Vous participez deja à une activité durant ce laps de temps']) ;
+             return back();
 
-            exit;
+
          }
 
 
