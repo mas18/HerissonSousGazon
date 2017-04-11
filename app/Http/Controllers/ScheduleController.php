@@ -80,100 +80,50 @@ class ScheduleController extends Controller
             ->addColumn('occuped', function ($schedule) {
                 return ($schedule->places)-(count($schedule->users));
             })
+
             ->addColumn('action', function ($schedule) {
                 //check if the user is already subscribed or not
                 if (Auth::user()->level>0)
                     return null;
-                $userId=auth()->user()->id;
-                $userIsSubscribed=$this->scheduleRepository->hasUserSchedule($schedule,$userId);
 
-                $date = Carbon::parse($schedule->start);
-                $now = Carbon::now();
-                $diff = $now->diffInDays($date);
-
-                $buttonColor="btn-danger";
-                $displayText='Desinscription';
-                $disable='';
-                $element="a";
-
-
-
-
-                if (!$userIsSubscribed)
-                {
-                    $buttonColor="btn-primary";
-                    $displayText=  'Inscription';
-                    //disable button if the places are full
-                    if  (count($schedule->users)>=$schedule->places)
-                    {
-                        $buttonColor='btn-primary disabled';
-                        $disable='disabled';
-                        $element='span';
-                    }
-                } elseif($diff < 22 || $date->lt($now)) {
-                    $buttonColor="btn-danger disabled";
-                    $displayText= 'Desinscription';
-                    $disable='disabled';
-                    $element='span';
-                }
-
-
-
-
-                return '<'.$element.' href="#inscription-'.$schedule->id.'" '.$disable.' class="btn btn-sm '.$buttonColor.'">'.$displayText.'</'.$element.'>';
-            })
-            ->editColumn('start', function ($schedule) {
-                $carbonDate =new Carbon($schedule->start);
-                return [
-                    'display' => e(//on spécifie l'affichange
-                       $schedule->start=Carbon::parse($schedule->start)->format('  d/m/Y  -  H:i')
-                    ), //on spécifie comment sera ordonner nos datas
-                    'timestamp' =>  $carbonDate->timestamp
-                ];
-            })
-            ->editColumn('finish', function ($schedule) {
-                $carbonDate =new Carbon($schedule->finish);
-                return [
-                    'display' => e(
-                        $schedule->finish=Carbon::parse($schedule->finish)->format('  d/m/Y  -  H:i')
-                    ),
-                    'timestamp' =>  $carbonDate->timestamp
-                ];
-            })
-            //relation
-                ->editColumn('users',  function ($schedule) {
-                //prepare what we want to show to the in the grid
-                $arrayUser=$schedule->users;
-                $arrayString=array();
-                foreach ($arrayUser as $aUser)
-                {
-                    array_push($arrayString,$aUser->lastname.' '.$aUser->firstname);
-                }
-                sort($arrayString);
-              $stringUser=  implode(' / ',$arrayString);
-
-                    return [
-                        'display'=>e(
-                            $stringUser
-                        ),
-                        'alpha'=> $stringUser
-                    ];
-
-            })
-            ->editColumn('rooms',  function ($schedule) {
-                //prepare what we want to show to the in the grid
-
-                return [
-                    'display'=>e(
-                       $schedule->rooms->name
-                    ),
-                    'alpha'=> $schedule->rooms->name
-                ];
-
+                return $this->format_column_action($schedule, $this);
             })
             ->addColumn('rooms', function ($schedule) {
                 return $schedule->rooms->name;
             })
+            // this will display the date of schedule
+            ->addColumn('day',function($schedule)
+            {
+                /**
+                 * @param $schedule
+                 * @param $accessor
+                 * @return array
+                 */
+
+
+                return $this->format_column($schedule, $this);
+            })
+
+            ->editColumn('start', function ($schedule) {
+
+                return $this->format_column_date($schedule);
+            })
+
+            ->editColumn('finish', function ($schedule) {
+
+                return $this->format_column_finish($schedule);
+            })
+
+            //relation
+                ->editColumn('users',  function ($schedule) {
+                return $this->format_column_user($schedule);
+            })
+
+            ->editColumn('rooms',  function ($schedule) {
+                return $this->format_column_rooms($schedule);
+
+            })
+
 
 
             //on spécifie le filtre
@@ -214,6 +164,151 @@ class ScheduleController extends Controller
     public static function getSchedule($id)
     {
         return Schedule::find($id);
+    }
+    
+    //-------------------------COLUMN FORMAT -------------------------------
+
+    /**
+     * @param $schedule
+     * @param $accessor
+     * @return string
+     */
+    function format_column_action($schedule, $accessor)
+    {
+        $userId = auth()->user()->id;
+        $userIsSubscribed = $accessor->scheduleRepository->hasUserSchedule($schedule, $userId);
+
+        $date = Carbon::parse($schedule->start);
+        $now = Carbon::now();
+        $diff = $now->diffInDays($date);
+
+        $buttonColor = "btn-danger";
+        $displayText = 'Desinscription';
+        $disable = '';
+        $element = "a";
+
+
+        if (!$userIsSubscribed) {
+            $buttonColor = "btn-primary";
+            $displayText = 'Inscription';
+            //disable button if the places are full
+            if (count($schedule->users) >= $schedule->places) {
+                $buttonColor = 'btn-primary disabled';
+                $disable = 'disabled';
+                $element = 'span';
+            }
+        } elseif ($diff < 22 || $date->lt($now)) {
+            $buttonColor = "btn-danger disabled";
+            $displayText = 'Desinscription';
+            $disable = 'disabled';
+            $element = 'span';
+        }
+
+
+        return '<' . $element . ' href="#inscription-' . $schedule->id . '" ' . $disable . ' class="btn btn-sm ' . $buttonColor . '">' . $displayText . '</' . $element . '>';
+    }
+    /**
+     * @param $schedule
+     * @return array
+     */
+    function format_column_date($schedule)
+    {
+        $carbonDate = new Carbon($schedule->start);
+        return [
+            'display' => e(//on spécifie l'affichange
+                $schedule->start = Carbon::parse($schedule->start)->format('  d/m/Y  -  H:i')
+            ), //on spécifie comment sera ordonner nos datas
+            'timestamp' => $carbonDate->timestamp
+        ];
+    }
+    /**
+     * @param $schedule
+     * @return array
+     */
+    function format_column_finish($schedule)
+    {
+        $carbonDate = new Carbon($schedule->finish);
+        return [
+            'display' => e(
+                $schedule->finish = Carbon::parse($schedule->finish)->format('  d/m/Y  -  H:i')
+            ),
+            'timestamp' => $carbonDate->timestamp
+        ];
+    }
+    /**
+     * @param $schedule
+     * @return array
+     */
+    function format_column_user($schedule)
+    {
+        //prepare what we want to show to the in the grid
+        $arrayUser = $schedule->users;
+        $arrayString = array();
+        foreach ($arrayUser as $aUser) {
+            array_push($arrayString, $aUser->lastname . ' ' . $aUser->firstname);
+        }
+        sort($arrayString);
+        $stringUser = implode(' / ', $arrayString);
+
+        return [
+            'display' => e(
+                $stringUser
+            ),
+            'alpha' => $stringUser
+        ];
+    }
+    /**
+     * @param $schedule
+     * @return array
+     */
+    function format_column_rooms($schedule)
+    {
+//prepare what we want to show to the in the grid
+
+        return [
+            'display' => e(
+                $schedule->rooms->name
+            ),
+            'alpha' => $schedule->rooms->name
+        ];
+    }
+    private function getDayOfWeek($day)
+    {
+        switch ($day) {
+            case 0:
+                return  "Dimanche";
+                break;
+            case 1:
+                return  "Lundi";
+                break;
+            case 2:
+                return  "Mardi";
+                break;
+            case 3:
+                return  "Mercredi";
+                break;
+            case 4:
+                return  "Jeudi";
+                break;
+            case 5:
+                return  "Vendredi";
+                break;
+            case 6:
+                return  "Samedi";
+                break;
+        }
+        return "lundi";
+    }
+    function format_column($schedule, $accessor)
+    {
+        $carbonDate = new Carbon($schedule->start);
+        $carbonDay = $carbonDate->dayOfWeek;
+        $dayOfWeek = $accessor->getDayOfWeek($carbonDay);
+
+        return [
+            'display' => $dayOfWeek,
+            'number' => $carbonDay
+        ];
     }
 
 }
