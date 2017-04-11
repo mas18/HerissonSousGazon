@@ -7,7 +7,7 @@
         <button type="button"  class="btn btn-primary pull-right btn-sm" style="margin-left:5px;" data-toggle="modal" data-target="#modalNewRoom">Ajouter un lieu</button>
         <button type="button"  class="btn btn-primary pull-right btn-sm" data-toggle="modal" data-target="#scheduleNew">Créer une plage horaire</button>
     @endif
-
+<div/>
 
     </br></br></br>
 
@@ -17,7 +17,7 @@
             <thead>
             <tr style="font-size:14px">
                 <th>Numéro</th>
-                <th>Date départ</th>
+                <th>Date début</th>
                 <th>Date fin</th>
                 <th>Lieu</th>
                 <th>Places totales</th>
@@ -169,7 +169,7 @@
                 columns : [
                 { data: 'id', name: 'id', title: 'Numéro' },
 
-                { data: 'start', name: 'title', title: 'Date départ', type: 'num',
+                { data: 'start', name: 'title', title: 'Date début', type: 'num',
                 render : {
                     _: 'display', //valeur uniquement pour le display
                     sort: 'timestamp' //valeur pour le order by
@@ -374,7 +374,7 @@
             <div class="modal-content" style="padding: 5px;">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Créer schedule</h4>
+                    <h4 class="modal-title">Créer une plage horaire</h4>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('schedule.store') }}">
@@ -392,7 +392,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="place" class="col-md-3 control-label">Place:</label>
+                            <label for="place" class="col-md-3 control-label">Lieu:</label>
 
                             <div class="col-md-6">
                                 <select id="place" class="form-control" name="place">
@@ -403,7 +403,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="number" class="col-md-3 control-label">Nombre:</label>
+                            <label for="number" class="col-md-3 control-label">Places totales:</label>
 
                             <div class="col-md-6">
                                 <input id="number" type="number" class="form-control" name="number" value="1" min="1" max="20" required>
@@ -461,7 +461,7 @@
                         <input type="hidden" id="scheduleId" name="scheduleId" value="">
 
                         <div class="form-group">
-                            <label for="place_edit" class="col-md-3 control-label">Place:</label>
+                            <label for="place_edit" class="col-md-3 control-label">Lieu:</label>
                             <div class="col-md-6">
                                 <select id="place_edit" class="form-control" name="place_edit" disabled>
                                     @foreach ($rooms as $room)
@@ -483,7 +483,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="number_edit" class="col-md-3 control-label">Nombre:</label>
+                            <label for="number_edit" class="col-md-3 control-label">Places totales:</label>
 
                             <div class="col-md-6">
                                 <input id="number_edit" type="number" class="form-control" name="number_edit" value="" min="1" max="20" disabled required>
@@ -510,7 +510,7 @@
                         </div>
                         <div id="updateSchedule" class="form-group">
                             <div class="col-md-6 col-md-offset-1">
-                                <button type="submit" class="btn btn-primary">Confirmer</button>
+                                <button type="submit" class="btn btn-primary">Enregistrer</button>
                             </div>
                         </div>
                         <br/>
@@ -526,7 +526,7 @@
                         <div class="form-group">
                             <section class="container" style="overflow:auto; width:600px;box-sizing: border-box;">
                                 <div style="width:230px; text-align:center;" class="col-md-2">
-                                    <label>inscrit</label>
+                                    <label>Volontaires inscrits</label>
                                     <select id="subscribed_user_list" name="subscribed_user_list[]" size="10" style="width: 220px;overflow:scroll;" multiple>
                                     </select>
                                 </div>
@@ -536,7 +536,7 @@
                                     <input type="button" id="btnRight" class="btn btn-default" value="&gt;&gt;" />
                                 </div >
                                 <div style="width:230px;text-align:center;" class="col-md-2">
-                                    <label>non inscrit</label>
+                                    <label>Volontaires non inscrits</label>
                                     <select id="non_subscribed_userList" name="non_subscribed_userList[]" size="10" style="width:220px;overflow:scroll;" multiple>
                                     </select>
                                 </div>
@@ -571,14 +571,14 @@
             <div class="modal-content" style="padding: 5px;">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Ajouter un emplacements</h4>
+                    <h4 class="modal-title">Ajouter un lieu</h4>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('room.store') }}">
                         {{ csrf_field() }}
                         <input type="hidden" name="eventId" value="{{ $event->id }}">
                         <div class="form-group">
-                            <label for="roomName" class="col-md-3 control-label">Nom</label>
+                            <label for="roomName" class="col-md-3 control-label">Nom du lieu</label>
                             <div class="col-md-6">
                                 <input id="roomName" type="text" class="form-control" name="roomName" required>
                             </div>
@@ -697,6 +697,5 @@
             $('#modalValidation').modal('show');
         </script>
     @endif
-    </div>
 
     @endsection

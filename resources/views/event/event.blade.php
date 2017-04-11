@@ -56,7 +56,7 @@
                             </div>
                             <div class="checkbox col-md-6 col-md-offset-3">
                                 <label>
-                                    <input type="checkbox" name="copy" checked /> Copy schedule from last event
+                                    <input type="checkbox" name="copy" checked /> Copier planning de l'année passée
                                 </label>
                             </div>
                             <br />
@@ -120,7 +120,7 @@
                                         <div class="form-group">
                                             <div class="col-md-6 col-md-offset-3">
                                                 <button type="submit" class="btn btn-primary">
-                                                    Update
+                                                    Modifier
                                                 </button>
                                             </div>
                                         </div>
@@ -139,7 +139,7 @@
                             <div class="col-xs-10">
                                 <h4 class="panel-title">
                                     <a role="button" data-toggle="collapse" style="font-size: 20px;" data-parent="#accordion" aria-expanded="{{ $firstItem ? 'true' : 'false' }}" href="#collapse{{ $event->id }}" aria-controls="collapse{{ $event->id }}">
-                                        Évènement {{ str_limit($event->starting, $limit=10, $end = '') }}
+                                        Événement {{ str_limit($event->starting, $limit=10, $end = '') }}
                                     </a>
                                 </h4>
                             </div>
