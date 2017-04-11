@@ -1,12 +1,11 @@
 <?php ?>
-@extends('layouts.template')
+@extends('layouts.app')
 @section('main_content')
 
-    @if(Auth::user()->level>0)
     <div class="col-xs-12">
-        <button type="button"  class="btn btn-primary pull-right btn-sm" style="margin-left:5px;" data-toggle="modal" data-target="#modalNewRoom">Ajouter un emplacement</button>
-        <button type="button"  class="btn btn-primary pull-right btn-sm" data-toggle="modal" data-target="#scheduleNew">Créer un planning</button>
-    </div>
+    @if(Auth::user()->level>0)
+        <button type="button"  class="btn btn-primary pull-right btn-sm" style="margin-left:5px;" data-toggle="modal" data-target="#modalNewRoom">Ajouter un lieu</button>
+        <button type="button"  class="btn btn-primary pull-right btn-sm" data-toggle="modal" data-target="#scheduleNew">Créer une plage horaire</button>
     @endif
 
 
@@ -18,12 +17,12 @@
             <thead>
             <tr style="font-size:14px">
                 <th>Numéro</th>
-                <th>Départ</th>
-                <th>Fin</th>
+                <th>Date départ</th>
+                <th>Date fin</th>
                 <th>Lieu</th>
-                <th>Places total</th>
-                <th>Place restante </th>
-                <th>utilisateurs inscrits</th>
+                <th>Places totales</th>
+                <th>Places restantes </th>
+                <th>Volontaires inscrits</th>
                 @if(Auth::user()->level==0)
                 <th>action</th>
                     @endif
@@ -170,13 +169,13 @@
                 columns : [
                 { data: 'id', name: 'id', title: 'Numéro' },
 
-                { data: 'start', name: 'title', title: 'Départ', type: 'num',
+                { data: 'start', name: 'title', title: 'Date départ', type: 'num',
                 render : {
                     _: 'display', //valeur uniquement pour le display
                     sort: 'timestamp' //valeur pour le order by
 
                 }},
-                { data: 'finish', name: 'description', title: 'Fin', class: 'num',
+                { data: 'finish', name: 'description', title: 'Date fin', class: 'num',
                     render : {
                         _: 'display', //valeur uniquement pour le display
                         sort: 'timestamp' //valeur pour le order by
@@ -188,11 +187,11 @@
 
                         },
                     },
-                    { data: 'places', name: 'description', title:'Places total', },
+                    { data: 'places', name: 'description', title:'Places totales', },
 
-                    { data: 'occuped', name: 'occuped', title : 'Place restante', class : 'num'},
+                    { data: 'occuped', name: 'occuped', title : 'Places restantes', class : 'num'},
 
-                    { data: 'users', name: 'users', title : 'Utilisateurs inscrits',
+                    { data: 'users', name: 'users', title : 'Volontaires inscrits',
                     render : {
                         _: 'display',
                         sort: 'alpha'
@@ -504,8 +503,8 @@
                                 </div>
                                 <br/><br/><br/>
                                 <div class="col-md-11 col-md-offset-1">
-                                    <button type="button" id="editButton" class="btn btn-primary" onclick="edit()">Modifier le planning</button>
-                                    <button type="button" id="editButton" class="btn btn-danger" onclick="deleteSchedule()">Supprimer le planning</button>
+                                    <button type="button" id="editButton" class="btn btn-primary" onclick="edit()">Modifier la plage horaire</button>
+                                    <button type="button" id="editButton" class="btn btn-danger" onclick="deleteSchedule()">Supprimer la plage horaire</button>
                                 </div>
                             </div>
                         </div>
@@ -698,6 +697,6 @@
             $('#modalValidation').modal('show');
         </script>
     @endif
-
+    </div>
 
     @endsection

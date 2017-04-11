@@ -207,7 +207,7 @@ class ScheduleController extends Controller
     public function destroy($id)
     {
         $this->scheduleRepository->destroy($id);
-        return redirect()->route('event.show');
+        return back();
     }
 
 

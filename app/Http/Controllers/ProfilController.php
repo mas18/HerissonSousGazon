@@ -21,7 +21,7 @@ class ProfilController extends Controller
     }
     public function display()
     {
-       return  view ('profil\show_profil',['user'=>$user = Auth::user()]);
+       return  view ('profil.show_profil',['user'=>$user = Auth::user()]);
     }
 
 

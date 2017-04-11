@@ -24,6 +24,7 @@
                 <button type="button" style="float: right; margin-top: 22px;"  class="btn btn-primary" data-toggle="modal" data-target="#modalNew">Créer un événement</button>
             </div>
         </div>
+        <br/><br/>
 
         <!-- Modal - New -->
         <div id="modalNew" class="modal fade" role="dialog">
@@ -137,8 +138,8 @@
                         <div class="row">
                             <div class="col-xs-10">
                                 <h4 class="panel-title">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="{{ $firstItem ? 'true' : 'false' }}" href="#collapse{{ $event->id }}" aria-controls="collapse{{ $event->id }}">
-                                        Edition {{ str_limit($event->starting, $limit=4, $end = '') }}
+                                    <a role="button" data-toggle="collapse" style="font-size: 20px;" data-parent="#accordion" aria-expanded="{{ $firstItem ? 'true' : 'false' }}" href="#collapse{{ $event->id }}" aria-controls="collapse{{ $event->id }}">
+                                        Évènement {{ str_limit($event->starting, $limit=10, $end = '') }}
                                     </a>
                                 </h4>
                             </div>
@@ -151,7 +152,7 @@
                     <div id="collapse{{ $event->id }}" class="panel-collapse collapse{{ $firstItem ? ' in' : '' }}" role="tabpanel" aria-labelledby="heading{{ $event->id }}">
                         <div class="panel-body">
                             <p></p>
-                            <!--
+
                             <div class="col-xs-6 col-sm-3">
                                 <div class="inner-content text-center">
 
@@ -163,8 +164,8 @@
                                     <p><em>Places occupées</em></p>
 
                                 </div>
-                            </div><!-- /.col -->
-                            <!--<div class="col-xs-6 col-sm-3">
+                            </div>
+                        <div class="col-xs-6 col-sm-3">
                                 <div class="inner-content text-center">
 
                                     <div class="c100 p100 big dark center">
@@ -175,8 +176,8 @@
                                     <p><em>Volontaires inscrit</em></p>
 
                                 </div>
-                            </div><!-- /.col -->
-                            <a href="{{ route('schedule.show', $event->id) }}" class="btn pull-right  btn-primary">Ouvrir planning</a>
+                            </div>
+                            <a href="{{ route('schedule.show', $event->id) }}" class="btn pull-right  btn-default">Ouvrir le planning</a>
                         </div>
                     </div>
                 </div>
