@@ -38,21 +38,25 @@
     <!-- NavBar -->
     <nav class="navbar navbar-default navbar-toggleable-md navbar-light bg-faded">
         <div class="container-fluid">
-            <ul class="nav navbar-nav">
-                <li class="linksNav"><a style="font-size:80%" href="{{ url('/') }}">Accueil</a></li>
-                <li class="linksNav"><a style="font-size:80%" href="{{ url('/events') }}">Évènements</a></li>
-                @if(Auth::user())
-                <li class="linksNav"><a style="font-size:80%" href="{{ url('/profil') }}">Mon profile</a></li>
-                @endif
-                @if ( Auth::user() AND Auth::user()->level>0)
-                <li class="linksNav dropdown">
-                    <a class="dropdown-toggle" style="font-size:80%" data-toggle="dropdown" href="#">Administrateur
-                        <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{ url('/user') }}">Utilisateurs</a></li>
-                        <li><a href="{{ url('/events') }}">Évènements</a></li>
-                    </ul>
-                </li>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="linksNav"><a style="font-size:80%" href="{{ url('/') }}">Accueil</a></li>
+                    <li class="linksNav"><a style="font-size:80%" href="{{ url('/events') }}">Évènements</a></li>
+                    @if(Auth::user())
+                        <li class="linksNav"><a style="font-size:80%" href="{{ url('/profil') }}">Mon profile</a></li>
+                    @endif
+                    @if ( Auth::user() AND Auth::user()->level>0)
+                        <li class="linksNav">
+                            <a style="font-size:80%" href="{{ url('/user') }}">Gestion des utilisateurs</a>
+                        </li>
                     @endif
 
             </ul>
@@ -60,7 +64,6 @@
             <div class="nav navbar-right linksNav" style="padding-top:15px">
                 <!-- Authentication Links -->
                 @if (Auth::guest())
-
                     <a style="font-size:80%" href="{{ route('login') }}">Connection</a>
                     <a style="font-size:80%" href="{{ route('register') }}">Inscription</a>
                 @else
@@ -68,12 +71,13 @@
                     <a style="font-size:80%" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                            document.getElementById('logout-form').submit();">
-                        Déconnection
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        {{ csrf_field() }}
-                    </form>
-                @endif
+                            Déconnection
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    @endif
+                </div>
             </div>
 
 

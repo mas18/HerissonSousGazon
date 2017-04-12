@@ -99,19 +99,12 @@
                 <div class="container flex-center">
                 <ul class="navbar-nav">
                     @if(Auth::user())
-                    <li class="linksNav" style="list-style-type:none"><a style="font-size:100%" href="{{ url('/events') }}">Évènements</a></li>
+                    <li class="linksNav" style="list-style-type:none"><a style="font-size:100%" href="{{ url('/events') }}">Événements</a></li>
                     <li class="linksNav" style="list-style-type:none"><a style="font-size:100%" href="{{ url('/profil') }}">Mon profile</a></li>
                     @endif
-                    <li class="linksNav dropdown" style="list-style-type:none">
-                        @if(Auth::user()  AND Auth::user()->level>0)
-                            <a class="dropdown-toggle" style="font-size:100%" data-toggle="dropdown" href="#">Administrateur
-                            <span class="caret"></span></a>
-                        @endif
-                        <ul class="dropdown-menu">
-                            <li><a style="font-size:16px;font-weight: bold;" href="{{ url('/user') }}">Utilisateur</a></li>
-                            <li><a style="font-size:16px;font-weight: bold;" href="{{ url('/events') }}">Évènements</a></li>
-                        </ul>
-                    </li>
+                    @if(Auth::user()  AND Auth::user()->level>0)
+                         <li class="linksNav" style="list-style-type:none"><a style="font-size:100%" href="{{ url('/user') }}">Gestion des utilisateurs</a></li>
+                    @endif
                 </ul>
                 </div>
             </div>
