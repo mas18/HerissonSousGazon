@@ -40,27 +40,22 @@
         <div class="container-fluid">
             <ul class="nav navbar-nav">
                 <li class="linksNav"><a style="font-size:80%" href="{{ url('/') }}">Accueil</a></li>
-                <li class="linksNav"><a style="font-size:80%" href="{{ url('/events') }}">Évènements</a></li>
+                <li class="linksNav"><a style="font-size:80%" href="{{ url('/events') }}">Événements</a></li>
                 @if(Auth::user())
                 <li class="linksNav"><a style="font-size:80%" href="{{ url('/profil') }}">Mon profile</a></li>
                 @endif
+
                 @if ( Auth::user() AND Auth::user()->level>0)
-                <li class="linksNav dropdown">
-                    <a class="dropdown-toggle" style="font-size:80%" data-toggle="dropdown" href="#">Administrateur
-                        <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{ url('/user') }}">Utilisateurs</a></li>
-                        <li><a href="{{ url('/events') }}">Évènements</a></li>
-                    </ul>
+                <li class="linksNav">
+                  <a style="font-size:80%" href="{{ url('/user') }}">Gestion des utilisateurs</a>
                 </li>
-                    @endif
+                @endif
 
             </ul>
             <!-- Navbar: Register/Connection -->
             <div class="nav navbar-right linksNav" style="padding-top:15px">
                 <!-- Authentication Links -->
                 @if (Auth::guest())
-
                     <a style="font-size:80%" href="{{ route('login') }}">Connection</a>
                     <a style="font-size:80%" href="{{ route('register') }}">Inscription</a>
                 @else
