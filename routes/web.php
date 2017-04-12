@@ -51,25 +51,8 @@ Route::post('/schedule/subscribtion', 'AdminSubscribeController@subscriptionadmi
 Route::get("test",function ()
 {
 
-    $repository=new \App\Repository\UserRepository(new User());
-
-    $uersListe=$repository->findUserWithSubscibedID(1);
-
-
-    $arrayID=array();
-    foreach ($uersListe as $aUser)
-        {
-            array_push($arrayID,$aUser->id);
-        }
-
-        $userNotInList=$repository->findUserWhereIdIsNot($arrayID);
-
-
-        foreach ($userNotInList as $aUser)
-        {
-            var_dump($aUser);
-        }
-
+    $date=new \Carbon\Carbon('2016-06-11 08:50:23');
+    echo $date->dayOfWeek;
 
     return view ('teste');
 

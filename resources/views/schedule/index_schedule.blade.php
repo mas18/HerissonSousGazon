@@ -17,6 +17,7 @@
             <thead>
             <tr style="font-size:14px">
                 <th>Numéro</th>
+                <th>Jour</th>
                 <th>Date début</th>
                 <th>Date fin</th>
                 <th>Lieu</th>
@@ -169,12 +170,20 @@
                 columns : [
                 { data: 'id', name: 'id', title: 'Numéro' },
 
-                { data: 'start', name: 'title', title: 'Date début', type: 'num',
+                    { data: 'day', name: 'day', title: 'jour', type: 'num',
+                        render : {
+                            _: 'display', //valeur uniquement pour le display
+                            sort: 'number' //valeur pour le order by
+
+                        }},
+
+                { data: 'start', name: 'title', title: 'Date départ', type: 'num',
                 render : {
                     _: 'display', //valeur uniquement pour le display
                     sort: 'timestamp' //valeur pour le order by
 
                 }},
+
                 { data: 'finish', name: 'description', title: 'Date fin', class: 'num',
                     render : {
                         _: 'display', //valeur uniquement pour le display
@@ -184,7 +193,6 @@
                         render : {
                             _: 'display', //valeur uniquement pour le display
                             sort: 'alpha' //valeur pour le order by
-
                         },
                     },
                     { data: 'places', name: 'description', title:'Places totales', },
@@ -196,6 +204,7 @@
                         _: 'display',
                         sort: 'alpha'
                     }},
+
                         @if(Auth::user()->level==0)
                     {data: 'action', name: 'action', orderable: false, searchable: false}
                     @endif
