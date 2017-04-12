@@ -92,11 +92,11 @@
     @yield('main_content')
 </div>
 
-<!--
-    <footer>
-        <div class="navbar navbar-default navbar-fixed-bottom footerDiv">footer body</div>
-    </footer>
--->
+<div style="margin-top:200px">
+
+    {{ HTML::image('pictures\footerHerbe.png', 'This is an image', ['class' => 'img-fluid img-responsive'])}}
+
+</div>
 
 </body>
 </html>
