@@ -210,17 +210,65 @@
                     @endif
             ],
 
-                'fnInitComplete':data_table_listener
+                'fnInitComplete':function(){
+                        data_table_listener();
+
+
+                    }
 
             })});
 
 
 
+        function format_style_based_on_day(rows)
+        {
+           //retrive all the row
+            console.log(rows);
+            rows.forEach(function(aRow)
+            {
+                var day=aRow.childNodes[1].innerHTML;
+                    assignStyle(day,aRow);
 
+            });
+
+
+            function assignStyle(day, row)
+            {
+
+                switch(day) {
+                    case 'Lundi':
+                        row.style.backgroundColor="#D4D9F6";
+                        break;
+                    case 'Mardi':
+                        row.style.backgroundColor="#ACF2E8";
+                        break;
+                    case 'Mercredi':
+                        row.style.backgroundColor="#5BB871";
+                        break;
+                    case 'Jeudi':
+                        row.style.backgroundColor="#E7EEAF";
+                        break;
+                    case 'Vendredi':
+                        row.style.backgroundColor="#EECDAF";
+                        break;
+                    case 'Samedi':
+                        row.style.backgroundColor="#93AFF6";
+                        break;
+                    case 'Dimanche':
+                        row.style.backgroundColor="#F1A1B0";
+                        break;
+                    default:
+
+                }
+            }
+
+        }
 
         function data_table_listener() {
             var modalAction = document.getElementById('modalAction');
             var row = document.querySelectorAll("#allschedule  tr");
+            //we format the row depending on the date
+            format_style_based_on_day(row);
 
             for (var k = 1; k < row.length; k++) {
                 @if(Auth::user()->level>0)

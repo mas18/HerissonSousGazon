@@ -165,7 +165,7 @@ class ScheduleController extends Controller
     {
         return Schedule::find($id);
     }
-    
+
     //-------------------------COLUMN FORMAT -------------------------------
 
     /**
@@ -297,7 +297,7 @@ class ScheduleController extends Controller
                 return  "Samedi";
                 break;
         }
-        return "lundi";
+        return "Lundi";
     }
     function format_column($schedule, $accessor)
     {
