@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ScheduleRequest;
 use App\Http\Requests\ScheduleSubscribeUser;
+use App\Http\Requests\UnsubscribeRequest;
 use App\Repository\ScheduleRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -48,10 +49,18 @@ class SubscribeController extends Controller
     }
 
 
-    private  function unSubscribe($userID, $scheduleId)
+    private function unSubscribe($userID, $scheduleId)
     {
        $this->repository->unSubscribeUserSchedule($userID,$scheduleId);
     }
+
+    public function unsubscribeRequest(UnsubscribeRequest $request){
+        print($request['schedule']);
+        print($request['user']);
+        print($request['message']);
+        exit;
+    }
+
 
 
 

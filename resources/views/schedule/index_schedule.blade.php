@@ -210,17 +210,65 @@
                     @endif
             ],
 
-                'fnInitComplete':data_table_listener
+                'fnInitComplete':function(){
+                        data_table_listener();
+
+
+                    }
 
             })});
 
 
 
+        function format_style_based_on_day(rows)
+        {
+           //retrive all the row
+            console.log(rows);
+            rows.forEach(function(aRow)
+            {
+                var day=aRow.childNodes[1].innerHTML;
+                    assignStyle(day,aRow);
 
+            });
+
+
+            function assignStyle(day, row)
+            {
+
+                switch(day) {
+                    case 'Lundi':
+                        row.style.backgroundColor="#D4D9F6";
+                        break;
+                    case 'Mardi':
+                        row.style.backgroundColor="#ACF2E8";
+                        break;
+                    case 'Mercredi':
+                        row.style.backgroundColor="#5BB871";
+                        break;
+                    case 'Jeudi':
+                        row.style.backgroundColor="#E7EEAF";
+                        break;
+                    case 'Vendredi':
+                        row.style.backgroundColor="#EECDAF";
+                        break;
+                    case 'Samedi':
+                        row.style.backgroundColor="#93AFF6";
+                        break;
+                    case 'Dimanche':
+                        row.style.backgroundColor="#F1A1B0";
+                        break;
+                    default:
+
+                }
+            }
+
+        }
 
         function data_table_listener() {
             var modalAction = document.getElementById('modalAction');
             var row = document.querySelectorAll("#allschedule  tr");
+            //we format the row depending on the date
+            format_style_based_on_day(row);
 
             for (var k = 1; k < row.length; k++) {
                 @if(Auth::user()->level>0)
@@ -311,19 +359,22 @@
                 console.log(childsNodes[childsNodes.length - 1]);
                 childsNodes[childsNodes.length - 1].addEventListener('click', function (event) {
                     var child = this.firstChild;
+                    var id = this.parentNode.childNodes[0].innerHTML;
                     if(!child.classList.contains("disabled")){
                         if (!confirm("Veuillez confirmer l'action"))
                         {
                             e.preventDefault();
                             return;
                         }
-                        var id = this.parentNode.childNodes[0].innerHTML;
+
                         console.log(id);
                         var url="{{URL::to('subscribe')}}"+"/"+id;
                         console.log(url);
                         location.href = "{{URL::to('subscribe')}}"+"/"+id;
                     } else if(child.classList.contains('btn-danger')){
-                        alert("Vous pouvez plus vous désincrire 3 semaines avant l'événement. Veuillez prendre contact avec l'administrateur");
+                        $('#unsub_schedule').val(id);
+                        $('#modalUnsubscribe').modal('show');
+                        // alert("Vous pouvez plus vous désincrire 3 semaines avant l'événement. Veuillez prendre contact avec l'administrateur");
                     }
 
                 });
@@ -715,7 +766,7 @@
             <div class="modal-content" style="padding: 5px;">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Confirmer la suppression de l'événement</h4>
+                    <h4 class="modal-title">Confirmer la suppression de la plage horaire</h4>
                 </div>
                 <div class="modal-body alert alert-danger">
                     <span class="glyphicon glyphicon-warning-sign"> </span>
@@ -730,5 +781,47 @@
         </div>
     </div>
 
+
+    <!-- Modal - DeleteSchedule -->
+    <div id="modalUnsubscribe" class="modal fade in" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content" style="padding: 5px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Désinscrire de la plage horaire</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-12 alert alert-info">
+                        Vous pouvez plus vous désincrire vous-mêmes 3 semaines avant l'événement. Envoyer une demande à l'administrateur blablablabla...
+                    </div>
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('schedule.unsubscribe') }}">
+                        {{ csrf_field() }}
+                        <input type="hidden" id="unsub_schedule" name="schedule" value="">
+                        <input type="hidden" name="user" value="{{ Auth::user()->id }}">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <br />
+                                <label for="comment" style="text-align: left; padding-left: 0" class="control-label col-md-12">Raison</label>
+                                <textarea rows="5" style="resize: none;" class="form-control col-md-12" name="message" required></textarea>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary">Envoyer la demande</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     @endsection

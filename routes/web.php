@@ -44,6 +44,7 @@ Route::get('schedule_data', 'ScheduleController@scheduledata');
 Route::post('/schedule/new', 'ScheduleController@store')->name('schedule.store');
 Route::post('/schedule/update', 'ScheduleController@edit')->name('schedule.update');
 Route::post('/schedule/subscribtion', 'AdminSubscribeController@subscriptionadmin')->name('schedule.subscriptionadmin');
+Route::post('/schedule/unsubscribe', 'SubscribeController@unsubscribeRequest')->name('schedule.unsubscribe');
 
 
 
