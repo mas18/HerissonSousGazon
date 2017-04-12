@@ -139,7 +139,7 @@
                             <div class="col-xs-10">
                                 <h4 class="panel-title">
                                     <a role="button" data-toggle="collapse" style="font-size: 20px;" data-parent="#accordion" aria-expanded="{{ $firstItem ? 'true' : 'false' }}" href="#collapse{{ $event->id }}" aria-controls="collapse{{ $event->id }}">
-                                        Événement {{ str_limit($event->starting, $limit=10, $end = '') }}
+                                        Événement du {{ $event->starting }} au {{ $event-> ending}}
                                     </a>
                                 </h4>
                             </div>
