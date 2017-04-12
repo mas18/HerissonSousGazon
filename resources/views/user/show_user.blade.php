@@ -2,8 +2,7 @@
 @extends('layouts.template')
 @section('main_content')
 
-
-    <div class="col-sm-offset-3 col-sm-5" style="position:relative;top:40px;">
+    <div class="col-sm-offset-3 col-sm-5">
         <br>
         <div class="panel panel-primary">
             <div class="panel-heading" style="font-size:18px">Fiche d'utilisateur</div>
@@ -24,4 +23,3 @@
         </div>
     </div>
 @endsection
-
