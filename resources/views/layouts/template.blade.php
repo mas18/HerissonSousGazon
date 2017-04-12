@@ -38,18 +38,25 @@
     <!-- NavBar -->
     <nav class="navbar navbar-default navbar-toggleable-md navbar-light bg-faded">
         <div class="container-fluid">
-            <ul class="nav navbar-nav">
-                <li class="linksNav"><a style="font-size:80%" href="{{ url('/') }}">Accueil</a></li>
-                <li class="linksNav"><a style="font-size:80%" href="{{ url('/events') }}">Événements</a></li>
-                @if(Auth::user())
-                <li class="linksNav"><a style="font-size:80%" href="{{ url('/profil') }}">Mon profile</a></li>
-                @endif
-
-                @if ( Auth::user() AND Auth::user()->level>0)
-                <li class="linksNav">
-                  <a style="font-size:80%" href="{{ url('/user') }}">Gestion des utilisateurs</a>
-                </li>
-                @endif
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> </button>
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="linksNav"><a style="font-size:80%" href="{{ url('/') }}">Accueil</a></li>
+                    <li class="linksNav"><a style="font-size:80%" href="{{ url('/events') }}">Évènements</a></li>
+                    @if(Auth::user())
+                        <li class="linksNav"><a style="font-size:80%" href="{{ url('/profil') }}">Mon profile</a></li>
+                    @endif
+                    @if ( Auth::user() AND Auth::user()->level>0)
+                        <li class="linksNav">
+                            <a style="font-size:80%" href="{{ url('/user') }}">Gestion des utilisateurs</a>
+                        </li>
+                    @endif
 
             </ul>
             <!-- Navbar: Register/Connection -->
@@ -63,12 +70,13 @@
                     <a style="font-size:80%" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                            document.getElementById('logout-form').submit();">
-                        Déconnection
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        {{ csrf_field() }}
-                    </form>
-                @endif
+                            Déconnection
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    @endif
+                </div>
             </div>
 
 
