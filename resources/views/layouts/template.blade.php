@@ -7,6 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+
+
     <!-- Styles -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
@@ -16,6 +18,7 @@
     {{Html::style('css/circle.css')}}
     {{Html::style('css/style.css')}}
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

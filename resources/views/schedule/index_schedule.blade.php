@@ -1,5 +1,5 @@
 <?php ?>
-@extends('layouts.app')
+@extends('layouts.template')
 @section('main_content')
 
     <div class="col-xs-12">
@@ -7,7 +7,7 @@
         <button type="button"  class="btn btn-primary pull-right btn-sm" style="margin-left:5px;" data-toggle="modal" data-target="#modalNewRoom">Ajouter un lieu</button>
         <button type="button"  class="btn btn-primary pull-right btn-sm" data-toggle="modal" data-target="#scheduleNew">Créer une plage horaire</button>
     @endif
-<div/>
+    </div>
 
     </br></br></br>
 
@@ -360,7 +360,7 @@
 
         function deleteSchedule() {
             var id = $('#scheduleId').val();
-            if (!confirm("Êtes-vous sûr de vouloir supprimer ce planning? Cette action est irréversible."))
+            if (!confirm("Êtes-vous sûr de vouloir supprimer cette plage horaire? Cette action est irréversible."))
             {
                 e.preventDefault();
                 return;
@@ -513,7 +513,7 @@
                                 <br/><br/><br/>
                                 <div class="col-md-11 col-md-offset-1">
                                     <button type="button" id="editButton" class="btn btn-primary" onclick="edit()">Modifier la plage horaire</button>
-                                    <button type="button" id="editButton" class="btn btn-danger" onclick="deleteSchedule()">Supprimer la plage horaire</button>
+                                    <button type="button" id="editButton" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete">Supprimer la plage horaire</button>
                                 </div>
                             </div>
                         </div>
@@ -706,5 +706,29 @@
             $('#modalValidation').modal('show');
         </script>
     @endif
+
+    <!-- Modal - DeleteSchedule -->
+    <div id="modalDelete" class="modal fade in" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content" style="padding: 5px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Confirmer la suppression de l'événement</h4>
+                </div>
+                <div class="modal-body alert alert-danger">
+                    <span class="glyphicon glyphicon-warning-sign"> </span>
+                    Êtes-vous sûr de vouloir supprimer cette plage horaire? Cette action est irréversible.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" onclick="deleteSchedule()" >Supprimer</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 
     @endsection
