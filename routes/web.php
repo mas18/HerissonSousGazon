@@ -52,8 +52,9 @@ Route::post('/schedule/unsubscribe', 'SubscribeController@unsubscribeRequest')->
 Route::get("test",function ()
 {
 
-    $date=new \Carbon\Carbon('2016-06-11 08:50:23');
-    echo $date->dayOfWeek;
+
+    $mailer=new \App\Mailer\Mailer();
+    $mailer->sendMail('Vilaine','Fille','clothrie@gmail.com');
 
     return view ('teste');
 

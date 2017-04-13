@@ -258,7 +258,6 @@
                         row.style.backgroundColor="#F1A1B0";
                         break;
                     default:
-
                 }
             }
 
