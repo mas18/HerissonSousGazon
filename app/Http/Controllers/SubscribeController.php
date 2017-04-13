@@ -9,6 +9,8 @@ use App\Mailer\Mailer;
 use App\Repository\ScheduleRepository;
 use App\Repository\UserRepository;
 use Carbon\Carbon;
+use App\User;
+use App\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -99,20 +101,33 @@ class SubscribeController extends Controller
 
     private function unSubscribe($userID, $scheduleId)
     {
-       $this->scheduleRepository->unSubscribeUserSchedule($userID,$scheduleId);
+
+        $this->repository->unSubscribeUserSchedule($userID,$scheduleId);
+        $user = User::find($userID);
+        $schedule = Schedule::find($scheduleId);
+        //$mailer=new \App\Mailer\Mailer();
+        // $mailer->sendMailUnsubscribe('Confirmation de la désinscription', $user->email, $user, $schedule);
+
+        return redirect()->route('schedule.show', ['number' => $schedule->event_id])->withUnsub("Votre demande a été envoyé à l'administrateur");
     }
 
     public function unsubscribeRequest(UnsubscribeRequest $request){
-        print($request['schedule']);
-        print($request['user']);
-        print($request['message']);
-        exit;
+
+    $content = $request['message'];
+    $user = User::find($request['user']);
+    $schedule = Schedule::find($request['schedule']);
+
+    $mailer=new \App\Mailer\Mailer();
+    $mailer->sendMailUnsubscribeRequest('Demande de désinscription', $content, 'sandromathier@hotmail.com', $user, $schedule);
+
+    return redirect()->route('schedule.show', ['number' => $schedule->event_id])->withUnsub("Votre demande a été envoyé à l'administrateur");
     }
 
-
-
-
-
+    public function acceptUnsubscribe($eventID, $userID, $scheduleID){
+        $user = User::find($userID);
+        $this->unSubscribe($userID, $scheduleID);
+        return redirect()->route('schedule.show', ['number' => $eventID])->withUnsub($user->firstname . " " . $user->lastname . " a été désinscrit.");
+    }
 
 
 }

@@ -30,8 +30,32 @@ class Mailer
 
     }
 
+    public function sendMailUnsubscribe($title, $receiver, $user, $schedule)
+    {
+        $data = array( 'title' => $title, 'user' => $user, 'schedule' => $schedule );
 
-    public function sendstandartMail($title,$content, $receiver)
+        Mail::send('mail.unsubscribe', $data, function ($message) use ($receiver, $title) {
+            $message->from($this->sender, 'Herrisson sous gazon');
+
+            $message->to($receiver)->subject($title);
+        });
+
+    }
+
+    public function sendMailUnsubscribeRequest($title, $content, $receiver, $user, $schedule)
+    {
+        $data = array( 'title' => $title, 'content' => $content, 'user' => $user, 'schedule' => $schedule );
+
+        Mail::send('mail.unsubscribe_request', $data, function ($message) use ($receiver, $title) {
+            $message->from($this->sender, 'Herrisson sous gazon');
+
+            $message->to($receiver)->subject($title);
+        });
+
+    }
+
+
+    public function sendStandardMail($title,$content, $receiver)
     {
         $data = array( 'title' => $title, 'content' => $content );
 
