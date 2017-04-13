@@ -92,8 +92,8 @@
     @yield('main_content')
 </div>
 
-<div style="margin-top:200px">
 
+<div class="navbar-collapse collapse" style="margin-top:150px">
     {{ HTML::image('pictures\footerHerbe.png', 'This is an image', ['class' => 'img-fluid img-responsive'])}}
 
 </div>
