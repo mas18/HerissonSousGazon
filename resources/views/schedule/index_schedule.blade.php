@@ -8,8 +8,10 @@
         <button type="button"  class="btn btn-primary pull-right btn-sm" data-toggle="modal" data-target="#scheduleNew">Créer une plage horaire</button>
     @endif
     </div>
-
     </br></br></br>
+    @if(session()->has('unsub'))
+        <div class="alert alert-success alert-dismissible">{!! session('unsub') !!}</div>
+    @endif
 
     <!-- SCHEDULE TABLE -->
     <div class="table-responsive">
