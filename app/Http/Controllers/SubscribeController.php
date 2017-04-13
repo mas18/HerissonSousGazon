@@ -102,7 +102,7 @@ class SubscribeController extends Controller
     private function unSubscribe($userID, $scheduleId)
     {
 
-        $this->repository->unSubscribeUserSchedule($userID,$scheduleId);
+        $this->scheduleRepository->unSubscribeUserSchedule($userID,$scheduleId);
         $user = User::find($userID);
         $schedule = Schedule::find($scheduleId);
         //$mailer=new \App\Mailer\Mailer();
