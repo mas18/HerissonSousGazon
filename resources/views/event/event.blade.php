@@ -238,7 +238,7 @@
                         Êtes-vous sûr de vouloir supprimer cet événement? Cette action est irréversible
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" onclick="delete_Event({{ $event->id }})" >Supprimer</button>
+                        <button type="button" class="btn btn-danger" onclick="delete_Event({{ isset($event) ? $event->id : '' }})" >Supprimer</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
                     </div>
                 </div>

@@ -51,11 +51,7 @@ Route::post('/schedule/unsubscribe', 'SubscribeController@unsubscribeRequest')->
 
 Route::get("test",function ()
 {
-
-
-    $mailer=new \App\Mailer\Mailer();
-    $mailer->sendMail('Vilaine','Fille','clothrie@gmail.com');
-
+    
     return view ('teste');
 
 });
