@@ -26,16 +26,17 @@
 }
 
 
+.imgfooter {
+    background-image: url('../pictures/footerHerbe.png');
+    background-repeat: repeat-x;
+    background-size: 500px 60px;
+    padding-bottom: 100px;
+}
 
 
 /* TEMPLATE OTHER PAGE*/
 .sizeTxtNav{
     font-size:80%;
-}
-.footerDiv{
-    color:#555555;
-    font-size:20px;
-    box-shadow: 1px 1px 3px #555;
 }
 
 

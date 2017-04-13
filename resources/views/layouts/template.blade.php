@@ -16,19 +16,22 @@
     {{Html::style('css/bootstrap/bootstrap.min.css')}}
     {{Html::style('css/bootstrap/bootstrap-theme.min.css')}}
     {{Html::style('css/circle.css')}}
-    {{Html::style('css/style.css')}}
 
     <link href="../addons/bootstrap/jquery.smartmenus.bootstrap.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
+    {{Html::style('css/style.css')}}
 
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
+
 </head>
 
 
@@ -93,12 +96,18 @@
     @yield('main_content')
 </div>
 
-<div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-<div class="navbar-collapse collapse">
-    {{ HTML::image('pictures\footerHerbe.png', 'This is an image', ['class' => 'img-fluid img-responsive'])}}
 
-</div>
-</div>
+    <div>
+        <br/>
+    </div>
+
+
+    <footer style="position: relative; margin-top:50px; bottom: 0;">
+        {{ HTML::image('pictures\footerHerbe.png', 'This is an image', ['class' => 'img-responsive'])}}
+    </footer>
+
+
 
 </body>
 </html>
+
