@@ -18,6 +18,7 @@
     {{Html::style('css/circle.css')}}
     {{Html::style('css/style.css')}}
 
+    <link href="../addons/bootstrap/jquery.smartmenus.bootstrap.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Scripts -->
@@ -92,10 +93,11 @@
     @yield('main_content')
 </div>
 
-
-<div class="navbar-collapse collapse" style="margin-top:150px">
+<div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+<div class="navbar-collapse collapse">
     {{ HTML::image('pictures\footerHerbe.png', 'This is an image', ['class' => 'img-fluid img-responsive'])}}
 
+</div>
 </div>
 
 </body>

@@ -52,7 +52,7 @@
             <div class="content" style="text-align:center">
 
                 <!-- CAROUSEL -->
-                <div class="container flex-center">
+                <div class="container flex-center" style="width:50%">
                     <br>
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
                         <!-- Indicators -->
@@ -91,22 +91,32 @@
 
 
                 <!-- TITLE -->
-                <div style="font-size:60px;">Hérisson sous gazon</div>
+                <div style="font-size:5vw;">Hérisson sous gazon</div>
 
                 </br>
 
                 <!-- HREF -->
-                <div class="container flex-center">
+                <div class="container flex-center ">
                 <ul class="navbar-nav">
                     @if(Auth::user())
-                    <li class="linksNav" style="list-style-type:none"><a style="font-size:100%" href="{{ url('/events') }}">Événements</a></li>
-                    <li class="linksNav" style="list-style-type:none"><a style="font-size:100%" href="{{ url('/profil') }}">Mon profile</a></li>
+                    <li class="linksNav" style="list-style-type:none"><a style="font-size:1vw;" href="{{ url('/events') }}">Événements</a></li>
+                    <li class="linksNav" style="list-style-type:none"><a style="font-size:1vw" href="{{ url('/profil') }}">Mon profile</a></li>
                     @endif
                     @if(Auth::user()  AND Auth::user()->level>0)
-                         <li class="linksNav" style="list-style-type:none"><a style="font-size:100%" href="{{ url('/user') }}">Gestion des utilisateurs</a></li>
+                         <li class="linksNav" style="list-style-type:none"><a style="font-size:1vw" href="{{ url('/user') }}">Gestion des utilisateurs</a></li>
                     @endif
                 </ul>
                 </div>
+
+
+                <br/>
+
+                <!-- Text -->
+                <div class="container flex-center col-md-offset-2 col-sm-8">
+                    <p style="font-size:1vw; color:#2a88bd; font-weight: bold;">Bienvenue sur le site des inscriptions pour l'évènement Hérisson sous gazon dédié aux volontaires
+                    Pour accéder au planning, veuillez vous connecter au site web.</p>
+                </div>
+
             </div>
         </div>
     </body>
