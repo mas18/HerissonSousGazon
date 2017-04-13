@@ -74,7 +74,7 @@
 
                     <a style="font-size:80%" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
-                           docu ment.getElementById('logout-form').submit();">
+                           document.getElementById('logout-form').submit();">
                             Déconnection
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
