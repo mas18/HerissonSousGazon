@@ -14,11 +14,11 @@ use Maatwebsite\Excel\Facades\Excel;
 class ExportRepository
 {
     //export data. Either simple array or eloquent Model
-    function exportXLS($eloquentModel)
+    function exportXLS($eloquentModel, $fileName,$sheetName)
     {
 
-        Excel::create('utilisateurs', function($excel) use($eloquentModel) {
-            $excel->sheet('utilisateurs', function($sheet) use($eloquentModel) {
+        Excel::create($fileName, function($excel) use($eloquentModel,$sheetName) {
+            $excel->sheet($sheetName, function($sheet) use($eloquentModel) {
                 $sheet->fromModel($eloquentModel);
                 $sheet->row(1, function($row) {
                     // call cell manipulation methods

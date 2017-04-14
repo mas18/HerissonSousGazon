@@ -47,8 +47,8 @@ Route::post('/schedule/subscribtion', 'AdminSubscribeController@subscriptionadmi
 Route::post('/schedule/unsubscribe', 'SubscribeController@unsubscribeRequest')->name('schedule.unsubscribe');
 
 Route::get('schedule/{number?}/{user?}/{schedule?}', 'SubscribeController@acceptUnsubscribe');
-
-
+//export route
+Route::get('export/user','ExportController@exportAllUser');
 
 Route::get("test",function ()
 {
@@ -61,7 +61,7 @@ Route::get("test",function ()
         $userList[$k]->level==1 ?  $userList[$k]->level='Administrateur' : $userList[$k]->level='Membre';
     }
 
-    $exportRepository->exportXLS($userList);
+    $exportRepository->exportXLS($userList,'utilisateurs','utilisateurs');
     return view ('teste');
 
 });

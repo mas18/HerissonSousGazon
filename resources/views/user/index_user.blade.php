@@ -39,7 +39,8 @@
                 </tbody>
             </table>
         </div>
-        {!! link_to_route('user.create', 'Ajouter un utilisateur', [], ['class' => 'btn btn-default pull-right btn-sm']) !!}
+            {!! link_to_route('user.create','Ajouter un utilisateur', [], ['class' => 'btn btn-default pull-right btn-sm']) !!}
+            {{ Html::link('/export/user', 'Exporter ', ['class' => 'btn btn-default pull-right btn-sm'])}}
         {!! $links !!}
     </div>
 @endsection
