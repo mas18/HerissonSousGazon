@@ -98,7 +98,7 @@
 
 
 
-<footer class="navbar-fixed-bottom" style="position: relative">
+<footer class="navbar-fixed-bottom" style="position: relative;">
       {{ HTML::image('pictures\footerHerbe.png', 'This is an image', ['class' => 'img-responsive'])}}
 </footer>
 
