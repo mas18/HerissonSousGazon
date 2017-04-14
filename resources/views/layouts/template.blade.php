@@ -92,22 +92,22 @@
 
 
 <!-- Content of the page -->
-<div id="main_content" class="container">
+<div id="main_content" class="container" style="position: relative; margin-bottom:80px;">
     @yield('main_content')
 </div>
 
 
-    <div>
-        <br/>
-    </div>
 
-
-    <footer style="position: relative; margin-top:50px; bottom: 0;">
-        {{ HTML::image('pictures\footerHerbe.png', 'This is an image', ['class' => 'img-responsive'])}}
-    </footer>
-
+<footer class="navbar-fixed-bottom" style="position: relative">
+      {{ HTML::image('pictures\footerHerbe.png', 'This is an image', ['class' => 'img-responsive'])}}
+</footer>
 
 
 </body>
+
+
+
+
+
 </html>
 

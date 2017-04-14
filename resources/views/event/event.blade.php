@@ -82,7 +82,7 @@
 
 
         <br />
-        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false" style="margin-bottom: 75px;">
 
             <?php $firstItem = true; ?>
             @foreach ($events as $event)

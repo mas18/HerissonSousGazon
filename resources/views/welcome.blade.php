@@ -91,7 +91,7 @@
 
 
                 <!-- TITLE -->
-                <div style="font-size:5vw;">Hérisson sous gazon</div>
+                <div style="font-size:5vw;color:#2aabd2">Hérisson sous gazon</div>
 
                 </br>
 
@@ -113,7 +113,7 @@
 
                 <!-- Text -->
                 <div class="container flex-center col-md-offset-2 col-sm-8">
-                    <p style="font-size:1vw; color:#2a88bd; font-weight: bold;">Bienvenue sur le site des inscriptions pour l'évènement Hérisson sous gazon dédié aux volontaires
+                    <p style="font-size:1vw; font-weight: bold;">Bienvenue sur le site des inscriptions pour l'évènement Hérisson sous gazon dédié aux volontaires
                     Pour accéder au planning, veuillez vous connecter au site web.</p>
                 </div>
 
