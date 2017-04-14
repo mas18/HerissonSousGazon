@@ -28,7 +28,7 @@
                 <th>Volontaires inscrits</th>
                 @if(Auth::user()->level==0)
                 <th>action</th>
-                    @endif
+                @endif
             </tr>
             </thead>
             <tbody>
@@ -90,7 +90,14 @@
                 //marche
                 $("#btnLeft").click(function () {
                     var selectedItem = $("#non_subscribed_userList option:selected");
-                    $('#subscribed_user_list').append(selectedItem);
+                    var subscribed = $("#subscribed_user_list option");
+
+                    if(selectedItem.length + subscribed.size() > $('#number_edit').val()){
+                        alert("Le nombre des volontaires est plus grande que le nombre des places");
+                    } else {
+                        $('#subscribed_user_list').append(selectedItem);
+                    }
+
                 });
 
                 $("#btnRight").click(function () {
@@ -288,9 +295,9 @@
                 row[k].addEventListener('dblclick', function () {
                     var c = this.childNodes;
                     var id = c[0].innerHTML;
-                    var room = c[3].innerHTML;
-                    var number = c[4].innerHTML;
-                    var date = c[1].innerHTML;
+                    var room = c[4].innerHTML;
+                    var number = c[5].innerHTML;
+                    var date = c[2].innerHTML;
                     var year = date.substring(8, 12);
                     var month = date.substring(5, 7);
                     var day = date.substring(2, 4);
