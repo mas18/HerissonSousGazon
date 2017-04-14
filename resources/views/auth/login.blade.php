@@ -1,6 +1,6 @@
 @extends('layouts.template')
 @section('main_content')
-<div class="container">
+<div class="container" style="margin-bottom: 70px;">
     <div class="row" style="position:relative;top:80px;">
         <div class="col-md-offset-2 col-md-8">
             <div class="panel panel-primary" style="font-size:12px">

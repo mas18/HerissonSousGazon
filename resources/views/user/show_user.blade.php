@@ -2,7 +2,7 @@
 @extends('layouts.template')
 @section('main_content')
 
-    <div class="col-sm-offset-3 col-sm-5">
+    <div class="col-sm-offset-3 col-sm-5" style="margin-bottom: 10px;">
         <br>
         <div class="panel panel-primary">
             <div class="panel-heading" style="font-size:18px">Fiche d'utilisateur</div>

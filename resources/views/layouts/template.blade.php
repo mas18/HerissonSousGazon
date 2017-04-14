@@ -92,7 +92,7 @@
 
 
 <!-- Content of the page -->
-<div id="main_content" class="container" style="position: relative; margin-bottom:80px;">
+<div id="main_content" class="container" style="position: relative; margin-bottom:30px;">
     @yield('main_content')
 </div>
 
