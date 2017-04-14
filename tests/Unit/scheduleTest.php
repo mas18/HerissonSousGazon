@@ -18,8 +18,8 @@ class scheduleTest extends TestCase
     public function testRepository()
     {
         /*
-        $repository=new ScheduleRepository(new Schedule());
-        $schedule=$repository->getAllWithRelation();
+        $scheduleRepository=new ScheduleRepository(new Schedule());
+        $schedule=$scheduleRepository->getAllWithRelation();
 
             echo $schedule->users;
         */

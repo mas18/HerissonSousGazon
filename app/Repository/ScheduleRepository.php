@@ -145,6 +145,7 @@ class ScheduleRepository
     {
         $schedules = Schedule::
         with('users')
+            ->with('rooms')
             ->find($schedule_id);
 
         return $schedules;

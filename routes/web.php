@@ -46,16 +46,13 @@ Route::post('/schedule/update', 'ScheduleController@edit')->name('schedule.updat
 Route::post('/schedule/subscribtion', 'AdminSubscribeController@subscriptionadmin')->name('schedule.subscriptionadmin');
 Route::post('/schedule/unsubscribe', 'SubscribeController@unsubscribeRequest')->name('schedule.unsubscribe');
 
+Route::get('schedule/{number?}/{user?}/{schedule?}', 'SubscribeController@acceptUnsubscribe');
 
 
 
 Route::get("test",function ()
 {
-
-
-    $mailer=new \App\Mailer\Mailer();
-    $mailer->sendMail('Vilaine','Fille','clothrie@gmail.com');
-
+    
     return view ('teste');
 
 });

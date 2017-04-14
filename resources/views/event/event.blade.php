@@ -152,34 +152,36 @@
                     </div>
                     <div id="collapse{{ $event->id }}" class="panel-collapse collapse{{ $firstItem ? ' in' : '' }}" role="tabpanel" aria-labelledby="heading{{ $event->id }}">
                         <div class="panel-body">
-                            <p></p>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-4">
+                                    <div class="inner-content text-center">
 
-                            <div class="col-xs-6 col-sm-3">
-                                <div class="inner-content text-center">
+                                        <div class="c100 big p{{ $controller->getPlaces($event->id) }} center">
+                                            <span>{{ $controller->getPlaces($event->id) }}%</span>
+                                            <div class="slice"><div class="bar"></div><div class="fill"></div></div>
+                                        </div>
 
-                                    <div class="c100 big p{{ $controller->getPlaces($event->id) }} center">
-                                        <span>{{ $controller->getPlaces($event->id) }}%</span>
-                                        <div class="slice"><div class="bar"></div><div class="fill"></div></div>
+                                        <p><em>Places occupées</em></p>
+
                                     </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-4">
+                                    <div class="inner-content text-center">
 
-                                    <p><em>Places occupées</em></p>
+                                        <div class="c100 p100 big dark center">
+                                            <span>{{ $controller->getVolunteers($event->id) }}</span>
+                                            <div class="slice"><div class="bar"></div><div class="fill"></div></div>
+                                        </div>
 
+                                        <p><em>Volontaires inscrit</em></p>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-4 ">
+                                    <a href="{{ route('schedule.show', $event->id) }}" class="btn pull-right  btn-default">Ouvrir le planning</a>
                                 </div>
                             </div>
-                        <div class="col-xs-6 col-sm-3">
-                                <div class="inner-content text-center">
-
-                                    <div class="c100 p100 big dark center">
-                                        <span>{{ $controller->getVolunteers($event->id) }}</span>
-                                        <div class="slice"><div class="bar"></div><div class="fill"></div></div>
-                                    </div>
-
-                                    <p><em>Volontaires inscrit</em></p>
-
-                                </div>
-                            </div>
-                            <a href="{{ route('schedule.show', $event->id) }}" class="btn pull-right  btn-default">Ouvrir le planning</a>
                         </div>
+
                     </div>
                 </div>
 
@@ -238,7 +240,7 @@
                         Êtes-vous sûr de vouloir supprimer cet événement? Cette action est irréversible
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" onclick="delete_Event({{ $event->id }})" >Supprimer</button>
+                        <button type="button" class="btn btn-danger" onclick="delete_Event({{ isset($event) ? $event->id : '' }})" >Supprimer</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
                     </div>
                 </div>
