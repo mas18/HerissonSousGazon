@@ -52,7 +52,16 @@ Route::get('schedule/{number?}/{user?}/{schedule?}', 'SubscribeController@accept
 
 Route::get("test",function ()
 {
-    
+
+    $userRepository=new \App\Repository\UserRepository(new User());
+    $exportRepository=new \App\Repository\ExportRepository();
+    $userList=$userRepository->getUsers();
+    for ($k=0;$k<count($userList);$k++)
+    {
+        $userList[$k]->level==1 ?  $userList[$k]->level='Administrateur' : $userList[$k]->level='Membre';
+    }
+
+    $exportRepository->exportXLS($userList);
     return view ('teste');
 
 });
