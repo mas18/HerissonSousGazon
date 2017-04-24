@@ -20,7 +20,7 @@
             <tr style="font-size:14px">
                 <th>Numéro</th>
                 <th>Jour</th>
-                <th>date</th>
+                <th>Date</th>
                 <th>Post</th>
                 <th>Heure début</th>
                 <th>Heure fin</th>
@@ -147,7 +147,6 @@
                 "bStateSave": true, //add state button to save the current display
                 dom: 'Blfrtip', //display button and entries
                 buttons: [ //set language of the button text
-
                     {extend: 'copy', text: 'Copier   '},
                     {extend: 'csv', text:  'Enregister en CSV   ', title: 'Horaire' },
                     {extend: 'excel', text:  'enregister au format excel ', title: 'Horaire' },
@@ -162,7 +161,7 @@
                             d.event_id = <?php $urls= explode('/' ,Request::url());
                                                 echo $urls[count($urls)-1]?>}},
                 //set the display length option by default
-                'iDisplayLength':25,
+                'iDisplayLength':100,
                 //set language for the paginate option
                 "language": {
                     "paginate": {
@@ -174,7 +173,11 @@
                     "info":           "Affichage de  _START_ à _END_ entrées, pour un total de  _TOTAL_ entrées",
                     "search":          "Rechercher un élément ",
                     "lengthMenu":     "Affichage de  _MENU_ entrées",
+                    "infoFiltered":   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
                 },
+
+                //pagination action
+
 
                 //set the column option (sort and display element)
                 columns : [
@@ -369,11 +372,22 @@
                 //add and remove button click
                 var childsNodes = row[k].childNodes;
                 console.log(childsNodes[childsNodes.length - 1]);
+                //get the information to display in the alert box
+                var action_type=childsNodes[childsNodes.length-1].innerHTML.includes('Desinscription') ? "désincription de l'horaire suivant :":"inscription à l'horaire suivant : ";
+                var schedule_day=childsNodes[1].innerHTML;
+                var schedule_date=childsNodes[2].innerHTML;
+                var schedule_post=childsNodes[3].innerHTML;
+                var schedule_start_hour=childsNodes[4].innerHTML;
+                var schedule_end_hour=childsNodes[5].innerHTML;
+                var alert_message="Veuillez confirmer l'action: "+action_type+" Jour: "+schedule_day+" Date : "+schedule_date+" Post: "+schedule_post+ "Début : "+schedule_start_hour+
+                        "Fin : "+schedule_end_hour;
                 childsNodes[childsNodes.length - 1].addEventListener('click', function (event) {
                     var child = this.firstChild;
                     var id = this.parentNode.childNodes[0].innerHTML;
+
+
                     if(!child.classList.contains("disabled")){
-                        if (!confirm("Veuillez confirmer l'action"))
+                        if (!confirm(alert_message))
                         {
                             e.preventDefault();
                             return;

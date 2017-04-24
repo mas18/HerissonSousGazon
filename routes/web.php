@@ -54,14 +54,13 @@ Route::get("test",function ()
 {
     $dateRepository=new \App\Repository\DateRepository();
 
-    $rawDate="2018-06-25 08:50:2";
+    $rawDate="2017-05-15 08:50:2";
 
-    $formatedDate=$dateRepository->parseDate_d_m_y($rawDate);
-    $formatedDateTime=$dateRepository->parseTime_h_m($rawDate);
-    echo $formatedDate;
-    echo '<br/>';
-    echo $formatedDateTime;
+    $dateDifference=$dateRepository->difference_day_from_today($rawDate);
+    echo $dateDifference;
     exit;
+
+
 
     return view ('teste');
 

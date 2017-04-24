@@ -40,4 +40,12 @@ class DateRepository
         $carbonDate = new Carbon($date);
         return  Carbon::parse($carbonDate)->format('H:i');
     }
+
+    public function difference_day_from_today($date)
+    {
+        $today=Carbon::today();
+        $eventDate=new Carbon($date);
+        $day_difference=$eventDate->diffInDays($today);
+        return $day_difference;
+    }
 }

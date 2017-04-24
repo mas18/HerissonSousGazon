@@ -4,7 +4,7 @@
 <h2>{{$title}}</h2>
 <div>{{$content}}</div>
 
-Salutations, <br/>
-herisson sous gazon.
+Cordialement, <br/>
+Herisson sous gazon.
 
 
