@@ -147,9 +147,9 @@
                 "bStateSave": true, //add state button to save the current display
                 dom: 'Blfrtip', //display button and entries
                 buttons: [ //set language of the button text
-                    {extend: 'copy', text: 'Copier   '},
-                    {extend: 'csv', text:  'Enregister en CSV   ', title: 'Horaire' },
-                    {extend: 'excel', text:  'enregister au format excel ', title: 'Horaire' },
+                    {extend: 'copy', text: 'Copier  - '},
+                    {extend: 'csv', text:  'Enregister en CSV -  ', title: 'Horaire' },
+                    {extend: 'excel', text:  'Enregister au format excel - ', title: 'Horaire' },
                     {extend: 'print', text:  'imprimer'},
                 ],
 
