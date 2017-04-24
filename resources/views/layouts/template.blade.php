@@ -35,7 +35,7 @@
 </head>
 
 
-<body>
+<body style="height: auto; background: url('{{ asset('pictures/footerHerbe.png') }}') repeat-x bottom; background-size: auto 60px; ">
 <header>
 
 
@@ -92,15 +92,15 @@
 
 
 <!-- Content of the page -->
-<div id="main_content" class="container" style="position: relative; margin-bottom:30px;">
+<div id="main_content" class="container" style="position: relative; margin-bottom:100px;">
     @yield('main_content')
 </div>
 
 
 
-<footer class="navbar-fixed-bottom" style="position: relative;">
-      {{ HTML::image('pictures\footerHerbe.png', 'This is an image', ['class' => 'img-responsive'])}}
-</footer>
+<div id="footer" >
+
+</div>
 
 
 </body>

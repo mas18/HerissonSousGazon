@@ -123,11 +123,11 @@
                         $(wrapper).append('<div class="form-group">'
                             + '<label for="timeFrom[]" class="col-md-3 control-label">De: </label>'
                             + '<div class="col-md-2">'
-                            + '<input type="time" name="timeFrom[]" required>'
+                            + '<input type="time" name="timeFrom[]" size="6" required>'
                             + '</div>'
                             + '<label for="timeTo[]" class="col-md-2 control-label">À: </label>'
                             + '<div class="col-md-2">'
-                            + '<input type="time" name="timeTo[]" required>'
+                            + '<input type="time" name="timeTo[]" size="6" required>'
                             + '</div>'
                             + '<a href="#" class="remove_field"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></div>');
                     }
@@ -460,7 +460,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="place" class="col-md-3 control-label">Lieu:</label>
+                            <label for="place" class="col-md-3 control-label">Poste:</label>
 
                             <div class="col-md-6">
                                 <select id="place" class="form-control" name="place">
@@ -482,12 +482,12 @@
                                 <label for="timeFrom[]" class="col-md-3 control-label">De: </label>
 
                                 <div class="col-md-2">
-                                    <input type="time" name="timeFrom[]" required>
+                                    <input type="time" name="timeFrom[]" size="6" required>
                                 </div>
                                 <label for="timeTo[]" class="col-md-2 control-label">À: </label>
 
                                 <div class="col-md-2">
-                                    <input type="time" name="timeTo[]" required>
+                                    <input type="time" name="timeTo[]" size="6" required>
                                 </div>
                             </div>
                         </div>
@@ -529,7 +529,7 @@
                         <input type="hidden" id="scheduleId" name="scheduleId" value="">
 
                         <div class="form-group">
-                            <label for="place_edit" class="col-md-3 control-label">Lieu:</label>
+                            <label for="place_edit" class="col-md-3 control-label">Poste:</label>
                             <div class="col-md-6">
                                 <select id="place_edit" class="form-control" name="place_edit" disabled>
                                     @foreach ($rooms as $room)
