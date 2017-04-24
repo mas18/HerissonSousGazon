@@ -99,7 +99,7 @@ class SubscribeController extends Controller
 
     public function acceptUnsubscribe($eventID, $userID, $scheduleID){
         $user = User::find($userID);
-        $this->unSubscribe($userID, $scheduleID);
+        $this->scheduleRepository->unSubscribeUserSchedule($userID, $scheduleID);
         return redirect()->route('schedule.show', ['number' => $eventID])->withUnsub($user->firstname . " " . $user->lastname . " a été désinscrit.");
     }
 

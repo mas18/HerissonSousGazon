@@ -188,7 +188,7 @@ class ScheduleRepository
         return $counter;
     }
 
-    function countVolonteers($eventID)
+    function getVolonteers($eventID)
     {
         $schedules = $this->getAllWithRelation($eventID);
         $users = collect();
