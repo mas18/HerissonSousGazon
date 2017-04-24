@@ -149,8 +149,8 @@
                 buttons: [ //set language of the button text
 
                     {extend: 'copy', text: 'Copier   '},
-                    {extend: 'csv', text:  'Enregister en CSV   ' },
-                    {extend: 'excel', text:  'enregister au format excel   ' },
+                    {extend: 'csv', text:  'Enregister en CSV   ', title: 'Horaire' },
+                    {extend: 'excel', text:  'enregister au format excel ', title: 'Horaire' },
                     {extend: 'print', text:  'imprimer'},
                 ],
 
@@ -198,14 +198,14 @@
                             sort: 'alpha' //valeur pour le order by
                         }},
 
-                { data: 'start', name: 'title', title: 'Date départ', type: 'num',
+                { data: 'start', name: 'title', title: 'Heure début', type: 'num',
                 render : {
                     _: 'display', //valeur uniquement pour le display
                     sort: 'timestamp' //valeur pour le order by
 
                 }},
 
-                { data: 'finish', name: 'description', title: 'Date fin', class: 'num',
+                { data: 'finish', name: 'description', title: 'Heure fin', class: 'num',
                     render : {
                         _: 'display', //valeur uniquement pour le display
                         sort: 'timestamp' //valeur pour le order by
