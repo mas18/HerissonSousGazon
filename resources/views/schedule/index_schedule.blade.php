@@ -223,7 +223,7 @@
 
             @if(Auth::user()->level==0)
                 {data: 'action', name: 'action', orderable: false, searchable: false}
-                    @endif
+            @endif
             ],
 
                 'fnInitComplete':function(){
@@ -305,11 +305,8 @@
                     var room = c[3].innerHTML;
                     var number = c[6].innerHTML;
                     var date = c[2].innerHTML;
-                    var year = date.substring(8, 12);
-                    var month = date.substring(5, 7);
-                    var day = date.substring(2, 4);
-                    var start = date.substring(17, 22);
-                    var end = c[2].innerHTML.substring(17, 22);
+                    var start = c[4].innerHTML;
+                    var end = c[5].innerHTML;
                     // ajax part to retrieve user
                     getMessage();
 
@@ -359,7 +356,7 @@
                     $('#scheduleId').val(id);
                     $('#scheduleId2').val(id);
                     $("#place_edit option:contains(" + room + ")").attr('selected', true);
-                    $('#date_edit').val(year + "-" + month + "-" + day);
+                    $('#date_edit').val(date);
                     $('#number_edit').val(number);
                     $('#timeFrom_edit').val(start);
                     $('#timeTo_edit').val(end);

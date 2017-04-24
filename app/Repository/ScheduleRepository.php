@@ -12,6 +12,7 @@ use App\Schedule;
 use App\Event;
 use App\Room;
 use App\User;
+use App\Repository\DateRepository;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use League\Flysystem\Exception;
@@ -21,12 +22,13 @@ class ScheduleRepository
 {
     protected $schedule;
     protected $room;
+    protected $dateRepository;
 
-    public function __construct(Schedule $schedule, Room $room)
+    public function __construct(Schedule $schedule, Room $room, DateRepository $dateRepository)
     {
         $this->schedule = $schedule;
         $this->room=$room;
-
+        $this->dateRepository = $dateRepository;
     }
 
 
@@ -85,8 +87,10 @@ class ScheduleRepository
 
     function saveNew(schedule $schedule, $inputs, $timeFrom, $timeTo)
     {
-        $start = $inputs['date'] . ' ' . $timeFrom;
-        $finish = $inputs['date'] . ' ' . $timeTo;
+        $date = $this->dateRepository->parseDate_y_m_d($inputs['date_edit']);
+
+        $start = $date . ' ' . $timeFrom;
+        $finish = $date . ' ' . $timeTo;
 
         $schedule->places = $inputs['number'];
         $schedule->room_id = $inputs['place'];
@@ -201,8 +205,11 @@ class ScheduleRepository
     {
         $schedule = $this->getById($id);
 
-        $start = $inputs['date_edit'] . ' ' . $inputs['timeFrom_edit'];
-        $finish = $inputs['date_edit'] . ' ' . $inputs['timeTo_edit'];
+        $date = $this->dateRepository->parseDate_y_m_d($inputs['date_edit']);
+
+
+        $start = $date . ' ' . $inputs['timeFrom_edit'];
+        $finish = $date . ' ' . $inputs['timeTo_edit'];
 
         $schedule->places = $inputs['number_edit'];
         $schedule->room_id = $inputs['place_edit'];
