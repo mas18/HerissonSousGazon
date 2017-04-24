@@ -56,7 +56,7 @@ class ScheduleController extends Controller
         $users=$this->userRepository->getUsers();
         $event = $this->eventRepository->getById($number);
         $dates = $this->scheduleRepository->getDates($event);
-        $rooms = Room::all();
+        $rooms = Room::orderBy('name')->get();
         return view('schedule.index_schedule')->with('dates', $dates)->with('event', $event)->with('rooms', $rooms)->with('users',$users);
     }
 
