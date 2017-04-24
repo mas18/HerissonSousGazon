@@ -19,6 +19,14 @@ class DateRepository
         $carbonDate = new Carbon($date);
         return  Carbon::parse($carbonDate)->format('d-m-Y');
     }
+
+    //reformat the date in original date format
+    public function parseDate_y_m_d($date)
+    {
+        $carbonDate = new Carbon($date);
+        return  Carbon::parse($carbonDate)->format('Y-m-d');
+    }
+
     //format the the date in a DateTime format
     public function parseDateTime_d_m_y__h_m($date)
     {

@@ -2,11 +2,16 @@
 
 @section('main_content')
 
+
 <div class="container">
     <div class="row" style="position:relative;top:20px;">
         <div class="col-md-offset-2 col-md-7">
+
+            <span>Désolé, mais si tu n’as pas 14 ans, il faudra attendre encore avant de pouvoir être bénévole… A bientôt !</span>
+            <br/><br/>
+
             <div class="panel panel-primary" style="font-size:12px">
-                <div class="panel-heading" style="font-size:18px">Inscription</div>
+                <div class="panel-heading" style="font-size:18px">Créer un compte</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
@@ -54,6 +59,19 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('birth') ? ' has-error' : '' }}">
+                            <label for="comment" class="col-md-4 control-label">Date de naissance *</label>
+
+                            <div class="col-md-6">
+                                <input id="birth" type="text" class="form-control" name="birth" value="{{ old('birth') }}" autofocus>
+
+                                @if ($errors->has('birth'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('birth') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
                         <div class="form-group{{ $errors->has('street') ? ' has-error' : '' }}">
                             <label for="street" class="col-md-4 control-label">Rue *    </label>
@@ -70,7 +88,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('city') ? ' has-error' : '' }}">
-                            <label for="city" class="col-md-4 control-label">Ville *</label>
+                            <label for="city" class="col-md-4 control-label">NPA + Ville *</label>
 
                             <div class="col-md-6">
                                 <input id="city" type="text" class="form-control" name="city" value="{{ old('city') }}" required autofocus>
@@ -92,20 +110,6 @@
                                 @if ($errors->has('tel'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('tel') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('comment') ? ' has-error' : '' }}">
-                            <label for="comment" class="col-md-4 control-label">Remarques</label>
-
-                            <div class="col-md-6">
-                                <input id="comment" type="text" class="form-control" name="comment" value="{{ old('comment') }}" autofocus>
-
-                                @if ($errors->has('comment'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('comment') }}</strong>
                                     </span>
                                 @endif
                             </div>

@@ -29,7 +29,7 @@ class UserRepository
         $user->street=$inputs['street'];
         $user->city=$inputs['city'];
         $user->tel=$inputs['tel'];
-        $user->comment=$inputs['comment'];
+        $user->birth=$inputs['birth'];
 
         $user->save();
     }
@@ -83,6 +83,7 @@ class UserRepository
         $user->street=$inputs['street'];
         $user->city=$inputs['city'];
         $user->tel=$inputs['tel'];
+        $user->birth=$inputs['birth'];
         $user->comment=$inputs['comment'];
 
         return $user->save();
