@@ -69,7 +69,7 @@
                 <!-- Authentication Links -->
                 @if (Auth::guest())
                     <a style="font-size:80%" href="{{ route('login') }}">Connexion</a>
-                    <a style="font-size:80%" href="{{ route('register') }}">Inscription</a>
+                    <a style="font-size:80%" href="{{ route('register') }}">Créer un compte</a>
                 @else
 
                     <a style="font-size:80%" href="{{ route('logout') }}"

@@ -63,7 +63,7 @@
                             <label for="comment" class="col-md-4 control-label">Date de naissance *</label>
 
                             <div class="col-md-6">
-                                <input id="birth" type="text" class="form-control" name="birth" value="{{ old('birth') }}" autofocus>
+                                <input id="birth" type="date" class="form-control" name="birth" value="{{ old('birth') }}" autofocus>
 
                                 @if ($errors->has('birth'))
                                     <span class="help-block">

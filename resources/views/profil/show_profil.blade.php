@@ -41,7 +41,7 @@
                             {{Form::label('birth','Date de naissance')}}
                         </div>
                         <div class="col-md-9"  style="height: 25px;">
-                            {!! Form::text('birth', null, ['class' => 'form-control', 'placeholder' => 'birth']) !!}
+                            {!! Form::date('birth', null, ['class' => 'form-control', 'placeholder' => 'birth']) !!}
                             {!! $errors->first('birth', '<small class="help-block">:message</small>') !!}
                         </div>
                     </div>
