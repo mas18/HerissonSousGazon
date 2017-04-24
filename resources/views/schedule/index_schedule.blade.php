@@ -253,25 +253,25 @@
 
                 switch(day) {
                     case 'Lundi':
-                        row.style.backgroundColor="#D4D9F6";
+                        row.style.backgroundColor="#D4C4DB";
                         break;
                     case 'Mardi':
-                        row.style.backgroundColor="#ACF2E8";
+                        row.style.backgroundColor="#F59999";
                         break;
                     case 'Mercredi':
-                        row.style.backgroundColor="#5BB871";
+                        row.style.backgroundColor="#ADE7F3";
                         break;
                     case 'Jeudi':
-                        row.style.backgroundColor="#E7EEAF";
+                        row.style.backgroundColor="#8FC39B";
                         break;
                     case 'Vendredi':
-                        row.style.backgroundColor="#EECDAF";
+                        row.style.backgroundColor="#F5F6CE";
                         break;
                     case 'Samedi':
-                        row.style.backgroundColor="#93AFF6";
+                        row.style.backgroundColor="#C7D5F8";
                         break;
                     case 'Dimanche':
-                        row.style.backgroundColor="#F1A1B0";
+                        row.style.backgroundColor="#F5C0CA";
                         break;
                     default:
                 }
