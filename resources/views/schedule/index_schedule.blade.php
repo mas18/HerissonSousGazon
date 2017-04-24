@@ -20,9 +20,10 @@
             <tr style="font-size:14px">
                 <th>Numéro</th>
                 <th>Jour</th>
-                <th>Date début</th>
-                <th>Date fin</th>
-                <th>Lieu</th>
+                <th>date</th>
+                <th>Post</th>
+                <th>Heure début</th>
+                <th>Heure fin</th>
                 <th>Places totales</th>
                 <th>Places restantes </th>
                 <th>Volontaires inscrits</th>
@@ -179,11 +180,22 @@
                 columns : [
                 { data: 'id', name: 'id', title: 'Numéro' },
 
-                    { data: 'day', name: 'day', title: 'jour', type: 'num',
+                { data: 'day', name: 'day', title: 'Jour', type: 'num',
+                    render : {
+                        _: 'display', //valeur uniquement pour le display
+                        sort: 'number' //valeur pour le order by
+                    }},
+
+                    { data: 'date', name: 'date', title: 'Date', type: 'num',
                         render : {
                             _: 'display', //valeur uniquement pour le display
-                            sort: 'number' //valeur pour le order by
+                            sort: 'timestamp' //valeur pour le order by
+                        }},
 
+                    { data: 'rooms', name: 'rooms', title: 'Poste',
+                        render : {
+                            _: 'display', //valeur uniquement pour le display
+                            sort: 'alpha' //valeur pour le order by
                         }},
 
                 { data: 'start', name: 'title', title: 'Date départ', type: 'num',
@@ -198,24 +210,19 @@
                         _: 'display', //valeur uniquement pour le display
                         sort: 'timestamp' //valeur pour le order by
                 }},
-                    { data: 'rooms', name: 'rooms', title: 'Lieu',
-                        render : {
-                            _: 'display', //valeur uniquement pour le display
-                            sort: 'alpha' //valeur pour le order by
-                        },
-                    },
-                    { data: 'places', name: 'description', title:'Places totales', },
 
-                    { data: 'occuped', name: 'occuped', title : 'Places restantes', class : 'num'},
+                { data: 'places', name: 'description', title:'Places totales', },
 
-                    { data: 'users', name: 'users', title : 'Volontaires inscrits',
+                { data: 'occuped', name: 'occuped', title : 'Places restantes', class : 'num'},
+
+                { data: 'users', name: 'users', title : 'Volontaires inscrits',
                     render : {
                         _: 'display',
                         sort: 'alpha'
                     }},
 
-                        @if(Auth::user()->level==0)
-                    {data: 'action', name: 'action', orderable: false, searchable: false}
+            @if(Auth::user()->level==0)
+                {data: 'action', name: 'action', orderable: false, searchable: false}
                     @endif
             ],
 
@@ -295,8 +302,8 @@
                 row[k].addEventListener('dblclick', function () {
                     var c = this.childNodes;
                     var id = c[0].innerHTML;
-                    var room = c[4].innerHTML;
-                    var number = c[5].innerHTML;
+                    var room = c[3].innerHTML;
+                    var number = c[6].innerHTML;
                     var date = c[2].innerHTML;
                     var year = date.substring(8, 12);
                     var month = date.substring(5, 7);

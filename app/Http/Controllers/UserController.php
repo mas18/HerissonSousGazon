@@ -26,7 +26,7 @@ class UserController extends Controller
         $this->middleware('admin');
 
         $this->userRepository=$userRepository;
-        $this->nbPerPage=8;
+        $this->nbPerPage=10;
     }
 
 

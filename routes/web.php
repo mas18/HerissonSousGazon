@@ -52,16 +52,17 @@ Route::get('export/user','ExportController@exportAllUser');
 
 Route::get("test",function ()
 {
+    $dateRepository=new \App\Repository\DateRepository();
 
-    $userRepository=new \App\Repository\UserRepository(new User());
-    $exportRepository=new \App\Repository\ExportRepository();
-    $userList=$userRepository->getUsers();
-    for ($k=0;$k<count($userList);$k++)
-    {
-        $userList[$k]->level==1 ?  $userList[$k]->level='Administrateur' : $userList[$k]->level='Membre';
-    }
+    $rawDate="2018-06-25 08:50:2";
 
-    $exportRepository->exportXLS($userList,'utilisateurs','utilisateurs');
+    $formatedDate=$dateRepository->parseDate_d_m_y($rawDate);
+    $formatedDateTime=$dateRepository->parseTime_h_m($rawDate);
+    echo $formatedDate;
+    echo '<br/>';
+    echo $formatedDateTime;
+    exit;
+
     return view ('teste');
 
 });

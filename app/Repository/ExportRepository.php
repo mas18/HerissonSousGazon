@@ -16,13 +16,13 @@ class ExportRepository
     //export data. Either simple array or eloquent Model
     function exportXLS($eloquentModel, $fileName,$sheetName)
     {
-
         Excel::create($fileName, function($excel) use($eloquentModel,$sheetName) {
             $excel->sheet($sheetName, function($sheet) use($eloquentModel) {
                 $sheet->fromModel($eloquentModel);
                 $sheet->row(1, function($row) {
                     // call cell manipulation methods
-                    $row->setFontWeight('bold');});
+                    $row->setFontWeight('bold');
+                });
             });
         })->export('xls');
     }

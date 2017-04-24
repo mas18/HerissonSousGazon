@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ScheduleSubscribeUser;
+use App\Repository\DateRepository;
 use App\Repository\ScheduleRepository;
 use App\Repository\EventRepository;
 use App\Repository\UserRepository;
@@ -22,8 +23,9 @@ class ScheduleController extends Controller
     protected $scheduleRepository;
     protected $eventRepository;
     protected $userRepository;
+    protected $dateRepository;
 
-    public function __construct(ScheduleRepository $scheduleRepository, EventRepository $eventRepository, UserRepository $userRepository)
+    public function __construct(ScheduleRepository $scheduleRepository, EventRepository $eventRepository, UserRepository $userRepository, DateRepository $dateRepository)
     {
 
         //define the right of the user
@@ -33,6 +35,7 @@ class ScheduleController extends Controller
        $this->scheduleRepository=$scheduleRepository;
        $this->eventRepository=$eventRepository;
        $this->userRepository=$userRepository;
+       $this->dateRepository=$dateRepository;
     }
 
 
@@ -88,25 +91,24 @@ class ScheduleController extends Controller
 
                 return $this->format_column_action($schedule, $this);
             })
+
+            ->addColumn('date', function ($schedule) {
+                return $this->format_column_date($schedule);
+            })
+
             ->addColumn('rooms', function ($schedule) {
                 return $schedule->rooms->name;
             })
+
             // this will display the date of schedule
             ->addColumn('day',function($schedule)
             {
-                /**
-                 * @param $schedule
-                 * @param $accessor
-                 * @return array
-                 */
-
-
                 return $this->format_column($schedule, $this);
             })
 
             ->editColumn('start', function ($schedule) {
 
-                return $this->format_column_date($schedule);
+                return $this->format_column_start($schedule);
             })
 
             ->editColumn('finish', function ($schedule) {
@@ -121,10 +123,7 @@ class ScheduleController extends Controller
 
             ->editColumn('rooms',  function ($schedule) {
                 return $this->format_column_rooms($schedule);
-
             })
-
-
 
             //on spécifie le filtre
             ->filterColumn('start', function ($query, $keyword) {
@@ -211,12 +210,12 @@ class ScheduleController extends Controller
      * @param $schedule
      * @return array
      */
-    function format_column_date($schedule)
+    function format_column_start($schedule)
     {
         $carbonDate = new Carbon($schedule->start);
         return [
             'display' => e(//on spécifie l'affichange
-                $schedule->start = Carbon::parse($schedule->start)->format('  d/m/Y  -  H:i')
+                $this->dateRepository->parseTime_h_m($schedule->start)
             ), //on spécifie comment sera ordonner nos datas
             'timestamp' => $carbonDate->timestamp
         ];
@@ -230,11 +229,22 @@ class ScheduleController extends Controller
         $carbonDate = new Carbon($schedule->finish);
         return [
             'display' => e(
-                $schedule->finish = Carbon::parse($schedule->finish)->format('  d/m/Y  -  H:i')
+               $this->dateRepository->parseTime_h_m($schedule->finish)
             ),
             'timestamp' => $carbonDate->timestamp
         ];
     }
+    function format_column_date($schedule)
+    {
+        $carbonDate = new Carbon($schedule->start);
+        return [
+            'display' => e(//on spécifie l'affichange
+                $this->dateRepository->parseDate_d_m_y($schedule->start)
+            ), //on spécifie comment sera ordonner nos datas
+            'timestamp' => $carbonDate->timestamp
+        ];
+    }
+
     /**
      * @param $schedule
      * @return array
