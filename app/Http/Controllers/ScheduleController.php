@@ -324,5 +324,4 @@ class ScheduleController extends Controller
             'number' => $carbonDay
         ];
     }
-
 }
