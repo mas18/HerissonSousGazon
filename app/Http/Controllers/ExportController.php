@@ -38,12 +38,18 @@ class ExportController extends Controller
 
     function exportVolonteers($eventId)
     {
-        $userList=$this->scheduleRepository->getVolonteers($eventId);
-        for ($k=0;$k<count($userList);$k++)
-        {
-            $userList[$k]->level==1 ?  $userList[$k]->level='Administrateur' : $userList[$k]->level='Membre';
+        $userList=$this->userRepository->getUsers();
+
+        $users=$this->scheduleRepository->getVolonteers($eventId);
+
+        $users = $users->pluck('id');
+
+        $volunteers = $userList->whereIn('id', $users);
+
+        foreach ($volunteers as $v) {
+            $v->level==1 ?  $v->level='Administrateur' : $v->level='Membre';
         }
 
-        $this->exportRepository->exportXLS($userList,'utilisateurs','utilisateurs');
+        $this->exportRepository->exportXLS($volunteers,'utilisateurs','utilisateurs');
     }
 }

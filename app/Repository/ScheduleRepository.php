@@ -198,7 +198,10 @@ class ScheduleRepository
                 $users->push($user);
             }
         }
-        return $users;
+
+        $unique = $users->unique('id');
+
+        return $unique;
     }
 
     function update($id, $inputs)

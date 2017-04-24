@@ -127,9 +127,8 @@ class EventController extends Controller {
     {
         $volunteers = $this->scheduleRepository->getVolonteers($id);
 
-        $unique = $volunteers->unique("id");
 
-        return count($unique);
+        return count($volunteers);
     }
 }
 
