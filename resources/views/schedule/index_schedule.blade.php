@@ -256,13 +256,13 @@
                         row.style.backgroundColor="#D4C4DB";
                         break;
                     case 'Mardi':
-                        row.style.backgroundColor="#F59999";
+                        row.style.backgroundColor="#F2B2B2";
                         break;
                     case 'Mercredi':
                         row.style.backgroundColor="#ADE7F3";
                         break;
                     case 'Jeudi':
-                        row.style.backgroundColor="#8FC39B";
+                        row.style.backgroundColor="#A8CAB0";
                         break;
                     case 'Vendredi':
                         row.style.backgroundColor="#F5F6CE";
@@ -271,7 +271,7 @@
                         row.style.backgroundColor="#C7D5F8";
                         break;
                     case 'Dimanche':
-                        row.style.backgroundColor="#F5C0CA";
+                        row.style.backgroundColor="#F7BFDA";
                         break;
                     default:
                 }
