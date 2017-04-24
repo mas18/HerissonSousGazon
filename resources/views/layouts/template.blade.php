@@ -59,7 +59,7 @@
                     @endif
                     @if ( Auth::user() AND Auth::user()->level>0)
                         <li class="linksNav">
-                            <a style="font-size:80%" href="{{ url('/user') }}">Gestion des utilisateurs</a>
+                            <a style="font-size:80%" href="{{ url('/user') }}">Gestion des bénévoles</a>
                         </li>
                     @endif
 
@@ -68,14 +68,14 @@
             <div class="nav navbar-right linksNav" style="padding-top:15px">
                 <!-- Authentication Links -->
                 @if (Auth::guest())
-                    <a style="font-size:80%" href="{{ route('login') }}">Connection</a>
+                    <a style="font-size:80%" href="{{ route('login') }}">Connexion</a>
                     <a style="font-size:80%" href="{{ route('register') }}">Inscription</a>
                 @else
 
                     <a style="font-size:80%" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                            document.getElementById('logout-form').submit();">
-                            Déconnection
+                            Déconnexion
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}

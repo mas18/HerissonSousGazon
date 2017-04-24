@@ -36,6 +36,7 @@ class UserProfilRequest extends FormRequest
             'street'=>'required|max:25',
             'city'=>'required|max:25',
             'tel'=>'required|max:20',
+            'birth'=>'required|date',
         ];
     }
 }

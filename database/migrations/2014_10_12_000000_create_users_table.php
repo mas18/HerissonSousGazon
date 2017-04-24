@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('city',40);
             $table->tinyInteger('level')->default('0');
             $table->string('tel', 20);
+            $table->date('birth');
             $table->string('comment', 255)->nullable();
             $table->timestamps();
             $table->softDeletes();

@@ -6,14 +6,14 @@
     <div class="col-sm-offset-2 col-sm-8">
         <br>
         <div class="panel panel-primary">
-            <div class="panel-heading" style="font-size:18px">Création d'un utilisateur</div>
+            <div class="panel-heading" style="font-size:18px">Création d'un bénévole</div>
                 <div class="panel-body" style="font-size:12px">
                 <div class="col-sm-12">
                     {!! Form::open(['route' => 'user.store', 'class' => 'form-horizontal panel']) !!}
 
 
                         <div class="form-group {!! $errors->has('email') ? 'has-error' : '' !!}">
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 {{Form::label('email','Email')}}
                             </div>
                             <div class="col-md-9" style="height: 25px;">
@@ -23,7 +23,7 @@
                         </div>
 
                         <div class="form-group {!! $errors->has('firstname') ? 'has-error' : '' !!}">
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 {{Form::label('firstname','Prénom')}}
                             </div>
                             <div class="col-md-9" style="height: 25px;">
@@ -33,7 +33,7 @@
                         </div>
 
                     <div class="form-group {!! $errors->has('lastname') ? 'has-error' : '' !!}">
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             {{Form::label('lastname','Nom')}}
                         </div>
                         <div class="col-md-9" style="height: 25px;">
@@ -42,8 +42,18 @@
                         </div>
                     </div>
 
+                    <div class="form-group {!! $errors->has('birth') ? 'has-error' : '' !!}">
+                        <div class="col-md-3">
+                            {{Form::label('birth','Date de naissance')}}
+                        </div>
+                        <div class="col-md-9" style="height: 25px;">
+                            {!! Form::text('birth', null, ['class' => 'form-control', 'placeholder' => 'birth']) !!}
+                            {!! $errors->first('birth', '<small class="help-block">:message</small>') !!}
+                        </div>
+                    </div>
+
                     <div class="form-group {!! $errors->has('street') ? 'has-error' : '' !!}">
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             {{Form::label('street','Rue')}}
                         </div>
                         <div class="col-md-9" style="height: 25px;">
@@ -53,7 +63,7 @@
                     </div>
 
                     <div class="form-group {!! $errors->has('city') ? 'has-error' : '' !!}">
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             {{Form::label('city','NPA & Ville')}}
                         </div>
                         <div class="col-md-9" style="height: 25px;">
@@ -63,7 +73,7 @@
                     </div>
 
                     <div class="form-group {!! $errors->has('tel') ? 'has-error' : '' !!}">
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             {{Form::label('tel','Téléphone')}}
                         </div>
                         <div class="col-md-9" style="height: 25px;">
@@ -72,18 +82,8 @@
                         </div>
                     </div>
 
-                    <div class="form-group {!! $errors->has('comment') ? 'has-error' : '' !!}">
-                        <div class="col-md-2">
-                            {{Form::label('comment','Commentaire')}}
-                        </div>
-                        <div class="col-md-9" style="height: 25px;">
-                            {!! Form::text('comment', null, ['class' => 'form-control', 'placeholder' => 'comment']) !!}
-                            {!! $errors->first('comment', '<small class="help-block">:message</small>') !!}
-                        </div>
-                    </div>
-
                     <div class="form-group {!! $errors->has('password') ? 'has-error' : '' !!}">
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             {{Form::label('password','Mot de passe')}}
                         </div>
                         <div class="col-md-9" style="height: 25px;">
@@ -93,14 +93,14 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="col-md-2"></div>
+                        <div class="col-md-3"></div>
                         <div class="col-md-9" style="height: 25px;">
                         {!! Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => 'Confirmation mot de passe']) !!}
                         </div>
                     </div>
 
                     <div class="form-group {!! $errors->has('level') ? 'has-error' : '' !!}">
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             {{Form::label('level','Statut')}}
                         </div>
                         <div class="checkbox col-md-9" style="height: 25px;">

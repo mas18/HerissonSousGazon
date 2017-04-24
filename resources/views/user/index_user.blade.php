@@ -9,12 +9,12 @@
             <div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
         @endif
         <div class="panel panel-primary">
-            <div class="panel-heading" style="font-size:18px">Liste des utilisateurs</div>
+            <div class="panel-heading" style="font-size:18px">Liste des bénévoles</div>
             <table class="table" style="font-size:12px">
                 <thead>
                 <tr>
                     <th>Nom</th>
-                    <th>Prenom</th>
+                    <th>Prénom</th>
                     <th>Email</th>
                     <th></th>
                     <th></th>
@@ -31,7 +31,7 @@
                         <td>{!! link_to_route('user.edit', 'Modifier', [$user->id], ['class' => 'btn btn-primary btn-block btn-sm']) !!}</td>
                         <td>
                             {!! Form::open(['method' => 'DELETE', 'route' => ['user.destroy', $user->id]]) !!}
-                            {!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block btn-sm', 'onclick' => 'return confirm(\'Voulez-vous vraiment supprimer cet utilisateur ?\')']) !!}
+                            {!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block btn-sm', 'onclick' => 'return confirm(\'Voulez-vous vraiment supprimer ce bénévole ?\')']) !!}
                             {!! Form::close() !!}
                         </td>
                     </tr>
@@ -39,7 +39,7 @@
                 </tbody>
             </table>
         </div>
-            {!! link_to_route('user.create','Ajouter un utilisateur', [], ['class' => 'btn btn-default pull-right btn-sm']) !!}
+            {!! link_to_route('user.create','Ajouter un bénévole', [], ['class' => 'btn btn-default pull-right btn-sm']) !!}
             {{ Html::link('/export/user', 'Exporter ', ['class' => 'btn btn-default pull-right btn-sm'])}}
         {!! $links !!}
     </div>

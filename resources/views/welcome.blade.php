@@ -43,8 +43,8 @@
                             {{ csrf_field() }}
                         </form>
                     @else
-                        <a style="font-size:100%" href="{{ url('/login') }}">Connection</a>
-                        <a style="font-size:100%" href="{{ url('/register') }}">Inscription</a>
+                        <a style="font-size:100%" href="{{ url('/login') }}">Connexion</a>
+                        <a style="font-size:100%" href="{{ url('/register') }}">Créer un compte</a>
                     @endif
                 </div>
             @endif
@@ -91,7 +91,7 @@
 
 
                 <!-- TITLE -->
-                <div style="font-size:5vw;color:#2aabd2">Hérisson sous gazon</div>
+                <div style="font-size:5vw;">Hérisson sous gazon</div>
 
                 </br>
 
@@ -99,22 +99,22 @@
                 <div class="container flex-center ">
                 <ul class="navbar-nav">
                     @if(Auth::user())
-                    <li class="linksNav" style="list-style-type:none"><a style="font-size:1vw;" href="{{ url('/events') }}">Événements</a></li>
+                    <li class="linksNav" style="list-style-type:none"><a style="font-size:1vw;" href="{{ url('/events') }}">Voir l'événement</a></li>
                     <li class="linksNav" style="list-style-type:none"><a style="font-size:1vw" href="{{ url('/profil') }}">Mon profile</a></li>
                     @endif
                     @if(Auth::user()  AND Auth::user()->level>0)
-                         <li class="linksNav" style="list-style-type:none"><a style="font-size:1vw" href="{{ url('/user') }}">Gestion des utilisateurs</a></li>
+                         <li class="linksNav" style="list-style-type:none"><a style="font-size:1vw" href="{{ url('/user') }}">Gestion des bénévoles</a></li>
                     @endif
                 </ul>
                 </div>
 
 
-                <br/><br/>
+                <br/>
 
                 <!-- Text -->
-                <div class="container flex-center">
-                    <p style="font-size:1vw; font-weight: bold;">Bienvenue sur le site des inscriptions pour l'évènement Hérisson sous gazon dédié aux volontaires
-                    Pour accéder au planning, veuillez vous connecter au site web.</p>
+                <div class="container flex-center col-md-offset-2 col-sm-8">
+                    <p style="font-size:1vw; color:#2a88bd; font-weight: bold;">Bienvenue sur le site des inscriptions pour l'évènement Hérisson sous gazon dédié aux bénévoles.
+                    Pour accéder à l'évènement, veuillez vous connecter au site web.</p>
                 </div>
 
             </div>
