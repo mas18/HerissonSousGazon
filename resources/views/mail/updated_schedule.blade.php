@@ -1,8 +1,8 @@
 <?php ?>
 <h1>{{config('app.name')}}</h1>
 
-<h2>{{$title}}</h2>
-<div>{{$message}}</div>
+<h2>{{$title_message}}</h2>
+<div>{{$content}}</div>
 
 <ul>
     <li>{{$oldSchedule}}</li>
