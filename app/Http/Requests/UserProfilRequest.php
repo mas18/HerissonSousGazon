@@ -35,7 +35,7 @@ class UserProfilRequest extends FormRequest
             'level'=>'numeric|min:0|max:9',
             'street'=>'required|max:25',
             'city'=>'required|max:25',
-            'tel'=>'required|max:20',
+            'tel'=>'required|max:13',
             'birth'=>'required|date',
         ];
     }

@@ -32,7 +32,7 @@ class UserCreateRequest extends FormRequest
             'level'=>'numeric|min:0|max:9',
             'street'=>'required|max:25',
             'city'=>'required|max:25',
-            'tel'=>'required|max:20',
+            'tel'=>'required|min:12|max:13|confirmed',
             'password'=>'required|min:6|confirmed',
             'birth'=>'required|date',
         ];
