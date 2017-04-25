@@ -27,6 +27,7 @@
     {{Html::style('css/style.css')}}
 
     <script>
+
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
         ]) !!};
@@ -104,7 +105,9 @@
 
 
 </body>
-
+<script>
+    console.log("Bonjour visiteur, ce site a été créer par Christophe Crettenand, Sandro Mathier et Clothilde Rieille.");
+</script>
 
 
 

@@ -162,26 +162,59 @@ Mailer $mailer)
 
         //send the mail to users subscribed in the schedule
         try{
+            //get the new schedule
+            $newSchedule=$this->scheduleRepository->getById($oldSchedule->id);
+
             //get the mails of all users subscribed
             $mails=$oldSchedule->users->pluck('email')->toArray();
             //get the informations to send in the mails
             $number=$oldSchedule->id;
-            $date=$this->dateRepository->parse_date_localized_dddd_mmmm_yyyy($oldSchedule->start);
-            $room=$oldSchedule->rooms->name;
+            $oldDate=$this->dateRepository->parse_date_localized_dddd_mmmm_yyyy($oldSchedule->start);
+            $newDate=$this->dateRepository->parse_date_localized_dddd_mmmm_yyyy($newSchedule->start);
+
+            $oldStart=$this->dateRepository->getHourOfDate($oldSchedule->start);
+            $newStart=$this->dateRepository->getHourOfDate($newSchedule->start);
+
+            $oldFinish=$this->dateRepository->getHourOfDate($oldSchedule->finish);
+            $newFinish=$this->dateRepository->getHourOfDate($newSchedule->finish);
+
+
+            $oldRoom=$oldSchedule->rooms->name;
+            $newRoom=$newSchedule->rooms->name;
+
 
 
 
             $messages="Une plage horaire dans laquelle vous êtes inscrit(e) à été modifiée par l'administrateur : 
-             Numéro de la plage horaire : ".$number
-            ." ; Date :" .$date
-            ." ; Post : ".$room;
+             Numéro de la plage horaire : " .$number;
+
+            $oldSchedule_information=
+                " Anciennement :"
+            ."  Date : " .$oldDate
+            ." ; Post : ".$oldRoom
+            ." ; Heure de départ : ".$oldStart
+            ." ; Heure de fin : ".$oldFinish;
+
+            $newSchedule_information=" Après modification :"
+            ."  Date : " .$newDate
+            ." ; Post : ".$newRoom
+            ." ; Heure de départ : ".$newStart
+            ." ; Heure de fin : ".$newFinish;
 
 
-            $this->send_mails_schedule_is_updated($mails,$messages);
+            //remove the empty values of mails:
+            for ($k=0;$k<count($mails);$k++)
+            {
+                if (!$mails[$k] OR $mails[$k]=="")
+                    array_unshift($mails,$k);
+            }
+
+
+            $this->send_mails_schedule_is_updated($mails,$messages,$oldSchedule_information,$newSchedule_information);
         }
         catch (Exception $ex)
         {
-
+            echo $ex->getTrace();
         }
 
 
@@ -356,8 +389,8 @@ Mailer $mailer)
             'number' => $carbonDay
         ];
     }
-    private function send_mails_schedule_is_updated($emails, $message)
+    private function send_mails_schedule_is_updated($emails, $message,$oldSchedule,$newSchedule)
     {
-        $this->mailer->send_standart_mail("Modification d'une plage horaire dont vous êtes inscrit(e)",$message,$emails);
+        $this->mailer->send_updated_mail("Modification d'une plage horaire dont vous êtes inscrit(e)",$message,$oldSchedule,$newSchedule,$emails);
     }
 }
