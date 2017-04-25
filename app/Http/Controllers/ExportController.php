@@ -4,21 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Repository\ExportRepository;
 use App\Repository\UserRepository;
+use App\Repository\ScheduleRepository;
 use Illuminate\Http\Request;
 
 class ExportController extends Controller
 {
 
-   private $exportRepository;
+    private $exportRepository;
     private $userRepository;
+    private $scheduleRepository;
 
-    public function __construct(ExportRepository $exportRepository, UserRepository $userRepository)
+    public function __construct(ExportRepository $exportRepository, UserRepository $userRepository, ScheduleRepository $scheduleRepository)
     {
 
 
         $this->middleware('admin');
         $this->userRepository=$userRepository;
         $this->exportRepository=$exportRepository;
+        $this->scheduleRepository = $scheduleRepository;
     }
 
     //
@@ -31,5 +34,22 @@ class ExportController extends Controller
         }
 
         $this->exportRepository->exportXLS($userList,'utilisateurs','utilisateurs');
+    }
+
+    function exportVolonteers($eventId)
+    {
+        $userList=$this->userRepository->getUsers();
+
+        $users=$this->scheduleRepository->getVolonteers($eventId);
+
+        $users = $users->pluck('id');
+
+        $volunteers = $userList->whereIn('id', $users);
+
+        foreach ($volunteers as $v) {
+            $v->level==1 ?  $v->level='Administrateur' : $v->level='Membre';
+        }
+
+        $this->exportRepository->exportXLS($volunteers,'utilisateurs','utilisateurs');
     }
 }

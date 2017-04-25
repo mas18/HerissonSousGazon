@@ -177,7 +177,9 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-4 ">
-                                    <a href="{{ route('schedule.show', $event->id) }}" class="btn pull-right  btn-default">Ouvrir le planning</a>
+                                    <a href="{{ route('schedule.show', $event->id) }}" class="btn pull-right  btn-default">Ouvrir le planning</a><br />
+                                    <br />
+                                    <a href="{{ route('event.export', $event->id) }}" class="btn pull-right  btn-default">Exporter la liste des bénévoles</a><br />
                                 </div>
                             </div>
                         </div>
