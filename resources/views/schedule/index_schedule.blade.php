@@ -3,6 +3,7 @@
 @section('main_content')
 
     <div class="col-xs-12">
+
     @if(Auth::user()->level>0)
         <button type="button"  class="btn btn-primary pull-right btn-sm" style="margin-left:5px;" data-toggle="modal" data-target="#modalNewRoom">Ajouter un lieu</button>
         <button type="button"  class="btn btn-primary pull-right btn-sm" data-toggle="modal" data-target="#scheduleNew">Créer une plage horaire</button>
@@ -15,6 +16,7 @@
 
     <!-- SCHEDULE TABLE -->
     <div class="table-responsive">
+        <h5 class="text-danger pull-right">Les mineurs ne peuvent pas s’inscrire aux bars ou aux caisses.</h5>
         <table class="table table-hover table-striped" id="allschedule" style="font-size:12px; border:1px solid #D9D8D8; border-radius:5px">
             <thead>
             <tr style="font-size:14px">
@@ -171,7 +173,7 @@
                 "language": {
                     "paginate": {
                         "previous": "Page précédente",
-                        "next":'Page suivante'
+                        "next":'Page suivante',
                     },
                     //other language options:
                     "processing":     "Traitement...",
@@ -179,6 +181,7 @@
                     "search":          "Rechercher un élément ",
                     "lengthMenu":     "Affichage de  _MENU_ entrées",
                     "infoFiltered":   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+                    "emptyTable": "aucunes données disponibles pour le moment",
                 },
 
                 //pagination action
