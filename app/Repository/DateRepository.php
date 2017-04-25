@@ -55,4 +55,9 @@ class DateRepository
         setlocale(LC_TIME, 'French');
         return $carbonDate->formatLocalized('%A %d %B %Y');
     }
+    public function getHourOfDate($date)
+    {
+        $carbonDate=new Carbon($date);
+        return  Carbon::parse($carbonDate)->format('H:i');
+    }
 }

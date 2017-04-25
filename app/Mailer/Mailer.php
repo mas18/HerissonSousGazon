@@ -65,6 +65,16 @@ class Mailer
             $message->to($receiver)->subject($title);
         });
     }
+    public function send_updated_mail($title, $message,$oldSchedule,$newSchedule, $receiver)
+    {
+        $data = array( 'title' => $title, 'message' => $message,'oldSchedule'=>$oldSchedule,'newSchedule'=>$newSchedule);
+
+        Mail::send('mail.updated_schedule', $data, function ($message) use ($receiver, $title) {
+            $message->from($this->sender, 'Herrisson sous gazon');
+
+            $message->to($receiver)->subject($title);
+        });
+    }
 
 
 
