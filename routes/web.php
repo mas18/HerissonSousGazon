@@ -56,8 +56,8 @@ Route::get("test",function ()
 
     $rawDate="2017-05-15 08:50:2";
 
-    $dateDifference=$dateRepository->difference_day_from_today($rawDate);
-    echo $dateDifference;
+    $dateLocalized=$dateRepository->parse_date_localized_dddd_mmmm_yyyy($rawDate);
+    echo $dateLocalized;
     exit;
 
 
