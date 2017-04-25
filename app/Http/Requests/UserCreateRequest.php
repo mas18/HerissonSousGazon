@@ -34,7 +34,7 @@ class UserCreateRequest extends FormRequest
             'city'=>'required|max:25',
             'tel'=>'required|max:20',
             'password'=>'required|min:6|confirmed',
-            'birth'=>'required|date',
+            'birth'=>'required|date| before:14 years ago'
         ];
     }
 }
