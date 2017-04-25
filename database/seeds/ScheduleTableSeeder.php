@@ -17,7 +17,7 @@ class ScheduleTableSeeder extends Seeder {
 
             // ScheduleSeeder
             $day=rand(10,11);
-            $month=6;
+            $month=8;
             Schedule::create(array(
                 'places' => 2,
                 'start' => $this->beginDate($day,$month),
@@ -30,12 +30,12 @@ class ScheduleTableSeeder extends Seeder {
 	}
     public function beginDate($day,$mouth)
     {
-        $date = Carbon::create(2016, $mouth, $day, rand(8,12), rand(1,60), rand(1,60));
+        $date = Carbon::create(2017, $mouth, $day, rand(8,12), rand(1,60), rand(1,60));
         return   $date->format('Y-m-d H:i:s');
     }
     public function endDate($day,$mounth)
     {
-        $date = Carbon::create(2016, $mounth ,$day , rand(12,22), rand(1,60), rand(1,60));
+        $date = Carbon::create(2017, $mounth ,$day , rand(12,22), rand(1,60), rand(1,60));
         return   $date->format('Y-m-d H:i:s');
     }
 }

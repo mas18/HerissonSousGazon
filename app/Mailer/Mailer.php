@@ -59,13 +59,13 @@ class Mailer
 
     public function send_standart_mail($title, $content, $receiver)
     {
-        $data = array( 'title' => $title, 'content' => $content );
+     //   $data = array( 'title' => $title, 'content' => $content );
 
-        Mail::send('mail.subscrib_confirm', $data, function ($message) use ($receiver, $title) {
-            $message->from($this->sender, 'Herrisson sous gazon');
+     //   Mail::send('mail.subscrib_confirm', $data, function ($message) use ($receiver, $title) {
+     //       $message->from($this->sender, 'Herrisson sous gazon');
 
-            $message->to($receiver)->subject($title);
-        });
+     //       $message->to($receiver)->subject($title);
+     //   });
 
     }
 
