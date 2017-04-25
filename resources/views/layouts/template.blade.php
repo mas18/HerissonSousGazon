@@ -62,6 +62,7 @@
                             <a style="font-size:80%" href="{{ url('/user') }}">Gestion des bénévoles</a>
                         </li>
                     @endif
+                    <li class="linksNav"><a style="font-size:80%" href="{{ url('/contact') }}">Contact</a></li>
 
             </ul>
             <!-- Navbar: Register/Connection -->
