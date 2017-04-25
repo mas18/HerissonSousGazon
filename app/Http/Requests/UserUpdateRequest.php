@@ -33,8 +33,8 @@ class UserUpdateRequest extends FormRequest
             'level'=>'numeric|min:0|max:9',
             'street'=>'required|max:25',
             'city'=>'required|max:25',
-            'tel'=>'required|max:20',
-            'birth'=>'required|date| before:14 years ago'
+            'tel'=>'required|min:12|max:13|confirmed',
+            'birth'=>'required|date|before:14 years ago'
         ];
     }
 }

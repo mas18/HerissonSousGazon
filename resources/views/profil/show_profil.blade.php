@@ -20,7 +20,7 @@
                         <div class="col-md-3">
                             {{Form::label('firstname','Prénom')}}
                         </div>
-                        <div class="col-md-9"  style="height: 25px;">
+                        <div class="col-md-9">
                             {!! Form::text('firstname', null, ['class' => 'form-control', 'placeholder' => 'prénom']) !!}
                             {!! $errors->first('firstname', '<small class="help-block">:message</small>') !!}
                         </div>
@@ -30,7 +30,7 @@
                         <div class="col-md-3">
                             {{Form::label('lastname','Nom')}}
                         </div>
-                        <div class="col-md-9"  style="height: 25px;">
+                        <div class="col-md-9">
                             {!! Form::text('lastname', null, ['class' => 'form-control', 'placeholder' => 'nom']) !!}
                             {!! $errors->first('lastname', '<small class="help-block">:message</small>') !!}
                         </div>
@@ -40,7 +40,7 @@
                         <div class="col-md-3">
                             {{Form::label('birth','Date de naissance')}}
                         </div>
-                        <div class="col-md-9"  style="height: 25px;">
+                        <div class="col-md-9">
                             {!! Form::date('birth', null, ['class' => 'form-control', 'placeholder' => 'birth']) !!}
                             {!! $errors->first('birth', '<small class="help-block">:message</small>') !!}
                         </div>
@@ -50,7 +50,7 @@
                         <div class="col-md-3">
                             {{Form::label('email','Email')}}
                         </div>
-                        <div class="col-md-9"  style="height: 25px;">
+                        <div class="col-md-9">
                             {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'email']) !!}
                             {!! $errors->first('email', '<small class="help-block">:message</small>') !!}
                         </div>
@@ -60,7 +60,7 @@
                         <div class="col-md-3">
                             {{Form::label('street','Rue')}}
                         </div>
-                        <div class="col-md-9"  style="height: 25px;">
+                        <div class="col-md-9">
                             {!! Form::text('street', null, ['class' => 'form-control', 'placeholder' => 'rue']) !!}
                             {!! $errors->first('street', '<small class="help-block">:message</small>') !!}
                         </div>
@@ -70,7 +70,7 @@
                         <div class="col-md-3">
                             {{Form::label('city','NPA + Ville')}}
                         </div>
-                        <div class="col-md-9"  style="height: 25px;">
+                        <div class="col-md-9">
                             {!! Form::text('city', null, ['class' => 'form-control', 'placeholder' => 'ville']) !!}
                             {!! $errors->first('city', '<small class="help-block">:message</small>') !!}
                         </div>
@@ -80,7 +80,7 @@
                         <div class="col-md-3">
                             {{Form::label('tel','Téléphone')}}
                         </div>
-                        <div class="col-md-9"  style="height: 25px;">
+                        <div class="col-md-9">
                             {!! Form::text('tel', null, ['class' => 'form-control', 'placeholder' => 'téléphone']) !!}
                             {!! $errors->first('tel', '<small class="help-block">:message</small>') !!}
                         </div>
