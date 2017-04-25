@@ -20,7 +20,9 @@ Auth::routes();
 Route::get('/subscribe/{idSchedule}',"SubscribeController@action");
 
 Route::get('/adminuserslist/{idSchedule?}',"AdminSubscribeController@sendUserListofSchedule");
-
+Route::get('/contact',function(){
+   return view('contact.contact');
+});
 Route::get('/home', 'WelcomeController@index');
 Route::get('/events', 'EventController@index')->name('event.show');
 Route::post('/events', 'EventController@store')->name('event.store');
@@ -50,6 +52,10 @@ Route::get('schedule/{number?}/{user?}/{schedule?}', 'SubscribeController@accept
 //export route
 Route::get('export/user','ExportController@exportAllUser');
 Route::get('export/volonteer/{event}', 'ExportController@exportVolonteers')->name('event.export');
+
+
+
+
 
 Route::get("test",function ()
 {
