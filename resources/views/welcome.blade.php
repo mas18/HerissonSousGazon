@@ -37,7 +37,7 @@
                         <a style="font-size:100%" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                            document.getElementById('logout-form').submit();">
-                            Déconnection
+                            Déconnexion
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
@@ -100,7 +100,7 @@
                 <ul class="navbar-nav">
                     @if(Auth::user())
                     <li class="linksNav" style="list-style-type:none"><a style="font-size:1vw;" href="{{ url('/events') }}">Voir l'événement</a></li>
-                    <li class="linksNav" style="list-style-type:none"><a style="font-size:1vw" href="{{ url('/profil') }}">Mon profile</a></li>
+                    <li class="linksNav" style="list-style-type:none"><a style="font-size:1vw" href="{{ url('/profil') }}">Mon profil</a></li>
                     @endif
                     @if(Auth::user()  AND Auth::user()->level>0)
                          <li class="linksNav" style="list-style-type:none"><a style="font-size:1vw" href="{{ url('/user') }}">Gestion des bénévoles</a></li>
@@ -113,7 +113,7 @@
 
                 <!-- Text -->
                 <div class="container flex-center col-md-offset-2 col-sm-8">
-                    <p style="font-size:1vw; color:#2a88bd; font-weight: bold;">Bienvenue sur le site des inscriptions pour l'évènement Hérisson sous gazon dédié aux bénévoles.
+                    <p style="font-size:1vw; color:#2a88bd; font-weight: bold;">Bienvenue sur le site des inscriptions pour l'événement Hérisson sous gazon dédié aux bénévoles.
                     Pour accéder à l'évènement, veuillez vous connecter au site web.</p>
                 </div>
 

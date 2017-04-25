@@ -375,13 +375,14 @@
                 //get the information to display in the alert box
                 var action_type=childsNodes[childsNodes.length-1].innerHTML.includes('Desinscription') ? "Désincription de l'horaire suivant :":"inscription à l'horaire suivant : ";
                 var schedule_number=childsNodes[0].innerHTML;
+                var action_type=childsNodes[childsNodes.length-1].innerHTML.includes('Desinscription') ? "la désincription de l'horaire : ":"l'inscription à l'horaire : ";
                 var schedule_day=childsNodes[1].innerHTML;
                 var schedule_date=childsNodes[2].innerHTML;
                 var schedule_post=childsNodes[3].innerHTML;
                 var schedule_start_hour=childsNodes[4].innerHTML;
                 var schedule_end_hour=childsNodes[5].innerHTML;
-                var alert_message="Veuillez confirmer l'action: "+action_type+" Numéro : "+schedule_number+ " | Date : "+schedule_date+ " | Jour : "+schedule_day+" | Poste: "+schedule_post+ " | Début : "+schedule_start_hour+
-                        " | Fin : "+schedule_end_hour;
+                var alert_message="Veuillez confirmer "+action_type+" numéro "+schedule_number+ ", le "+schedule_day+" "+schedule_date+ " au poste '"+schedule_post+ "' commençant à "+schedule_start_hour+
+                        " pour finir à "+schedule_end_hour;
                 childsNodes[childsNodes.length - 1].addEventListener('click', function (event) {
                     var child = this.firstChild;
                     var id = this.parentNode.childNodes[0].innerHTML;
@@ -793,7 +794,7 @@
             <div class="modal-content" style="padding: 5px;">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Confirmer la suppression de la plage horaire</h4>
+                    <h4 class="modal-title">Veuillez confirmer la suppression de la plage horaire</h4>
                 </div>
                 <div class="modal-body alert alert-danger">
                     <span class="glyphicon glyphicon-warning-sign"> </span>
@@ -817,11 +818,12 @@
             <div class="modal-content" style="padding: 5px;">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Désinscrire de la plage horaire</h4>
+                    <h4 class="modal-title">Désinscription à une plage horaire</h4>
                 </div>
                 <div class="modal-body">
                     <div class="col-md-12 alert alert-info">
-                        Vous pouvez plus vous désincrire vous-mêmes 3 semaines avant l'événement. Envoyer une demande à l'administrateur blablablabla...
+                        Trois semaines avant l'événement il n'est plus possible pour un bénévole de se désinscrire à une plage horaire pour des questions d'organisation.
+                        Veuillez envoyer une demande à l'administrateur en remplissant les raisons de votre désinscription en dessous et en appuyant sur le bouton "envoyer".
                     </div>
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('schedule.unsubscribe') }}">
                         {{ csrf_field() }}
@@ -830,7 +832,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <br />
-                                <label for="comment" style="text-align: left; padding-left: 0" class="control-label col-md-12">Raison</label>
+                                <label for="comment" style="text-align: left; padding-left: 0" class="control-label col-md-12">Raison de votre désinscription</label>
                                 <textarea rows="5" style="resize: none;" class="form-control col-md-12" name="message" required></textarea>
                             </div>
                         </div>

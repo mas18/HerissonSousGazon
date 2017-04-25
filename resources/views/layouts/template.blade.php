@@ -54,9 +54,9 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="linksNav"><a style="font-size:80%" href="{{ url('/') }}">Accueil</a></li>
-                    <li class="linksNav"><a style="font-size:80%" href="{{ url('/events') }}">Évènements</a></li>
+                    <li class="linksNav"><a style="font-size:80%" href="{{ url('/events') }}">Voir l'événement</a></li>
                     @if(Auth::user())
-                        <li class="linksNav"><a style="font-size:80%" href="{{ url('/profil') }}">Mon profile</a></li>
+                        <li class="linksNav"><a style="font-size:80%" href="{{ url('/profil') }}">Mon profil</a></li>
                     @endif
                     @if ( Auth::user() AND Auth::user()->level>0)
                         <li class="linksNav">

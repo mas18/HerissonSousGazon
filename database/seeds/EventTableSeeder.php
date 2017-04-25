@@ -23,10 +23,10 @@ class EventTableSeeder extends Seeder {
 	}
 	public function beginDate()
     {
-        return Carbon::createFromDate(2016, 6, 10);
+        return Carbon::createFromDate(2017, 8, 10);
     }
     public function endDate()
     {
-        return Carbon::createFromDate(2016, 6, 11);
+        return Carbon::createFromDate(2017, 8, 11);
     }
 }
