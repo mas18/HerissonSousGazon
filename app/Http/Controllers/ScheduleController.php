@@ -207,7 +207,7 @@ Mailer $mailer)
             ." ; Heure de départ : ".$newStart
             ." ; Heure de fin : ".$newFinish;
 
-            
+
             $this->send_mails_schedule_is_updated($mails,$messages,$oldSchedule_information,$newSchedule_information);
         }
         catch (Exception $ex)
