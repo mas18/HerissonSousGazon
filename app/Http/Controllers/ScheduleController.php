@@ -182,14 +182,20 @@ Mailer $mailer)
             $oldRoom=$oldSchedule->rooms->name;
             $newRoom=$newSchedule->rooms->name;
 
+            for ($k=0;$k<count($mails);$k++)
+            {
+                if (!$mails[$k])
+                unset($mails[$k]);
+            }
 
 
 
             $messages="Une plage horaire dans laquelle vous êtes inscrit(e) à été modifiée par l'administrateur : 
              Numéro de la plage horaire : " .$number;
 
+
             $oldSchedule_information=
-                " Anciennement :"
+                " Anciennement :   "
             ."  Date : " .$oldDate
             ." ; Post : ".$oldRoom
             ." ; Heure de départ : ".$oldStart
@@ -197,17 +203,9 @@ Mailer $mailer)
 
             $newSchedule_information=" Après modification :"
             ."  Date : " .$newDate
-            ." ; Post : ".$newRoom
+            ." ; Poste : ".$newRoom
             ." ; Heure de départ : ".$newStart
             ." ; Heure de fin : ".$newFinish;
-
-
-            //remove the empty values of mails:
-            for ($k=0;$k<count($mails);$k++)
-            {
-                if (!$mails[$k] OR $mails[$k]=="")
-                    array_unshift($mails,$k);
-            }
 
 
             $this->send_mails_schedule_is_updated($mails,$messages,$oldSchedule_information,$newSchedule_information);
@@ -391,6 +389,7 @@ Mailer $mailer)
     }
     private function send_mails_schedule_is_updated($emails, $message,$oldSchedule,$newSchedule)
     {
+
         $this->mailer->send_updated_mail("Modification d'une plage horaire dont vous êtes inscrit(e)",$message,$oldSchedule,$newSchedule,$emails);
     }
 }
