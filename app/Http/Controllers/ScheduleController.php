@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ScheduleSubscribeUser;
+use App\Mailer\Mailer;
 use App\Repository\DateRepository;
 use App\Repository\ScheduleRepository;
 use App\Repository\EventRepository;
@@ -13,6 +14,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ScheduleRequest;
 //use datatables
 use Illuminate\Support\Facades\Auth;
+use League\Flysystem\Exception;
 use Tests\Unit\scheduleTest;
 use Yajra\Datatables\Datatables;
 use Carbon\Carbon;
@@ -24,8 +26,10 @@ class ScheduleController extends Controller
     protected $eventRepository;
     protected $userRepository;
     protected $dateRepository;
+    protected $mailer;
 
-    public function __construct(ScheduleRepository $scheduleRepository, EventRepository $eventRepository, UserRepository $userRepository, DateRepository $dateRepository)
+    public function __construct(ScheduleRepository $scheduleRepository, EventRepository $eventRepository, UserRepository $userRepository, DateRepository $dateRepository,
+Mailer $mailer)
     {
 
         //define the right of the user
@@ -36,8 +40,8 @@ class ScheduleController extends Controller
        $this->eventRepository=$eventRepository;
        $this->userRepository=$userRepository;
        $this->dateRepository=$dateRepository;
+       $this->mailer=$mailer;
     }
-
 
     public function subscribeuser($idschedule, $iduser, $request){
 
@@ -152,7 +156,35 @@ class ScheduleController extends Controller
 
     public function edit(ScheduleRequest $request)
     {
+        $oldSchedule=$this->scheduleRepository->getByIdWithUsers($request->scheduleId);
+
         $this->scheduleRepository->update($request->scheduleId, $request->all());
+
+        //send the mail to users subscribed in the schedule
+        try{
+            //get the mails of all users subscribed
+            $mails=$oldSchedule->users->pluck('email')->toArray();
+            //get the informations to send in the mails
+            $number=$oldSchedule->id;
+            $date=$this->dateRepository->parse_date_localized_dddd_mmmm_yyyy($oldSchedule->start);
+            $room=$oldSchedule->rooms->name;
+
+
+
+            $messages="Une plage horaire dans laquelle vous êtes inscrit(e) à été modifiée par l'administrateur : 
+             Numéro de la plage horaire : ".$number
+            ." ; Date :" .$date
+            ." ; Post : ".$room;
+
+
+            $this->send_mails_schedule_is_updated($mails,$messages);
+        }
+        catch (Exception $ex)
+        {
+
+        }
+
+
 
         return redirect()->route('schedule.show', $request->eventId);
     }
@@ -323,5 +355,9 @@ class ScheduleController extends Controller
             'display' => $dayOfWeek,
             'number' => $carbonDay
         ];
+    }
+    private function send_mails_schedule_is_updated($emails, $message)
+    {
+        $this->mailer->send_standart_mail("Modification d'une plage horaire dont vous êtes inscrit(e)",$message,$emails);
     }
 }

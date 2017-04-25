@@ -144,7 +144,7 @@
         $(function(){
             $('#allschedule').DataTable({
                 responsive: true,
-                "bStateSave": true, //add state button to save the current display
+               // "bStateSave": true, //add state button to save the current display
                 dom: 'Blfrtip', //display button and entries
                 buttons: [ //set language of the button text
                     {extend: 'copy', text: 'Copier  - '},
@@ -373,14 +373,16 @@
                 var childsNodes = row[k].childNodes;
                 console.log(childsNodes[childsNodes.length - 1]);
                 //get the information to display in the alert box
+                var action_type=childsNodes[childsNodes.length-1].innerHTML.includes('Desinscription') ? "Désincription de l'horaire suivant :":"inscription à l'horaire suivant : ";
+                var schedule_number=childsNodes[0].innerHTML;
                 var action_type=childsNodes[childsNodes.length-1].innerHTML.includes('Desinscription') ? "la désincription de l'horaire :":"l'inscription à l'horaire : ";
                 var schedule_day=childsNodes[1].innerHTML;
                 var schedule_date=childsNodes[2].innerHTML;
                 var schedule_post=childsNodes[3].innerHTML;
                 var schedule_start_hour=childsNodes[4].innerHTML;
                 var schedule_end_hour=childsNodes[5].innerHTML;
-                var alert_message="Veuillez confirmer "+action_type+" "+schedule_day+" "+schedule_date+", au poste "+schedule_post+ " commençant à "+schedule_start_hour+
-                        " pour finir à "+schedule_end_hour;
+                var alert_message="Veuillez confirmer l'action: "+action_type+" Numéro : "+schedule_number+ " | Date : "+schedule_date+ " | Jour : "+schedule_day+" | Poste: "+schedule_post+ " | Début : "+schedule_start_hour+
+                        " | Fin : "+schedule_end_hour;
                 childsNodes[childsNodes.length - 1].addEventListener('click', function (event) {
                     var child = this.firstChild;
                     var id = this.parentNode.childNodes[0].innerHTML;

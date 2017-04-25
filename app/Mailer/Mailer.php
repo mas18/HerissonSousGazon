@@ -55,8 +55,6 @@ class Mailer
     }
 
 
-
-
     public function send_standart_mail($title, $content, $receiver)
     {
      //   $data = array( 'title' => $title, 'content' => $content );

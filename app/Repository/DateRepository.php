@@ -48,4 +48,11 @@ class DateRepository
         $day_difference=$eventDate->diffInDays($today);
         return $day_difference;
     }
+    public function parse_date_localized_dddd_mmmm_yyyy($date)
+    {
+        $carbonDate=new Carbon($date);
+
+        setlocale(LC_TIME, 'French');
+        return $carbonDate->formatLocalized('%A %d %B %Y');
+    }
 }
