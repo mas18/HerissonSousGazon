@@ -4,8 +4,10 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\UnauthorizedException;
+use Psy\Exception\ErrorException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
@@ -46,14 +48,25 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+
         if ($exception instanceof UnauthorizedException)
             return response()->view('exceptions.unauthorized');
 
-    if ($exception instanceof NotFoundHttpException)
+        if ($exception instanceof NotFoundHttpException)
             return response()->view('exceptions.404');
 
         if ($exception instanceof \ReflectionException)
             return response()->view('exceptions.404');
+
+        if ($exception instanceof  \ErrorException)
+        {
+            return response()->view('exceptions.emptydb');
+        }
+        if ($exception instanceof  ModelNotFoundException)
+        {
+            return response()->view('exceptions.emptydb');
+        }
+
 
         return parent::render($request, $exception);
     }

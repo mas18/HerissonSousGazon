@@ -181,7 +181,7 @@
                     "search":          "Rechercher un élément ",
                     "lengthMenu":     "Affichage de  _MENU_ entrées",
                     "infoFiltered":   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
-                    "emptyTable": "aucunes données disponibles pour le moment",
+                    "emptyTable":     "Il n'y a pas encore de plage horaire dans cette évènement.",
                 },
 
                 //pagination action
