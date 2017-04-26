@@ -24,7 +24,7 @@
                         <div class="modal-body alert-warning">
                             <form class="form-horizontal" role="form" method="POST" action="{{ route('room.store') }}">
                                 <div class="form-group">
-                                    <label for="roomName" class="col-md-3 control-label "><span class="glyphicon glyphicon-warning-sign"></span> Le mot de passe a été modifié.</label>
+                                    <label for="roomName" class="control-label"><span class="glyphicon glyphicon-warning-sign"></span> Le mot de passe a été modifié.</label>
 
                                 </div>
                             </form>
