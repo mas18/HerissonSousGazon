@@ -105,6 +105,7 @@
                     @if(Auth::user()  AND Auth::user()->level>0)
                          <li class="linksNav" style="list-style-type:none"><a style="font-size:1vw" href="{{ url('/user') }}">Gestion des bénévoles</a></li>
                     @endif
+                    <li class="linksNav" style="list-style-type:none"><a style="font-size:1vw" href="{{ url('/contact') }}">Contact</a></li>
                 </ul>
                 </div>
 

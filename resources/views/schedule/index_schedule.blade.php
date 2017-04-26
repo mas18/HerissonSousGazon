@@ -28,7 +28,7 @@
                 <th>Heure fin</th>
                 <th>Places totales</th>
                 <th>Places restantes </th>
-                <th>Volontaires inscrits</th>
+                <th>Bénévoles inscrits</th>
                 @if(Auth::user()->level==0)
                 <th>action</th>
                 @endif
@@ -96,7 +96,7 @@
                     var subscribed = $("#subscribed_user_list option");
 
                     if(selectedItem.length + subscribed.size() > $('#number_edit').val()){
-                        alert("Le nombre des volontaires est plus grande que le nombre des places");
+                        alert("Le nombre de bénévoles est plus grande que le nombre des places");
                     } else {
                         $('#subscribed_user_list').append(selectedItem);
                     }
@@ -226,7 +226,7 @@
 
                 { data: 'occuped', name: 'occuped', title : 'Places restantes', class : 'num'},
 
-                { data: 'users', name: 'users', title : 'Volontaires inscrits',
+                { data: 'users', name: 'users', title : 'Bénévoles inscrits',
                     render : {
                         _: 'display',
                         sort: 'alpha'
@@ -622,7 +622,7 @@
                         <div class="form-group">
                             <section class="container" style="overflow:auto; width:600px;box-sizing: border-box;">
                                 <div style="width:230px; text-align:center;" class="col-md-2">
-                                    <label>Volontaires inscrits</label>
+                                    <label>Bénévoles inscrits</label>
                                     <select id="subscribed_user_list" name="subscribed_user_list[]" size="10" style="width: 220px;overflow:scroll;" multiple>
                                     </select>
                                 </div>
@@ -632,7 +632,7 @@
                                     <input type="button" id="btnRight" class="btn btn-default" value="&gt;&gt;" />
                                 </div >
                                 <div style="width:230px;text-align:center;" class="col-md-2">
-                                    <label>Volontaires non inscrits</label>
+                                    <label>Bénévoles non inscrits</label>
                                     <select id="non_subscribed_userList" name="non_subscribed_userList[]" size="10" style="width:220px;overflow:scroll;" multiple>
                                     </select>
                                 </div>
