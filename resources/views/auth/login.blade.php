@@ -4,7 +4,7 @@
     <div class="row" style="position:relative;top:80px;">
         <div class="col-md-offset-2 col-md-8">
             <div class="panel panel-primary" style="font-size:12px">
-                <div class="panel-heading" style="font-size:18px">Connection</div>
+                <div class="panel-heading" style="font-size:18px">Connexion</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
@@ -50,7 +50,7 @@
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary btn-md">
-                                    Connection
+                                    Connexion
                                 </button>
 
                                 <a class="btn btn-link btn-md" href="{{ route('password.request') }}">

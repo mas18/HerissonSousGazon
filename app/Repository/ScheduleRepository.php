@@ -87,7 +87,7 @@ class ScheduleRepository
 
     function saveNew(schedule $schedule, $inputs, $timeFrom, $timeTo)
     {
-        $date = $this->dateRepository->parseDate_y_m_d($inputs['date_edit']);
+        $date = $this->dateRepository->parseDate_y_m_d($inputs['date']);
 
         $start = $date . ' ' . $timeFrom;
         $finish = $date . ' ' . $timeTo;
