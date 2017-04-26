@@ -1,7 +1,7 @@
 <?php ?>
 
 @extends('layouts.template')
-@section('header_title', $user->lastname)
+@section('header_title', $user->firstname . " " . $user->lastname)
 @section('main_content')
     <div class="col-sm-offset-2 col-sm-8">
 
