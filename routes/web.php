@@ -23,7 +23,7 @@ Route::get('/adminuserslist/{idSchedule?}',"AdminSubscribeController@sendUserLis
 Route::get('/contact',function(){
    return view('contact.contact');
 });
-Route::get('/home', 'WelcomeController@index');
+Route::get('/home', 'WelcomeController@index')->name('home');
 Route::get('/events', 'EventController@index')->name('event.show');
 Route::post('/events', 'EventController@store')->name('event.store');
 Route::resource('/user', 'UserController');
