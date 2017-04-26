@@ -34,7 +34,7 @@ class EventController extends Controller {
             return view('event/event')->with(['controller' => $this])->with('events', $events);
         } else {
             $lastEvent = $events->first();
-            return redirect()->route('schedule.show', $lastEvent->id);
+                return redirect()->route('schedule.show', $lastEvent->id);
         }
 
     }
