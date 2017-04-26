@@ -50,6 +50,6 @@ class ExportController extends Controller
             $v->level==1 ?  $v->level='Administrateur' : $v->level='Membre';
         }
 
-        $this->exportRepository->exportXLS($volunteers,'utilisateurs','utilisateurs');
+        $this->exportRepository->exportXLS($volunteers,'benevoles','liste_des_bénévoles');
     }
 }
