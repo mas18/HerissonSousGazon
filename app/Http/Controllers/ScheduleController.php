@@ -55,8 +55,20 @@ Mailer $mailer)
 
     //
     // affichage de la view
-    public function datatables($number)
+    public function datatables($number=-1)
     {
+        $latest = $this->eventRepository->getLast()->id;
+
+        if($number== -1){
+            $number = $latest;
+            return redirect()->route('schedule.show', $number);
+        }
+
+        if(Auth::user()->level<1 && $number !=$latest){
+            $number = $latest;
+            return redirect()->route('schedule.show', $number);
+        }
+
         $users=$this->userRepository->getUsers();
         $event = $this->eventRepository->getById($number);
         $dates = $this->scheduleRepository->getDates($event);

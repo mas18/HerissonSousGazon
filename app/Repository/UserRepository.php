@@ -118,6 +118,12 @@ class UserRepository
         return $this->user
             ->whereIn('id', $array_user_id)
             ->get();
+    }
+    public function updatePassword ($inputs, $userId)
+    {
 
+        $user=$this->getById($userId);
+        $user->password=bcrypt($inputs->password);
+        $user->save();
     }
 }

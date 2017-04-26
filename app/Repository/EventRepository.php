@@ -34,6 +34,11 @@ class EventRepository
         return $this->event->findOrFail($id);
     }
 
+    function getLast()
+    {
+        return $this->event->orderBy('id', 'desc')->take(1)->first();
+    }
+
     function getSecondLast()
     {
         return $this->event->orderBy('id', 'desc')->skip(1)->take(1)->first();

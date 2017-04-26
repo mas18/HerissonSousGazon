@@ -9,7 +9,41 @@
             <div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
         @endif
 
-        <br>
+            @if(Session::has('pass_message'))
+                {{Session::forget('pass_message')}}
+
+            <div id="modal_password" class="modal fade in" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content " style="padding: 5px;">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"></h4>
+                        </div>
+                        <div class="modal-body alert-warning">
+                            <form class="form-horizontal" role="form" method="POST" action="{{ route('room.store') }}">
+                                <div class="form-group">
+                                    <label for="roomName" class="col-md-3 control-label "><span class="glyphicon glyphicon-warning-sign"></span> Le mot de passe a été modifié.</label>
+
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <script>
+                $('#modal_password').modal('show');
+            </script>
+            @endif
+
+
+
+            <br>
         <div class="panel panel-primary">
             <div class="panel-heading" style="font-size:18px">Modification d'un utilisateur</div>
             <div class="panel-body" style="font-size:12px">
@@ -85,6 +119,9 @@
                             {!! $errors->first('tel', '<small class="help-block">:message</small>') !!}
                         </div>
                     </div>
+
+                    {{ Html::link('/profil/reset', 'Modifier mot de passe ')}}
+
 
 
                 </div>

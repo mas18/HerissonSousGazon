@@ -27,7 +27,7 @@ Route::get('/home', 'WelcomeController@index');
 Route::get('/events', 'EventController@index')->name('event.show');
 Route::post('/events', 'EventController@store')->name('event.store');
 Route::resource('/user', 'UserController');
-Route::get('profil','ProfilController@display');
+Route::get('profil','ProfilController@display')->name('profil');
 Route::post('profil','ProfilController@save');
 Route::post('/events/new', 'EventController@store')->name('event.store');
 Route::post('/events/update', 'EventController@edit')->name('event.update');
@@ -53,8 +53,8 @@ Route::get('schedule/{number?}/{user?}/{schedule?}', 'SubscribeController@accept
 Route::get('export/user','ExportController@exportAllUser');
 Route::get('export/volonteer/{event}', 'ExportController@exportVolonteers')->name('event.export');
 
-
-
+Route::get('profil/reset', 'ProfilController@showresetpasswordform');
+Route::post('profil/reset', 'ProfilController@resetPassword');
 
 
 Route::get("test",function ()
