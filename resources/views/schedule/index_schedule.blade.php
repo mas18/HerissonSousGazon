@@ -5,7 +5,7 @@
     <div class="col-xs-12">
 
     @if(Auth::user()->level>0)
-        <button type="button"  class="btn btn-primary pull-right btn-sm" style="margin-left:5px;" data-toggle="modal" data-target="#modalNewRoom">Ajouter un lieu</button>
+        <button type="button"  class="btn btn-primary pull-right btn-sm" style="margin-left:5px;" data-toggle="modal" data-target="#modalNewRoom">Ajouter un poste</button>
         <button type="button"  class="btn btn-primary pull-right btn-sm" data-toggle="modal" data-target="#scheduleNew">Créer une plage horaire</button>
     @endif
     </div>
@@ -667,14 +667,14 @@
             <div class="modal-content" style="padding: 5px;">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Ajouter un lieu</h4>
+                    <h4 class="modal-title">Ajouter un poste</h4>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('room.store') }}">
                         {{ csrf_field() }}
                         <input type="hidden" name="eventId" value="{{ $event->id }}">
                         <div class="form-group">
-                            <label for="roomName" class="col-md-3 control-label">Nom du lieu</label>
+                            <label for="roomName" class="col-md-3 control-label">Nom du poste</label>
                             <div class="col-md-6">
                                 <input id="roomName" type="text" class="form-control" name="roomName" required>
                             </div>
