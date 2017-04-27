@@ -80,9 +80,14 @@
                         var listElement = list.childNodes;
 
 
-                        listElement.forEach(function(element){
-                           element.selected = true;
-                        });
+//                        listElement.forEach(function(element){
+//                           element.selected = true;
+//                        });
+                        for (var k=0;k<listElement.length;k++)
+                        {
+                            var element=listElement[k];
+                            element.selected = true;
+                        }
 
                         var formSubscribe = document.querySelector("#formSubscribe");
                         formSubscribe.submit();
