@@ -60,7 +60,7 @@ class Mailer
      //   $data = array( 'title' => $title, 'content' => $content );
 
      //   Mail::send('mail.subscrib_confirm', $data, function ($message) use ($receiver, $title) {
-     //       $message->from($this->sender, 'Herrisson sous gazon');
+     //       $message->from($this->sender, 'Hérisson sous gazon');
 
      //       $message->to($receiver)->subject($title);
      //   });
