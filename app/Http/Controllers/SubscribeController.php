@@ -92,7 +92,7 @@ class SubscribeController extends Controller
     $schedule = Schedule::find($request['schedule']);
 
     $mailer=new \App\Mailer\Mailer();
-    $mailer->sendMailUnsubscribeRequest('Demande de désinscription', $content, 'sandromathier@hotmail.com', $user, $schedule);
+    $mailer->sendMailUnsubscribeRequest('Demande de désinscription', $content, 'isaline.bruchez@gmail.com', $user, $schedule);
 
     return redirect()->route('schedule.show', ['number' => $schedule->event_id])->withUnsub("Votre demande a été envoyé à l'administrateur");
     }

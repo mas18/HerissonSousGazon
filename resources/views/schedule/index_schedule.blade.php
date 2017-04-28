@@ -2,7 +2,7 @@
 @extends('layouts.template')
 @section('main_content')
 
-    <div class="col-xs-12">
+    <div class="col-xs-12" style="padding-right: 0;">
 
     @if(Auth::user()->level>0)
         <button type="button"  class="btn btn-primary pull-right btn-sm" style="margin-left:5px;" data-toggle="modal" data-target="#modalNewRoom">Ajouter un poste</button>
@@ -23,14 +23,14 @@
                 <th>Numéro</th>
                 <th>Jour</th>
                 <th>Date</th>
-                <th>Post</th>
+                <th>Poste</th>
                 <th>Heure début</th>
                 <th>Heure fin</th>
                 <th>Places totales</th>
                 <th>Places restantes </th>
                 <th>Bénévoles inscrits</th>
                 @if(Auth::user()->level==0)
-                <th>action</th>
+                <th>Action</th>
                 @endif
             </tr>
             </thead>

@@ -140,7 +140,7 @@
                             <div class="col-xs-10">
                                 <h4 class="panel-title">
                                     <a role="button" data-toggle="collapse" style="font-size: 20px;" data-parent="#accordion" aria-expanded="{{ $firstItem ? 'true' : 'false' }}" href="#collapse{{ $event->id }}" aria-controls="collapse{{ $event->id }}">
-                                        Événement du {{ $event->starting }} au {{ $event-> ending}}
+                                        Événement du {{ Carbon\Carbon::parse($event->starting)->format('d.m.') }} au {{ Carbon\Carbon::parse($event->ending)->format('d.m.Y') }}
                                     </a>
                                 </h4>
                             </div>
@@ -173,7 +173,7 @@
                                             <div class="slice"><div class="bar"></div><div class="fill"></div></div>
                                         </div>
 
-                                        <p><em>bénévoles inscrit</em></p>
+                                        <p><em>bénévoles inscrits</em></p>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-4 ">
