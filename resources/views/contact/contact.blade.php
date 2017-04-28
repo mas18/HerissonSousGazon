@@ -9,12 +9,56 @@
     <div class="row">
         <div style="padding-top: 15%;" class="col-sm-4">
             <h3>Isaline Bruchez</h3>
-            <p>isaline.bruchez@gmail.com</p>
-            <p>079/664.87.57</p>
+            <p>{{$mail}}</p>
+            <p>{{$tel}}</p>
+            @if (Auth::user())
+            @if (Auth::user()->level==config("Constant.level.admin"))
+
+                <div id="myModal" class="modal fade">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Modification</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                        data-target="#myModal">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                {!! Form::open( ['route' => 'contact_update', 'method' => 'post', 'class' => 'form-horizontal panel']) !!}
+                                {{Form::label('tel: ','Téléphone')}}
+                                {{Form::text('tel',null, ['placehodler'=>"tel"])}}
+                                {{Form::label('email: ','Email')}}
+                                {{Form::text('email',null, ['placehodler'=>"email"])}}
+                                {{Form::submit("enregister")}}
+                                {{Form::close()}}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <button id="update_profil" ><span class="glyphicon glyphicon-pencil"></span></button>
+                <script>
+                    var button =document.querySelector('#update_profil');
+                    button.addEventListener('click',function()
+                    {
+
+                        $('#myModal').modal('show');
+                    })
+                </script>
+            @endif
+            @endif
             <a href="https://www.facebook.com/herissonsousgazon/" title="facebook">
                 <img src="pictures\fblogo.jpg" class="img-responsive" alt="Cinque Terre" style="height: 7%; width: 12%;">
             </a>
+
+
         </div>
+
 
 
         <div style="padding-top: 5%;" class="col-sm-8">

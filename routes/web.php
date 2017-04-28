@@ -20,9 +20,6 @@ Auth::routes();
 Route::get('/subscribe/{idSchedule}',"SubscribeController@action");
 
 Route::get('/adminuserslist/{idSchedule?}',"AdminSubscribeController@sendUserListofSchedule");
-Route::get('/contact',function(){
-   return view('contact.contact');
-});
 Route::get('/home', 'WelcomeController@index')->name('home');
 Route::get('/events', 'EventController@index')->name('event.show');
 Route::post('/events', 'EventController@store')->name('event.store');
@@ -57,21 +54,8 @@ Route::get('profil/reset', 'ProfilController@showresetpasswordform');
 Route::post('profil/reset', 'ProfilController@resetPassword')->name('reset_password');
 
 
-Route::get("test",function ()
-{
-    $dateRepository=new \App\Repository\DateRepository();
-
-    $rawDate="2017-05-15 08:50:2";
-
-    $dateLocalized=$dateRepository->parse_date_localized_dddd_mmmm_yyyy($rawDate);
-    echo $dateLocalized;
-    exit;
-
-
-
-    return view ('teste');
-
-});
+Route::get('/contact','ContactController@index');
+Route::post('contact/update', 'ContactController@update')->name('contact_update');
 
 
 

@@ -8,5 +8,9 @@
 
 return [
     //the deadline for subscription
-    'deadLine'=>21
+    'deadLine'=>21,
+    'level'=>[
+        'user'=>0,
+        'admin'=>1
+]
 ];
