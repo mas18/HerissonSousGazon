@@ -130,10 +130,14 @@
 
                 <br/>
 
-                <!-- Text -->
+                <!-- Text
                 <div class="container flex-center col-md-offset-2 col-sm-8">
                     <p style="font-size:1em; color:#2a88bd; font-weight: bold;">Bienvenue sur le site des inscriptions pour l'événement Hérisson sous gazon dédié aux bénévoles.
                     Pour accéder à l'évènement, veuillez vous connecter au site web.</p>
+                </div>-->
+                <!-- Text -->
+                <div class="container flex-center col-md-offset-2 col-sm-8">
+                    <p style="font-size:1em; color:#2a88bd; font-weight: bold;">Bienvenue sur le site des inscriptions en ligne des bénévoles!</p>
                 </div>
 
             </div>

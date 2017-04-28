@@ -23,14 +23,14 @@
                 <th>Numéro</th>
                 <th>Jour</th>
                 <th>Date</th>
-                <th>Post</th>
+                <th>Poste</th>
                 <th>Heure début</th>
                 <th>Heure fin</th>
                 <th>Places totales</th>
                 <th>Places restantes </th>
                 <th>Bénévoles inscrits</th>
                 @if(Auth::user()->level==0)
-                <th>action</th>
+                <th>Action</th>
                 @endif
             </tr>
             </thead>

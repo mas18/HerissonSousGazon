@@ -173,7 +173,7 @@
                                             <div class="slice"><div class="bar"></div><div class="fill"></div></div>
                                         </div>
 
-                                        <p><em>bénévoles inscrit</em></p>
+                                        <p><em>bénévoles inscrits</em></p>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-4 ">
