@@ -209,7 +209,7 @@ Mailer $mailer)
             $oldSchedule_information=
                 " Anciennement :   "
             ."  Date : " .$oldDate
-            ." ; Post : ".$oldRoom
+            ." ; Poste : ".$oldRoom
             ." ; Heure de départ : ".$oldStart
             ." ; Heure de fin : ".$oldFinish;
 

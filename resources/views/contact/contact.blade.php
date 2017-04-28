@@ -9,7 +9,6 @@
     <div class="row">
         <div style="padding-top: 15%;" class="col-sm-4">
             <h3>Isaline Bruchez</h3>
-            <p>isbruchez@hotmail.com</p>
             <p>isaline.bruchez@gmail.com</p>
             <p>079/664.87.57</p>
             <a href="https://www.facebook.com/herissonsousgazon/" title="facebook">
@@ -20,7 +19,7 @@
 
         <div style="padding-top: 5%;" class="col-sm-8">
             <h3>Adresse de l'évènement </h3>
-            <p>Avenue de la Gare 3</p>
+            <p>Avenue de la Gare 6</p>
             <p>1906 Charrat</p>
 
             <div id="map-container" class="col-md-12; padding-left: 0;">
