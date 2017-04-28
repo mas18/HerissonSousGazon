@@ -2,7 +2,7 @@
 @extends('layouts.template')
 @section('main_content')
 
-    <div class="col-xs-12">
+    <div class="col-xs-12" style="padding-right: 0;">
 
     @if(Auth::user()->level>0)
         <button type="button"  class="btn btn-primary pull-right btn-sm" style="margin-left:5px;" data-toggle="modal" data-target="#modalNewRoom">Ajouter un poste</button>
