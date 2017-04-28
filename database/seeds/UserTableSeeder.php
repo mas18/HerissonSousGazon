@@ -41,82 +41,35 @@ class UserTableSeeder extends Seeder {
         ));
 
         User::create(array(
-            'email' => 'loriane_bussard@hotmail.com',
-            'firstname' => 'Laurianne',
-            'lastname' => 'Bussard',
+            'email' => 'sandromathier@hotmail.com',
+            'firstname' => 'Sandro',
+            'lastname' => 'Mathier',
             'password' => bcrypt('password'),
-            'street' => 'chemin du Chalet-Mignon 3',
-            'tel' => '079 455 32 31 ',
-            'city'=>'1008 Prilly',
-            'birth' => Carbon::createFromDate(1990, 7, 4),
+            'street' => 'Rue de Salgesh 33',
+            'tel' => '079 458 32 31 ',
+            'city'=>'3960 Salgesh',
+            'birth' => Carbon::createFromDate(1992, 1, 10),
             'level'=>0
         ,   'comment' => 'Aucun',
         ));
 
+
+
         User::create(array(
-            'email' => 'fournier.sabine@bluewin.ch',
-            'firstname' => 'Sabine',
-            'lastname' => 'Fournier',
-            'password' => bcrypt('password'),
-            'street' => 'Petit Clos 1',
-            'tel' => '079 455 32 31 ',
-            'birth' => Carbon::createFromDate(1988, 10, 10),
-            'city'=>'1904 Vernayaz',
+            'email' => 'isaline.bruchez@gmail.com',
+            'firstname' => 'Isaline',
+            'lastname' => 'Burchez',
+            'password' => bcrypt('herissonpassword'),
+            'street' => 'Rue de Sion 21',
+            'tel' => '079 458 32 31 ',
+            'city'=>'1921 Martigny',
+            'birth' => Carbon::createFromDate(1980, 3, 10),
             'level'=>0
         ,   'comment' => 'Aucun',
         ));
 
-        User::create(array(
-            'email' => 'philippe_pignat@netplus.ch',
-            'firstname' => 'Philippe',
-            'lastname' => 'Pignat ',
-            'password' => bcrypt('password'),
-            'street' => 'Av de la Gare 35',
-            'tel' => '079 455 32 31 ',
-            'city'=>'1906 charrat',
-            'birth' => Carbon::createFromDate(1985, 3, 17),
-            'level'=>0
-        ,   'comment' => 'Aucun',
-        ));
 
-        User::create(array(
-            'email' => 'Rita.pante@bluewin.ch',
-            'firstname' => 'Rita',
-            'lastname' => 'Pante ',
-            'password' => bcrypt('password'),
-            'street' => 'Rossettan 13',
-            'tel' => '079 455 32 31 ',
-            'city'=>'1920 martigny',
-            'birth' => Carbon::createFromDate(1982, 4, 15),
-            'level'=>0
-        ,   'comment' => 'Aucun',
-        ));
 
-        User::create(array(
-            'email' => 'gig_78@yahoo.fr',
-            'firstname' => 'Michael',
-            'lastname' => 'Gigon ',
-            'password' => bcrypt('password'),
-            'street' => 'Rue des Marronniers 30',
-            'tel' => '079 455 32 31 ',
-            'city'=>'1906 Charrat',
-            'birth' => Carbon::createFromDate(1978, 10, 10),
-            'level'=>0
-        ,   'comment' => 'Aucun',
-        ));
-
-        User::create(array(
-            'email' => 'olivier.bourgeois@novelis.com',
-            'firstname' => 'Olivier',
-            'lastname' => 'Bourgeois',
-            'password' => bcrypt('password'),
-            'street' => 'Rue jeu de quille 10',
-            'tel' => '079 455 32 31 ',
-            'city'=>'1906 Charrat',
-            'birth' => Carbon::createFromDate(1988, 6, 12),
-            'level'=>0
-        ,   'comment' => 'Aucun',
-        ));
 
 
 	}

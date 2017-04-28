@@ -15,13 +15,13 @@ class ScheduleUserTableSeeder extends Seeder
         DB::table('schedule_user')->delete();
         DB::table('schedule_user')->truncate();
 
-        for ($k=0;$k<30;$k++)
+        /*for ($k=0;$k<30;$k++)
         {
             DB::table('schedule_user')->insert([
                 'user_id' => rand(1,7),
                 'schedule_id' => rand(1,20),
             ]);
-        }
+        }*/
 
 
     }

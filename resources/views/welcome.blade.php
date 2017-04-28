@@ -49,6 +49,7 @@
                 </div>
             @endif
 
+            <br/><br/><br/>
             <div class="content" style="text-align:center">
 
                 <!-- CAROUSEL -->
@@ -91,12 +92,12 @@
 
 
                 <!-- TITLE -->
-                <div style="font-size:5vw;">Hérisson sous gazon</div>
+                <div style="font-size:5em;">Hérisson sous gazon</div>
 
                 </br>
 
                 <!-- HREF -->
-                <div class="container flex-center ">
+                <div class="container flex-center">
                 <ul class="navbar-nav">
                     @if(Auth::user())
                     <li class="linksNav" style="list-style-type:none"><a style="font-size:1vw;" href="{{ url('/events') }}">Voir l'événement</a></li>
@@ -113,7 +114,7 @@
                 <br/>
 
                 <!-- Text -->
-                <div class="container flex-center col-md-offset-2 col-sm-8">
+                <div class="container flex-center">
                     <p style="font-size:1vw; color:#2a88bd; font-weight: bold;">Bienvenue sur le site des inscriptions pour l'événement Hérisson sous gazon dédié aux bénévoles.
                     Pour accéder à l'évènement, veuillez vous connecter au site web.</p>
                 </div>

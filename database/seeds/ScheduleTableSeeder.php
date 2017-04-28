@@ -12,18 +12,18 @@ class ScheduleTableSeeder extends Seeder {
         DB::table('schedules')->truncate();
 
 
-        for ($k=0;$k<20;$k++)
+        for ($k=0;$k<10;$k++)
         {
 
             // ScheduleSeeder
             $day=rand(10,11);
-            $month=8;
+            $month=6;
             Schedule::create(array(
                 'places' => 2,
                 'start' => $this->beginDate($day,$month),
                 'finish' => $this->endDate($day,$month),
                 'event_id'=>1,
-                'room_id'=>rand(1,10),
+                'room_id'=>rand(1,6),
             ));
         }
 
