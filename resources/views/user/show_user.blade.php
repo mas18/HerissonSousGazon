@@ -9,7 +9,7 @@
             <div class="panel-body" style="font-size:12px">
                 <p>Prénom : {{ $user->firstname }}</p>
                 <p>Nom : {{ $user->lastname }}</p>
-                <p>Date de naissance: {{ Carbon\Carbon::parse($user->birthg)->format('d.m.Y') }}</p>
+                <p>Date de naissance: {{ Carbon\Carbon::parse($user->birth)->format('d.m.Y') }}</p>
                 <p>Email : {{ $user->email }}</p>
                 <p>Rue : {{ $user->street }}</p>
                 <p>NPA + Ville : {{ $user->city }}</p>
