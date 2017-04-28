@@ -7,7 +7,7 @@
         <div class="panel panel-primary">
             <div class="panel-heading" style="font-size:18px">Modification d'un utilisateur</div>
             <div class="panel-body" style="font-size:12px">
-            {!! Form::open( ['action' => ['ProfilController@resetPassword'], 'method' => 'post', 'class' => 'form-horizontal panel']) !!}
+            {!! Form::open( ['route' => 'reset_password', 'method' => 'post', 'class' => 'form-horizontal panel']) !!}
 
             <div class="form-group {!! $errors->has('password') ? 'has-error' : '' !!}">
                 <div class="col-md-3">
