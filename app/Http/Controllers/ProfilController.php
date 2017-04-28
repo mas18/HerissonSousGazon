@@ -40,7 +40,7 @@ class ProfilController extends Controller
 
         return view("profil.reset_password");
     }
-    public function resetPassword(UserResetPasswordRequest $request)
+    public function resetpassword(UserResetPasswordRequest $request)
     {
         try{
             $this->userRepository->updatePassword($request,Auth::user()->id);

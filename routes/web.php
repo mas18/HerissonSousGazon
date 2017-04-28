@@ -54,7 +54,7 @@ Route::get('export/user','ExportController@exportAllUser');
 Route::get('export/volonteer/{event}', 'ExportController@exportVolonteers')->name('event.export');
 
 Route::get('profil/reset', 'ProfilController@showresetpasswordform');
-Route::post('profil/reset', 'ProfilController@resetPassword');
+Route::post('profil/reset', 'ProfilController@resetpassword');
 
 
 Route::get("test",function ()
