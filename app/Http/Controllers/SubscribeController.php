@@ -112,8 +112,8 @@ class SubscribeController extends Controller
 
         //localization
         setlocale(LC_TIME, 'French');
-        $startDate=$startCaron->formatLocalized('%A %d %B %Y');
-        $endDate=$endCarbon->formatLocalized('%A %d %B %Y');
+        $startDate=$this->dateRepository->parse_date_localized_dddd_mmmm_yyyy($schedule->start);
+        $endDate=$this->dateRepository->parse_date_localized_dddd_mmmm_yyyy($schedule->end);
         $startHour=$startCaron->hour;
         $startMinute=$startCaron->minute<10 ? '00' : $startCaron->minute;
 
