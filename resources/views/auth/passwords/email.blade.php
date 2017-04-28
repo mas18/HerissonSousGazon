@@ -33,7 +33,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Envoyer une lien de réinitialisation de mot de passe
+                                    Envoyer un lien de réinitialisation de mot de passe
                                 </button>
                             </div>
                         </div>

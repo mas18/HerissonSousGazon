@@ -80,9 +80,14 @@
                         var listElement = list.childNodes;
 
 
-                        listElement.forEach(function(element){
-                           element.selected = true;
-                        });
+//                        listElement.forEach(function(element){
+//                           element.selected = true;
+//                        });
+                        for (var k=0;k<listElement.length;k++)
+                        {
+                            var element=listElement[k];
+                            element.selected = true;
+                        }
 
                         var formSubscribe = document.querySelector("#formSubscribe");
                         formSubscribe.submit();
@@ -139,6 +144,7 @@
                 $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
                     e.preventDefault(); $(this).parent('div').remove(); x--;
                 })
+
             });
 
 
@@ -251,12 +257,18 @@
         {
            //retrive all the row
             console.log(rows);
-            rows.forEach(function(aRow)
-            {
-                var day=aRow.childNodes[1].innerHTML;
-                    assignStyle(day,aRow);
+//            rows.forEach(function(aRow)
+//            {
+//                var day=aRow.childNodes[1].innerHTML;
+//                    assignStyle(day,aRow);
+//
+//            });
 
-            });
+            for (var k=0;k<rows.length;k++)
+            {
+                var day=rows[k].childNodes[1].innerHTML;
+                assignStyle(day,rows[k]);
+            }
 
 
             function assignStyle(day, row)
@@ -338,26 +350,47 @@
                                 subscribedList.innerHTML="";
 
                                 //fil the aldready subscribded data
-                                data[0].forEach(function(element){
-                                    console.log(element['id']);
+                                for (var k=0;k<data[0].length;k++)
+                                {
+                                    element=data[0][k];
                                     var option=document.createElement('option');
                                     option.value=element.id;
                                     option.innerHTML=element['lastname']+" "+element['firstname'];
 
                                     subscribedList.appendChild(option);
-                                });
+
+                                }
+//                                data[0].forEach(function(element){
+//                                    console.log(element['id']);
+//                                    var option=document.createElement('option');
+//                                    option.value=element.id;
+//                                    option.innerHTML=element['lastname']+" "+element['firstname'];
+//
+//                                    subscribedList.appendChild(option);
+//                                });
 
                                //list non subscribed  data-----------------------
                                 nonSubscribedList.innerHTML="";
 
+
                                 //fil the aldready subscribded data
-                                data[1].forEach(function(element){
+                                for (var k=0;k<data[1].length;k++)
+                                {
+                                    element=data[1][k];
                                     var option=document.createElement('option');
                                     option.value=element.id;
                                     option.innerHTML=element['lastname']+" "+element['firstname'];
 
                                     nonSubscribedList.appendChild(option);
-                                });
+
+                                }
+//                                data[1].forEach(function(element){
+//                                    var option=document.createElement('option');
+//                                    option.value=element.id;
+//                                    option.innerHTML=element['lastname']+" "+element['firstname'];
+//
+//                                    nonSubscribedList.appendChild(option);
+//                                });
 
                             }
                         });
@@ -381,9 +414,15 @@
                 var childsNodes = row[k].childNodes;
                 console.log(childsNodes[childsNodes.length - 1]);
                 //get the information to display in the alert box
-                var action_type=childsNodes[childsNodes.length-1].innerHTML.includes('Desinscription') ? "Désincription de l'horaire suivant :":"inscription à l'horaire suivant : ";
+                // var action_type=childsNodes[childsNodes.length-1].innerHTML.includes('Desinscription') ? "Désincription de l'horaire suivant :":"inscription à l'horaire suivant : ";
+                if(childsNodes[childsNodes.length-1].innerHTML === "Desinscription"){
+                    var action_type="Désincription de l'horaire suivant :";
+                } else {
+                    var action_type="Inscription à l'horaire suivant : ";
+                }
+
                 var schedule_number=childsNodes[0].innerHTML;
-                var action_type=childsNodes[childsNodes.length-1].innerHTML.includes('Desinscription') ? "la désincription de l'horaire : ":"l'inscription à l'horaire : ";
+                // var action_type=childsNodes[childsNodes.length-1].innerHTML.includes('Desinscription') ? "la désincription de l'horaire : ":"l'inscription à l'horaire : ";
                 var schedule_day=childsNodes[1].innerHTML;
                 var schedule_date=childsNodes[2].innerHTML;
                 var schedule_post=childsNodes[3].innerHTML;

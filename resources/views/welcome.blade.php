@@ -30,30 +30,47 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-relative full-height">
+        <header>
             @if (Route::has('login'))
-                <div class="navbar-top-right linksNav">
-                    @if (Auth::check())
-                        <a style="font-size:100%" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
+            <!-- NavBar -->
+            <nav class="navbar navbar-default navbar-toggleable-md navbar-light bg-faded" style="border:0; background-color: #fff;">
+                <div class="container-fluid">
+                    <div class="navbar-header" style="margin-left: 20px;">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            @if (Auth::check())
+                                <li class="linksNav"><a style="font-size:100%" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
                            document.getElementById('logout-form').submit();">
-                            Déconnexion
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
-                    @else
-                        <a style="font-size:100%" href="{{ url('/login') }}">Connexion</a>
-                        <a style="font-size:100%" href="{{ url('/register') }}">Créer un compte</a>
-                    @endif
+                                    Déconnexion
+                                </a></li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            @else
+                                <li class="linksNav"><a style="font-size:100%" href="{{ url('/login') }}">Connexion</a></li>
+                                <li class="linksNav"><a style="font-size:100%" href="{{ url('/register') }}">Créer un compte</a></li>
+                            @endif
+                        </ul>
+                    </div>
                 </div>
-            @endif
+            </nav>
 
-            <br/><br/><br/>
-            <div class="content" style="text-align:center">
+            @endif
+        </header>
+
+
+            <div class="content" style="text-align:center; padding: 5px;">
 
                 <!-- CAROUSEL -->
-                <div class="container flex-center" style="width:50%">
+                <div class="container flex-center" style="width:75%">
                     <br>
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
                         <!-- Indicators -->
@@ -92,21 +109,21 @@
 
 
                 <!-- TITLE -->
-                <div style="font-size:5em;">Hérisson sous gazon</div>
+                <div style="font-size:3em;">Hérisson sous gazon</div>
 
                 </br>
 
                 <!-- HREF -->
-                <div class="container flex-center">
+                <div class="container flex-center ">
                 <ul class="navbar-nav">
                     @if(Auth::user())
-                    <li class="linksNav" style="list-style-type:none"><a style="font-size:1vw;" href="{{ url('/events') }}">Voir l'événement</a></li>
-                    <li class="linksNav" style="list-style-type:none"><a style="font-size:1vw" href="{{ url('/profil') }}">Mon profil</a></li>
+                    <li class="linksNav" style="list-style-type:none"><a style="font-size:1em;" href="{{ url('/events') }}">Voir l'événement</a></li>
+                    <li class="linksNav" style="list-style-type:none"><a style="font-size:1em" href="{{ url('/profil') }}">Mon profil</a></li>
                     @endif
                     @if(Auth::user()  AND Auth::user()->level>0)
-                         <li class="linksNav" style="list-style-type:none"><a style="font-size:1vw" href="{{ url('/user') }}">Gestion des bénévoles</a></li>
+                         <li class="linksNav" style="list-style-type:none"><a style="font-size:1em" href="{{ url('/user') }}">Gestion des bénévoles</a></li>
                     @endif
-                    <li class="linksNav" style="list-style-type:none"><a style="font-size:1vw" href="{{ url('/contact') }}">Contact</a></li>
+                    <li class="linksNav" style="list-style-type:none"><a style="font-size:1em" href="{{ url('/contact') }}">Contact</a></li>
                 </ul>
                 </div>
 
@@ -114,8 +131,8 @@
                 <br/>
 
                 <!-- Text -->
-                <div class="container flex-center">
-                    <p style="font-size:1vw; color:#2a88bd; font-weight: bold;">Bienvenue sur le site des inscriptions pour l'événement Hérisson sous gazon dédié aux bénévoles.
+                <div class="container flex-center col-md-offset-2 col-sm-8">
+                    <p style="font-size:1em; color:#2a88bd; font-weight: bold;">Bienvenue sur le site des inscriptions pour l'événement Hérisson sous gazon dédié aux bénévoles.
                     Pour accéder à l'évènement, veuillez vous connecter au site web.</p>
                 </div>
 

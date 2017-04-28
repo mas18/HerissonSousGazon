@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Session\TokenMismatchException;
 use Illuminate\Validation\UnauthorizedException;
 use Psy\Exception\ErrorException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -57,6 +58,11 @@ class Handler extends ExceptionHandler
 
         if ($exception instanceof \ReflectionException)
             return response()->view('exceptions.404');
+
+        if ($exception instanceof  TokenMismatchException)
+        {
+            return redirect()->route('profil');
+        }
 
         if ($exception instanceof  \ErrorException)
         {

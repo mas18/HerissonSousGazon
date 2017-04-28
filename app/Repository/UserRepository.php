@@ -10,6 +10,7 @@ namespace App\Repository;
 
 
 use App\User;
+use Carbon\Carbon;
 
 class UserRepository
 {
@@ -29,8 +30,8 @@ class UserRepository
         $user->street=$inputs['street'];
         $user->city=$inputs['city'];
         $user->tel=$inputs['tel'];
-        $user->birth=$inputs['birth'];
 
+        $user->birth=Carbon::parse($inputs['birth'])->format('Y-m-d');
         $user->save();
     }
 
