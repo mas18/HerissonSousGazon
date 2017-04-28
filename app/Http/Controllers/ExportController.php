@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Repository\ExportRepository;
 use App\Repository\UserRepository;
 use App\Repository\ScheduleRepository;
+use App\User;
 use Illuminate\Http\Request;
 
 class ExportController extends Controller
@@ -27,18 +28,20 @@ class ExportController extends Controller
     //
     function exportAllUser()
     {
-        $userList=$this->userRepository->getUsers();
+
+
+        $userList=User::get(["lastname","firstname","email","street","city","level","tel","id"]);
+
         for ($k=0;$k<count($userList);$k++)
         {
             $userList[$k]->level==1 ?  $userList[$k]->level='Administrateur' : $userList[$k]->level='Membre';
         }
-
         $this->exportRepository->exportXLS($userList,'utilisateurs','utilisateurs');
     }
 
     function exportVolonteers($eventId)
     {
-        $userList=$this->userRepository->getUsers();
+        $userList=User::get(["lastname","firstname","email","street","city","level","tel","id"]);
 
         $users=$this->scheduleRepository->getVolonteers($eventId);
 
