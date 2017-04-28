@@ -37,7 +37,6 @@ class ProfilController extends Controller
     }
     public function showresetpasswordform()
     {
-
         return view("profil.reset_password");
     }
     public function resetPassword(UserResetPasswordRequest $request)
