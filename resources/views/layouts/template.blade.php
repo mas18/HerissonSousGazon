@@ -36,7 +36,7 @@
 </head>
 
 
-<body style="height: auto; background: url('{{ asset('pictures/footerHerbe.png') }}') repeat-x bottom; background-size: auto 60px;">
+<body style="height: auto; background: url('{{ asset('pictures/footerHerbe.PNG') }}') repeat-x bottom; background-size: auto 60px;">
 <header>
 
 

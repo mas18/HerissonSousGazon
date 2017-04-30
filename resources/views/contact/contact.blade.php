@@ -53,7 +53,7 @@
             @endif
             @endif
             <a href="https://www.facebook.com/herissonsousgazon/" title="facebook">
-                <img src="pictures\fblogo.jpg" class="img-responsive" alt="Cinque Terre" style="height: 7%; width: 12%;">
+                <img src="\pictures\fblogo.jpg" class="img-responsive" alt="Cinque Terre" style="height: 10%; width: auto;">
             </a>
 
 
