@@ -67,7 +67,7 @@
             <p>1906 Charrat</p>
 
             <div id="map-container" class="col-md-12; padding-left: 0;">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1927.4523724601938!2d7.133121230843038!3d46.12132055840694!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478ec894d7764a05%3A0x642374a2107b6652!2sAvenue+de+la+Gare+3%2C+1906+Charrat!5e0!3m2!1sde!2sch!4v1493377518112" width="100%;" height="50%" frameborder="0" style="border:0" allowfullscreen></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2765.425409815358!2d7.131403815343376!3d46.122355297306655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478ec894ea71a10b%3A0x4d9c1a83fc839e4e!2sAvenue+de+la+Gare+6%2C+1906+Charrat!5e0!3m2!1sde!2sch!4v1493534222797" width="100%;" height="50%" frameborder="0" style="border:0" allowfullscreen></iframe>
             </div>
 
         </div>
