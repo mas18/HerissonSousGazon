@@ -27,7 +27,7 @@ class ScheduleRequest extends FormRequest
 
         $rules = [
             'date'=>'date|date_format:d-m-Y',
-            'number'=>'min:1|max:20'
+            'number'=>'min:1|max:1000'
         ];
 
 

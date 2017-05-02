@@ -541,7 +541,7 @@
                             <label for="number" class="col-md-3 control-label">Places totales:</label>
 
                             <div class="col-md-6">
-                                <input id="number" type="number" class="form-control" name="number" value="1" min="1" max="20" required>
+                                <input id="number" type="number" class="form-control" name="number" value="1" min="1" max="1000" required>
                             </div>
                         </div>
                         <div class="input_fields_wrap" style="margin-bottom: 0;">
@@ -621,7 +621,7 @@
                             <label for="number_edit" class="col-md-3 control-label">Places totales:</label>
 
                             <div class="col-md-6">
-                                <input id="number_edit" type="number" class="form-control" name="number_edit" value="" min="1" max="20" disabled required>
+                                <input id="number_edit" type="number" class="form-control" name="number_edit" value="" min="1" max="1000" disabled required>
                             </div>
                         </div>
                         <div class="input_fields_wrap" style="margin-bottom: 0;">

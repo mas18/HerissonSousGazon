@@ -86,6 +86,29 @@
 
             <?php $firstItem = true; ?>
             @foreach ($events as $event)
+                <!-- Modal - DeleteEvent -->
+                    <div id="modalDelete{{ $event->id }}" class="modal fade in" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content" style="padding: 5px;">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Confirmer la suppression de l'événement</h4>
+                                </div>
+                                <div class="modal-body alert alert-danger">
+                                    <span class="glyphicon glyphicon-warning-sign"> </span>
+                                    Êtes-vous sûr de vouloir supprimer cet événement? Cette action est irréversible
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" onclick="delete_Event({{ $event->id }})" >Supprimer</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
                 <!-- Modal - Update -->
                     <div id="modalUpdate{{ $event->id }}" class="modal fade" role="dialog">
                         <div class="modal-dialog">
@@ -145,7 +168,7 @@
                                 </h4>
                             </div>
                             <div class="col-xs-2">
-                                <button type="button" style="float: right; color:#f5f8fa"  class="btn btn-link btn-sm" data-toggle="modal" data-target="#modalDelete" >Supprimer</button>
+                                <button type="button" style="float: right; color:#f5f8fa"  class="btn btn-link btn-sm" data-toggle="modal" onclick="$('#modalDelete{{ $event->id }}').modal({'backdrop': 'static'});" >Supprimer</button>
                                 <button type="button" style="float: right; color:#f5f8fa"  class="btn btn-link btn-sm" onclick="$('#modalUpdate{{ $event->id }}').modal({'backdrop': 'static'});" >Modifier</button>
                             </div>
                         </div>
@@ -227,28 +250,7 @@
         </script>
     @endif
 
-        <!-- Modal - DeleteEvent -->
-        <div id="modalDelete" class="modal fade in" role="dialog">
-            <div class="modal-dialog">
 
-                <!-- Modal content-->
-                <div class="modal-content" style="padding: 5px;">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Confirmer la suppression de l'événement</h4>
-                    </div>
-                    <div class="modal-body alert alert-danger">
-                        <span class="glyphicon glyphicon-warning-sign"> </span>
-                        Êtes-vous sûr de vouloir supprimer cet événement? Cette action est irréversible
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" onclick="delete_Event({{ isset($event) ? $event->id : '' }})" >Supprimer</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
 
         <div style="margin-bottom: 90px;">
             <br/>

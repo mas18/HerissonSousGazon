@@ -25,9 +25,7 @@ class EventRequest extends FormRequest
     public function rules()
     {
         $start = Carbon::parse($this->dateFrom);
-        $maxDiff = $start->addDays(3);
-
-        echo $maxDiff;
+        $maxDiff = $start->addDays(30);
 
         return [
             'dateFrom'=>'required|date|date_format:Y-m-d|after:yesterday',

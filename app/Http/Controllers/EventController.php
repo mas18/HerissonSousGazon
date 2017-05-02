@@ -17,7 +17,7 @@ class EventController extends Controller {
 
     protected $eventRepository;
     protected $scheduleRepository;
-    protected $nbrPerPage = 3;
+    protected $nbrPerPage = 5;
 
     public function __construct(EventRepository $eventRepository, ScheduleRepository $scheduleRepository)
     {
